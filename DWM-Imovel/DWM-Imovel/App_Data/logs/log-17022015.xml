@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1449284896" Data="17/02/2015 23:57:52">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewContaPagar =&gt; contapagar/listparam</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 404
+   em App_Dominio.Component.ListViewRepository`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 62
+   em App_Dominio.Component.ListViewRepository`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 30</StackTrace>
+  </LOG>
+  <LOG ID="1530212043" Data="17/02/2015 23:58:36">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewContaPagar =&gt; contapagar/listparam</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 422
+   em App_Dominio.Component.ListViewRepository`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 62
+   em App_Dominio.Component.ListViewRepository`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 30</StackTrace>
+  </LOG>
+</LOG>

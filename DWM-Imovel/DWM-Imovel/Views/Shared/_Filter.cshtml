@@ -1,0 +1,23 @@
+﻿@model System.Web.Mvc.IPagedList  
+@{
+    Layout= null;
+    string cabecalho = ViewBag.Header;
+}   
+
+
+@using (Ajax.BeginForm(null, null, new AjaxOptions { HttpMethod = "get" }, new { @style = "margin-left: 20px", @role = "search" }))
+{
+    <div class="form-horizontal" style="padding-top: 10px;">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-xs-3 col-sm-3 hidden-xs">@ViewBag.Header</label>
+            <div class="col-md-5 col-xs-10 col-sm-8 input-group">
+                @Html.TextBox("descricao", "", htmlAttributes: new { @class = "form-control input-sm", @placeholder = "Descrição" })
+                <div class="input-group-btn">
+                    <button type="button" class="btn-default btn-sm" onclick="Refresh(0, getPageSize(), '@Model.action', '@Model.DivId')">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

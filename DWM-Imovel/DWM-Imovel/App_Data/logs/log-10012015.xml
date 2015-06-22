@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="834786622" Data="10/01/2015 16:14:20">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PlanoContasController =&gt; planocontas/create</NameSpace>
+    <Context>exercicio="2015",codigoPleno="1.00.00.0",codigoReduzido="1",tipoConta="S",vr_saldo_inicial.1="0,00",vr_saldo_inicial="0",descricao="Receitas",planoContaId_pai="",descricao_pai1=""</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Insert(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 278
+   em App_Dominio.Controllers.RootController`2.SetCreate(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IBaseController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 101</StackTrace>
+  </LOG>
+  <LOG ID="28305567" Data="10/01/2015 16:53:16">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PlanoContasController =&gt; planocontas/create</NameSpace>
+    <Context>exercicio="2015",codigoPleno="2.00.00.0",codigoReduzido="2",tipoConta="S",vr_saldo_inicial.1="33.330,00",vr_saldo_inicial="33330",descricao="Despesas",planoContaId_pai="",descricao_pai1=""</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Insert(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 278
+   em App_Dominio.Controllers.RootController`2.SetCreate(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IBaseController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 101</StackTrace>
+  </LOG>
+  <LOG ID="249850775" Data="10/01/2015 17:00:20">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PlanoContasController =&gt; planocontas/create</NameSpace>
+    <Context>exercicio="2015",codigoPleno="1.01.00.0",codigoReduzido="3",tipoConta="A",vr_saldo_inicial.1="0,00",vr_saldo_inicial="0",descricao="Salários e Ordenados",planoContaId_pai="1",descricao_pai1="Receitas"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Insert(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 278
+   em App_Dominio.Controllers.RootController`2.SetCreate(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IBaseController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 101</StackTrace>
+  </LOG>
+</LOG>

@@ -1,0 +1,52 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.ClienteViewModel>
+
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    <div class="row Scroll">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-bordered table-condensed" style="cursor: pointer">
+                <caption></caption>
+                <thead class="corvo text-white">
+                    <tr>
+                        <th class="text-center">Ação</th>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                    </tr>
+                </thead>
+                @foreach (DWM.Models.Repositories.ClienteViewModel cli in Model)
+                {
+                    <tr>
+                        <td class="col-md-3 col-xs-3 col-sm-4 text-center">
+                            <div class="col-md-6 col-xs-6 col-sm-6 text-center">
+                                <button type="button" class="btn btn-info btn-xs col-md-11" onclick="window.location='Edit?clienteId=@cli.clienteId'">Editar</button>
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-sm-6 text-center">
+                                <button type="button" class="btn btn-danger btn-xs col-md-11" onclick="window.location='Delete?clienteId=@cli.clienteId'">Excluir</button>
+                            </div>
+                        </td>
+                        <td class="col-md-6 col-xs-5 col-sm-4">
+                            <p>@cli.nome</p>
+                        </td>
+                        <td class="col-md-3 col-xs-4 col-sm-4">
+                            <p>@cli.cpf_cnpj</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @Html.Partial("Paginacao", Model)
+}
+else
+{
+    @Html.Partial("_AcessoNegadoModal")
+}
+
+
+
+
+
+

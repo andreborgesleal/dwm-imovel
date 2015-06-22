@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1532356017" Data="14/04/2015 00:18:18">
+    <Sessao>so3e5i3px4u20lmwtn1qsudq</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+</LOG>

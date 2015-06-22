@@ -1,0 +1,56 @@
+﻿@using App_Dominio.Security;
+@using App_Dominio.Entidades;
+@using App_Dominio.Repositories;
+@{
+    EmpresaSecurity<App_DominioContext> security = new EmpresaSecurity<App_DominioContext>();
+    IEnumerable<TransacaoRepository> menuList = security.getUsuarioTransacao();
+}
+
+<script>
+    $("#sidebar-wrapper").hide();
+</script>
+
+
+@if (menuList != null)
+{
+    <div class="list-group margem-topo-7">
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">Movimentação bancária</h4>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Extrato Bancário</h4>
+            <p class="list-group-item-text">Emissão do extrato bancário e fluxo de caixa</p>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Saldos</h4>
+            <p class="list-group-item-text">Consulta de saldos</p>
+        </a>
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">Contas a pagar</h4>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Agendamentos</h4>
+            <p class="list-group-item-text">Relação de contas a vencer</p>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Amortizações</h4>
+            <p class="list-group-item-text">Pagamentos realizados no período</p>
+        </a>
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">Contabilidade</h4>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">Balancete</h4>
+            <p class="list-group-item-text">Balancete da contabilidade</p>
+        </a>
+        <a href="~/Razao/Browse" class="list-group-item">
+            <h4 class="list-group-item-heading">Razão</h4>
+            <p class="list-group-item-text">Emissão do Razão</p>
+        </a>
+        <a href="~/Diario/Browse" class="list-group-item">
+            <h4 class="list-group-item-heading">Diário</h4>
+            <p class="list-group-item-text">Emissão do Diário da contabilidade</p>
+        </a>
+    </div>
+}
+

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1586980505" Data="18/04/2015 11:28:31">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="478962892" Data="18/04/2015 11:33:22">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="926639975" Data="18/04/2015 11:34:51">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1659672074" Data="18/04/2015 11:41:14">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1038904601" Data="18/04/2015 12:12:57">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 593
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1742697043" Data="18/04/2015 13:17:10">
+    <Sessao>04jvgklrbdatps205teqz3hj</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupContaPagarModel =&gt; home/lovcontapagarmodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewContaPagar.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Financas\DWM-Financas\DWM-Financas\Models\Persistence\ContaPagarModel.cs:linha 627
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+</LOG>

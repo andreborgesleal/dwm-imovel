@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1523217793" Data="04/02/2015 00:05:21">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM_Financas.Models.Report.LookupRazaoModel =&gt; home/lovrazaomodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM_Financas.Models.Report.RazaoReport.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Report\RazaoReport.cs:linha 17
+   em DWM.Models.Repositories.ReportViewModel`1.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Repositories\ReportViewModel.cs:linha 22
+   em App_Dominio.Component.ListViewRepository`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 30</StackTrace>
+  </LOG>
+  <LOG ID="157575220" Data="04/02/2015 00:06:30">
+    <Sessao>lpgyrhbsj4gvnmglczfjrrpb</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM_Financas.Models.Report.LookupRazaoModel =&gt; home/lovrazaomodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM_Financas.Models.Report.RazaoReport.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Report\RazaoReport.cs:linha 17
+   em DWM.Models.Repositories.ReportViewModel`1.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Finanças\DWM-Financas\DWM-Financas\Models\Repositories\ReportViewModel.cs:linha 22
+   em App_Dominio.Component.ListViewRepository`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 30</StackTrace>
+  </LOG>
+</LOG>

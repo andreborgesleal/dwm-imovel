@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="522261267" Data="20/10/2014 21:53:35">
+    <Sessao>12ttdstutokqgc2mmyzasxoc</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.GrupoFornecedoresController =&gt; grupofornecedores/edit</NameSpace>
+    <Context>grupoCredorId="3",nome="Funcionários"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 327
+   em App_Dominio.Controllers.RootController`2.SetEdit(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IDictionary`2 text, IRootController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="757003471" Data="20/10/2014 21:53:56">
+    <Sessao>12ttdstutokqgc2mmyzasxoc</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.GrupoFornecedoresController =&gt; grupofornecedores/edit</NameSpace>
+    <Context>grupoCredorId="3",nome="Funcionários"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 327
+   em App_Dominio.Controllers.RootController`2.SetEdit(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IDictionary`2 text, IRootController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="1405056533" Data="20/10/2014 21:54:51">
+    <Sessao>12ttdstutokqgc2mmyzasxoc</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.GrupoFornecedoresController =&gt; grupofornecedores/edit</NameSpace>
+    <Context>grupoCredorId="1",nome="Informática"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 327
+   em App_Dominio.Controllers.RootController`2.SetEdit(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IDictionary`2 text, IRootController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="866412888" Data="20/10/2014 21:54:51">
+    <Sessao>12ttdstutokqgc2mmyzasxoc</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.GrupoFornecedoresController =&gt; grupofornecedores/edit</NameSpace>
+    <Context>grupoCredorId="1",nome="Informática"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 327
+   em App_Dominio.Controllers.RootController`2.SetEdit(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IDictionary`2 text, IRootController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="2119191013" Data="20/10/2014 21:58:33">
+    <Sessao>12ttdstutokqgc2mmyzasxoc</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.GrupoFornecedoresController =&gt; grupofornecedores/edit</NameSpace>
+    <Context>grupoCredorId="3",nome="Fncionários"</Context>
+    <StackTrace>   em App_Dominio.Entidades.CrudContext`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\Context.cs:linha 327
+   em App_Dominio.Controllers.RootController`2.SetEdit(R value, ICrudContext`1 model, FormCollection collection, String breadCrumbText, IDictionary`2 text, IRootController`1 s) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\RootController.cs:linha 220</StackTrace>
+  </LOG>
+</LOG>

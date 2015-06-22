@@ -1,0 +1,262 @@
+﻿@{
+    ViewBag.Title = "DWM-Finanças";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12 col-xs-12 column">
+            <div class="media">
+                <a href="#" class="pull-left"><img src="../Content/images/cp.jpg" class="media-object" alt='' /></a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        Contas a pagar
+                    </h4> Realiza os lançamentos de contas a pagar para um credor. O sistema permite lançamentos de contas unitárias ou contas parceladas (mensalidades).
+                          Realiza a baixa parcial de uma parcela, liquidação total ou individual de uma conta. Todos os lançamentos podem ser automaticamente enquadrados na contabilidade da empresa.
+                          O pagamento de uma conta implica na atualização automática dos saldos bancários..
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12 col-xs-12 column">
+            <div class="media">
+                <a href="#" class="pull-left"><img src="../Content/images/cr1.jpg" class="media-object" alt='' /></a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        Contas a receber
+                    </h4> Realiza os lançamentos de contas a receber de um cliente. O sistema permite lançamentos de contas unitárias ou contas parceladas (mensalidades).
+                          Realiza a baixa parcial de uma parcela, liquidação total ou individual de uma conta. Todos os lançamentos podem ser automaticamente enquadrados na contabilidade da empresa.
+                          O pagamento de uma conta implica na atualização automática dos saldos bancários.
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12 col-xs-12 column">
+            <div class="media">
+                <a href="#" class="pull-left"><img src="../Content/images/contabil.jpg" class="media-object" alt='' /></a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        Contabilidade
+                    </h4> Realiza abertura e encerramento de exercício contábil, bem como os grupos de lançamentos de débito e crédito com partida simples ou dobrada por exercício.
+                          Emite também os relatórios contábeis excenciais da contabilidade tais como Diário, Razão, Balancete e Balanço
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12 col-xs-12 column">
+            <div class="media">
+                <a href="#" class="pull-left"><img src="../Content/images/extrato-100x100.jpeg" class="media-object" alt='' /></a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        Movimentação bancária
+                    </h4> Todos os lançamentos de contas a pagar e contas a receber que são baixados geram automaticamente um lançamento bancário para atualização do extrato. 
+                          Com esse recurso você poderá fazer a conciliação bancária e atualizar os saldos de sua conta fazendo os comparativos e o acompanhamento dos créditos e débitos movimentados nela. 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>*@
+
+
+<section class="neve">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 column">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-primary">@ViewBag.Title</h1>
+                        <h3>@ViewBag.Message</h3>
+                        <p>O DWM-Finanças é um sistema integrado de gestão financeira envolvendo contas a pagar, contas a receber, movimentação bancária e contabilidade. A aplicação roda totalmente na web e tem o Segmento Empresaria voltado para empresas e o Segmento Pessoal voltado para o uso doméstico.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/developer.png" />
+                            <div class="caption">
+                                <h3>
+                                    Contas a receber
+                                </h3>
+                                <p>
+                                    Faça a inclusão de contas a receber de seus clientes de forma ágil e completa. O DWM-Finanças oferece opção para inclusão de contas individuais ou para muitos clientes (mensalidades).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/2548679-2884-rec.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Agendamento de cobrança
+                                </h3>
+                                <p>
+                                    Com este recurso você poderá vincular seus clientes a um grupo de cobrança, definir as regras e a periodicidade. A partir daí O DWM-Finanças vai gerar automaticamente a cobrança para cada cliente e enviar uma notificação para ele por e-mail.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/BoletoBancario.png" />
+                            <div class="caption">
+                                <h3>
+                                    Boletos bancários
+                                </h3>
+                                <p>
+                                    Após a geração da cobrança, o DWM-Finanças imprime os boletos para os clientes. Também é possível imprimir boletos individuais para um cliente específico ou disponibilizar a 2a via para download.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 column">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/cheque.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Controle de cheques
+                                </h3>
+                                <p>
+                                    O sistema registra os cheques entregues pelo cliente e controla a trilha percorrida por eles tais como: compensação, cheque devolvido, cheque reapresentado, cheque liquidado e sensibiliza o pagamento no movimento bancário.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/negociacao.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Negociação de contas atrasadas
+                                </h3>
+                                <p>
+                                    O DWM-Finanças agrupa as contas em atraso do cliente e possibilita gerar um novo lançamento (parcelado ou não), com novos vencimentos e vincular as parcelas atrasadas à negociação feita.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/linhaDeCredito1.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Duplicatas descontadas
+                                </h3>
+                                <p>
+                                    Este recurso visa agrupar um conjunto de cheques ou títulos a vencer para serem dados como garantia na negociação com o banco para uma antecipação de crédito.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 column">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/upload.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Anexe documentos aos lançamentos
+                                </h3>
+                                <p>
+                                    Quando incluir uma conta a pagar ou receber ou efetuar o pagamento delas, o DWM-Finanças permite que você anexe seus documentos digitalizados tais como boletos, comprovantes, cópia de cheques, recibos, etc. ao lançamento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/parcial.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Pagamento parcial ou liquidação
+                                </h3>
+                                <p>
+                                    Com este recurso você poderá registrar parte de um pagamento e deixar em aberto o restante para pagamento posterior. Ou então poderá agrupar todas as parcelas em aberto e liquidar o pagamento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/calendario.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Alertas de vencimentos
+                                </h3>
+                                <p>
+                                    O DWM-Finanças avisa você quando uma conta estiver para vencer. Este aviso poderá ser através de mensagem de e-mail, SMS ou alertas no própria web page da aplicação.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 column">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/clientes.png" />
+                            <div class="caption">
+                                <h3>
+                                    Cadastro de clientes
+                                </h3>
+                                <p>
+                                    Mantenha o cadastro de seus clientes sempre atualizado. Você poderá atribuir a ele um usuário e senha para que ele faça o acesso ao DWM-Finanças e possa atualizar seus dados cadastrais e consultar extratos de pagamentos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/contabilidade.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Contabilidade
+                                </h3>
+                                <p>
+                                    Faça a inclusão de lançamentos contábeis de sua empresa de forma ágil e completa. O DWM-Finanças oferece opção de partida simples e partida dobrada.
+                                    Se preferir, pode também utilizar o enquadramento contábil para ser chamado a partir de um lançamento de conta a pagar ou receber, de um lançamento contábil individual ou no processamento da cobrança e baixa dos pagamentos.
+                                    Emite os relatórios contábeis excenciais da contabilidade tais como Diário, Razão, Balancete e Balanço
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="../Content/images/orcamento.jpg" />
+                            <div class="caption">
+                                <h3>
+                                    Orçamento
+                                </h3>
+                                <p>
+                                    Faça seu planejamento orçamentário para o novo exercício atribuindo os valores estimados mês a mês e depois acompanhe o realizado e faça os comparativos. Eventualmente faça as alterações orçamentárias transferindo valores de uma conta para outra.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
