@@ -154,5 +154,5 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 
-DWM-Financas/DWM-Financas/bin/DWM-Financas.dll
-DWM-Financas/DWM-Financas/bin/App_Dominio.dll
+DWM-Imovel/DWM-Imovel/bin/DWM-Financas.dll
+DWM-Imovel/DWM-Imovel/bin/App_Dominio.dll
