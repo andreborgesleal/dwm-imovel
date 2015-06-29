@@ -5,7 +5,7 @@
     ViewBag.Title = "DWM-Imovel";
 }
 
-@using (Html.BeginForm("Edit", "Clientes", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Clientes", FormMethod.Post, new { @class = "form" }))
 {
     @Html.HiddenFor(info => info.clienteId)
     <div class="panel panel-primary" style="margin-top: 10px">
@@ -15,49 +15,29 @@
             </h2>
         </div>
         <div class="panel-body">
+            @Html.ValidationSummary(false)
             <div class="row">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <blockquote>
-                        <p>
-                            Inclusão de clientes
-                        </p>
-                    </blockquote>
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group" style="margin-top: 20px">
-                            @Html.ValidationSummary(false)
-                        </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="nome">Nome</label>
+                        @Html.TextBoxFor(m => m.nome, new { @class = "form-control input-sm" })
                     </div>
-                    <div class="form-group" style="margin-top: 20px">
-                        @Html.LabelFor(m => m.nome, new { @class = "col-md-1 col-xs-12 col-sm-3 control-label" })
-                        <div class="col-md-4 col-xs-8 col-sm-6">
-                            @Html.TextBoxFor(m => m.nome, new { @class = "form-control input-sm" })
-                        </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="nome">CPF/CNPJ</label>
+                        @Html.TextBoxFor(m => m.cpf_cnpj, new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="nome">Telefone</label>
+                        @Html.TextBoxFor(m => m.telefone, new { @class = "form-control input-sm" })
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <div class="form-group" style="margin-top: 20px">
-                        @Html.LabelFor(m => m.cpf_cnpj, new { @class = "col-md-1 col-xs-12 col-sm-3 control-label" })
-                        <div class="col-md-4 col-xs-8 col-sm-6">
-                            @Html.TextBoxFor(m => m.cpf_cnpj, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <div class="form-group" style="margin-top: 20px">
-                        @Html.LabelFor(m => m.telefone, new { @class = "col-md-1 col-xs-12 col-sm-3 control-label" })
-                        <div class="col-md-4 col-xs-8 col-sm-6">
-                            @Html.TextBoxFor(m => m.telefone, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
 

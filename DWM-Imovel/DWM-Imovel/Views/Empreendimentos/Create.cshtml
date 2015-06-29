@@ -5,50 +5,33 @@
     ViewBag.Title = "DWM-Imovel";
 }
 
-@using (Html.BeginForm("Create", "Empreendimentos", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Create", "Empreendimentos", FormMethod.Post, new { @class = "form" }))
 {
     <div class="panel panel-primary" style="margin-top: 10px">
         <div class="panel-heading">
             <h2 class="panel-title">
-                Empreendimentos
+                Inclusão de empreendimentos
             </h2>
         </div>
         <div class="panel-body">
+            @Html.ValidationSummary(false)
+
             <div class="row">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <blockquote>
-                        <p>
-                            Inclusão de empreendimentos
-                        </p>
-                    </blockquote>
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group" style="margin-top: 20px">
-                            @Html.ValidationSummary(false)
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="nome">Nome do Empreendimento</label>
+                        @Html.TextBoxFor(m => m.nomeEmpreend, new { @class = "form-control input-sm" })
                     </div>
-                    <div class="form-group" style="margin-top: 20px">
-                        @Html.LabelFor(m => m.nomeEmpreend, new { @class = "col-md-1 col-xs-12 col-sm-3 control-label" })
-                        <div class="col-md-4 col-xs-8 col-sm-6">
-                            @Html.TextBoxFor(m => m.nomeEmpreend, new { @class = "form-control input-sm" })
-                        </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="usuario">Coordenador</label>
+                        @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control input-sm" })
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <div class="form-group" style="margin-top: 20px">
-                        @Html.LabelFor(m => m.usuarioId, new { @class = "col-md-1 col-xs-12 col-sm-3 control-label" })
-                        <div class="col-md-4 col-xs-8 col-sm-6">
-                            @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <div class="panel-footer">
             <div class="row">
