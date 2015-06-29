@@ -5,69 +5,70 @@
     ViewBag.Title = "DWM-Imovel";
 }
 
-@using (Html.BeginForm("Create", "Propostas", FormMethod.Post, new { @class = "form" }))
-{
-    <div class="panel panel-primary" style="margin-top: 10px">
-        <div class="panel-heading">
-            <h2 class="panel-title">
-                Inclusão de Propostas
-            </h2>
-        </div>
-        <div class="panel-body">
-            @Html.ValidationSummary(false)
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Unidade</label>
-                        @Html.TextBoxFor(m => m.unidade, new { @class = "form-control input-sm" })
+<div class="container">
+    @using (Html.BeginForm("Create", "Propostas", FormMethod.Post, new { @class = "form" }))
+    {
+        <div class="panel panel-primary" style="margin-top: 10px">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Inclusão de Propostas
+                </h2>
+            </div>
+            <div class="panel-body">
+                @Html.ValidationSummary(false)
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Unidade</label>
+                            @Html.TextBoxFor(m => m.unidade, new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Modelo</label>
+                            @Html.TextBoxFor(m => m.modelo, new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Valor</label>
+                            @Html.TextBoxFor(m => m.valor, new { @class = "form-control input-sm text-right" })
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Modelo</label>
-                        @Html.TextBoxFor(m => m.modelo, new { @class = "form-control input-sm" })
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Valor da Comissão</label>
+                            @Html.TextBoxFor(m => m.vr_comissao, new { @class = "form-control input-sm text-right" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Data da Proposta</label>
+                            @Html.TextBoxFor(m => m.dt_proposta, new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Data Etapa</label>
+                            @Html.TextBoxFor(m => m.dt_ultimo_status, new { @class = "form-control input-sm" })
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Valor</label>
-                        @Html.TextBoxFor(m => m.valor, new { @class = "form-control input-sm text-right" })
-                    </div>
-                </div>
             </div>
 
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Valor da Comissão</label>
-                        @Html.TextBoxFor(m => m.vr_comissao, new { @class = "form-control input-sm text-right" })
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Data da Proposta</label>
-                        @Html.TextBoxFor(m => m.dt_proposta, new { @class = "form-control input-sm" })
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="nome">Data Etapa</label>
-                        @Html.TextBoxFor(m => m.dt_ultimo_status, new { @class = "form-control input-sm" })
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-8 col-xs-12">
-                    @Html.Partial("_defaultListButtons",
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        @Html.Partial("_defaultListButtons",
                         new List<ButtonRepository>
                         {
                             new ButtonRepository() {    linkText = "Salvar",
@@ -81,11 +82,12 @@
                                                         buttonType = "link"
                                                     }
                         })
-                </div>
-                <div class="col-md-offset-4 hidden-xs">
-                    ( * ) - Campo de preenchimento obrigatório
+                    </div>
+                    <div class="col-md-offset-4 hidden-xs">
+                        ( * ) - Campo de preenchimento obrigatório
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>

@@ -10,9 +10,9 @@ Website: http://geekslabs.com/
 @import url(line-icons.css);
 
 body {
-    color: #797979;
+    color: #515151;
     background: #eeeeee;
-    font-family: 'Lato', sans-serif;
+    font-family: Calibri, sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-size:14px !important;    
@@ -33,7 +33,7 @@ a, a:hover, a:focus {
     outline: 0;
 }
 input:focus, textarea:focus { outline: none; }
-table tr th { color: #688a7e;}
+table tr th { color: #eff1f0;}
 *:focus {outline: none;}
 ::selection {
     background: #688a7e;
@@ -950,7 +950,7 @@ div[data-role="editor-toolbar"] {
   border: 1px solid #f9aa0b;
 }
 .info-box.primary {
-  background: #20a8d8;
+  background: #2c3e50;
   border: 1px solid #1985ac;
 }
 .info-box.info {
@@ -1135,7 +1135,7 @@ div[data-role="editor-toolbar"] {
   line-height: 32px;
   padding: 0;
   margin: 0;
-  color: #333;
+  color: #fff;
   border-left: 1px solid rgba(0,0,0,.09);
 }
 .panel-actions .btn-setting:hover,
@@ -1206,13 +1206,13 @@ div[data-role="editor-toolbar"] {
   background: #f5f5f5;
 }
 .panel.panel-primary {
-  border-color: #20a8d8;
+  border-color: #2c3e50;
 }
 .panel.panel-primary .panel-heading,
 .panel.panel-primary .panel-footer {
-  background: #5dc3e7;
-  color: #092f3d;
-  border-color: #20a8d8;
+  background: #2c3e50;
+  color: #fff;
+  border-color: #2c3e50;
 }
 .panel.panel-success {
   border-color: #79c447;
@@ -1433,7 +1433,7 @@ div[data-role="editor-toolbar"] {
   box-sizing: border-box;
 }
 .dd-handle:hover {
-  color: #20a8d8;
+  color: #2c3e50;
   background: white;
 }
 .dd-handle .icon {
@@ -2544,7 +2544,7 @@ ul.ft-link li a i {
 }
 
 .project-team, .panel-title,.progress-panel{
-    background: #F7F7F7;
+    background: #2c3e50;
 }
 .profile-ava img{
     border-radius: 50%;
