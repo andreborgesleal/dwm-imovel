@@ -4,17 +4,70 @@
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="container">
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", @role = "form" }))
-        {
-            @Html.ValidationSummary(false)
-            @Html.AntiForgeryToken()
-            <h2 class="form-signin-heading">DWM-Imóvel</h2>
-            <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="UserName" name="UserName" class="form-control" placeholder="Email" required autofocus>
-            <label for="inputPassword" class="sr-only">Senha</label>
-            <input type="password" id="Password" name="Password" class="form-control" placeholder="Senha" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
-        }
-</div> <!-- /container -->
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", @role = "form" }))
+{
+    @Html.ValidationSummary(false)
+    @Html.AntiForgeryToken()
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>NM Consultoria Imobiliária</strong> Acesso</h1>
+                    <div class="description">
+                        <p>
+                            Sistema de Gestão de Vendas de Imóveis.
+                            Agilidade no fluxo do processo das vendas de imóveis novos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>DWM-Imóvel</h3>
+                            <p>Informe seu usuário e senha para acessar o sistema:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">Username</label>
+                                <input type="text" id="UserName" name="UserName" placeholder=" E-mail..." class="form-username form-control" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-password">Password</label>
+                                <input type="password" id="Password" name="Password" placeholder="Password..." class="form-password form-control">
+                            </div>
+                            <button type="submit" class="btn">Acesso</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 social-login">
+                        <h3>...or login with:</h3>
+                        <div class="social-login-buttons">
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-twitter"></i> Twitter
+                            </a>
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-google-plus"></i> Google Plus
+                            </a>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+    @*<label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="UserName" name="UserName" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input type="password" id="Password" name="Password" class="form-control" placeholder="Senha" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>*@
+}

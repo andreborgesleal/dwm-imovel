@@ -1,142 +1,487 @@
-﻿@using DWM.Models.Repositories
-@using App_Dominio.Repositories
-@{
-    ViewBag.Title = "DWM Imóvel";
-    Layout = "~/Views/Shared/_Layout3.cshtml";
-}
-
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Buscar</h3>
-    </div>
-    <div class="panel-body">
-        <form class="form-horizontal">
-
-            <div class="form-group">
-                <div class="col-xs-1 col-md-1">
-                    <input class="form-control input-sm" type="text" placeholder="ID">
-                </div>
-                <div class="col-xs-1 col-md-3">
-                    <input class="form-control input-sm" type="text" placeholder="Cliente">
-                </div>
-                <div class="col-xs-1 col-md-2">
-                    <input class="form-control input-sm" type="text" placeholder="CPF/CNPJ">
-                </div>
-                <div class="col-xs-1 col-md-3">
-                    <input class="form-control input-sm" type="text" placeholder="Empreendimento">
-                </div>
-                <div class="col-xs-1 col-md-2">
-                    <input class="form-control input-sm" type="text" placeholder="Data da Proposta">
-                </div>
-                <div class="col-xs-1 col-md-1">
-                    <input class="form-control input-sm" type="text" placeholder="Valor">
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                
-                <div class="col-xs-1 col-md-4">
-                    <input class="form-control input-sm" type="text" placeholder="Modelo">
-                </div>
-                <div class="col-xs-1 col-md-1">
-                    <input class="form-control input-sm" type="text" placeholder="Unidade">
-                </div>
-                <div class="col-xs-1 col-md-1">
-                    <input class="form-control input-sm" type="text" placeholder="Comissão">
-                </div>
-                <div class="col-xs-1 col-md-3">
-                    <input class="form-control input-sm" type="text" placeholder="Etapa">
-                </div>
-                <div class="col-xs-1 col-md-3">
-                    <input class="form-control input-sm" type="text" placeholder="Data da Etapa">
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-md-8 col-xs-12">
-                @Html.Partial("_defaultListButtons",
-                        new List<ButtonRepository>
-                        {
-                            new ButtonRepository() {    linkText = "Buscar",
-                                                        actionName = "",
-                                                        controllerName = "",
-                                                        buttonType = "link"
-                                                    } ,
-                        })
-            </div>
-        </div>
+﻿<!--overview start-->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-laptop"></i> NM Consultoria Imobiliária</h3>
+        @*<ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                <li><i class="fa fa-laptop"></i>Dashboard</li>
+            </ol>*@
     </div>
 </div>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Panorama de Vendas</h3>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box dark-bg">
+            <i class="fa fa-thumbs-o-up"></i>
+            <div class="count">R$ 279.545,22</div>
+            <div class="title">Comissão no mês</div>
+        </div><!--/.info-box-->
+    </div><!--/.col-->
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box brown-bg">
+            <i class="fa fa-shopping-cart"></i>
+            <div class="count">78</div>
+            <div class="title">Vendas no mês</div>
+        </div><!--/.info-box-->
+    </div><!--/.col-->
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box green-bg">
+            <i class="fa fa-cubes"></i>
+            <div class="count">17</div>
+            <div class="title">Análises de crédito aprovadas</div>
+        </div><!--/.info-box-->
+    </div><!--/.col-->
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box blue-bg">
+            <i class="fa fa-cloud-download"></i>
+            <div class="count">15</div>
+            <div class="title">Propostas atrasadas</div>
+        </div><!--/.info-box-->
+    </div><!--/.col-->
+
+
+</div><!--/.row-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <a class="h4" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Panorama das vendas
+                </a>
+                <div class="collapse margem-interna-10" id="collapseExample">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-xs-1 col-md-1">
+                                <input class="form-control input-sm" type="text" placeholder="ID">
+                            </div>
+                            <div class="col-xs-1 col-md-2">
+                                <input class="form-control input-sm" type="text" placeholder="CPF/Cliente">
+                            </div>
+                            <div class="col-xs-1 col-md-2">
+                                <input class="form-control input-sm" type="text" placeholder="Empreendimento">
+                            </div>
+                            <div class="col-xs-1 col-md-1">
+                                <input class="form-control input-sm" type="text" placeholder="Data da Proposta">
+                            </div>
+                            <div class="col-xs-1 col-md-1">
+                                <input class="form-control input-sm" type="text" placeholder="Valor">
+                            </div>
+                            <div class="col-xs-1 col-md-2">
+                                <input class="form-control input-sm" type="text" placeholder="Unidade/Modelo">
+                            </div>
+                            <div class="col-xs-1 col-md-1">
+                                <input class="form-control input-sm" type="text" placeholder="Etapa">
+                            </div>
+                            <div class="col-xs-1 col-md-2">
+                                <div class="btn-group margem-negativa" data-toggle="buttons">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox"> Buscar
+                                    </label>
+                                    <label class="btn btn-primary active">
+                                        <input type="checkbox"> Novo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </header>
+            <table class="table table-striped table-advance table-hover">
+                <tbody>
+                    <tr>
+                        <th><i class="icon_key_alt"></i> ID</th>
+                        <th><i class="icon_calendar"></i> Data</th>
+                        <th><i class="icon_book_alt"></i> Empreendimento</th>
+                        <th><i class="icon_profile"></i> Cliente</th>
+                        <th><i class="icon_pin_alt"></i> Unidade</th>
+                        <th><i class="icon_clock_alt"></i> Etapa</th>
+                        <th><i class="icon_plus_alt2"></i> Valor</th>
+                        <th><i class="icon_like"></i> Comissão</th>
+                        <th><i class="icon_cogs"></i> Action</th>
+                    </tr>
+                    <tr>
+                        <td class="text-center">15</td>
+                        <td>10/06/2015</td>
+                        <td>Torres Cenário</td>
+                        <td>Graziela Medeiros Faciola <p><strong>CPF:</strong> 373.238.664-09</p></td>
+                        <td><strong>Unidade: </strong>1201 <p><strong>Modelo:</strong> Apto 3 quartos (3 suítes) 125 m2</p></td>
+                        <td>
+                            <strong>Contabilização</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                                </div>
+                            </div>
+                            <span class="sr-only">73%</span>
+                        </td>
+                        <td>R$ 780.000,00</td>
+                        <td>R$ 36.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">18</td>
+                        <td>10/06/2015</td>
+                        <td>Torres Cenário</td>
+                        <td>Jânio Reis Oliveira<p><strong>CPF:</strong> 553.238.264-09</p></td>
+                        <td><strong>Unidade: </strong>1402 <p><strong>Modelo:</strong> Apto 4 quartos (3 suítes) 145 m2</p></td>
+                        <td>
+                            <strong>Análise documentação</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                </div>
+                            </div>
+                            <span class="sr-only">27%</span>
+                        </td>
+                        <td>R$ 880.000,00</td>
+                        <td>R$ 44.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">19</td>
+                        <td>14/06/2015</td>
+                        <td>Torres Cenário</td>
+                        <td>Fernanda Lima Pereira <p><strong>CPF:</strong> 004.238.9014-09</p></td>
+                        <td><strong>Unidade: </strong>201 <p><strong>Modelo:</strong> Apto 2 quartos (2 suítes) 45 m2</p></td>
+                        <td>
+                            <strong>Proposta</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100" style="width: 13%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
+                                </div>
+                            </div>
+                            <span class="sr-only">13%</span>
+                        </td>
+                        <td>R$ 180.000,00</td>
+                        <td>R$ 9.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">22</td>
+                        <td>15/06/2015</td>
+                        <td>Torres Cenário</td>
+                        <td>Fernanda Vasconcelos<p><strong>CPF:</strong> 553.238.264-09</p></td>
+                        <td><strong>Unidade: </strong>1402 <p><strong>Modelo:</strong> Apto 4 quartos (3 suítes) 145 m2</p></td>
+                        <td>
+                            <strong>Análise de Crédito</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                </div>
+                            </div>
+                            <span class="sr-only">50%</span>
+                        </td>
+                        <td>R$ 880.000,00</td>
+                        <td>R$ 44.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">21</td>
+                        <td>15/06/2015</td>
+                        <td>Torres Liberto</td>
+                        <td>Haroldo Carvalho da Penha<p><strong>CPF:</strong> 553.238.264-09</p></td>
+                        <td><strong>Unidade: </strong>2401 <p><strong>Modelo:</strong> Apto 4 quartos (4 suítes) 240 m2</p></td>
+                        <td>
+                            <strong>Reanálise da documentação</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" style="width: 37%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%">
+                                </div>
+                            </div>
+                            <span class="sr-only">37%</span>
+                        </td>
+                        <td>R$ 1.480.000,00</td>
+                        <td>R$ 70.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">24</td>
+                        <td>21/06/2015</td>
+                        <td>Torres Liberto</td>
+                        <td>Penélope Batista Maciel<p><strong>CPF:</strong> 188.224.214-00</p></td>
+                        <td><strong>Unidade: </strong>2802 <p><strong>Modelo:</strong> Apto 4 quartos (4 suítes) 240 m2</p></td>
+                        <td>
+                            <strong>Análise documentação</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                </div>
+                            </div>
+                            <span class="sr-only">27%</span>
+                        </td>
+                        <td>R$ 1.480.000,00</td>
+                        <td>R$ 70.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">23</td>
+                        <td>23/06/2015</td>
+                        <td>Torres Domani</td>
+                        <td>Frederico Paulo da Silva <p><strong>CPF:</strong> 180.234.609-09</p></td>
+                        <td><strong>Unidade: </strong>1701 <p><strong>Modelo:</strong> Apto 4 quartos (2 suítes) 187 m2</p></td>
+                        <td>
+                            <strong>Comissionamento</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
+                                </div>
+                            </div>
+                            <span class="sr-only">93%</span>
+                        </td>
+                        <td>R$ 780.000,00</td>
+                        <td>R$ 36.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">22</td>
+                        <td>28/06/2015</td>
+                        <td>Torres Cenário</td>
+                        <td>Janaína Mergulhão Mascarenhas<p><strong>CPF:</strong> 991.238.984-19</p></td>
+                        <td><strong>Unidade: </strong>1002 <p><strong>Modelo:</strong> Apto 4 quartos (3 suítes) 145 m2</p></td>
+                        <td>
+                            <strong>Análise documentação</strong>
+                            <div class="progress thin">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                </div>
+                            </div>
+                            <span class="sr-only">27%</span>
+                        </td>
+                        <td>R$ 880.000,00</td>
+                        <td>R$ 44.000,00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
-    <div class="panel-body">
-        <table class="table table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CPF/CNPJ</th>
-                    <th>Cliente</th>
-                    <th>Empreendimento</th>
-                    <th>Data da Proposta</th>
-                    <th>Modelo</th>
-                    <th>Unidade</th>
-                    <th>Valor</th>
-                    <th>Comissão</th>
-                    <th>Etapa</th>
-                    <th>Data da Etapa</th>
-                </tr>
-            </thead>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-map-marker red"></i><strong>Workflow</strong></h2>
+                <div class="panel-actions">
+                    <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                    <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                    <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body-map">
+                <section class="panel">
+                    <div class="panel-body text-center">
+                        <canvas id="doughnut" height="300" width="400"></canvas>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12 portlets">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-left">Comentários</div>
+                <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-body">
+                <!-- Widget content -->
+                <div class="padd sscroll">
+
+                    <ul class="chats">
+
+                        <!-- Chat by us. Use the class "by-me". -->
+                        <li class="by-me">
+                            <!-- Use the class "pull-left" in avatar -->
+                            <div class="avatar pull-left">
+                                <img src="~/Content/nice-admin/img/user.jpg" alt="" />
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In meta area, first include "name" and then "time" -->
+                                <div class="chat-meta">Roberto Menezes <span class="pull-right">Há 3 horas</span></div>
+                                Os valores da Intermediação e RPA da cliente Gisele Fraga estão incorretos. Favor corrigir
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <!-- Chat by other. Use the class "by-other". -->
+                        <li class="by-other">
+                            <!-- Use the class "pull-right" in avatar -->
+                            <div class="avatar pull-right">
+                                <img src="~/Content/nice-admin/img/user22.png" alt="" />
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In the chat meta, first include "time" then "name" -->
+                                <div class="chat-meta">Há 3 horas <span class="pull-right">Felícia Aguiar</span></div>
+                                Análise de crédito do cliente Mateus Virgolino, ID Proposta 101 foi aprovada pela construtora. Favor prosseguir com próxima etapa.
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li class="by-me">
+                            <div class="avatar pull-left">
+                                <img src="~/Content/nice-admin/img/user.jpg" alt="" />
+                            </div>
+
+                            <div class="chat-content">
+                                <div class="chat-meta">Roberto Menezes <span class="pull-right">Hé 4 horas</span></div>
+                                Favor providenciar o Termo de Ciência cliente Gilberto Maia. Está faltando somente este documento
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li class="by-other">
+                            <!-- Use the class "pull-right" in avatar -->
+                            <div class="avatar pull-right">
+                                <img src="~/Content/nice-admin/img/user22.png" alt="" />
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In the chat meta, first include "time" then "name" -->
+                                <div class="chat-meta">Há 4 horas <span class="pull-right">Felícia Aguiar</span></div>
+                                Fase de contabilização da proposta 105 já pode dar início.
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!-- Widget footer -->
+                <div class="widget-foot">
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Digite sua mensagem aqui...">
+                        </div>
+                        <button type="submit" class="btn btn-info">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <table class="table table-striped table-advance table-hover">
             <tbody>
-                
                 <tr>
-                    <td>1</td>
-                    <td>916.417.052-72</td>
-                    <td>Daniel Leal</td>
-                    <td>Parc Paradiso</td>
-                    <td>24/06/2015</td>
-                    <td>Oásis</td>
-                    <td>1304</td>
-                    <td>R$ 200.000,00</td>
-                    <td>10%</td>
-                    <td>4</td>
-                    <td>24/06/2015</td>
+                    <th>Empreendimento</th>
+                    <th>A Receber</th>
+                    <th>Recebido</th>
+                    <th>Etapa</th>
+                    <th>Quantidade</th>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>916.417.052-72</td>
-                    <td>Daniel Leal</td>
-                    <td>Parc Paradiso</td>
-                    <td>24/06/2015</td>
-                    <td>Oásis</td>
-                    <td>1304</td>
-                    <td>R$ 200.000,00</td>
-                    <td>10%</td>
-                    <td>4</td>
-                    <td>24/06/2015</td>
+                    <td class="h3">Torres Cenário</td>
+                    <td class="h3">R$ 168.000,00</td>
+                    <td class="h3">R$ 36.000,00</td>
+                    <td>
+                        <p>Proposta</p>
+                        <p>Análise documentação</p>
+                        <p>Reanálise documentação</p>
+                        <p>Análise de crédito</p>
+                        <p>Contabilização</p>
+                        <p>Comissionamento</p>
+                        <p>Aprovação comissão</p>
+                    </td>
+                    <td>
+                        <p class="text-center">5</p>
+                        <p class="text-center">2</p>
+                        <p class="text-center">0</p>
+                        <p class="text-center">4</p>
+                        <p class="text-center">2</p>
+                        <p class="text-center">6</p>
+                        <p class="text-center">1</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="h3">Torres Liberto</td>
+                    <td class="h3">R$ 239.000,00</td>
+                    <td class="h3">R$ 0,00</td>
+                    <td>
+                        <p>Proposta</p>
+                        <p>Análise documentação</p>
+                        <p>Reanálise documentação</p>
+                        <p>Análise de crédito</p>
+                        <p>Contabilização</p>
+                        <p>Comissionamento</p>
+                        <p>Aprovação comissão</p>
+                    </td>
+                    <td>
+                        <p class="text-center">10</p>
+                        <p class="text-center">3</p>
+                        <p class="text-center">1</p>
+                        <p class="text-center">3</p>
+                        <p class="text-center">4</p>
+                        <p class="text-center">4</p>
+                        <p class="text-center">2</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-md-8 col-xs-12">
-                @Html.Partial("_defaultListButtons",
-                        new List<ButtonRepository>
-                        {
-                            new ButtonRepository() {    linkText = "Nova Proposta",
-                                                        actionName = "",
-                                                        controllerName = "",
-                                                        buttonType = "link"
-                                                    } ,
-                        })
-            </div>
-        </div>
     </div>
 </div>

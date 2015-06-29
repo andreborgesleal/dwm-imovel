@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-md-12 column">
                 <ul class="breadcrumb">
-                    <li><a href="/Home/Default">Início</a> <span class="divider"></span></li>
+                    <li><i class="fa fa-home"></i><a href="~/Home/Default">Home</a></li>
                     @for (int i = 0; i <= breadCrumb.items.Count - 2; i++)
                     {
-                        <li><a href="../@breadCrumb.items[i].controllerName/@breadCrumb.items[i].link">@breadCrumb.items[i].text</a> <span class="divider"></span></li>
+                        <li><i class="fa fa-laptop"></i><a href="../@breadCrumb.items[i].controllerName/@breadCrumb.items[i].link">@breadCrumb.items[i].text</a> <span class="divider"></span></li>
                     }
                     <li class="active">@breadCrumb.items[breadCrumb.items.Count - 1].text</li>
                 </ul>    

@@ -1,39 +1,52 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="SHORTCUT ICON" href="/favicon.png" />
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="~/Content/nice-admin/img/favicon.png">
     <link rel="stylesheet" href="~/Content/css/jquery.typeahead.css">
 
-    <!-- Web Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    <title>DWM-Imóvel</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/nice-admin/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="~/Content/nice-admin/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="~/Content/nice-admin/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/nice-admin/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- full calendar css-->
+    <link href="~/Content/nice-admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/nice-admin/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <!-- easy pie chart-->
+    <link href="~/Content/nice-admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/Content/nice-admin/css/owl.carousel.css" type="text/css">
+    <link href="~/Content/nice-admin/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link href="@Styles.Url("~/Content/Site.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/nice-admin/css/fullcalendar.css">
+    <link href="~/Content/nice-admin/css/widgets.css" rel="stylesheet">
+    <link href="~/Content/nice-admin/css/style.css" rel="stylesheet">
+    <link href="~/Content/nice-admin/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content/nice-admin/css/xcharts.min.css" rel=" stylesheet">
+    <link href="~/Content/nice-admin/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
 
     <link href="~/Scripts/css/datepicker.css" rel="stylesheet">
-
-    <!-- Font Awesome CSS -->
-    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Plugins -->
     <link href="~/Content/css/animations.css" rel="stylesheet">
 
-    <!-- Worthy core CSS file -->
-    @*<link href="~/Content/css/style.css" rel="stylesheet">*@
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../../Content/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom css -->
-    @*<link href="~/Content/css/custom.css" rel="stylesheet">*@
-
-    <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
-    <link href="@Styles.Url("~/scripts/css")" rel="stylesheet" />
-
-    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="~/scripts/jquery-{version}.js"></script>
-    <script type="text/javascript" src="~/scripts/jquery-migrate-{version}.js"></script>
     <script type="text/javascript" src="~/scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="~/scripts/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/scripts/jquery.validate.unobtrusive.js"></script>
@@ -43,70 +56,455 @@
     <script type="text/javascript" src="~/scripts/jquery.maskedinput.js"></script>
     <script type="text/javascript" src="~/scripts/inputs-jquery-ui.js"></script>
     <script type="text/javascript" src="~/Content/typeahead/jquery.typeahead.min.js"></script>
-
-    <link href="@Styles.Url("~/Content/Site.css")" rel="stylesheet" />
-    <link href="@Styles.Url("~/Content/bootstrap-mvc-validation.css")" rel="stylesheet" />
-
-    <!-- JavaScript files placed at the end of the document so the pages load faster
-    ================================================== -->
-    <!-- Jquery and Bootstap core js files -->
-    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Modernizr javascript -->
-    <script type="text/javascript" src="~/Content/plugins/modernizr.js"></script>
-
-    <!-- Isotope javascript -->
-    @*<script type="text/javascript" src="~/Content/plugins/isotope/isotope.pkgd.min.js"></script>*@
-
-    <!-- Backstretch javascript -->
-    @*<script type="text/javascript" src="~/Content/plugins/jquery.backstretch.min.js"></script>*@
-
-    <!-- Appear javascript -->
-    <script type="text/javascript" src="~/Content/plugins/jquery.appear.js"></script>
-
-    <!-- Custom Scripts -->
-    <script type="text/javascript" src="~/Content/js/custom.js"></script>
-
-    <!-- Side-bar -->
-    @*<link href="~/Content/css/simple-sidebar.css" rel="stylesheet">*@
 </head>
 <body>
-        
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">DWM Imóvel</a>
+    <section id="container" class="">
+        <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                @Html.Partial("_Menu")
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            <!--logo start-->
+            <a href="index.html" class="logo">DWM <span class="lite">Imóvel</span></a>
+            <!--logo end-->
 
-    <div style="padding-top: 60px;">
-        <div id="carregando" style="visibility: hidden; height: 0px; background-repeat: no-repeat; z-index: 5; background-image: url(../Content/images/loader.gif); background-position-x: 50%; background-position-y: 200px">
-            <label>Carregando...</label>
-        </div>
-        <div class="container">
-            @BreadCrumbPage.Trace((App_Dominio.Component.BreadCrumb)ViewBag.BreadCrumb)
-            @Html.Partial("_alerts")
-            <div class="alert alert-dismissable alert-warning" id="alerta" style="visibility: hidden">
-                <a class="close" href="#" aria-hidden="true" onclick="$('#alerta').hide()">x</a>
-                <h4 class="alert-heading" id="alerta-heading">Atenção!</h4>
-                <div id="MsgAlert"></div>
+            <div class="nav search-row" id="top_menu">
+                <!--  search form start -->
+                <ul class="nav top-menu">
+                    <li>
+                        <form class="navbar-form">
+                            <input class="form-control" placeholder="ID Proposta" type="text">
+                        </form>
+                    </li>
+                </ul>
+                <!--  search form end -->
             </div>
-            @RenderBody()
-        </div>
-    </div>
+
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+
+                    <!-- task notificatoin start -->
+                    <li id="task_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="icon-task-l">
+                                </i>
+                                <span class="badge bg-important">6</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">Etapas da venda</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Proposta </div>
+                                        <div class="percent">38%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%">
+                                            <span class="sr-only">38% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">
+                                            Análise da documentação
+                                        </div>
+                                        <div class="percent">22%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%">
+                                            <span class="sr-only">22% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Reanálise da documentação</div>
+                                        <div class="percent">5%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                                            <span class="sr-only">5% Complete</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Análise de crédito</div>
+                                        <div class="percent">30%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                            <span class="sr-only">30% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Contabilização</div>
+                                        <div class="percent">15%</div>
+                                    </div>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                            <span class="sr-only">15% Complete</span>
+                                        </div>
+                                    </div>
+
+                                </a>
+                            </li>
+                            <li class="external">
+                                <a href="#">Ver todas as etapas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- task notificatoin end -->
+                    <!-- inbox notificatoin start-->
+                    <li id="mail_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-envelope-l"></i>
+                            <span class="badge bg-important">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">Você tem 5 novas mensagens</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="~/Content/nice-admin/img/avatar-mini.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Juçara Aguiar</span>
+                                        <span class="time">1 min</span>
+                                    </span>
+                                    <span class="">
+                                        Nova comissão para ser aprovada.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="~/Content/nice-admin/img/avatar-mini2.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Dione Cavalcante</span>
+                                        <span class="time">5 mins</span>
+                                    </span>
+                                    <span class="">
+                                        Nova venda cadastrada
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="~/Content/nice-admin/img/avatar-mini3.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Cibele Pontes</span>
+                                        <span class="time">2 hrs</span>
+                                    </span>
+                                    <span class="">
+                                        Análise de crédito aprovada
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="~/Content/nice-admin/img/avatar-mini4.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Fernando Faria</span>
+                                        <span class="time">1 dia</span>
+                                    </span>
+                                    <span class="">
+                                        Documentação cliente recusada
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Ver todas as mensagens</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- inbox notificatoin end -->
+                    <!-- alert notification start-->
+                    <li id="alert_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-bell-l"></i>
+                            <span class="badge bg-important">7</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">Você tem 4 novas notificações</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-primary"><i class="icon_profile"></i></span>
+                                    5 propostas atrasadas
+                                    <span class="small italic pull-right">5 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-warning"><i class="icon_pin"></i></span>
+                                    R$ 3.535,26 de comissão
+                                    <span class="small italic pull-right">50 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-danger"><i class="icon_book_alt"></i></span>
+                                    12 propostas incluídas no mês
+                                    <span class="small italic pull-right">1 hr</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-success"><i class="icon_like"></i></span>
+                                    3 Propostas recusadas
+                                    <span class="small italic pull-right"> Today</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Ver todas as notificações</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- alert notification end-->
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="~/Content/nice-admin/img/leodias_avatar.jpg">
+                            </span>
+                            <span class="username">Leonardo Dias</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                <a href="#"><i class="icon_profile"></i> Meu Perfil</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon_mail_alt"></i> Minha Caixa de Entrada</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                            </li>
+                            <li>
+                                <a href="~/Account/Login"><i class="icon_key_alt"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a class="" href="~/Home/Default">
+                            <i class="icon_house_alt"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Cadastros</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="~/Empreendimentos/Browse">Empreendimentos</a></li>
+                            <li><a class="" href="~/Clientes/Browse">Clientes</a></li>
+                        </ul>
+                    </li>
+                    @*<li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_desktop"></i>
+                                <span>UI Fitures</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="general.html">Elements</a></li>
+                                <li><a class="" href="buttons.html">Buttons</a></li>
+                                <li><a class="" href="grids.html">Grids</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="" href="widgets.html">
+                                <i class="icon_genius"></i>
+                                <span>Widgets</span>
+                            </a>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_table"></i>
+                                <span>Tables</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="basic_table.html">Basic Table</a></li>
+                            </ul>
+                        </li>*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>Relatórios</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="profile.html">Relação geral</a></li>
+                            <li><a class="" href="login.html"><span>Por empreendimentos</span></a></li>
+                            <li><a class="" href="blank.html">Por coordenador</a></li>
+                            <li><a class="" href="404.html">Faturamento</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="" href="~/Home/Chart">
+                            <i class="icon_piechart"></i>
+                            <span>Gráficos</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div id="carregando" style="visibility: hidden; height: 0px; background-repeat: no-repeat; z-index: 5; background-image: url(../Content/images/loader.gif); background-position-x: 50%; background-position-y: 200px">
+                    <label>Carregando...</label>
+                </div>
+                <div>
+                    <div class="container">
+                        @BreadCrumbPage.Trace((App_Dominio.Component.BreadCrumb)ViewBag.BreadCrumb)
+                        @Html.Partial("_alerts")
+                        <div class="alert alert-dismissable alert-warning" id="alerta" style="visibility: hidden">
+                            <a class="close" href="#" aria-hidden="true" onclick="$('#alerta').hide()">x</a>
+                            <h4 class="alert-heading" id="alerta-heading">Atenção!</h4>
+                            <div id="MsgAlert"></div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+
+    <!-- javascripts -->
+    <script src="~/Content/nice-admin/js/jquery.js"></script>
+    <script src="~/Content/nice-admin/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Content/nice-admin/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/nice-admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Content/nice-admin/js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="~/Content/nice-admin/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- charts scripts -->
+    <script src="~/Content/nice-admin/assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="~/Content/nice-admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/Content/nice-admin/js/owl.carousel.js"></script>
+    <!-- jQuery full calendar -->
+    <
+    <script src="~/Content/nice-admin/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+    <script src="~/Content/nice-admin/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="~/Content/nice-admin/js/calendar-custom.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="~/Content/nice-admin/js/jquery.customSelect.min.js"></script>
+    <script src="~/Content/nice-admin/assets/chart-master/Chart.js"></script>
+
+    <!--custome script for all page-->
+    <script src="~/Content/nice-admin/js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="~/Content/nice-admin/js/sparkline-chart.js"></script>
+    <script src="~/Content/nice-admin/js/easy-pie-chart.js"></script>
+    <script src="~/Content/nice-admin/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/nice-admin/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/nice-admin/js/xcharts.min.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.autosize.min.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.placeholder.min.js"></script>
+    <script src="~/Content/nice-admin/js/gdp-data.js"></script>
+    <script src="~/Content/nice-admin/js/morris.min.js"></script>
+    <script src="~/Content/nice-admin/js/sparklines.js"></script>
+    <script src="~/Content/nice-admin/js/charts.js"></script>
+    <script src="~/Content/nice-admin/js/jquery.slimscroll.min.js"></script>
+    <script>
+
+        //knob
+        $(function () {
+            $(".knob").knob({
+                'draw': function () {
+                    $(this.i).val(this.cv + '%')
+                }
+            })
+        });
+
+        //carousel
+        $(document).ready(function () {
+            $("#owl-slider").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function () {
+            $('#map').vectorMap({
+                map: 'world_mill_en',
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#000', '#000'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                backgroundColor: '#eef3f7',
+                onLabelShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });
+    </script>
+    <!-- chartjs -->
+    <script src="~/Content/nice-admin/assets/chart-master/Chart.js"></script>
+    <!-- custom chart script for this page only-->
+    <script src="~/Content/nice-admin/js/chartjs-custom.js"></script>
+
 
     @Scripts.Render("~/scripts")
     @Scripts.Render("~/js")
@@ -115,41 +513,6 @@
     <script type="text/javascript">
         $("#alerta").hide();
         $("#alerta").css("visibility", "visible");
-
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-
-        function sidebar_click() {
-            $("#sidebar-wrapper").show();
-            $("#menu-toggle").click();
-        }
     </script>
-
-    <!-- JavaScript files placed at the end of the document so the pages load faster
-    ================================================== -->
-
-
-    <!-- Side-bar -->
-    <script type="text/javascript" src="~/Content/plugins/jquery.min.js"></script>
-
-    @*<script type="text/javascript">
-
-        //$(".banner-image").backstretch('../../Content/images/slide6.jpg');
-
-        // Fixed header
-        //-----------------------------------------------
-        $(window).scroll(function () {
-            if (($(".header.fixed").length > 0)) {
-                if (($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-                    $("body").addClass("fixed-header-on");
-                } else {
-                    $("body").removeClass("fixed-header-on");
-                }
-            };
-        });
-    </script>*@
-
 </body>
 </html>

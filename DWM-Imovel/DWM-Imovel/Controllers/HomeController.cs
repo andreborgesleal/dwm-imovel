@@ -35,7 +35,17 @@ namespace DWM.Controllers
             return View();
         }
 
+        //[AuthorizeFilter]
         public ActionResult Default()
+        {
+            return View();
+            //if (ViewBag.ValidateRequest)
+            //    return View();
+            //else
+            //    return View();
+        }
+
+        public ActionResult Chart()
         {
             return View();
         }
