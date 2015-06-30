@@ -132,4 +132,31 @@ namespace DWM.Models.Persistence
         #endregion
     }
 
+
+    public class LookupClienteModel : ListViewCliente
+    {
+        public override string action()
+        {
+            return "../Clientes/ListClienteModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-ccu";
+        }
+    }
+
+    public class LookupClienteFiltroModel : ListViewCliente
+    {
+        public override string action()
+        {
+            return "../Clientes/_ListClienteModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-ccu";
+        }
+    }
+
 }

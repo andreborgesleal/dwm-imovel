@@ -16,59 +16,90 @@
             </div>
             <div class="panel-body">
                 @Html.ValidationSummary(false)
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Unidade</label>
-                            @Html.TextBoxFor(m => m.unidade, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Modelo</label>
-                            @Html.TextBoxFor(m => m.modelo, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Valor</label>
-                            @Html.TextBoxFor(m => m.valor, new { @class = "form-control input-sm text-right" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Valor da Comissão</label>
-                            @Html.TextBoxFor(m => m.vr_comissao, new { @class = "form-control input-sm text-right" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Data da Proposta</label>
-                            @Html.TextBoxFor(m => m.dt_proposta, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Data Etapa</label>
-                            @Html.TextBoxFor(m => m.dt_ultimo_status, new { @class = "form-control input-sm" })
-                        </div>
+                <div class="row clearfix">
+                    <div class="col-md-6">
+                        @Html.Partial("../Typeahead/BuscaCliente", new App_Dominio.Repositories.TypeaheadRepository()
+                                                                                        {
+                                                                                            ListName = "Clientes",
+                                                                                            label = "Cliente",
+                                                                                            id = "clienteId",
+                                                                                            text = "descricao_cliente",
+                                                                                            lovModal = "LovClienteModal",
+                                                                                            controller = "Clientes",
+                                                                                            descricao = "descricao",
+                                                                                            crudModal = "CrudClienteModal",
+                                                                                            readOnly = false,
+                                                                                            values = new SelectItemsTypeahead()
+                                                                                                                    {
+                                                                                                                        Value = Model.clienteId != null ? Model.clienteId.ToString() : "",
+                                                                                                                        Text = Model.descricao_cliente ?? "",
+                                                                                                                    },
+                                                                                            disableButtons = false,
+                                                                                            nextField = "unidade",
+                                                                                            prevField = ""
+                                                                                        })
                     </div>
                 </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="control-label" for="nome">Unidade</label>
+                                @Html.TextBoxFor(m => m.unidade, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
 
-            </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="nome">Modelo</label>
+                                @Html.TextBoxFor(m => m.modelo, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
 
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-md-8 col-xs-12">
-                        @Html.Partial("_defaultListButtons",
+                        <div class="col-md-4 no-padding altura-35">
+                            <div class="form-group">
+                                @Html.EditorFor(m => m.valor, "DECIMAL", new
+                                                {
+                                                    form = "horizontal",
+                                                    htmlAttributes = (object)new { @class = "form-control input-sm text-right", @onblur = "return Converte(this, 'valor')" }
+                                                })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4 no-padding altura-35">
+                            <div class="form-group">
+                                @Html.EditorFor(m => m.vr_comissao, "DECIMAL", new
+                                                {
+                                                    form = "horizontal",
+                                                    htmlAttributes = (object)new { @class = "form-control input-sm text-right", @onblur = "return Converte(this, 'vr_comissao')" }
+                                                })
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="control-label" for="nome">Data da Proposta</label>
+                                @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta", readOnly = "false" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="control-label" for="nome">Data Etapa</label>
+                                @Html.EditorFor(info => info.dt_ultimo_status, "DATE", new { identificador = "dt_ultimo_status", readOnly = "false" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                            @Html.Partial("_defaultListButtons",
                         new List<ButtonRepository>
                         {
                             new ButtonRepository() {    linkText = "Salvar",
@@ -82,12 +113,12 @@
                                                         buttonType = "link"
                                                     }
                         })
-                    </div>
-                    <div class="col-md-offset-4 hidden-xs">
-                        ( * ) - Campo de preenchimento obrigatório
+                        </div>
+                        <div class="col-md-offset-4 hidden-xs">
+                            ( * ) - Campo de preenchimento obrigatório
+                        </div>
                     </div>
                 </div>
             </div>
+            }
         </div>
-    }
-</div>

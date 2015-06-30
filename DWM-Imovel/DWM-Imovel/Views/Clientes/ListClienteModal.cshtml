@@ -1,0 +1,16 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.ClienteViewModel>
+@{
+    Layout = null;
+    Model.action = "../Clientes/_ListClienteModal";
+}
+
+<div class="row">
+    <div class="col-md-12" style="margin: 0px">
+        @Html.Partial("_Filter", Model)
+        <div id="div-his" style="padding-top: 0px">
+            @Html.Partial("../Clientes/_ListClienteModal", Model)
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="307028681" Data="30/06/2015 00:41:07">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupClienteModel =&gt; home/lovclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 111
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="2082723171" Data="30/06/2015 00:49:07">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupClienteModel =&gt; home/lovclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 111
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1879944035" Data="30/06/2015 00:49:36">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupClienteModel =&gt; home/lovclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 111
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1771482922" Data="30/06/2015 00:50:30">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupClienteModel =&gt; home/lovclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 111
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1433254032" Data="30/06/2015 00:51:13">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.LookupClienteModel =&gt; home/lovclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 111
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+</LOG>

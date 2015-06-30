@@ -6,6 +6,7 @@ using App_Dominio.Models;
 using App_Dominio.Pattern;
 using App_Dominio.Security;
 using DWM.Models.Entidades;
+using DWM.Models.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,22 @@ namespace DWM.Controllers
             return View(pagedList);
         }
         #endregion
+
+        [AuthorizeFilter]
+        #region Formulário Modal Clientes
+        public ActionResult LovClienteModal(int? index, int? pageSize = 50)
+        {
+            return this.ListModal(index, pageSize, new LookupClienteModel(), "Nome");
+        }
+        #endregion
+
+        #region Formulário Modal Empreendimentos
+        public ActionResult LovEmpreendimentoModal(int? index, int? pageSize = 50)
+        {
+            return this.ListModal(index, pageSize, new LookupEmpreendimentoModel(), "Nome");
+        }
+        #endregion
+
         #endregion
     }
 }

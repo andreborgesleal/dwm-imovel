@@ -42,6 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="App_Dominio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\app_dominio\App_Dominio\App_Dominio\bin\Debug\App_Dominio.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1067,6 +1071,14 @@
     <Content Include="Views\Clientes\Delete.cshtml" />
     <Content Include="Views\Home\Chart.cshtml" />
     <Content Include="Views\Propostas\Create.cshtml" />
+    <Content Include="Views\Clientes\_ListClienteModal.cshtml" />
+    <Content Include="Views\Clientes\ListClienteModal.cshtml" />
+    <Content Include="Views\Home\LovClienteModal.cshtml" />
+    <Content Include="Views\Typeahead\BuscaCliente.cshtml" />
+    <Content Include="Views\Empreendimentos\ListEmpreendimentoModal.cshtml" />
+    <Content Include="Views\Empreendimentos\_ListEmpreendimentoModal.cshtml" />
+    <Content Include="Views\Home\LovEmpreendimentoModal.cshtml" />
+    <Content Include="Views\Typeahead\BuscaEmpreendimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
@@ -1076,7 +1088,6 @@
     <Folder Include="Models\Report\" />
     <Folder Include="Temp\" />
     <Folder Include="Users_Data\" />
-    <Folder Include="Views\Typeahead\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1084,12 +1095,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\App_Dominio\App_Dominio\App_Dominio\App_Dominio.csproj">
-      <Project>{3ffaf7b0-e293-489c-80de-0c0ac24cf8e2}</Project>
-      <Name>App_Dominio</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

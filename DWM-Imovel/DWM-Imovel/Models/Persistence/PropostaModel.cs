@@ -46,7 +46,9 @@ namespace DWM.Models.Persistence
             {
                 propostaId = value.propostaId,
                 empreendimentoId = value.empreendimentoId,
+                descricao_empreendimento = value.empreendimentoId != null ? db.Empreendimentos.Find(value.empreendimentoId).nome : "",
                 clienteId = value.clienteId,
+                descricao_cliente = value.clienteId != null ? db.Clientes.Find(value.clienteId).nome : "",
                 dt_proposta = value.dt_proposta,
                 unidade = value.unidade,
                 modelo = value.unidade,

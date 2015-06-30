@@ -30,6 +30,13 @@ namespace DWM.Controllers
             else
                 return View();
         }
+
+
+        public ActionResult _ListEmpreendimentoModal(int? index, int? pageSize = 50, string descricao = null)
+        {
+            LookupEmpreendimentoFiltroModel l = new LookupEmpreendimentoFiltroModel();
+            return this.ListModal(index, pageSize, l, "Descrição", descricao);
+        }
         #endregion
 
         #region Edit
@@ -45,6 +52,13 @@ namespace DWM.Controllers
         public ActionResult Delete(int empreendimentoId)
         {
             return Edit(empreendimentoId);
+        }
+        #endregion
+
+        #region CrudEmpreendimentoModal
+        public JsonResult CrudClienteModal(string descricao)
+        {
+            return JSonCrud(new EmpreendimentoViewModel() { nome = descricao });
         }
         #endregion
     }

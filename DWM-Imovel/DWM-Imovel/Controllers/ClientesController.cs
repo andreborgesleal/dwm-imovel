@@ -28,6 +28,12 @@ namespace DWM.Controllers
             else
                 return View();
         }
+
+        public ActionResult _ListClienteModal(int? index, int? pageSize = 50, string descricao = null)
+        {
+            LookupClienteFiltroModel l = new LookupClienteFiltroModel();
+            return this.ListModal(index, pageSize, l, "Descrição", descricao);
+        }
         #endregion
 
         #region Edit
@@ -43,6 +49,13 @@ namespace DWM.Controllers
         public ActionResult Delete(int clienteId)
         {
             return Edit(clienteId);
+        }
+        #endregion
+
+        #region CrudClienteoModal
+        public JsonResult CrudClienteModal(string descricao)
+        {
+            return JSonCrud(new ClienteViewModel() { nome = descricao });
         }
         #endregion
     }

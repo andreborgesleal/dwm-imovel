@@ -1,0 +1,16 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.EmpreendimentoViewModel>
+@{
+    Layout = null;
+    Model.action = "../Empreendimentos/_ListEmpreendimentoModal";
+}
+
+<div class="row">
+    <div class="col-md-12" style="margin: 0px">
+        @Html.Partial("_Filter", Model)
+        <div id="div-his" style="padding-top: 0px">
+            @Html.Partial("../Empreendimentos/_ListEmpreendimentoModal", Model)
+        </div>
+    </div>
+</div>
+
+

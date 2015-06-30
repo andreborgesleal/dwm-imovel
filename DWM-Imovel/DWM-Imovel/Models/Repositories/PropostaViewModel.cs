@@ -17,9 +17,13 @@ namespace DWM.Models.Repositories
         [Required(ErrorMessage = "Por favor, informe o id do empreendimento")]
         public int empreendimentoId { get; set; }
 
+        public string descricao_empreendimento { get; set; }
+
         [DisplayName("Cliente ID")]
         [Required(ErrorMessage = "Por favor, informe o id do cliente")]
         public int clienteId { get; set; }
+
+        public string descricao_cliente { get; set; }
 
         [DisplayName("Data da Proposta")]
         [Required(ErrorMessage = "Por favor, informe o nome do cliente")]

@@ -129,4 +129,30 @@ namespace DWM.Models.Persistence
         }
         #endregion
     }
+
+    public class LookupEmpreendimentoModel : ListViewEmpreendimento
+    {
+        public override string action()
+        {
+            return "../Empreendimentos/ListEmpreendimentoModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-ccu";
+        }
+    }
+
+    public class LookupEmpreendimentoFiltroModel : ListViewEmpreendimento
+    {
+        public override string action()
+        {
+            return "../Empreendimentos/_ListEmpreendimentoModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-ccu";
+        }
+    }
 }
