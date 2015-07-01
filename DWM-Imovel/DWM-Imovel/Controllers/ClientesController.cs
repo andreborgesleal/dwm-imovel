@@ -4,7 +4,9 @@ using DWM.Models.Enumeracoes;
 using DWM.Models.Persistence;
 using DWM.Models.Repositories;
 using System.Web.Mvc;
+using System;
 using DWM.Models.Entidades;
+using App_Dominio.Contratos;
 
 namespace DWM.Controllers
 {
@@ -34,6 +36,23 @@ namespace DWM.Controllers
             LookupClienteFiltroModel l = new LookupClienteFiltroModel();
             return this.ListModal(index, pageSize, l, "Descrição", descricao);
         }
+
+
+        #region BeforeCreate
+        public override void BeforeCreate(ref ClienteViewModel value, FormCollection collection)
+        {
+            if (value.ind_tipo_pessoa == "PF")
+            {
+                if (collection["dt_nascimento"] != "")
+                    value.dt_nascimento = DateTime.Parse(collection["dt_nascimento"].Substring(6, 4) + "-" + collection["dt_nascimento"].Substring(3, 2) + "-" + collection["dt_nascimento"].Substring(0, 2));
+            }
+            else
+            {
+                value.sexo = null;
+                value.dt_nascimento = null;
+            }
+        }
+        #endregion
         #endregion
 
         #region Edit
@@ -41,6 +60,11 @@ namespace DWM.Controllers
         public ActionResult Edit(int clienteId)
         {
             return _Edit(new ClienteViewModel() { clienteId = clienteId });
+        }
+
+        public override void BeforeEdit(ref ClienteViewModel value, FormCollection collection)
+        {
+            BeforeCreate(ref value, collection);
         }
         #endregion
 
@@ -52,7 +76,7 @@ namespace DWM.Controllers
         }
         #endregion
 
-        #region CrudClienteoModal
+        #region CrudCliente Modal
         public JsonResult CrudClienteModal(string descricao)
         {
             return JSonCrud(new ClienteViewModel() { nome = descricao });

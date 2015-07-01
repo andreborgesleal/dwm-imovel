@@ -22,15 +22,30 @@ namespace DWM.Models.Persistence
         }
         #endregion
 
-        #region Métodos da classe CrudModel
+        #region Métodos da classe CrudContext
         public override Cliente MapToEntity(ClienteViewModel value)
         {
             return new Cliente()
             {
                 clienteId = value.clienteId,
                 nome = value.nome,
-                cpf_cnpj = value.cpf_cnpj,
-                telefone = value.telefone != null ? value.telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "") : null
+                ind_tipo_pessoa = value.ind_tipo_pessoa.Substring(1, 1),
+                cpf_cnpj = value.cpf_cnpj != null ? value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "") : null,
+                dt_inclusao = value.dt_inclusao,
+                dt_alteracao = Funcoes.Brasilia(),
+                endereco = value.endereco,
+                complemento = value.complemento,
+                cidade = value.cidade,
+                uf = value.uf,
+                cep = value.cep != null ? value.cep.Replace(".", "").Replace("-", "") : null,
+                bairro = value.bairro,
+                fone1 = value.fone1 != null ? value.fone1.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "") : null,
+                fone2 = value.fone2 != null ? value.fone2.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "") : null,
+                fone3 = value.fone3 != null ? value.fone3.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "") : null,
+                email = value.email != null ? value.email.ToLower() : null,
+                sexo = value.sexo,
+                dt_nascimento = value.dt_nascimento,
+                observacao = value.observacao
             };
         }
 
@@ -40,8 +55,23 @@ namespace DWM.Models.Persistence
             {
                 clienteId = entity.clienteId,
                 nome = entity.nome,
+                ind_tipo_pessoa = "P" + entity.ind_tipo_pessoa,
                 cpf_cnpj = entity.cpf_cnpj,
-                telefone = entity.telefone,
+                dt_inclusao = entity.dt_inclusao,
+                dt_alteracao = entity.dt_alteracao,
+                endereco = entity.endereco,
+                complemento = entity.complemento,
+                cidade = entity.cidade,
+                uf = entity.uf,
+                cep = entity.cep,
+                bairro = entity.bairro,
+                fone1 = entity.fone1,
+                fone2 = entity.fone2,
+                fone3 = entity.fone3,
+                email = entity.email,
+                sexo = entity.sexo,
+                dt_nascimento = entity.dt_nascimento,
+                observacao = entity.observacao,
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
         }
@@ -53,42 +83,70 @@ namespace DWM.Models.Persistence
 
         public override Validate Validate(ClienteViewModel value, Crud operation)
         {
-            value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
+            value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString(), MessageType = MsgType.SUCCESS };
 
             if (value.nome.Trim().Length == 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
-                value.mensagem.MessageBase = "Nome do Cliente deve ser preenchido";
+                value.mensagem.Message = MensagemPadrao.Message(5, "Nome").ToString();
+                value.mensagem.MessageBase = "Campo Nome do Cliente deve ser informado";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            if (value.cpf_cnpj.Trim().Length == 0)
+            #region Valida CPF/CNPJ
+            if (value.cpf_cnpj != null)
             {
-                value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "CPF/CNPJ").ToString();
-                value.mensagem.MessageBase = "CPF/CPNJ do Cliente deve ser preenchido";
-                value.mensagem.MessageType = MsgType.WARNING;
-                return value.mensagem;
-            }
-
-            if (operation == Crud.INCLUIR || operation == Crud.ALTERAR)
-            {
-                int nomeCliente = (from c in db.Clientes
-                                          where c.clienteId != value.clienteId
-                                                && c.nome.Equals(value.nome)
-                                          select c.nome).Count();
-                if (nomeCliente > 0)
+                // CPF
+                if (value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "").Length == 11)
                 {
-                    value.mensagem.Code = 19;
-                    value.mensagem.Message = MensagemPadrao.Message(19).ToString();
-                    value.mensagem.MessageBase = "nome do cliente já existente";
-                    value.mensagem.MessageType = MsgType.WARNING;
+                    if (!Funcoes.ValidaCpf(value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "")))
+                    {
+                        value.mensagem.Code = 29;
+                        value.mensagem.Message = MensagemPadrao.Message(29).ToString();
+                        value.mensagem.MessageBase = "Número de CPF incorreto.";
+                        return value.mensagem;
+                    }
+                } // CNPJ
+                else if (!Funcoes.ValidaCnpj(value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "")))
+                {
+                    value.mensagem.Code = 30;
+                    value.mensagem.Message = MensagemPadrao.Message(30).ToString();
+                    value.mensagem.MessageBase = "Número de CNPJ incorreto.";
                     return value.mensagem;
                 }
+                if (operation == Crud.ALTERAR)
+                {
+                    if (db.Clientes.Where(info => info.cpf_cnpj == value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "") && info.clienteId != value.clienteId).Count() > 0)
+                    {
+                        value.mensagem.Code = 31;
+                        value.mensagem.Message = MensagemPadrao.Message(31).ToString();
+                        value.mensagem.MessageBase = "CPF/CNPJ informado para o fornecedor já se encontra cadastrado para outro fornecedor.";
+                        return value.mensagem;
+                    }
+                }
+                else
+                {
+                    if (db.Clientes.Where(info => info.cpf_cnpj == value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "")).Count() > 0)
+                    {
+                        value.mensagem.Code = 31;
+                        value.mensagem.Message = MensagemPadrao.Message(31).ToString();
+                        value.mensagem.MessageBase = "CPF/CNPJ informado para o fornecedor já se encontra cadastrado para outro fornecedor.";
+                        return value.mensagem;
+                    }
+                }
             }
+            #endregion
+
             return value.mensagem;
+        }
+
+        public override ClienteViewModel CreateRepository(System.Web.HttpRequestBase Request = null)
+        {
+            ClienteViewModel c = base.CreateRepository(Request);
+            c.dt_inclusao = Funcoes.Brasilia();
+            c.ind_tipo_pessoa = "PJ";
+            return c;
         }
 
         #endregion
@@ -108,20 +166,22 @@ namespace DWM.Models.Persistence
         public override IEnumerable<ClienteViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
             string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
-            return (from c in db.Clientes
-                    where (_nome == null || String.IsNullOrEmpty(_nome) || c.nome.StartsWith(_nome.Trim()))
-                    orderby c.nome
+            return (from clnt in db.Clientes
+                    where (_nome == null || String.IsNullOrEmpty(_nome) || clnt.nome.Contains(_nome.Trim()) || clnt.cpf_cnpj == _nome)
+                    orderby clnt.nome
                     select new ClienteViewModel
                     {
-                        empresaId = sessaoCorrente.empresaId,
-                        clienteId = c.clienteId,
-                        cpf_cnpj = c.cpf_cnpj,
-                        telefone = c.telefone,
-                        nome = c.nome,
+                        clienteId = clnt.clienteId,
+                        cpf_cnpj = clnt.cpf_cnpj,
+                        nome = clnt.nome,
+                        fone1 = clnt.fone1,
+                        fone2 = clnt.fone2,
+                        email = clnt.email,
+                        endereco = clnt.endereco,
                         PageSize = pageSize,
-                        TotalCount = (from c1 in db.Clientes
-                                      where (_nome == null || String.IsNullOrEmpty(_nome) || c1.nome.StartsWith(_nome.Trim()))
-                                      select c1).Count()
+                        TotalCount = (from clnt1 in db.Clientes
+                                      where (_nome == null || String.IsNullOrEmpty(_nome) || clnt1.nome.Contains(_nome.Trim()) || clnt1.cpf_cnpj == _nome)
+                                      select clnt1.clienteId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
 
