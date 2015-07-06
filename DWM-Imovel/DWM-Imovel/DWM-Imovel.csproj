@@ -182,6 +182,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\CorretoresController.cs" />
     <Compile Include="Controllers\EmpreendimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropostasController.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
     <Compile Include="Models\Entidades\Cliente.cs" />
+    <Compile Include="Models\Entidades\Corretor.cs" />
     <Compile Include="Models\Entidades\Empreendimento.cs" />
     <Compile Include="Models\Entidades\Parametro.cs" />
     <Compile Include="Models\Entidades\Proposta.cs" />
@@ -199,9 +201,11 @@
     <Compile Include="Models\Enumeracoes\Enumeradores.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Persistence\ClienteModel.cs" />
+    <Compile Include="Models\Persistence\CorretorModel.cs" />
     <Compile Include="Models\Persistence\EmpreendimentoModel.cs" />
     <Compile Include="Models\Persistence\PropostaModel.cs" />
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
+    <Compile Include="Models\Repositories\CorretorViewModel.cs" />
     <Compile Include="Models\Repositories\EmpreendimentoViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1088,6 +1092,7 @@
     <Folder Include="Models\Report\" />
     <Folder Include="Temp\" />
     <Folder Include="Users_Data\" />
+    <Folder Include="Views\Corretores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

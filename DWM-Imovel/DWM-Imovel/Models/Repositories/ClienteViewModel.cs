@@ -13,8 +13,8 @@ namespace DWM.Models.Repositories
         public int clienteId { get; set; }
 
         [DisplayName("Nome")]
-        [Required(ErrorMessage = "Nome do credor deve ser informado")]
-        [StringLength(60, ErrorMessage = "Nome do cliente deve ter no mínimo 5 e no máximo 60 caracteres", MinimumLength = 5)]
+        [Required(ErrorMessage = "Nome do cliente deve ser informado")]
+        [StringLength(40, ErrorMessage = "Nome do cliente deve ter no mínimo 5 e no máximo 40 caracteres", MinimumLength = 5)]
         public string nome { get; set; }
 
         [DisplayName("Tipo")]
