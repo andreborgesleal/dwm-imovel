@@ -1,11 +1,11 @@
 ﻿@model App_Dominio.Repositories.TypeaheadRepository
-<div class="form-group" id="ClienteParent">
-    @Html.Editor("_clienteId", "TYPEAHEAD", new { typeahead = Model })
+<div class="form-group" id="CentroCustoParent">
+    @Html.Editor("_centroCustoId", "TYPEAHEAD", new { typeahead = Model } )
 </div>
 
 <script>
     // Next Field
-    $('#ClienteParent').on('keydown', '#@Model.text', function (e) {
+    $('#CentroCustoParent').on('keydown', '#@Model.text', function (e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode == 9 && '@Model.nextField' != '') {
             e.preventDefault();
@@ -17,7 +17,7 @@
     });
     // Fim-Next Field
 
-    var link = encodeURI('../Clientes/getNames?noCahce=' + new Date());
+    var link = encodeURI('../CentroCustos/getNames?noCahce=' + new Date());
     var data = { ccu: [] };
     var ccu = { countries: [] };
     $.ajax({
@@ -29,13 +29,13 @@
         dataType: "json",
         success: function (jsonObj) {
             for (i in jsonObj) {
-                data.ccu.push(jsonObj[i].nome);
-                ccu.countries.push({ objId: jsonObj[i].clienteId, descricao: jsonObj[i].nome})
+                data.ccu.push(jsonObj[i].descricao);
+                ccu.countries.push({ objId: jsonObj[i].centroCustoId, descricao: jsonObj[i].descricao })
             };
         }
     });
 
-    $('#descricao_cliente').typeahead({
+    $('#descricao_centroCusto').typeahead({
         minLength: 1,
         order: "asc",
         group: false,
@@ -56,7 +56,7 @@
             hint: "form-control"
         },
         source: {
-            'Cliente': {
+            'Centro de Custo': {
                 data: data.ccu
             }
         },
@@ -66,11 +66,11 @@
                 @*if ('@Model.nextField' != '' && '@Model.nextField' != null)
                     $('#@Model.nextField').focus();*@
 
-                $('#clienteId').val("");
+                $('#centroCustoId').val("");
 
                 for (i in ccu.countries) {
                     if (ccu.countries[i].descricao == obj.display)
-                        $('#clienteId').val(ccu.countries[i].objId);
+                        $('#centroCustoId').val(ccu.countries[i].objId);
                 }
 
                 //alert(

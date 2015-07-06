@@ -7,6 +7,7 @@ using App_Dominio.Pattern;
 using App_Dominio.Security;
 using DWM.Models.Entidades;
 using DWM.Models.Persistence;
+using DWM.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,7 +97,19 @@ namespace DWM.Controllers
         #region Formulário Modal Clientes
         public ActionResult LovClienteModal(int? index, int? pageSize = 50)
         {
-            return this.ListModal(index, pageSize, new LookupClienteModel(), "Nome");
+            Facade<ClienteViewModel, ClienteModel, ApplicationContext> facade = new Facade<ClienteViewModel, ClienteModel, ApplicationContext>();
+            IPagedList pagedList = facade.getPagedList(new LookupClienteModel(), index, pageSize.Value, "Nome");
+            //return View("LOVModal", pagedList);
+            return View(pagedList);
+
+            //ViewBag.Header = header;
+
+            //if (param != null && param.Count() > 0)
+            //    return View(pagedList);
+            //else
+            //    return View("LOVModal", pagedList);
+
+            //return this.ListModal(index, pageSize, new LookupClienteModel(), "Nome");
         }
         #endregion
 
