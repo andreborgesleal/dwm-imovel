@@ -13,5 +13,6 @@ namespace DWM.Models.Entidades
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Empreendimento> Empreendimentos { get; set; }
         public DbSet<Proposta> Propostas { get; set; }
+        public DbSet<Corretor> Corretores { get; set; }
     }
 }
