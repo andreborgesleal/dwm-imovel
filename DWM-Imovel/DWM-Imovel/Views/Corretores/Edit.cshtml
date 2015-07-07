@@ -1,19 +1,19 @@
 ﻿@using DWM.Models.Repositories
 @using App_Dominio.Repositories
-@model DWM.Models.Repositories.ClienteViewModel
+@model DWM.Models.Repositories.CorretorViewModel
 @{
     ViewBag.Title = "DWM-Imovel";
 }
 
 <div class="container">
-    @using (Html.BeginForm("Create", "Clientes", FormMethod.Post, new { @class = "form" }))
+    @using (Html.BeginForm("Edit", "Corretores", FormMethod.Post, new { @class = "form" }))
     {
-        @Html.HiddenFor(info => info.dt_inclusao)
-
+        
+        @Html.HiddenFor(info => info.corretorId)
         <div class="panel panel-primary" style="margin-top: 10px">
             <div class="panel-heading">
                 <h2 class="panel-title">
-                    Clientes - <small class="text-white">Inclusão de clientes</small>
+                    Corretores - <small class="text-white">Edição de corretores</small>
                 </h2>
             </div>
             <div class="panel-body">
@@ -25,14 +25,23 @@
                             @Html.TextBoxFor(info => info.nome, new { @class = "form-control input-sm", @maxlength = "60" })
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" for="ind_tipo_pessoa">Tipo</label>
+                            <label class="control-label" for="rg">RG</label>
                             <div class="input-group col-md-12">
-                                @Html.DropDownListFor(m => m.ind_tipo_pessoa, App_Dominio.Enumeracoes.DropDownListEnum.TipoPessoa(), new { @class = "form-control input-sm", @onchange = "MudaPessoa()" })
+                                @Html.TextBoxFor(info => info.rg, new { @class = "form-control input-sm" })
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label" for="rg">Órgão Emissor</label>
+                            <div class="input-group col-md-12">
+                                @Html.TextBoxFor(info => info.orgao_emissor, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-6">
@@ -45,8 +54,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="cpf_cnpj">CPF/CNPJ</label>
-                                    @Html.TextBoxFor(m => m.cpf_cnpj, new { @class = "form-control input-sm" })
+                                    <label class="control-label" for="cpf">CPF</label>
+                                    @Html.TextBoxFor(m => m.cpf, new { @class = "form-control input-sm" })
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -73,7 +82,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label" for="complemento">Complemento</label>
-                            @Html.TextBoxFor(m => m.complemento, new { @class = "form-control input-sm", @maxlength = "30" })
+                            @Html.TextBoxFor(m => m.complemento_end, new { @class = "form-control input-sm", @maxlength = "30" })
                         </div>
                     </div>
                 </div>
@@ -116,28 +125,10 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" for="fone3">Telefone Fixo</label>
-                            @Html.TextBoxFor(m => m.fone3, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-                    <div class="col-md-2" id="div-sexo">
-                        <div class="form-group">
-                            <label class="control-label" for="sexo">Sexo</label>
-                            @Html.DropDownListFor(m => m.sexo, App_Dominio.Enumeracoes.DropDownListEnum.Sexo(), new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-                    <div class="col-md-2" id="div-nascimento">
-                        <div class="form-group">
-                            <label class="control-label" for="dt_nascimento">Nascimento</label>
-                            @Html.EditorFor(info => info.dt_nascimento, "DATE", new { identificador = "dt_nascimento", readOnly = "false" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="observacao">Obsrvação</label>
-                            @Html.TextAreaFor(m => m.observacao, 4, 1, new { @class = "form-control" })
+                            <label class="control-label" for="rg">CRECI</label>
+                            <div class="input-group col-md-12">
+                                @Html.TextBoxFor(info => info.creci, new { @class = "form-control input-sm" })
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -155,7 +146,7 @@
                                                     } ,
                             new ButtonRepository() {    linkText = "Cancelar",
                                                         actionName = "Browse",
-                                                        controllerName = "Clientes",
+                                                        controllerName = "Corretores",
                                                         buttonType = "link"
                                                     }
                         })
@@ -191,3 +182,5 @@
 
     }
 </script>
+
+
