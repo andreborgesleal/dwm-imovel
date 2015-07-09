@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="313946161" Data="06/07/2015 21:12:04">
+    <Sessao>aqmpxupiqimksrrx2swxfna1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.ClientesController =&gt; clientes/crudclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 131
+   em App_Dominio.Controllers.DwmRootController`3.CreateModal(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 393</StackTrace>
+  </LOG>
+  <LOG ID="1287035488" Data="06/07/2015 23:37:36">
+    <Sessao>aqmpxupiqimksrrx2swxfna1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.ClientesController =&gt; clientes/crudclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 131
+   em App_Dominio.Controllers.DwmRootController`3.CreateModal(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 393</StackTrace>
+  </LOG>
+  <LOG ID="1089243537" Data="06/07/2015 23:49:46">
+    <Sessao>aqmpxupiqimksrrx2swxfna1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.ClientesController =&gt; clientes/crudclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 131
+   em App_Dominio.Controllers.DwmRootController`3.CreateModal(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 393</StackTrace>
+  </LOG>
+  <LOG ID="166471733" Data="06/07/2015 23:52:14">
+    <Sessao>aqmpxupiqimksrrx2swxfna1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.ClientesController =&gt; clientes/crudclientemodal</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 131
+   em App_Dominio.Controllers.DwmRootController`3.CreateModal(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 393</StackTrace>
+  </LOG>
+</LOG>
