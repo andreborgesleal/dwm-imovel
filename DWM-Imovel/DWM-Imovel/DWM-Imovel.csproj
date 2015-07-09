@@ -1079,6 +1079,11 @@
     <Content Include="Views\Empreendimentos\_ListEmpreendimentoModal.cshtml" />
     <Content Include="Views\Home\LovEmpreendimentoModal.cshtml" />
     <Content Include="Views\Typeahead\BuscaEmpreendimento.cshtml" />
+    <Content Include="Views\Corretores\Browse.cshtml" />
+    <Content Include="Views\Corretores\List.cshtml" />
+    <Content Include="Views\Corretores\Create.cshtml" />
+    <Content Include="Views\Corretores\Edit.cshtml" />
+    <Content Include="Views\Corretores\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
@@ -1088,7 +1093,6 @@
     <Folder Include="Models\Report\" />
     <Folder Include="Temp\" />
     <Folder Include="Users_Data\" />
-    <Folder Include="Views\Corretores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

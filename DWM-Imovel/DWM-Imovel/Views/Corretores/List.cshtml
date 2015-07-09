@@ -1,0 +1,57 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.CorretorViewModel>
+
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    <div class="row Scroll">
+        <div class="col-md-12 column hidden-xs">
+            <table class="table table-hover table-bordered table-condensed" style="cursor: pointer">
+                <caption></caption>
+                <thead class="corvo text-white">
+                    <tr>
+                        <th class="text-center">Ação</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Celular</th>
+                    </tr>
+                </thead>
+                @foreach (DWM.Models.Repositories.CorretorViewModel clnt in Model)
+                {
+                    <tr>
+                        <td class="col-md-3 col-sm-2 text-center">
+                            <div class="col-md-6 col-sm-6 text-center">
+                                <button type="button" class="btn btn-info btn-xs col-md-12" onclick="window.location='Edit?corretorId=@clnt.corretorId'">Editar</button>
+                            </div>
+                            <div class="col-md-6 col-sm-6 text-center">
+                                <button type="button" class="btn btn-danger btn-xs col-md-12" onclick="window.location='Delete?corretorId=@clnt.corretorId'">Excluir</button>
+                            </div>
+                        </td>
+                        <td class="col-md-3 col-sm-4">
+                            <small>@clnt.nome</small><br />
+                            <small>@clnt.email</small>
+                        </td>
+                        <td class="col-md-2 col-sm-2">
+                            <small>@App_Dominio.Models.Funcoes.FormataCPFCNPJ(clnt.cpf)</small>
+                        </td>
+                        <td class="col-md-2 col-sm-2">
+                            <small>@App_Dominio.Models.Funcoes.FormataTelefone(clnt.fone1)</small>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @Html.Partial("Paginacao", Model)
+}
+else
+{
+    @Html.Partial("_AcessoNegadoModal")
+}
+
+
+
+
+
+
