@@ -39,7 +39,7 @@
     }
     else if (b.buttonType.Equals("link"))
     {
-        string classe = "btn btn-default " + b.size ?? "" ;
+        string classe = "btn btn-warning " + b.size ?? "";
         @Html.ActionLink(b.linkText, b.actionName, b.controllerName, null, new { @class = @classe })<span>&nbsp;</span>
     }
     else if (b.buttonType.Equals("primary"))
