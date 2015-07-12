@@ -8,6 +8,7 @@
 <div class="container">
     @using (Html.BeginForm("Create", "Propostas", FormMethod.Post, new { @class = "form" }))
     {
+        <div id="div-lov"></div>
         <div class="panel panel-primary" style="margin-top: 10px">
             <div class="panel-heading">
                 <h2 class="panel-title">
@@ -27,7 +28,7 @@
                                                                                             text = "nome_cliente",
                                                                                             lovModal = "LovClienteModal",
                                                                                             controller = "Clientes",
-                                                                                            descricao = "nome",
+                                                                                            descricao = "nome_cliente",
                                                                                             crudModal = "CrudClienteModal",
                                                                                             readOnly = false,
                                                                                             values = new SelectItemsTypeahead()
@@ -39,58 +40,6 @@
                                                                                             nextField = "unidade",
                                                                                             prevField = ""
                                                                                         })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Unidade</label>
-                            @Html.TextBoxFor(m => m.unidade, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Modelo</label>
-                            @Html.TextBoxFor(m => m.modelo, new { @class = "form-control input-sm" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 no-padding altura-35">
-                        <div class="form-group">
-                            @Html.EditorFor(m => m.valor, "DECIMAL", new
-                                                {
-                                                    form = "horizontal",
-                                                    htmlAttributes = (object)new { @class = "form-control input-sm text-right", @onblur = "return Converte(this, 'valor')" }
-                                                })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-4 no-padding altura-35">
-                        <div class="form-group">
-                            @Html.EditorFor(m => m.vr_comissao, "DECIMAL", new
-                                                {
-                                                    form = "horizontal",
-                                                    htmlAttributes = (object)new { @class = "form-control input-sm text-right", @onblur = "return Converte(this, 'vr_comissao')" }
-                                                })
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Data da Proposta</label>
-                            @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta", readOnly = "false" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="nome">Data Etapa</label>
-                            @Html.EditorFor(info => info.dt_ultimo_status, "DATE", new { identificador = "dt_ultimo_status", readOnly = "false" })
-                        </div>
                     </div>
                 </div>
 
@@ -122,3 +71,4 @@
         </div>
     }
 </div>
+

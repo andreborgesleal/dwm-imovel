@@ -5,12 +5,22 @@
 }
 
 <div class="row">
-    <div class="col-md-12" style="margin: 0px">
+    <div class="col-md-12">
         @Html.Partial("_Filter", Model)
-        <div id="div-his" style="padding-top: 0px">
+        <div id="div-cli">
             @Html.Partial("../Clientes/_ListClienteModal", Model)
         </div>
     </div>
 </div>
 
 
+<script type="text/javascript">
+
+    function Move(id, descricao) {
+        $("#clienteId").val(id);
+        $("#nome_cliente").val(descricao);
+        $("#nome_cliente1").val(descricao);
+        $("#btnModal").click();
+    }
+
+</script>

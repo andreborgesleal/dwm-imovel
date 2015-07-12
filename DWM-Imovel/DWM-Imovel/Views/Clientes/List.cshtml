@@ -11,23 +11,15 @@
                 <caption></caption>
                 <thead class="corvo text-white">
                     <tr>
-                        <th class="text-center">Ação</th>
                         <th>Nome</th>
                         <th>CPF/CNPJ</th>
                         <th>Celular</th>
+                        <th class="text-center">Ação</th>
                     </tr>
                 </thead>
                 @foreach (DWM.Models.Repositories.ClienteViewModel clnt in Model)
                 {
                     <tr>
-                        <td class="col-md-3 col-sm-2 text-center">
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <button type="button" class="btn btn-info btn-xs col-md-12" onclick="window.location='Edit?clienteId=@clnt.clienteId'">Editar</button>
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <button type="button" class="btn btn-danger btn-xs col-md-12" onclick="window.location='Delete?clienteId=@clnt.clienteId'">Excluir</button>
-                            </div>
-                        </td>
                         <td class="col-md-3 col-sm-4">
                             <small>@clnt.nome</small><br />
                             <small>@clnt.email</small>
@@ -37,6 +29,12 @@
                         </td>
                         <td class="col-md-2 col-sm-2">
                             <small>@App_Dominio.Models.Funcoes.FormataTelefone(clnt.fone1)</small>
+                        </td>
+                        <td class="col-md-3 col-sm-2 text-center">
+                            <div class="btn-group">
+                                <a class="btn btn-primary btn-sm" href="../Clientes/Edit?clienteId=@clnt.clienteId"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" href="../Clientes/Delete?clienteId=@clnt.clienteId"><i class="glyphicon glyphicon-minus"></i></a>
+                            </div>
                         </td>
                     </tr>
                 }

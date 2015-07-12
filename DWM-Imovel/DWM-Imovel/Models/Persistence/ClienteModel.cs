@@ -29,9 +29,9 @@ namespace DWM.Models.Persistence
             {
                 clienteId = value.clienteId,
                 nome = value.nome,
-                ind_tipo_pessoa = value.ind_tipo_pessoa.Substring(1, 1),
+                ind_tipo_pessoa = value.ind_tipo_pessoa != null ? value.ind_tipo_pessoa.Substring(1, 1) : "F",
                 cpf_cnpj = value.cpf_cnpj != null ? value.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "") : null,
-                dt_inclusao = value.dt_inclusao,
+                dt_inclusao = value.dt_inclusao > Convert.ToDateTime("1980-01-01") ? value.dt_inclusao : Funcoes.Brasilia(),
                 dt_alteracao = Funcoes.Brasilia(),
                 endereco = value.endereco,
                 complemento = value.complemento,
@@ -202,7 +202,7 @@ namespace DWM.Models.Persistence
 
         public override string DivId()
         {
-            return "div-ccu";
+            return "div-cli";
         }
     }
 

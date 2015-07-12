@@ -7,19 +7,19 @@
 @if (Model != null)
 {
     <div class="row Scroll" style="margin-top: -15px">
-        <div class="col-md-12" style="padding-right: 0px;">
+        <div class="col-md-12">
             <table class="table table-hover table-bordered table-condensed" style="cursor: pointer">
                 <caption></caption>
-                <thead class="corvo text-white">
+                <thead class="corvo text-enfatico">
                     <tr>
-                        <th>Descrição</th>
+                        <th>Nome</th>
                     </tr>
                 </thead>
-                @foreach (ClienteViewModel ccu in Model)
+                @foreach (ClienteViewModel cli in Model)
                 {
-                    <tr onclick="Move('@ccu.clienteId', '@ccu.nome')">
+                    <tr onclick="Move('@cli.clienteId', '@cli.nome')">
                         <td class="col-md-7 col-sm-2">
-                            <small>@ccu.nome</small>
+                            @cli.nome
                         </td>
                     </tr>
                 }

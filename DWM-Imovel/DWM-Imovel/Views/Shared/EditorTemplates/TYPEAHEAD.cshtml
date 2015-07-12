@@ -63,15 +63,15 @@
             {
                 if (t.javaScriptFunction == null)
                 {
-                    <button class="btn btn-sm" type="button" onclick="showLookup('@t.lovModal');"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-info" type="button" onclick="showLookup('@t.lovModal');"><i class="glyphicon glyphicon-search"></i></button>
                 }
                 else
                 {
-                    <button class="btn btn-sm" type="button" onclick="@t.javaScriptFunction"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-info" type="button" onclick="@t.javaScriptFunction"><i class="glyphicon glyphicon-search"></i></button>
                 }
                 if (t.crudModal != null)
                 {
-                    <button id="btnIns" class="btn btn-sm" type="button" onclick="InsertModal('../' + '@t.controller' + '/' + '@t.crudModal',
+                    <button id="btnIns" class="btn btn-info" type="button" onclick="InsertModal('../' + '@t.controller' + '/' + '@t.crudModal',
                             '@t.descricao' ,
                             '@t.id' ,
                             '@temp' ,
@@ -84,8 +84,8 @@
                 if (t.MiniCrudAdd != null)
                 {
                     string div_miniCrud = "div-mini-crud" + t.id;
-                    <button class="btn btn-sm" type="button" onclick="AddMiniCrud('@t.id', '@t.text', '@t.controller', '@t.MiniCrudAdd', '@div_miniCrud');"><i class="glyphicon glyphicon-th-list"></i></button>
-                    <button class="btn btn-sm" type="button" onclick="CleanMiniCrud('@t.id', '@t.text', '@t.controller', '@t.MiniCrudClearAll', '@div_miniCrud');"><i class="glyphicon glyphicon-remove"></i></button>
+                    <button class="btn btn-info" type="button" onclick="AddMiniCrud('@t.id', '@t.text', '@t.controller', '@t.MiniCrudAdd', '@div_miniCrud');"><i class="glyphicon glyphicon-th-list"></i></button>
+                    <button class="btn btn-info" type="button" onclick="CleanMiniCrud('@t.id', '@t.text', '@t.controller', '@t.MiniCrudClearAll', '@div_miniCrud');"><i class="glyphicon glyphicon-remove"></i></button>
                     <div id="@div_miniCrud">
                         <div class="row" style="font-weight: bold; font-family: Verdana; font-size: 11px; padding-top: 0px; border-bottom: 1px solid #808080;">
                             <div class="col-md-4" style="padding: 2px">
@@ -123,7 +123,7 @@
                 }
                 else
                 {
-                    <button class="btn btn-sm" type="button" onclick="clean('@t.id','@t.text');"><i class="glyphicon glyphicon-remove"></i></button>
+                    <button class="btn btn-info" type="button" onclick="clean('@t.id','@t.text');"><i class="glyphicon glyphicon-remove"></i></button>
                 }
             }
         </div>
@@ -136,7 +136,7 @@
 <div class="modal fade" id="myMessageModalTypeahead_@t.id" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header panel-success">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel_@t.id">
                     Mensagem
@@ -145,8 +145,8 @@
             <div class="modal-body">
                 <p><label id="catarina"></label></p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <div class="modal-footer panel-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
             </div>
         </div>
 

@@ -98,7 +98,7 @@ namespace DWM.Controllers
         public ActionResult LovClienteModal(int? index, int? pageSize = 50)
         {
             Facade<ClienteViewModel, ClienteModel, ApplicationContext> facade = new Facade<ClienteViewModel, ClienteModel, ApplicationContext>();
-            IPagedList pagedList = facade.getPagedList(new LookupClienteModel(), index, pageSize.Value, "Nome");
+            IPagedList pagedList = facade.getPagedList(new LookupClienteModel(), index, pageSize.Value);
             //return View("LOVModal", pagedList);
             return View(pagedList);
 

@@ -488,20 +488,9 @@
     <Content Include="Views\Shared\_AcessoNegadoModal.cshtml" />
     <Content Include="Views\Home\_Error.cshtml" />
     <Content Include="Views\Home\LOVModal.cshtml" />
-    <Content Include="Views\Home\LovPlanoContasPaiModal.cshtml" />
-    <Content Include="Views\Home\LovHistoricoContabilidadeModal.cshtml" />
-    <Content Include="Views\Home\LovPlanoContaModal.cshtml" />
-    <Content Include="Views\Home\LovCentroCustoModal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TRUNC.cshtml" />
-    <Content Include="Views\Home\LovEnquadramentoModal.cshtml" />
-    <Content Include="Views\Home\LovRazaoModal.cshtml" />
-    <Content Include="Views\Home\LovGrupoCredorModal.cshtml" />
-    <Content Include="Views\Home\LovCredorModal.cshtml" />
-    <Content Include="Views\Home\LovEnquadramentoOperacaoModal.cshtml" />
-    <Content Include="Views\Home\LovEnquadramentoOperacaoAmortizacaoModal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DECIMAL2.cshtml" />
     <Content Include="Views\Shared\_FormModal.cshtml" />
-    <Content Include="Views\Home\LovContaPagarModal.cshtml" />
     <Content Include="Views\Shared\MenuVertical.cshtml" />
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.min.js</DependentUpon>
