@@ -83,17 +83,18 @@
   background-color: transparent;
 }
 .datepicker table tr td.day:hover {
-  background: #eeeeee;
+  background: #fdd49a;
+  color: red;
   cursor: pointer;
 }
 .datepicker table tr td.old,
 .datepicker table tr td.new {
-  color: #999999;
+  color: #fdf59a;
 }
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
   background: none;
-  color: #999999;
+  color: #fdf59a;
   cursor: default;
 }
 .datepicker table tr td.today,
@@ -209,12 +210,12 @@
   border-radius: 4px;
 }
 .datepicker table tr td span:hover {
-  background: #eeeeee;
+  background: #b500f3;
 }
 .datepicker table tr td span.disabled,
 .datepicker table tr td span.disabled:hover {
   background: none;
-  color: #999999;
+  color: #fdf59a;
   cursor: default;
 }
 .datepicker table tr td span.active,
@@ -269,7 +270,7 @@
   background-color: #003399 \9;
 }
 .datepicker table tr td span.old {
-  color: #999999;
+  color: #fdf59a;
 }
 .datepicker th.switch {
   width: 145px;
@@ -280,7 +281,7 @@
 }
 .datepicker thead tr:first-child th:hover,
 .datepicker tfoot tr:first-child th:hover {
-  background: #eeeeee;
+  background: #b500f3;
 }
 .input-append.date .add-on i,
 .input-prepend.date .add-on i {
