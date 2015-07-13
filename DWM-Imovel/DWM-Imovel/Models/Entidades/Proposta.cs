@@ -18,9 +18,9 @@ namespace DWM.Models.Entidades
 
         public DateTime dt_proposta { get; set; }
 
-        public string unidade { get; set; }
+        public string torre { get; set; }
 
-        public string modelo { get; set; }
+        public string unidade { get; set; }
 
         public Decimal valor { get; set; }
 
@@ -30,7 +30,16 @@ namespace DWM.Models.Entidades
 
         public DateTime dt_ultimo_status { get; set; }
 
-        public int operacaoId { get; set; }
+        public Nullable<int> operacaoId { get; set; }
 
+        public Nullable<int> corretor1Id { get; set; }
+
+        public Nullable<int> corretor2Id { get; set; }
+
+        public int usuarioId { get; set; }
+
+        public string nome { get; set; }
+
+        public string login { get; set; }
     }
 }

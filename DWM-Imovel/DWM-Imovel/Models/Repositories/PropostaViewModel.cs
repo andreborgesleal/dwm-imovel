@@ -2,58 +2,74 @@
 using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
-using System.Collections.Generic;
-using DWM.Models.Entidades;
 
 namespace DWM.Models.Repositories
 {
     public class PropostaViewModel : Repository
     {
-        [Key]
         [DisplayName("ID")]
         public int propostaId { get; set; }
 
-        [DisplayName("Empreendimento ID")]
-        [Required(ErrorMessage = "Por favor, informe o id do empreendimento")]
+        [DisplayName("Empreendimento")]
+        [Required(ErrorMessage = "Por favor, informe o empreendimento")]
         public int empreendimentoId { get; set; }
 
         public string descricao_empreendimento { get; set; }
 
-        [DisplayName("Cliente ID")]
-        [Required(ErrorMessage = "Por favor, informe o id do cliente")]
+        [DisplayName("Cliente")]
+        [Required(ErrorMessage = "Por favor, informe o cliente")]
         public int clienteId { get; set; }
 
-        public string descricao_cliente { get; set; }
+        public string nome_cliente { get; set; }
 
         [DisplayName("Data da Proposta")]
-        [Required(ErrorMessage = "Por favor, informe o nome do cliente")]
+        [Required(ErrorMessage = "Por favor, informe a data da proposta")]
         public DateTime dt_proposta { get; set; }
 
-        [DisplayName("Unidade")]
-        [StringLength(50, ErrorMessage = "A unidade deve ter no máximo 4 caracteres")]
-        public string unidade { get; set; }
+        [DisplayName("Torre")]
+        [StringLength(25, ErrorMessage = "A Torre deve ter no máximo 25 caracteres")]
+        public string torre { get; set; }
 
-        [DisplayName("Modelo")]
-        [StringLength(50, ErrorMessage = "O modelo deve ter no máximo 50 caracteres")]
-        public string modelo { get; set; }
+        [DisplayName("Unidade")]
+        [StringLength(4, ErrorMessage = "A unidade deve ter no máximo 4 caracteres")]
+        public string unidade { get; set; }
 
         [DisplayName("Valor")]
         [Required(ErrorMessage = "Por favor, informe o valor da proposta")]
         public Decimal valor { get; set; }
 
-        [DisplayName("Valor da Comissão")]
+        [DisplayName("Comissão")]
         [Required(ErrorMessage = "Por favor, informe o valor da comissão")]
         public Decimal vr_comissao { get; set; }
 
         [DisplayName("Etapa ID")]
-        [Required(ErrorMessage = "Por favor, informe o id da etapa")]
         public int etapaId { get; set; }
 
-        [DisplayName("Data do último status")]
-        [Required(ErrorMessage = "Por favor, informe a data do último status")]
+        [DisplayName("Etapa")]
+        public int descricao_etapa { get; set; }
+
+        [DisplayName("Último Status")]
         public DateTime dt_ultimo_status { get; set; }
 
         [DisplayName("Operação ID")]
-        public int operacaoId { get; set; }
+        public Nullable<int> operacaoId { get; set; }
+
+        [DisplayName("Corretor")]
+        public Nullable<int> corretor1Id { get; set; }
+
+        public string nome_corretor1 { get; set; }
+
+        [DisplayName("Corretor 2")]
+        public Nullable<int> corretor2Id { get; set; }
+
+        public string nome_corretor2 { get; set; }
+        
+        public int usuarioId { get; set; }
+
+        [DisplayName("Gerente")]
+        public string nome { get; set; }
+
+        [DisplayName("Login")]
+        public string login { get; set; }
     }
 }

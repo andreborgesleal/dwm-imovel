@@ -113,10 +113,13 @@ namespace DWM.Controllers
         }
         #endregion
 
+        [AuthorizeFilter]
         #region Formulário Modal Empreendimentos
         public ActionResult LovEmpreendimentoModal(int? index, int? pageSize = 50)
         {
-            return this.ListModal(index, pageSize, new LookupEmpreendimentoModel(), "Nome");
+            Facade<EmpreendimentoViewModel, EmpreendimentoModel, ApplicationContext> facade = new Facade<EmpreendimentoViewModel, EmpreendimentoModel, ApplicationContext>();
+            IPagedList pagedList = facade.getPagedList(new LookupEmpreendimentoModel(), index, pageSize.Value);
+            return View(pagedList);
         }
         #endregion
 

@@ -17,7 +17,7 @@
     });
     // Fim-Next Field
 
-    var link = encodeURI('../Empreendimento/getNames?noCahce=' + new Date());
+    var link = encodeURI('../Empreendimentos/getNames?noCahce=' + new Date());
     var data = { ccu: [] };
     var ccu = { countries: [] };
     $.ajax({
@@ -29,8 +29,8 @@
         dataType: "json",
         success: function (jsonObj) {
             for (i in jsonObj) {
-                data.ccu.push(jsonObj[i].descricao);
-                ccu.countries.push({ objId: jsonObj[i].empreendimentoId, descricao: jsonObj[i].descricao })
+                data.ccu.push(jsonObj[i].nomeEmpreend);
+                ccu.countries.push({ objId: jsonObj[i].empreendimentoId, descricao: jsonObj[i].nomeEmpreend })
             };
         }
     });

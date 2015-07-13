@@ -20,22 +20,27 @@ namespace DWM.Controllers
 
         #region List
         [AuthorizeFilter]
-        public override ActionResult List(int? index, int? pageSize = 50, string nome = null)
+        public override ActionResult List(int? index, int? pageSize = 50, string descricao = null)
         {
             if (ViewBag.ValidateRequest)
             {
                 ListViewEmpreendimento e = new ListViewEmpreendimento();
-                return this._List(index, pageSize, "Browse", e, nome);
+                return this._List(index, pageSize, "Browse", e, descricao);
             }
             else
                 return View();
         }
 
-
+        [AuthorizeFilter]
         public ActionResult _ListEmpreendimentoModal(int? index, int? pageSize = 50, string descricao = null)
         {
-            LookupEmpreendimentoFiltroModel l = new LookupEmpreendimentoFiltroModel();
-            return this.ListModal(index, pageSize, l, "Descrição", descricao);
+            if (ViewBag.ValidateRequest)
+            {
+                LookupEmpreendimentoFiltroModel l = new LookupEmpreendimentoFiltroModel();
+                return this.ListModal(index, pageSize, l, "Descrição", descricao);
+            }
+            else
+                return View();
         }
         #endregion
 
@@ -61,5 +66,11 @@ namespace DWM.Controllers
             return JSonCrud(new EmpreendimentoViewModel() { nome = descricao });
         }
         #endregion
+
+        public JsonResult getNames()
+        {
+            return JSonTypeahead(null, new ListViewEmpreendimento());
+        }
+
     }
 }

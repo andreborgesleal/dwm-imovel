@@ -5,10 +5,8 @@ using App_Dominio.Contratos;
 using App_Dominio.Entidades;
 using App_Dominio.Component;
 using App_Dominio.Enumeracoes;
-using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
-using DWM.Models.Entidades;
 using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
@@ -106,11 +104,10 @@ namespace DWM.Models.Persistence
         {
             string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
             return (from c in db.Empreendimentos
-                    where (_nome == null || String.IsNullOrEmpty(_nome) || c.nome.StartsWith(_nome.Trim()))
-                    orderby c.nome
+                    where (_nome == null || String.IsNullOrEmpty(_nome) || c.nomeEmpreend.StartsWith(_nome.Trim()))
+                    orderby c.nomeEmpreend
                     select new EmpreendimentoViewModel
                     {
-                        empresaId = sessaoCorrente.empresaId,
                         empreendimentoId = c.empreendimentoId,
                         usuarioId = c.usuarioId,
                         nomeEmpreend = c.nomeEmpreend,
@@ -118,7 +115,7 @@ namespace DWM.Models.Persistence
                         nome = c.nome,
                         PageSize = pageSize,
                         TotalCount = (from c1 in db.Empreendimentos
-                                      where (_nome == null || String.IsNullOrEmpty(_nome) || c1.nome.StartsWith(_nome.Trim()))
+                                      where (_nome == null || String.IsNullOrEmpty(_nome) || c1.nomeEmpreend.StartsWith(_nome.Trim()))
                                       select c1).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
@@ -139,7 +136,7 @@ namespace DWM.Models.Persistence
 
         public override string DivId()
         {
-            return "div-ccu";
+            return "div-emp";
         }
     }
 
@@ -152,7 +149,7 @@ namespace DWM.Models.Persistence
 
         public override string DivId()
         {
-            return "div-ccu";
+            return "div-emp";
         }
     }
 }
