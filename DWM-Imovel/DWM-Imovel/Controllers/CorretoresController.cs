@@ -47,5 +47,17 @@ namespace DWM.Controllers
             return Edit(corretorId);
         }
         #endregion
+
+        #region CrudCorretor Modal
+        public JsonResult CrudCorretorModal(string descricao)
+        {
+            return JSonCrud(new CorretorViewModel() { nome = descricao });
+        }
+        #endregion
+
+        public JsonResult getNames()
+        {
+            return JSonTypeahead(null, new ListViewCorretor());
+        }
     }
 }

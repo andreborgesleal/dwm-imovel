@@ -532,6 +532,10 @@
     <Content Include="Views\Corretores\Edit.cshtml" />
     <Content Include="Views\Corretores\Delete.cshtml" />
     <Content Include="Views\Shared\_Layout4.cshtml" />
+    <Content Include="Views\Corretores\_ListCorretorModal.cshtml" />
+    <Content Include="Views\Corretores\ListCorretorModal.cshtml" />
+    <Content Include="Views\Home\LovCorretorModal.cshtml" />
+    <Content Include="Views\Typeahead\BuscaCorretor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />

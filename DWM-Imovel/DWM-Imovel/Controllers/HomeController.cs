@@ -120,6 +120,24 @@ namespace DWM.Controllers
         }
         #endregion
 
+        #region Formulário Modal Corretores
+        public ActionResult LovClienteModal(int? index, int? pageSize = 50)
+        {
+            Facade<CorretorViewModel, CorretorModel, ApplicationContext> facade = new Facade<CorretorViewModel, CorretorModel, ApplicationContext>();
+            IPagedList pagedList = facade.getPagedList(new LookupCorretorModel(), index, pageSize.Value);
+            //return View("LOVModal", pagedList);
+            return View(pagedList);
+
+            //ViewBag.Header = header;
+
+            //if (param != null && param.Count() > 0)
+            //    return View(pagedList);
+            //else
+            //    return View("LOVModal", pagedList);
+
+            //return this.ListModal(index, pageSize, new LookupClienteModel(), "Nome");
+        }
+        #endregion
         #endregion
     }
 }

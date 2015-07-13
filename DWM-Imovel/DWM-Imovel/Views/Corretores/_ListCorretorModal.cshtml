@@ -1,5 +1,5 @@
 ﻿@using DWM.Models.Repositories;
-@model System.Web.Mvc.PagedList<ClienteViewModel>
+@model System.Web.Mvc.PagedList<CorretorViewModel>
 @{
     Layout = null;
 }
@@ -15,9 +15,9 @@
                         <th>Nome</th>
                     </tr>
                 </thead>
-                @foreach (ClienteViewModel cli in Model)
+                @foreach (CorretorViewModel cli in Model)
                 {
-                    <tr onclick="Move('@cli.clienteId', '@cli.nome')">
+                    <tr onclick="Move('@cli.corretorId', '@cli.nome')">
                         <td class="col-md-7 col-sm-2">
                             @cli.nome
                         </td>
