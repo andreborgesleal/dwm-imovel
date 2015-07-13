@@ -8,6 +8,7 @@ using App_Dominio.Enumeracoes;
 using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
+using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
 {
@@ -53,6 +54,9 @@ namespace DWM.Models.Persistence
         }
         public override Proposta MapToEntity(PropostaViewModel value)
         {
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            Usuario u = security._getUsuarioById(value.usuarioId, seguranca_db);
+
             Proposta proposta = new Proposta()
             {
                 propostaId = value.propostaId,
@@ -69,8 +73,8 @@ namespace DWM.Models.Persistence
                 corretor1Id = value.corretor1Id,
                 corretor2Id = value.corretor2Id,
                 usuarioId = value.usuarioId,
-                nome = value.nome,
-                login = value.login,
+                nome = u.nome,
+                login = u.login
             };
 
             return proposta;

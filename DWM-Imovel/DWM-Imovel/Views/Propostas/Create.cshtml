@@ -57,7 +57,7 @@
                                                                                                                         Text = Model.nome_cliente ?? "",
                                                                                                                     },
                                                                                             disableButtons = false,
-                                                                                            nextField = "unidade",
+                                                                                            nextField = "dt_proposta",
                                                                                             prevField = "descricao_empreendimento"
                                                                                         })
                     </div>
@@ -89,23 +89,34 @@
                     </div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="usuario">Gerente</label>
                             @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="torre">Torre</label>
-                            @Html.TextBoxFor(m => m.torre, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="unidade">Unidade</label>
-                            @Html.TextBoxFor(m => m.unidade, new { @class = "form-control" })
-                        </div>
+                    <div class="col-md-5">
+                        @Html.Partial("../Typeahead/BuscaCorretor", new App_Dominio.Repositories.TypeaheadRepository()
+                                                                                        {
+                                                                                            ListName = "Corretor",
+                                                                                            label = "Corretor",
+                                                                                            id = "corretor1Id",
+                                                                                            text = "nome_corretor",
+                                                                                            lovModal = "LovCorretorModal",
+                                                                                            controller = "Corretores",
+                                                                                            descricao = "nome_corretor",
+                                                                                            crudModal = "CrudCorretorModal",
+                                                                                            readOnly = false,
+                                                                                            values = new SelectItemsTypeahead()
+                                                                                                                    {
+                                                                                                                        Value = Model.corretor1Id != null ? Model.corretor1Id.ToString() : "",
+                                                                                                                        Text = Model.nome_corretor1 ?? "",
+                                                                                                                    },
+                                                                                            disableButtons = false,
+                                                                                            nextField = "unidade",
+                                                                                            prevField = "usuarioId"
+                                                                                        })
+
                     </div>
                 </div>
             </div>

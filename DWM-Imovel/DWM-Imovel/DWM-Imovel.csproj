@@ -259,7 +259,12 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\ajax-loader-facebook.gif" />
+    <Content Include="Content\images\carlos_magno.JPG" />
+    <Content Include="Content\images\gelados_cia.JPG" />
+    <Content Include="Content\images\leodias.JPG" />
     <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\profile.png" />
+    <Content Include="Content\images\viviane.JPG" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\template.js" />
     <Content Include="Content\plugins\jquery.js" />
@@ -380,6 +385,8 @@
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\dwm-imovel - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dwm-imovel - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\css\datepicker.css" />
     <Content Include="Scripts\fileUpload\bootstrap.min.js" />
@@ -533,6 +540,10 @@
     <Content Include="Views\Corretores\Edit.cshtml" />
     <Content Include="Views\Corretores\Delete.cshtml" />
     <Content Include="Views\Shared\_Layout4.cshtml" />
+    <Content Include="Views\Corretores\_ListCorretorModal.cshtml" />
+    <Content Include="Views\Corretores\ListCorretorModal.cshtml" />
+    <Content Include="Views\Home\LovCorretorModal.cshtml" />
+    <Content Include="Views\Typeahead\BuscaCorretor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />

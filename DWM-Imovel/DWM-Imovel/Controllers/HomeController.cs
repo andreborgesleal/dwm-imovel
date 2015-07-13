@@ -37,14 +37,16 @@ namespace DWM.Controllers
             return View();
         }
 
-        //[AuthorizeFilter]
+        [AuthorizeFilter]
         public ActionResult Default()
         {
-            return View();
-            //if (ViewBag.ValidateRequest)
-            //    return View();
-            //else
-            //    return View();
+            if (ViewBag.ValidateRequest)
+            {
+                return View();
+            }
+            else
+                return View();
+
         }
 
         public ActionResult Chart()
@@ -123,6 +125,15 @@ namespace DWM.Controllers
         }
         #endregion
 
+        [AuthorizeFilter]
+        #region Formulário Modal Corretores
+        public ActionResult LovCorretorModal(int? index, int? pageSize = 50)
+        {
+            Facade<CorretorViewModel, CorretorModel, ApplicationContext> facade = new Facade<CorretorViewModel, CorretorModel, ApplicationContext>();
+            IPagedList pagedList = facade.getPagedList(new LookupCorretorModel(), index, pageSize.Value);
+            return View(pagedList);
+        }
+        #endregion
         #endregion
     }
 }

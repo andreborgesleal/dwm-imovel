@@ -1,0 +1,26 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.CorretorViewModel>
+@{
+    Layout = null;
+    Model.action = "../Corretores/_ListCorretorModal";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("_Filter", Model)
+        <div id="div-cli">
+            @Html.Partial("../Corretores/_ListCorretorModal", Model)
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function Move(id, descricao) {
+        $("#corretorId").val(id);
+        $("#nome_corretor").val(descricao);
+        $("#nome_corretor1").val(descricao);
+        $("#btnModal").click();
+    }
+
+</script>

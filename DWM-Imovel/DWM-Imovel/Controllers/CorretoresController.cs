@@ -20,16 +20,29 @@ namespace DWM.Controllers
 
         #region List
         [AuthorizeFilter]
-        public override ActionResult List(int? index, int? pageSize = 50, string nome = null)
+        public override ActionResult List(int? index, int? pageSize = 50, string descricao = null)
         {
             if (ViewBag.ValidateRequest)
             {
                 ListViewCorretor e = new ListViewCorretor();
-                return this._List(index, pageSize, "Browse", e, nome);
+                return this._List(index, pageSize, "Browse", e, descricao);
             }
             else
                 return View();
         }
+
+        [AuthorizeFilter]
+        public ActionResult _ListCorretorModal(int? index, int? pageSize = 50, string descricao = null)
+        {
+            if (ViewBag.ValidateRequest)
+            {
+                LookupCorretorFiltroModel l = new LookupCorretorFiltroModel();
+                return this.ListModal(index, pageSize, l, "Descrição", descricao);
+            }
+            else
+                return View();
+        }
+
         #endregion
 
         #region Edit
@@ -47,5 +60,17 @@ namespace DWM.Controllers
             return Edit(corretorId);
         }
         #endregion
+
+        #region CrudCorretor Modal
+        public JsonResult CrudCorretorModal(string descricao)
+        {
+            return JSonCrud(new CorretorViewModel() { nome = descricao });
+        }
+        #endregion
+
+        public JsonResult getNames()
+        {
+            return JSonTypeahead(null, new ListViewCorretor());
+        }
     }
 }

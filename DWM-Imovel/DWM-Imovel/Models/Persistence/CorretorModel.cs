@@ -177,4 +177,30 @@ namespace DWM.Models.Persistence
         #endregion
     }
 
+    public class LookupCorretorModel : ListViewCorretor
+    {
+        public override string action()
+        {
+            return "../Corretores/ListCorretorModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-cor";
+        }
+    }
+
+    public class LookupCorretorFiltroModel : ListViewCorretor
+    {
+        public override string action()
+        {
+            return "../Corretores/_ListCorretorModal";
+        }
+
+        public override string DivId()
+        {
+            return "div-cor";
+        }
+    }
+
 }

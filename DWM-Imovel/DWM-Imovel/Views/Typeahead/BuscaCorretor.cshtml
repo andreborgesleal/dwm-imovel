@@ -1,0 +1,91 @@
+﻿@model App_Dominio.Repositories.TypeaheadRepository
+<div class="form-group" id="CorretorParent">
+    @Html.Editor("_corretorId", "TYPEAHEAD", new { typeahead = Model })
+</div>
+
+<script>
+    // Next Field
+    $('#CorretorParent').on('keydown', '#@Model.text', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == 9 && '@Model.nextField' != '') {
+            e.preventDefault();
+            if (!e.shiftKey)
+                $('#@Model.nextField').focus();
+            else
+                $('#@Model.prevField').focus();
+        }
+    });
+    // Fim-Next Field
+
+    var link = encodeURI('../Corretores/getNames?noCahce=' + new Date());
+    var data = { ccu: [] };
+    var ccu = { countries: [] };
+    $.ajax({
+        type: "POST",
+        url: link,
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (jsonObj) {
+            for (i in jsonObj) {
+                data.ccu.push(jsonObj[i].nome);
+                ccu.countries.push({ objId: jsonObj[i].corretorId, descricao: jsonObj[i].nome})
+            };
+        }
+    });
+
+    $('#nome_corretor').typeahead({
+        minLength: 1,
+        order: "asc",
+        group: false,
+        offset: true,
+        //backdrop: {
+        //    "opacity": 0.45,
+        //    "filter": "alpha(opacity=45)",
+        //    "background-color": "#fff"
+        //},
+        groupMaxItem: 5,
+        hint: true,
+        filter: "Todos",
+        selector: {
+            filter: "input-group-btn",
+            filterButton: "btn btn-default",
+            dropdown: "dropdown-menu",
+            list: "dropdown-menu",
+            hint: "form-control"
+        },
+        source: {
+            'Corretor': {
+                data: data.ccu
+            }
+        },
+        callback: {
+            onClick: function (node, a, obj, e) {
+
+                @*if ('@Model.nextField' != '' && '@Model.nextField' != null)
+                    $('#@Model.nextField').focus();*@
+
+                $('#corretorId').val("");
+
+                for (i in ccu.countries) {
+                    if (ccu.countries[i].descricao == obj.display)
+                        $('#corretorId').val(ccu.countries[i].objId);
+                }
+
+                //alert(
+                //    "window.location = /beer/" + obj.group + "/" +
+                //        obj.display
+                //            .toLowerCase()
+                //            .replace(/[\s\(\)]/g, "-")
+                //            .replace(/[-]+/g, "-")
+                //);
+
+            }
+        },
+        debug: true
+    });
+
+</script>
+
+
