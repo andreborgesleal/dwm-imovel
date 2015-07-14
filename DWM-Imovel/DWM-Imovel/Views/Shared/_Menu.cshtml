@@ -9,7 +9,7 @@
 
 @if (menuList != null)
 {
-    <ul class="nav navbar-nav navbar">
+    <ul class="nav navbar-nav">
         @foreach (TransacaoRepository t in menuList.Where(info => info.transacaoId_pai == null && info.referencia == "Barra de Menu" && info.exibir == "S"))
         {
             <li class="dropdown">

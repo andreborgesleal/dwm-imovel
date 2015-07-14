@@ -96,11 +96,11 @@ namespace DWM.Models.Persistence
                 vr_comissao = entity.vr_comissao,
                 etapaId = entity.etapaId,
                 dt_ultimo_status = entity.dt_ultimo_status,
-                operacaoId = entity.operacaoId,
+                //operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
                 nome_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).nome : "",
-                corretor2Id = entity.corretor2Id,
-                nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
+                //corretor2Id = entity.corretor2Id,
+                //nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
         }
@@ -114,7 +114,7 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (value.empreendimentoId == 0)
+            if (value.empreendimentoId < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Emprendimento").ToString();
@@ -123,10 +123,10 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (value.clienteId == 0)
+            if (value.clienteId < 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "CliendId").ToString();
                 value.mensagem.MessageBase = "Cliente deve ser preenchido";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
@@ -135,7 +135,7 @@ namespace DWM.Models.Persistence
             if (value.valor == 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "Valor").ToString();
                 value.mensagem.MessageBase = "Valor deve ser preenchido";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
@@ -144,29 +144,29 @@ namespace DWM.Models.Persistence
             if (value.vr_comissao == 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "Valor da Comissão").ToString();
                 value.mensagem.MessageBase = "Valor da comissão deve ser preenchido";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            if (value.etapaId == 0)
+            if (value.etapaId < 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "Por favor, informe a etapa").ToString();
                 value.mensagem.MessageBase = "Etapa deve ser preenchida";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            if (value.dt_ultimo_status == null || value.dt_ultimo_status == DateTime.MinValue)
-            {
-                value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Nome do Cliente").ToString();
-                value.mensagem.MessageBase = "Valor deve ser preenchido";
-                value.mensagem.MessageType = MsgType.WARNING;
-                return value.mensagem;
-            }
+            //if (value.dt_ultimo_status == null || value.dt_ultimo_status == DateTime.MinValue)
+            //{
+            //    value.mensagem.Code = 5;
+            //    value.mensagem.Message = MensagemPadrao.Message(5, "Data do Ultimo Status").ToString();
+            //    value.mensagem.MessageBase = "Valor deve ser preenchido";
+            //    value.mensagem.MessageType = MsgType.WARNING;
+            //    return value.mensagem;
+            //}
             
             return value.mensagem;
         }
