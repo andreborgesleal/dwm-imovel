@@ -66,14 +66,14 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (value.propostaId == 0)
-            {
-                value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Proposta").ToString();
-                value.mensagem.MessageBase = "Proposta deve ser informada";
-                value.mensagem.MessageType = MsgType.WARNING;
-                return value.mensagem;
-            }
+            //if (value.propostaId == 0)
+            //{
+            //    value.mensagem.Code = 5;
+            //    value.mensagem.Message = MensagemPadrao.Message(5, "Proposta").ToString();
+            //    value.mensagem.MessageBase = "Proposta deve ser informada";
+            //    value.mensagem.MessageType = MsgType.WARNING;
+            //    return value.mensagem;
+            //}
 
             if (value.dt_evento == null)
             {

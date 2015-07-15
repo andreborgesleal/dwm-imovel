@@ -13,7 +13,7 @@ namespace DWM.Models.Entidades
         public int etapaId { get; set; }
 
         [DisplayName("EmpreendimentoID")]
-        public int empreendimentoId { get; set; }
+        public Nullable<int> empreendimentoId { get; set; }
 
         [DisplayName("Prox_EtapaID")]
         public Nullable<int> etapa_proxId { get; set; }

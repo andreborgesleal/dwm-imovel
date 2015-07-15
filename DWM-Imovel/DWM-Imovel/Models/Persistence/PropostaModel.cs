@@ -26,9 +26,10 @@ namespace DWM.Models.Persistence
         public override PropostaViewModel AfterInsert(PropostaViewModel value)
         {
             #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
-            int? _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").FirstOrDefault().etapaId;
-
-            if (!_etapaId.HasValue)
+            int _etapaId;
+            if (db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").FirstOrDefault().etapaId;
+            else 
                 _etapaId = db.Etapas.Where(info => info.descricao == "Proposta").FirstOrDefault().etapaId;
             #endregion
 
@@ -36,7 +37,7 @@ namespace DWM.Models.Persistence
             {
                 propostaId = value.propostaId,
                 dt_evento = Funcoes.Brasilia(),
-                etapaId = _etapaId.Value,
+                etapaId = _etapaId,
                 dt_ocorrencia = value.dt_proposta,
                 usuarioId = value.usuarioId,
                 nome = value.nome,
@@ -96,11 +97,14 @@ namespace DWM.Models.Persistence
                 vr_comissao = entity.vr_comissao,
                 etapaId = entity.etapaId,
                 dt_ultimo_status = entity.dt_ultimo_status,
-                //operacaoId = entity.operacaoId,
+                operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
                 nome_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).nome : "",
-                //corretor2Id = entity.corretor2Id,
-                //nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
+                usuarioId = entity.usuarioId,
+                nome = entity.nome,
+                login = entity.login,
+                corretor2Id = entity.corretor2Id,
+                nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
         }

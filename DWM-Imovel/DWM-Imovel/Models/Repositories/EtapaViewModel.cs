@@ -11,7 +11,7 @@ namespace DWM.Models.Repositories
         public int etapaId { get; set; }
 
         [DisplayName("EmpreendimentoID")]
-        public int empreendimentoId { get; set; }
+        public Nullable<int> empreendimentoId { get; set; }
 
         public string descricao_empreendimento { get; set; }
 
