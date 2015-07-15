@@ -18,8 +18,8 @@
     // Fim-Next Field
 
     var link = encodeURI('../Clientes/getNames?noCahce=' + new Date());
-    var data = { ccu: [] };
-    var ccu = { countries: [] };
+    var data = { cli: [] };
+    var cli = { countries: [] };
     $.ajax({
         type: "POST",
         url: link,
@@ -29,8 +29,8 @@
         dataType: "json",
         success: function (jsonObj) {
             for (i in jsonObj) {
-                data.ccu.push(jsonObj[i].nome);
-                ccu.countries.push({ objId: jsonObj[i].clienteId, descricao: jsonObj[i].nome})
+                data.cli.push(jsonObj[i].nome);
+                cli.countries.push({ objId: jsonObj[i].clienteId, descricao: jsonObj[i].nome})
             };
         }
     });
@@ -57,7 +57,7 @@
         },
         source: {
             'Cliente': {
-                data: data.ccu
+                data: data.cli
             }
         },
         callback: {
@@ -68,9 +68,9 @@
 
                 $('#clienteId').val("");
 
-                for (i in ccu.countries) {
-                    if (ccu.countries[i].descricao == obj.display)
-                        $('#clienteId').val(ccu.countries[i].objId);
+                for (i in cli.countries) {
+                    if (cli.countries[i].descricao == obj.display)
+                        $('#clienteId').val(cli.countries[i].objId);
                 }
 
                 //alert(

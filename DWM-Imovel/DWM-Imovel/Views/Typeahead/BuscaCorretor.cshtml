@@ -18,8 +18,8 @@
     // Fim-Next Field
 
     var link = encodeURI('../Corretores/getNames?noCahce=' + new Date());
-    var data = { ccu: [] };
-    var ccu = { countries: [] };
+    var data = { cor: [] };
+    var cor = { countries: [] };
     $.ajax({
         type: "POST",
         url: link,
@@ -29,8 +29,8 @@
         dataType: "json",
         success: function (jsonObj) {
             for (i in jsonObj) {
-                data.ccu.push(jsonObj[i].nome);
-                ccu.countries.push({ objId: jsonObj[i].corretorId, descricao: jsonObj[i].nome})
+                data.cor.push(jsonObj[i].nome);
+                cor.countries.push({ objId: jsonObj[i].corretorId, descricao: jsonObj[i].nome})
             };
         }
     });
@@ -57,7 +57,7 @@
         },
         source: {
             'Corretor': {
-                data: data.ccu
+                data: data.cor
             }
         },
         callback: {
@@ -68,9 +68,9 @@
 
                 $('#corretorId').val("");
 
-                for (i in ccu.countries) {
-                    if (ccu.countries[i].descricao == obj.display)
-                        $('#corretorId').val(ccu.countries[i].objId);
+                for (i in cor.countries) {
+                    if (cor.countries[i].descricao == obj.display)
+                        $('#corretorId').val(cor.countries[i].objId);
                 }
 
                 //alert(

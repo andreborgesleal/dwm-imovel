@@ -264,6 +264,7 @@
    em App_Dominio.Controllers.DwmRootController`3.Insert(R value) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 138
    em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 93</StackTrace>
   </LOG>
+<<<<<<< HEAD
   <LOG ID="1885484013" Data="14/07/2015 20:51:15">
     <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
     <IP>::1</IP>
@@ -472,5 +473,24 @@
     <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 97
    em App_Dominio.Controllers.DwmRootController`3.Insert(R value) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 138
    em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText) na c:\Users\Daniel\Documents\Projetos\app_dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 93</StackTrace>
+=======
+  <LOG ID="2046141430" Data="14/07/2015 20:38:37">
+    <Sessao>sqxtkuermhz25gzi4mvaeqmd</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="7nrCvqsf86buP6BzgW2y--aISG0tSellupdjtYMr-U7lc452Ty_Z584xL4RDwyr689gh_sAOm6RPvNc9zdqAXZ-om3DLj9_Q2aczVAso7E01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="2046141430" Data="14/07/2015 20:38:37">
+    <Sessao>sqxtkuermhz25gzi4mvaeqmd</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="7nrCvqsf86buP6BzgW2y--aISG0tSellupdjtYMr-U7lc452Ty_Z584xL4RDwyr689gh_sAOm6RPvNc9zdqAXZ-om3DLj9_Q2aczVAso7E01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+>>>>>>> 50c3e5e156b56f70392e6b80e60bafa33141a5ba
   </LOG>
 </LOG>

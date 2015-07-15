@@ -18,8 +18,8 @@
     // Fim-Next Field
 
     var link = encodeURI('../Empreendimentos/getNames?noCahce=' + new Date());
-    var data = { ccu: [] };
-    var ccu = { countries: [] };
+    var data = { emp: [] };
+    var emp = { countries: [] };
     $.ajax({
         type: "POST",
         url: link,
@@ -29,8 +29,8 @@
         dataType: "json",
         success: function (jsonObj) {
             for (i in jsonObj) {
-                data.ccu.push(jsonObj[i].nomeEmpreend);
-                ccu.countries.push({ objId: jsonObj[i].empreendimentoId, descricao: jsonObj[i].nomeEmpreend })
+                data.emp.push(jsonObj[i].nomeEmpreend);
+                emp.countries.push({ objId: jsonObj[i].empreendimentoId, descricao: jsonObj[i].nomeEmpreend })
             };
         }
     });
@@ -57,7 +57,7 @@
         },
         source: {
             'Empreendimento': {
-                data: data.ccu
+                data: data.emp
             }
         },
         callback: {
@@ -68,9 +68,9 @@
 
                 $('#empreendimentoId').val("");
 
-                for (i in ccu.countries) {
-                    if (ccu.countries[i].descricao == obj.display)
-                        $('#empreendimentoId').val(ccu.countries[i].objId);
+                for (i in emp.countries) {
+                    if (emp.countries[i].descricao == obj.display)
+                        $('#empreendimentoId').val(emp.countries[i].objId);
                 }
 
                 //alert(
