@@ -1,35 +1,51 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="SHORTCUT ICON" href="/favicon.png" />
+    <title>DWM-Imóvel</title>
+
+    <!-- Typeahead CSS -->
     <link rel="stylesheet" href="~/Content/css/jquery.typeahead.css">
 
     <!-- Web Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
 
-    <link href="~/Scripts/css/datepicker.css" rel="stylesheet">
-
     <!-- Font Awesome CSS -->
     <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Datepicker CSS -->
+    <link href="~/Scripts/css/datepicker.css" rel="stylesheet">
 
     <!-- Plugins -->
     <link href="~/Content/css/animations.css" rel="stylesheet">
 
-    <!-- Worthy core CSS file -->
-    @*<link href="~/Content/css/style.css" rel="stylesheet">*@
+
+    <!-- StartBootstrap -->
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/Start-Bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/Start-Bootstrap/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="~/Content/Start-Bootstrap/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/Start-Bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Content/Start-Bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
     <!-- Bootstrap core CSS -->
-    <link href="../../../Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+    @*<link href="../../../Content/bootstrap/css/bootstrap.css" rel="stylesheet">*@
 
-    <!-- Custom css -->
-    @*<link href="~/Content/css/custom.css" rel="stylesheet">*@
-
-    <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
-    <link href="@Styles.Url("~/scripts/css")" rel="stylesheet" />
+    <!-- Custom Components - André Leal -->
 
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/scripts/jquery-{version}.js"></script>
@@ -47,32 +63,19 @@
     <link href="@Styles.Url("~/Content/Site.css")" rel="stylesheet" />
     <link href="@Styles.Url("~/Content/bootstrap-mvc-validation.css")" rel="stylesheet" />
 
-    <!-- JavaScript files placed at the end of the document so the pages load faster
-    ================================================== -->
-    <!-- Jquery and Bootstap core js files -->
-    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Modernizr javascript -->
     <script type="text/javascript" src="~/Content/plugins/modernizr.js"></script>
 
-    <!-- Isotope javascript -->
-    @*<script type="text/javascript" src="~/Content/plugins/isotope/isotope.pkgd.min.js"></script>*@
-
-    <!-- Backstretch javascript -->
-    @*<script type="text/javascript" src="~/Content/plugins/jquery.backstretch.min.js"></script>*@
-
-    <!-- Appear javascript -->
-    <script type="text/javascript" src="~/Content/plugins/jquery.appear.js"></script>
-
-    <!-- Custom Scripts -->
-    <script type="text/javascript" src="~/Content/js/custom.js"></script>
-
-    <!-- Side-bar -->
-    @*<link href="~/Content/css/simple-sidebar.css" rel="stylesheet">*@
+    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
 </head>
 <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -92,17 +95,19 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="margem-topo-20">
+    <div class="margem-negativa">
         <div id="carregando" style="visibility: hidden; height: 0px; background-repeat: no-repeat; z-index: 5; background-image: url(../Content/images/loader.gif); background-position-x: 50%; background-position-y: 200px">
             <label>Carregando...</label>
         </div>
-        <div class="container-fluid margem-topo-60">
-            @BreadCrumbPage.Trace((App_Dominio.Component.BreadCrumb)ViewBag.BreadCrumb)
-            @Html.Partial("_alerts")
-            <div class="alert alert-dismissable alert-warning" id="alerta" style="visibility: hidden">
-                <a class="close" href="#" aria-hidden="true" onclick="$('#alerta').hide()">x</a>
-                <h4 class="alert-heading" id="alerta-heading">Atenção!</h4>
-                <div id="MsgAlert"></div>
+        <div class="container-fluid">
+            <div class="container">
+                @BreadCrumbPage.Trace((App_Dominio.Component.BreadCrumb)ViewBag.BreadCrumb)
+                @Html.Partial("_alerts")
+                <div class="alert alert-dismissable alert-warning" id="alerta" style="visibility: hidden">
+                    <a class="close" href="#" aria-hidden="true" onclick="$('#alerta').hide()">x</a>
+                    <h4 class="alert-heading" id="alerta-heading">Atenção!</h4>
+                    <div id="MsgAlert"></div>
+                </div>
             </div>
             @RenderBody()
         </div>
@@ -148,6 +153,24 @@
                 };
             });
         </script>*@
+
+
+    <!-- jQuery -->
+    <script src="~/Content/Start-Bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/Start-Bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Content/Start-Bootstrap/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Content/Start-Bootstrap/bower_components/raphael/raphael-min.js"></script>
+    <script src="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.min.js"></script>
+    <script src="~/Content/Start-Bootstrap/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Content/Start-Bootstrap/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>
