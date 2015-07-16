@@ -74,9 +74,8 @@
     <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
 </head>
 <body>
-
     <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -91,7 +90,43 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @Html.Partial("_Menu")
+
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Mensagens <span class="badge">2</span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">2 Novas Mensagens</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-bell"></i></span>
+                                    <span class="message">RPA e RPG com valores incorretos</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-bell"></i></span>
+                                    <span class="message">Contabilização autorizada</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Caixa de Entrada <span class="badge">2</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Leonardo Dias<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-user"></i> Perfil</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> Configurações</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../Account/LogOff"><i class="fa fa-power-off"></i> Sair</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
             </div><!-- /.navbar-collapse -->
+
+
         </div><!-- /.container-fluid -->
     </nav>
 
