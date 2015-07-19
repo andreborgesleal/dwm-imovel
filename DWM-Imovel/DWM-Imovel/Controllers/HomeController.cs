@@ -38,15 +38,17 @@ namespace DWM.Controllers
         }
 
         [AuthorizeFilter]
-        public ActionResult Default()
+        public ActionResult Default(int? index, int? pageSize = 50)
         {
             if (ViewBag.ValidateRequest)
             {
-                return View();
+                ListViewProposta model = new ListViewProposta();
+                Facade<PropostaViewModel, PropostaModel, ApplicationContext> facade = new Facade<PropostaViewModel, PropostaModel, ApplicationContext>();
+                IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value);
+                return View(pagedList);
             }
             else
                 return View();
-
         }
 
         public ActionResult Chart()

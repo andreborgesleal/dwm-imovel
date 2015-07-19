@@ -9,18 +9,17 @@
     <link rel="stylesheet" href="~/Content/css/jquery.typeahead.css">
 
     <!-- Web Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>*@
 
-    <!-- Font Awesome CSS -->
-    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~/Content/Start-Bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Datepicker CSS -->
     <link href="~/Scripts/css/datepicker.css" rel="stylesheet">
 
     <!-- Plugins -->
     <link href="~/Content/css/animations.css" rel="stylesheet">
-
 
     <!-- StartBootstrap -->
     <!-- Bootstrap Core CSS -->
@@ -36,10 +35,8 @@
     <link href="~/Content/Start-Bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.css" rel="stylesheet">
+    @*<link href="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.css" rel="stylesheet">*@
 
-    <!-- Custom Fonts -->
-    <link href="~/Content/Start-Bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
     <!-- Bootstrap core CSS -->
@@ -48,8 +45,6 @@
     <!-- Custom Components - André Leal -->
 
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="~/scripts/jquery-{version}.js"></script>
-    <script type="text/javascript" src="~/scripts/jquery-migrate-{version}.js"></script>
     <script type="text/javascript" src="~/scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="~/scripts/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/scripts/jquery.validate.unobtrusive.js"></script>
@@ -61,7 +56,6 @@
     <script type="text/javascript" src="~/Content/typeahead/jquery.typeahead.min.js"></script>
 
     <link href="@Styles.Url("~/Content/Site.css")" rel="stylesheet" />
-    <link href="@Styles.Url("~/Content/bootstrap-mvc-validation.css")" rel="stylesheet" />
 
     <!-- Modernizr javascript -->
     <script type="text/javascript" src="~/Content/plugins/modernizr.js"></script>
@@ -148,8 +142,6 @@
         </div>
     </div>
 
-    @Scripts.Render("~/scripts")
-    @Scripts.Render("~/js")
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
@@ -169,29 +161,8 @@
 
     <!-- JavaScript files placed at the end of the document so the pages load faster
     ================================================== -->
-    <!-- Side-bar -->
-    <script type="text/javascript" src="~/Content/plugins/jquery.min.js"></script>
-
-    @*<script type="text/javascript">
-
-            //$(".banner-image").backstretch('../../Content/images/slide6.jpg');
-
-            // Fixed header
-            //-----------------------------------------------
-            $(window).scroll(function () {
-                if (($(".header.fixed").length > 0)) {
-                    if (($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-                        $("body").addClass("fixed-header-on");
-                    } else {
-                        $("body").removeClass("fixed-header-on");
-                    }
-                };
-            });
-        </script>*@
-
-
     <!-- jQuery -->
-    <script src="~/Content/Start-Bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/Content/Start-Bootstrap/bower_components/jquery/dist/jquery.min.js"></script>*@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/Start-Bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -201,8 +172,8 @@
 
     <!-- Morris Charts JavaScript -->
     <script src="~/Content/Start-Bootstrap/bower_components/raphael/raphael-min.js"></script>
-    <script src="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.min.js"></script>
-    <script src="~/Content/Start-Bootstrap/js/morris-data.js"></script>
+    @*<script src="~/Content/Start-Bootstrap/bower_components/morrisjs/morris.min.js"></script>*@
+    @*<script src="~/Content/Start-Bootstrap/js/morris-data.js"></script>*@
 
     <!-- Custom Theme JavaScript -->
     <script src="~/Content/Start-Bootstrap/dist/js/sb-admin-2.js"></script>

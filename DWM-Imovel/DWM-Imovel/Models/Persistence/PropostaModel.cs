@@ -22,14 +22,23 @@ namespace DWM.Models.Persistence
         }
         #endregion
 
+
+        public override PropostaViewModel BeforeInsert(PropostaViewModel value)
+        {
+            value.dt_ultimo_status = value.dt_proposta;
+            value.etapaId = 0;
+            return value;
+        }
+
         #region Métodos da classe CrudModel
         public override PropostaViewModel AfterInsert(PropostaViewModel value)
         {
+
             #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
             int _etapaId;
             if (db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").Count() > 0)
                 _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").FirstOrDefault().etapaId;
-            else 
+            else
                 _etapaId = db.Etapas.Where(info => info.descricao == "Proposta").FirstOrDefault().etapaId;
             #endregion
 
@@ -39,9 +48,11 @@ namespace DWM.Models.Persistence
                 dt_evento = Funcoes.Brasilia(),
                 etapaId = _etapaId,
                 dt_ocorrencia = value.dt_proposta,
+                observacao = "Inclusão de proposta. Cliente: " + db.Clientes.Find(value.clienteId).nome,
                 usuarioId = value.usuarioId,
                 nome = value.nome,
-                login = value.login
+                login = value.login,
+                uri = "Propostas/Create"
             };
 
             EsteiraModel esteiraModel = new EsteiraModel();
@@ -53,6 +64,7 @@ namespace DWM.Models.Persistence
 
             return value;
         }
+
         public override Proposta MapToEntity(PropostaViewModel value)
         {
             EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
@@ -118,7 +130,7 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (value.empreendimentoId < 0)
+            if (value.empreendimentoId <= 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Emprendimento").ToString();
@@ -127,25 +139,45 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (value.clienteId < 0)
+            if (value.clienteId <= 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "CliendId").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "Cliente").ToString();
                 value.mensagem.MessageBase = "Cliente deve ser preenchido";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            if (value.valor == 0)
+            if (value.torre.Trim() == "")
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Valor").ToString();
-                value.mensagem.MessageBase = "Valor deve ser preenchido";
+                value.mensagem.Message = MensagemPadrao.Message(5, "Torre").ToString();
+                value.mensagem.MessageBase = "Torre deve ser preenchida";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            if (value.vr_comissao == 0)
+            if (value.unidade.Trim() == "")
+            {
+                value.mensagem.Code = 5;
+                value.mensagem.Message = MensagemPadrao.Message(5, "Unidade").ToString();
+                value.mensagem.MessageBase = "Unidade deve ser preenchida";
+                value.mensagem.MessageType = MsgType.WARNING;
+                return value.mensagem;
+            }
+
+
+
+            if (value.valor <= 0)
+            {
+                value.mensagem.Code = 5;
+                value.mensagem.Message = MensagemPadrao.Message(5, "Valor geral da venda").ToString();
+                value.mensagem.MessageBase = "Valor geral da venda deve ser preenchido";
+                value.mensagem.MessageType = MsgType.WARNING;
+                return value.mensagem;
+            }
+
+            if (value.vr_comissao <= 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Valor da Comissão").ToString();
@@ -157,21 +189,12 @@ namespace DWM.Models.Persistence
             if (value.etapaId < 0)
             {
                 value.mensagem.Code = 5;
-                value.mensagem.Message = MensagemPadrao.Message(5, "Por favor, informe a etapa").ToString();
+                value.mensagem.Message = MensagemPadrao.Message(5, "Etapa").ToString();
                 value.mensagem.MessageBase = "Etapa deve ser preenchida";
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
 
-            //if (value.dt_ultimo_status == null || value.dt_ultimo_status == DateTime.MinValue)
-            //{
-            //    value.mensagem.Code = 5;
-            //    value.mensagem.Message = MensagemPadrao.Message(5, "Data do Ultimo Status").ToString();
-            //    value.mensagem.MessageBase = "Valor deve ser preenchido";
-            //    value.mensagem.MessageType = MsgType.WARNING;
-            //    return value.mensagem;
-            //}
-            
             return value.mensagem;
         }
         #endregion
@@ -191,27 +214,40 @@ namespace DWM.Models.Persistence
         public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
             string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
-            return (from c in db.Propostas
-                    where (_nome == null || String.IsNullOrEmpty(_nome) || c.torre.StartsWith(_nome.Trim()))
-                    orderby c.torre
+
+            return (from p in db.Propostas 
+                    join c in db.Clientes on p.clienteId equals c.clienteId
+                    join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
+                    join est in db.Esteiras on p.propostaId equals est.propostaId 
+                    join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    orderby p.dt_proposta, c.nome
                     select new PropostaViewModel
                     {
                         empresaId = sessaoCorrente.empresaId,
-                        clienteId = c.clienteId,
-                        propostaId = c.propostaId,
-                        empreendimentoId = c.empreendimentoId,
-                        dt_proposta = c.dt_proposta,
-                        unidade = c.unidade,
-                        torre = c.torre,
-                        valor = c.valor,
-                        vr_comissao = c.vr_comissao,
-                        etapaId = c.etapaId,
-                        dt_ultimo_status = c.dt_ultimo_status,
-                        operacaoId = c.operacaoId,
+                        clienteId = p.clienteId,
+                        cpf_cnpj = c.cpf_cnpj,
+                        nome_cliente = c.nome,
+                        propostaId = p.propostaId,
+                        empreendimentoId = p.empreendimentoId,
+                        descricao_empreendimento = emp.nomeEmpreend,
+                        dt_proposta = p.dt_proposta,
+                        unidade = p.unidade,
+                        torre = p.torre,
+                        valor = p.valor,
+                        vr_comissao = p.vr_comissao,
+                        etapaId = p.etapaId,
+                        descricao_etapa = eta.descricao,
+                        dt_ultimo_status = p.dt_ultimo_status,
+                        operacaoId = p.operacaoId,
+                        percent_atual = ((eta.idx + 1) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                        percent_restnte = 100 - ((eta.idx + 1) / (from et in db.Etapas select et.etapaId).Count()) * 100,
                         PageSize = pageSize,
-                        TotalCount = (from c1 in db.Propostas
-                                      where (_nome == null || String.IsNullOrEmpty(_nome) || c1.torre.StartsWith(_nome.Trim()))
-                                      select c1).Count()
+                        TotalCount = (from p1 in db.Propostas
+                                      join c1 in db.Clientes on p1.clienteId equals c1.clienteId
+                                      join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
+                                      join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
+                                      join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
 

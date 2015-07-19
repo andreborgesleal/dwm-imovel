@@ -36,5 +36,7 @@ namespace DWM.Models.Repositories
 
         [DisplayName("Login")]
         public string login { get; set; }
+
+        public virtual PropostaViewModel proposta { get; set; }
     }
 }

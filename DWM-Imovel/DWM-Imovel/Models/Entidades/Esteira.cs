@@ -38,5 +38,7 @@ namespace DWM.Models.Entidades
 
         [DisplayName("Login")]
         public string login { get; set; }
+
+        public virtual Proposta proposta { get; set; }
     }
 }

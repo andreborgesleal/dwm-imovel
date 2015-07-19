@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        @Html.EditorFor(m => m.valor, "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'valor')" } })
+                        @Html.EditorFor(m => m.valor, "DECIMAL2", new { label = "Valor geral da venda", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'valor')" } })
                     </div>
                     <div class="col-md-2">
                         @Html.EditorFor(m => m.vr_comissao, "DECIMAL2", new { label = "Comissão", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'vr_comissao')" } })
@@ -113,7 +113,6 @@
                                                                                                                         Text = Model.nome_corretor1 ?? "",
                                                                                                                     },
                                                                                             disableButtons = false,
-                                                                                            nextField = "unidade",
                                                                                             prevField = "usuarioId"
                                                                                         })
 

@@ -66,15 +66,6 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            //if (value.propostaId == 0)
-            //{
-            //    value.mensagem.Code = 5;
-            //    value.mensagem.Message = MensagemPadrao.Message(5, "Proposta").ToString();
-            //    value.mensagem.MessageBase = "Proposta deve ser informada";
-            //    value.mensagem.MessageType = MsgType.WARNING;
-            //    return value.mensagem;
-            //}
-
             if (value.dt_evento == null)
             {
                 value.mensagem.Code = 5;
@@ -96,19 +87,6 @@ namespace DWM.Models.Persistence
             return value.mensagem;
         }
 
-        public override EsteiraViewModel AfterInsert(EsteiraViewModel value)
-        {
-            PropostaModel propostaModel = new PropostaModel();
-            propostaModel.Create(this.db, this.seguranca_db);
-            Proposta proposta = db.Propostas.Find(value.propostaId);
-            PropostaViewModel propostaViewModel = propostaModel.MapToRepository(proposta);
-            propostaViewModel.dt_ultimo_status = value.dt_ocorrencia;
-            propostaViewModel.etapaId = value.etapaId;
-
-            value.mensagem = propostaModel.Update(propostaViewModel).mensagem;
-
-            return value;
-        }
         #endregion
 
     }

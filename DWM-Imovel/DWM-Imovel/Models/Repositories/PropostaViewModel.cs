@@ -22,20 +22,24 @@ namespace DWM.Models.Repositories
 
         public string nome_cliente { get; set; }
 
+        public string cpf_cnpj { get; set; }
+
         [DisplayName("Data da Proposta")]
         [Required(ErrorMessage = "Por favor, informe a data da proposta")]
         public DateTime dt_proposta { get; set; }
 
         [DisplayName("Torre")]
+        [Required(ErrorMessage="Por favor, informe a Torre")]
         [StringLength(25, ErrorMessage = "A Torre deve ter no máximo 25 caracteres")]
         public string torre { get; set; }
 
         [DisplayName("Unidade")]
+        [Required(ErrorMessage = "Por favor, informe a Unidade")]
         [StringLength(4, ErrorMessage = "A unidade deve ter no máximo 4 caracteres")]
         public string unidade { get; set; }
 
         [DisplayName("Valor")]
-        [Required(ErrorMessage = "Por favor, informe o valor da proposta")]
+        [Required(ErrorMessage = "Por favor, informe o valor geral da venda")]
         public Decimal valor { get; set; }
 
         [DisplayName("Comissão")]
@@ -46,7 +50,7 @@ namespace DWM.Models.Repositories
         public int etapaId { get; set; }
 
         [DisplayName("Etapa")]
-        public int descricao_etapa { get; set; }
+        public string descricao_etapa { get; set; }
 
         [DisplayName("Último Status")]
         public DateTime dt_ultimo_status { get; set; }
@@ -64,6 +68,8 @@ namespace DWM.Models.Repositories
 
         public string nome_corretor2 { get; set; }
         
+        [DisplayName("Gerente")]
+        [Required(ErrorMessage="Gerente deve ser informado")]
         public int usuarioId { get; set; }
 
         [DisplayName("Gerente")]
@@ -71,5 +77,10 @@ namespace DWM.Models.Repositories
 
         [DisplayName("Login")]
         public string login { get; set; }
+
+        public decimal percent_atual { get; set; }
+
+        public decimal percent_restnte { get; set; }
     }
 }
+
