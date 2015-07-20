@@ -239,8 +239,8 @@ namespace DWM.Models.Persistence
                         descricao_etapa = eta.descricao,
                         dt_ultimo_status = p.dt_ultimo_status,
                         operacaoId = p.operacaoId,
-                        percent_atual = ((eta.idx + 1) / (from et in db.Etapas select et.etapaId).Count()) * 100,
-                        percent_restnte = 100 - ((eta.idx + 1) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                        percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
+                        percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
                         PageSize = pageSize,
                         TotalCount = (from p1 in db.Propostas
                                       join c1 in db.Clientes on p1.clienteId equals c1.clienteId

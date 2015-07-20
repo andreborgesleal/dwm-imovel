@@ -78,9 +78,9 @@ namespace DWM.Models.Repositories
         [DisplayName("Login")]
         public string login { get; set; }
 
-        public decimal percent_atual { get; set; }
+        public double percent_atual { get; set; }
 
-        public decimal percent_restnte { get; set; }
+        public double percent_restnte { get; set; }
     }
 }
 

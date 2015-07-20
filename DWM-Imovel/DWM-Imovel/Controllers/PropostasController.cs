@@ -24,6 +24,11 @@ namespace DWM.Controllers
         }
         #endregion
 
+        public override ActionResult AfterCreate(PropostaViewModel value, FormCollection collection)
+        {
+            return RedirectToAction("Default", "Home");
+        }
+
         #region Edit
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)

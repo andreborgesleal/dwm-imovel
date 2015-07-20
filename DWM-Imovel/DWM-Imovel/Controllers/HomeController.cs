@@ -38,7 +38,7 @@ namespace DWM.Controllers
         }
 
         [AuthorizeFilter]
-        public ActionResult Default(int? index, int? pageSize = 50)
+        public ActionResult Default(int? index, int? pageSize = 15)
         {
             if (ViewBag.ValidateRequest)
             {
