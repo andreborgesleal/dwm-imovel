@@ -166,7 +166,35 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-
+            #region Verifica se a torre e unidade já não foram incluídas para o mesmo empreendimento
+            if (operation == Crud.INCLUIR)
+            {
+                if (db.Propostas.Where(info => info.empreendimentoId == value.empreendimentoId &&
+                                                info.torre == value.torre &&
+                                                info.unidade == value.unidade).Count() > 0)
+                {
+                    value.mensagem.Code = 19;
+                    value.mensagem.Message = MensagemPadrao.Message(19).ToString();
+                    value.mensagem.MessageBase = "Já existe uma Torre e Unidade cadastrada para este empreendimento";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+            }
+            else if (operation == Crud.ALTERAR)
+            {
+                if (db.Propostas.Where(info => info.propostaId != value.propostaId &&
+                                                info.empreendimentoId == value.empreendimentoId &&
+                                                info.torre == value.torre &&
+                                                info.unidade == value.unidade).Count() > 0)
+                {
+                    value.mensagem.Code = 19;
+                    value.mensagem.Message = MensagemPadrao.Message(19).ToString();
+                    value.mensagem.MessageBase = "Já existe uma Torre e Unidade cadastrada para este empreendimento";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+            }
+            #endregion
 
             if (value.valor <= 0)
             {
