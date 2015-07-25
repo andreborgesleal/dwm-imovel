@@ -108,6 +108,7 @@ namespace DWM.Models.Persistence
                 valor = entity.valor,
                 vr_comissao = entity.vr_comissao,
                 etapaId = entity.etapaId,
+                descricao_etapa = db.Etapas.Find(entity.etapaId).descricao,
                 dt_ultimo_status = entity.dt_ultimo_status,
                 operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
