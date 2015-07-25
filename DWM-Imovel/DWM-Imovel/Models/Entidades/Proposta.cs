@@ -41,5 +41,8 @@ namespace DWM.Models.Entidades
         public string nome { get; set; }
 
         public string login { get; set; }
+
+        public string situacao { get; set; }
+
     }
 }

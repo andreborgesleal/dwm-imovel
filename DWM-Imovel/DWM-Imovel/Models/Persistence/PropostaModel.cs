@@ -87,7 +87,8 @@ namespace DWM.Models.Persistence
                 corretor2Id = value.corretor2Id,
                 usuarioId = value.usuarioId,
                 nome = u.nome,
-                login = u.login
+                login = u.login,
+                situacao = value.situacao,
             };
 
             return proposta;
@@ -115,6 +116,7 @@ namespace DWM.Models.Persistence
                 usuarioId = entity.usuarioId,
                 nome = entity.nome,
                 login = entity.login,
+                situacao = "A",
                 corretor2Id = entity.corretor2Id,
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
@@ -130,7 +132,7 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (value.empreendimentoId <= 0)
+            if (value.empreendimentoId < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Emprendimento").ToString();
@@ -139,7 +141,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (value.clienteId <= 0)
+            if (value.clienteId < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Cliente").ToString();
@@ -222,6 +224,10 @@ namespace DWM.Models.Persistence
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
+
+            #region Não permite que o valor da proposta seja alterado, caso a proposta não esteja na etapa Proposta Analise e Reanalise
+            
+            #endregion
 
             return value.mensagem;
         }

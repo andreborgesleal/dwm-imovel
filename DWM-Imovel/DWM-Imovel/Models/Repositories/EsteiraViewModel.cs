@@ -22,6 +22,9 @@ namespace DWM.Models.Repositories
         [DisplayName("Dt.Ocorrência")]
         public DateTime dt_ocorrencia { get; set; }
 
+        [DisplayName("Dt.Manifestação")]
+        public Nullable<DateTime> dt_manifestacao { get; set; }
+
         [DisplayName("Aprovação")]
         public string ind_aprovacao { get; set; }
 

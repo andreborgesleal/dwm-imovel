@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1751166489" Data="24/07/2015 17:17:17">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/create</NameSpace>
+    <Context>empreendimentoId="0",descricao_empreendimento1="",descricao_empreendimento="Parc Paradiso",clienteId="2",nome_cliente1="",nome_cliente="Daniel Leal",torre="Oasis",unidade="1304",valor.1="400,00",valor="400",vr_comissao.1="40,00",vr_comissao="40",usuarioId="7199",corretor1Id="2",nome_corretor1="",nome_corretor="Marineude Leal",dt_proposta="24/07/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation)
+   em App_Dominio.Controllers.DwmRootController`3.Insert(R value)
+   em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText)</StackTrace>
+  </LOG>
+  <LOG ID="302245146" Data="24/07/2015 17:30:25">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/create</NameSpace>
+    <Context>empreendimentoId="0",descricao_empreendimento1="",descricao_empreendimento="Parc Paradiso",clienteId="0",nome_cliente1="",nome_cliente="Daniel Leal",torre="oasis",unidade="1304",valor.1="400,00",valor="400",vr_comissao.1="40,00",vr_comissao="40",usuarioId="7199",corretor1Id="2",nome_corretor1="",nome_corretor="Marineude Leal",dt_proposta="24/07/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation)
+   em App_Dominio.Controllers.DwmRootController`3.Insert(R value)
+   em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText)</StackTrace>
+  </LOG>
+  <LOG ID="792495804" Data="24/07/2015 17:34:39">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/create</NameSpace>
+    <Context>empreendimentoId="0",descricao_empreendimento1="Parc Paradiso",descricao_empreendimento="Parc Paradiso",clienteId="0",nome_cliente1="Daniel Leal",nome_cliente="Daniel Leal",torre="oasis",unidade="1304",valor.1="400,00",valor="400",vr_comissao.1="40,00",vr_comissao="40",usuarioId="7199",corretor1Id="2",nome_corretor1="",nome_corretor="",dt_proposta="24/07/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation)
+   em App_Dominio.Controllers.DwmRootController`3.Insert(R value)
+   em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText)</StackTrace>
+  </LOG>
+  <LOG ID="439253072" Data="24/07/2015 17:37:24">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/create</NameSpace>
+    <Context>empreendimentoId="0",descricao_empreendimento1="Parc Paradiso",descricao_empreendimento="Parc Paradiso",clienteId="0",nome_cliente1="",nome_cliente="Daniel Leal",torre="oasis",unidade="1304",valor.1="4.000,00",valor="4000",vr_comissao.1="400,00",vr_comissao="400",usuarioId="7199",corretor1Id="2",nome_corretor1="",nome_corretor="Marineude Leal",dt_proposta="24/07/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation)
+   em App_Dominio.Controllers.DwmRootController`3.Insert(R value)
+   em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText)</StackTrace>
+  </LOG>
+</LOG>

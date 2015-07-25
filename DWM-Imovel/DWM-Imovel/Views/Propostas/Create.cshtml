@@ -8,108 +8,7 @@
 
 @using (Html.BeginForm("Create", "Propostas", FormMethod.Post, new { @class = "form" }))
 {
-    <div id="div-lov">
-
-
-<!-- Modal -->
-<div id="myModal" class="modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block; padding-right: 17px;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content hidden-xs">
-            <div class="modal-header info">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnModal">×</button>
-                <h3 class="modal-title" id="myModalLabel">Pesquisa</h3>
-            </div>
-            <div class="modal-body">
-                
-
-<div class="row">
-    <div class="col-md-12" style="margin: 0px">
-           
-
-
-<form action="/Home/LovEmpreendimentoModal" data-ajax="true" data-ajax-method="get" id="form0" method="post" role="search" style="margin-left: 20px">    <div class="form-horizontal" style="padding-top: 10px;">
-        <div class="form-group">
-            <div class="col-md-11 col-xs-10 col-sm-10 input-group">
-                <input class="form-control" id="descricao" name="descricao" placeholder="Buscar" type="text" value="">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-info" onclick="Refresh(0, getPageSize(), '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp')">Buscar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-        <div id="div-emp" style="padding-top: 0px">
-            
-
-    <div class="row Scroll" style="margin-top: -15px">
-        <div class="col-md-12">
-            <table class="table table-hover table-bordered table-condensed" style="cursor: pointer">
-                <caption></caption>
-                <thead class="corvo text-enfatico">
-                    <tr>
-                        <th>Nome</th>
-                    </tr>
-                </thead>
-                    <tbody><tr onclick="Move('0', 'Parc Paradiso')">
-                        <td class="col-md-7 col-sm-2">
-                            Parc Paradiso
-                        </td>
-                    </tr>
-            </tbody></table>
-        </div>
-    </div>
-
-<div class="row" style="height: 20px">
-    <div class="col-md-12">
-    </div>
-</div>
-    <div class="row" style="text-align: center">
-        <div class="col-md-12">
-            <ul class="pagination pagination-sm">
-                <li><a href="#" onclick="javascript:foward('0', '50', '0', '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp');"><span class="glyphicon glyphicon-backward"></span> </a></li>
-                <li><a href="#" onclick="javascript:foward('0', '50', '0', '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp');"><span class="glyphicon glyphicon-step-backward"></span> </a></li>
-                        <li class="disabled"><a href="#">1</a></li>
-                <li><a href="#" onclick="javascript:foward('1', '50', '0', '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp');"><span class="glyphicon glyphicon-step-forward"></span> </a></li>
-                <li><a href="#" onclick="javascript:foward('0', '50', '0', '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp');"><span class="glyphicon glyphicon-forward"></span></a></li>
-                    <li><a href="#" onclick="javascript:foward('0', '5000', '0', '../Empreendimentos/_ListEmpreendimentoModal', 'div-emp');"><span class="glyphicon glyphicon-list-alt"></span></a></li>
-            </ul>
-
-        </div>
-    </div>
-
-
-
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-    function Move(id, descricao) {
-        $("#empreendimentoId").val(id);
-        $("#descricao_empreendimento").val(descricao);
-        $("#descricao_empreendimento1").val(descricao);
-        $("#btnModal").click();
-    }
-
-</script>
-
-            </div>
-            <div class="modal-footer panel-footer">
-                <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Fechar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<a id="tttt" href="#myModal" data-toggle="modal"></a>
-
-<script type="text/javascript">
-    document.getElementById("tttt").click();
-</script>
-</div>
+    <div id="div-lov"></div>
     <div class="panel panel-primary margem-topo-10">
         <div class="panel-heading">
             <h2 class="panel-title">
@@ -237,6 +136,3 @@
         </div>
     </div>
 }
-
-
-

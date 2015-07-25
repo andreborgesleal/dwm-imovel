@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1290,6 +1291,7 @@
     <Content Include="Views\Corretores\ListCorretorModal.cshtml" />
     <Content Include="Views\Home\LovCorretorModal.cshtml" />
     <Content Include="Views\Typeahead\BuscaCorretor.cshtml" />
+    <Content Include="Views\Propostas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
