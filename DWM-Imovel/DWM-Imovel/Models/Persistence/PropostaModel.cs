@@ -27,6 +27,7 @@ namespace DWM.Models.Persistence
         {
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
+            value.situacao = "A";
             return value;
         }
 
@@ -101,6 +102,7 @@ namespace DWM.Models.Persistence
                 propostaId = entity.propostaId,
                 empreendimentoId = entity.empreendimentoId,
                 descricao_empreendimento = db.Empreendimentos.Find(entity.empreendimentoId).nomeEmpreend,
+                descricao_etapa = db.Etapas.Find(entity.etapaId).descricao,
                 clienteId = entity.clienteId,
                 nome_cliente = db.Clientes.Find(entity.clienteId).nome,
                 dt_proposta = entity.dt_proposta,
@@ -116,7 +118,7 @@ namespace DWM.Models.Persistence
                 usuarioId = entity.usuarioId,
                 nome = entity.nome,
                 login = entity.login,
-                situacao = "A",
+                situacao = entity.situacao,
                 corretor2Id = entity.corretor2Id,
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
@@ -226,7 +228,15 @@ namespace DWM.Models.Persistence
             }
 
             #region Não permite que o valor da proposta seja alterado, caso a proposta não esteja na etapa Proposta Analise e Reanalise
-            
+            //string etapa = db.Etapas.Find(value.etapaId).descricao;
+            //if (etapa != "Proposta" && etapa != "Análise Inicial" && etapa != "Reanálise")
+            //{
+            //    value.mensagem.Code = 5;
+            //    value.mensagem.Message = MensagemPadrao.Message(5, "Valor").ToString();
+            //    value.mensagem.MessageBase = "O valor não pode ser alterado nesta etapa";
+            //    value.mensagem.MessageType = MsgType.WARNING;
+            //    return value.mensagem;
+            //}
             #endregion
 
             return value.mensagem;

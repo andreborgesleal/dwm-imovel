@@ -253,7 +253,8 @@
                                 <td><br />@pro.vr_comissao.ToString("R$ ###,###,###,##0.00")</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="#" title="Editar Proposta"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-primary" href="../Propostas/Edit?propostaId=@pro.propostaId" title="Editar Proposta"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="../Clientes/Delete?propostaId=@pro.propostaId"><i class="fa fa-minus"></i></a>
                                     </div>
                                 </td>
                             </tr>
