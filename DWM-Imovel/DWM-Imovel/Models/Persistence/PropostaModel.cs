@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App_Dominio.App_Start;
 using App_Dominio.Contratos;
 using App_Dominio.Entidades;
 using App_Dominio.Component;
@@ -197,6 +198,24 @@ namespace DWM.Models.Persistence
                     value.mensagem.MessageType = MsgType.WARNING;
                     return value.mensagem;
                 }
+
+                #region Não permite que o valor da proposta seja alterado, caso a proposta esteja nas etapas Proposta, Analise e Reanalise
+                string etapa = db.Etapas.Find(value.etapaId).descricao;
+                if (etapa != DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.PROPOSTA.GetStringValue() 
+                    && etapa != DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.ANALISE_INICIAL.GetStringValue() 
+                    && etapa != DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.REANALISE.GetStringValue())
+                {
+                    if (value.valor != db.Propostas.Find(value.propostaId).valor)
+                    {
+                        value.mensagem.Code = 5;
+                        value.mensagem.Message = MensagemPadrao.Message(5, "Valor").ToString();
+                        value.mensagem.MessageBase = "O valor não pode ser alterado nesta etapa";
+                        value.mensagem.MessageType = MsgType.WARNING;
+                        return value.mensagem;
+                    }
+                }
+                #endregion
+
             }
             #endregion
 
@@ -227,17 +246,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            #region Não permite que o valor da proposta seja alterado, caso a proposta não esteja na etapa Proposta Analise e Reanalise
-            //string etapa = db.Etapas.Find(value.etapaId).descricao;
-            //if (etapa != "Proposta" && etapa != "Análise Inicial" && etapa != "Reanálise")
-            //{
-            //    value.mensagem.Code = 5;
-            //    value.mensagem.Message = MensagemPadrao.Message(5, "Valor").ToString();
-            //    value.mensagem.MessageBase = "O valor não pode ser alterado nesta etapa";
-            //    value.mensagem.MessageType = MsgType.WARNING;
-            //    return value.mensagem;
-            //}
-            #endregion
+           
 
             return value.mensagem;
         }
