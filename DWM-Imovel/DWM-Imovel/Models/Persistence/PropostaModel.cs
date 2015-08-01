@@ -216,6 +216,29 @@ namespace DWM.Models.Persistence
                 }
                 #endregion
 
+                #region Não permite que o valor da comissao seja alterado enquanto a esteira estiver até a etapa Comissao
+                if (value.operacaoId >= 0)
+                {
+                    if (value.vr_comissao != db.Propostas.Find(value.propostaId).vr_comissao)
+                    {
+                        value.mensagem.Code = 5;
+                        value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
+                        value.mensagem.MessageBase = "O valor da comissão não pode ser alterado nesta etapa";
+                        value.mensagem.MessageType = MsgType.WARNING;
+                        return value.mensagem;
+                    }
+                }
+
+                #endregion
+
+                if (value.dt_proposta > db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
+                {
+                    value.mensagem.Code = 5;
+                    value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
+                    value.mensagem.MessageBase = "A data da proposta não pode ser menor que a data da ocorrência";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
             }
             #endregion
 
@@ -246,7 +269,44 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-           
+            #region O valor da comissão é menor que o valor da venda
+            if (value.vr_comissao > (value.valor / 10))
+            {
+                value.mensagem.Code = 5;
+                value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
+                value.mensagem.MessageBase = "O valor da comissão não pode ser maior que 10% do valor total da venda";
+                value.mensagem.MessageType = MsgType.WARNING;
+                return value.mensagem;
+            }
+            #endregion
+
+            #region a data da proposta nao pode ser maior que a menor data de aprovacao na esteira
+            if (value.descricao_etapa == DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.PROPOSTA.GetStringValue() )
+            {
+                if (value.dt_proposta > DateTime.Today)
+                {
+                    value.mensagem.Code = 5;
+                    value.mensagem.Message = MensagemPadrao.Message(5, "Data da Proposta").ToString();
+                    value.mensagem.MessageBase = "A data da proposta não pode ser maior que a data atual, para esta etapa.";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+            }
+            else
+            {
+                DateTime date1 = new DateTime(2009, 8, 1, 0, 0, 0);
+                DateTime date2 = new DateTime(2009, 8, 1, 12, 0, 0);
+                int result = DateTime.Compare(date1, date2);
+                string relationship;
+
+                if (result < 0)
+                    relationship = "is earlier than";
+                else if (result == 0)
+                    relationship = "is the same time as";
+                else
+                    relationship = "is later than";
+            }
+            #endregion
 
             return value.mensagem;
         }
