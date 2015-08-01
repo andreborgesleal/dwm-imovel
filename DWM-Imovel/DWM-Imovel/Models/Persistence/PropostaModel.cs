@@ -48,6 +48,7 @@ namespace DWM.Models.Persistence
                 dt_evento = Funcoes.Brasilia(),
                 etapaId = _etapaId,
                 dt_ocorrencia = value.dt_proposta,
+                dt_manifestacao = null,
                 observacao = "Inclusão de proposta. Cliente: " + db.Clientes.Find(value.clienteId).nome,
                 usuarioId = value.usuarioId,
                 nome = value.nome,
@@ -87,7 +88,8 @@ namespace DWM.Models.Persistence
                 corretor2Id = value.corretor2Id,
                 usuarioId = value.usuarioId,
                 nome = u.nome,
-                login = u.login
+                login = u.login,
+                situacao = value.situacao,
             };
 
             return proposta;
@@ -102,6 +104,9 @@ namespace DWM.Models.Persistence
                 descricao_empreendimento = db.Empreendimentos.Find(entity.empreendimentoId).nomeEmpreend,
                 clienteId = entity.clienteId,
                 nome_cliente = db.Clientes.Find(entity.clienteId).nome,
+                cpf_cnpj = Funcoes.FormataCPFCNPJ(db.Clientes.Find(entity.clienteId).cpf_cnpj),
+                fone1 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone1),
+                fone2 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone2),
                 dt_proposta = entity.dt_proposta,
                 unidade = entity.unidade,
                 torre = entity.torre,
@@ -113,11 +118,52 @@ namespace DWM.Models.Persistence
                 operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
                 nome_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).nome : "",
+                fone_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).fone1 : "",
                 usuarioId = entity.usuarioId,
                 nome = entity.nome,
                 login = entity.login,
+                situacao = entity.situacao,
                 corretor2Id = entity.corretor2Id,
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
+                Esteira = (from est in db.Esteiras
+                           where est.propostaId == entity.propostaId
+                           orderby est.etapaId descending
+                           select new EsteiraViewModel()
+                           {
+                               esteiraId = est.esteiraId,
+                               propostaId = est.propostaId,
+                               etapaId = est.etapaId,
+                               dt_evento = est.dt_evento,
+                               dt_ocorrencia = est.dt_ocorrencia,
+                               dt_manifestacao = est.dt_manifestacao,
+                               ind_aprovacao = est.ind_aprovacao,
+                               observacao = est.observacao,
+                               usuarioId = est.usuarioId,
+                               nome = est.nome,
+                               login = est.login,
+                           }).AsEnumerable(),
+                Comentarios = (from com in db.Comentarios
+                               join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                               where est.propostaId == entity.propostaId
+                               orderby com.dt_comentario descending
+                               select new EsteiraComentarioViewModel()
+                               {
+                                   esteiraId = est.esteiraId,
+                                   dt_comentario = com.dt_comentario,
+                                   observacao = com.observacao,
+                                   usuarioId = com.usuarioId,
+                                   nome = com.nome,
+                                   login = com.login
+                               }).AsEnumerable(),
+                Arquivos = (from arq in db.Arquivos
+                            join est in db.Esteiras on arq.esteiraId equals est.esteiraId
+                            where est.propostaId == entity.propostaId
+                            orderby arq.arquivo
+                            select new EsteiraContabilizacaoViewModel()
+                            {
+                                esteiraId = est.esteiraId,
+                                arquivo = arq.arquivo
+                            }).AsEnumerable(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
         }
@@ -131,7 +177,7 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (value.empreendimentoId <= 0)
+            if (value.empreendimentoId < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Emprendimento").ToString();
@@ -140,7 +186,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (value.clienteId <= 0)
+            if (value.clienteId < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Cliente").ToString();
@@ -223,6 +269,10 @@ namespace DWM.Models.Persistence
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }
+
+            #region Não permite que o valor da proposta seja alterado, caso a proposta não esteja na etapa Proposta Analise e Reanalise
+            
+            #endregion
 
             return value.mensagem;
         }

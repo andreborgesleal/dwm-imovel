@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
+using System.Collections.Generic;
 
 namespace DWM.Models.Repositories
 {
@@ -22,6 +23,9 @@ namespace DWM.Models.Repositories
         [DisplayName("Dt.Ocorrência")]
         public DateTime dt_ocorrencia { get; set; }
 
+        [DisplayName("Dt.Manifestação")]
+        public Nullable<DateTime> dt_manifestacao { get; set; }
+
         [DisplayName("Aprovação")]
         public string ind_aprovacao { get; set; }
 
@@ -37,6 +41,10 @@ namespace DWM.Models.Repositories
         [DisplayName("Login")]
         public string login { get; set; }
 
+        [DisplayName("Tempo")]
+        public Nullable<int> tempo_etapa { get; set; }
+
         public virtual PropostaViewModel proposta { get; set; }
+
     }
 }

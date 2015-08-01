@@ -24,6 +24,9 @@ namespace DWM.Models.Entidades
         [DisplayName("Dt_Ocorrencia")]
         public DateTime dt_ocorrencia { get; set; }
 
+        [DisplayName("Dt_Manifestação")]
+        public Nullable<DateTime> dt_manifestacao { get; set; }
+
         [DisplayName("ind_aprovacao")]
         public string ind_aprovacao { get; set; }
 
@@ -40,5 +43,6 @@ namespace DWM.Models.Entidades
         public string login { get; set; }
 
         public virtual Proposta proposta { get; set; }
+        
     }
 }

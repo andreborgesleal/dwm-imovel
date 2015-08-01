@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -186,6 +187,7 @@
     <Compile Include="Controllers\EmpreendimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropostasController.cs" />
+    <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +197,8 @@
     <Compile Include="Models\Entidades\Corretor.cs" />
     <Compile Include="Models\Entidades\Empreendimento.cs" />
     <Compile Include="Models\Entidades\Esteira.cs" />
+    <Compile Include="Models\Entidades\EsteiraComentario.cs" />
+    <Compile Include="Models\Entidades\EsteiraContabilizacao.cs" />
     <Compile Include="Models\Entidades\Etapa.cs" />
     <Compile Include="Models\Entidades\Parametro.cs" />
     <Compile Include="Models\Entidades\Proposta.cs" />
@@ -210,6 +214,8 @@
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
     <Compile Include="Models\Repositories\CorretorViewModel.cs" />
     <Compile Include="Models\Repositories\EmpreendimentoViewModel.cs" />
+    <Compile Include="Models\Repositories\EsteiraComentarioViewModel.cs" />
+    <Compile Include="Models\Repositories\EsteiraContabilizacaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraViewModel.cs" />
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
@@ -1290,6 +1296,7 @@
     <Content Include="Views\Corretores\ListCorretorModal.cshtml" />
     <Content Include="Views\Home\LovCorretorModal.cshtml" />
     <Content Include="Views\Typeahead\BuscaCorretor.cshtml" />
+    <Content Include="Views\Propostas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
@@ -1298,6 +1305,7 @@
     <Folder Include="Models\Report\" />
     <Folder Include="Temp\" />
     <Folder Include="Users_Data\" />
+    <Folder Include="Views\Workflow\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
