@@ -1,7 +1,7 @@
-﻿using System;
+﻿using App_Dominio.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using App_Dominio.App_Start;
 using App_Dominio.Contratos;
 using App_Dominio.Entidades;
 using App_Dominio.Component;
@@ -28,7 +28,6 @@ namespace DWM.Models.Persistence
         {
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
-            value.situacao = "A";
             return value;
         }
 
@@ -50,6 +49,7 @@ namespace DWM.Models.Persistence
                 dt_evento = Funcoes.Brasilia(),
                 etapaId = _etapaId,
                 dt_ocorrencia = value.dt_proposta,
+                dt_manifestacao = null,
                 observacao = "Inclusão de proposta. Cliente: " + db.Clientes.Find(value.clienteId).nome,
                 usuarioId = value.usuarioId,
                 nome = value.nome,
@@ -103,25 +103,68 @@ namespace DWM.Models.Persistence
                 propostaId = entity.propostaId,
                 empreendimentoId = entity.empreendimentoId,
                 descricao_empreendimento = db.Empreendimentos.Find(entity.empreendimentoId).nomeEmpreend,
-                descricao_etapa = db.Etapas.Find(entity.etapaId).descricao,
                 clienteId = entity.clienteId,
                 nome_cliente = db.Clientes.Find(entity.clienteId).nome,
+                cpf_cnpj = Funcoes.FormataCPFCNPJ(db.Clientes.Find(entity.clienteId).cpf_cnpj),
+                fone1 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone1),
+                fone2 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone2),
                 dt_proposta = entity.dt_proposta,
                 unidade = entity.unidade,
                 torre = entity.torre,
                 valor = entity.valor,
                 vr_comissao = entity.vr_comissao,
                 etapaId = entity.etapaId,
+                descricao_etapa = db.Etapas.Find(entity.etapaId).descricao,
                 dt_ultimo_status = entity.dt_ultimo_status,
                 operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
                 nome_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).nome : "",
+                fone_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).fone1 : "",
                 usuarioId = entity.usuarioId,
                 nome = entity.nome,
                 login = entity.login,
                 situacao = entity.situacao,
                 corretor2Id = entity.corretor2Id,
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
+                Esteira = (from est in db.Esteiras
+                           where est.propostaId == entity.propostaId
+                           orderby est.etapaId descending
+                           select new EsteiraViewModel()
+                           {
+                               esteiraId = est.esteiraId,
+                               propostaId = est.propostaId,
+                               etapaId = est.etapaId,
+                               dt_evento = est.dt_evento,
+                               dt_ocorrencia = est.dt_ocorrencia,
+                               dt_manifestacao = est.dt_manifestacao,
+                               ind_aprovacao = est.ind_aprovacao,
+                               observacao = est.observacao,
+                               usuarioId = est.usuarioId,
+                               nome = est.nome,
+                               login = est.login,
+                           }).AsEnumerable(),
+                Comentarios = (from com in db.Comentarios
+                               join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                               where est.propostaId == entity.propostaId
+                               orderby com.dt_comentario descending
+                               select new EsteiraComentarioViewModel()
+                               {
+                                   esteiraId = est.esteiraId,
+                                   dt_comentario = com.dt_comentario,
+                                   observacao = com.observacao,
+                                   usuarioId = com.usuarioId,
+                                   nome = com.nome,
+                                   login = com.login
+                               }).AsEnumerable(),
+                Arquivos = (from arq in db.Arquivos
+                            join est in db.Esteiras on arq.esteiraId equals est.esteiraId
+                            where est.propostaId == entity.propostaId
+                            orderby arq.arquivo
+                            select new EsteiraContabilizacaoViewModel()
+                            {
+                                esteiraId = est.esteiraId,
+                                arquivo = arq.arquivo
+                            }).AsEnumerable(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
         }
@@ -199,6 +242,7 @@ namespace DWM.Models.Persistence
                     return value.mensagem;
                 }
 
+
                 #region Não permite que o valor da proposta seja alterado, caso a proposta esteja nas etapas Proposta, Analise e Reanalise
                 string etapa = db.Etapas.Find(value.etapaId).descricao;
                 if (etapa != DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.PROPOSTA.GetStringValue() 
@@ -269,6 +313,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
+
             #region O valor da comissão é menor que o valor da venda
             if (value.vr_comissao > (value.valor / 10))
             {
@@ -291,20 +336,6 @@ namespace DWM.Models.Persistence
                     value.mensagem.MessageType = MsgType.WARNING;
                     return value.mensagem;
                 }
-            }
-            else
-            {
-                DateTime date1 = new DateTime(2009, 8, 1, 0, 0, 0);
-                DateTime date2 = new DateTime(2009, 8, 1, 12, 0, 0);
-                int result = DateTime.Compare(date1, date2);
-                string relationship;
-
-                if (result < 0)
-                    relationship = "is earlier than";
-                else if (result == 0)
-                    relationship = "is the same time as";
-                else
-                    relationship = "is later than";
             }
             #endregion
 

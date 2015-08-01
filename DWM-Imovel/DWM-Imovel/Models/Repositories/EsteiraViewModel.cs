@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
+using System.Collections.Generic;
 
 namespace DWM.Models.Repositories
 {
@@ -40,6 +41,10 @@ namespace DWM.Models.Repositories
         [DisplayName("Login")]
         public string login { get; set; }
 
+        [DisplayName("Tempo")]
+        public Nullable<int> tempo_etapa { get; set; }
+
         public virtual PropostaViewModel proposta { get; set; }
+
     }
 }

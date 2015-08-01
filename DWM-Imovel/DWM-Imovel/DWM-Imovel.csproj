@@ -187,6 +187,7 @@
     <Compile Include="Controllers\EmpreendimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropostasController.cs" />
+    <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +197,8 @@
     <Compile Include="Models\Entidades\Corretor.cs" />
     <Compile Include="Models\Entidades\Empreendimento.cs" />
     <Compile Include="Models\Entidades\Esteira.cs" />
+    <Compile Include="Models\Entidades\EsteiraComentario.cs" />
+    <Compile Include="Models\Entidades\EsteiraContabilizacao.cs" />
     <Compile Include="Models\Entidades\Etapa.cs" />
     <Compile Include="Models\Entidades\Parametro.cs" />
     <Compile Include="Models\Entidades\Proposta.cs" />
@@ -211,10 +214,11 @@
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
     <Compile Include="Models\Repositories\CorretorViewModel.cs" />
     <Compile Include="Models\Repositories\EmpreendimentoViewModel.cs" />
+    <Compile Include="Models\Repositories\EsteiraComentarioViewModel.cs" />
+    <Compile Include="Models\Repositories\EsteiraContabilizacaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraViewModel.cs" />
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
-    <Compile Include="Models\Repositories\WorkflowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1294,7 +1298,7 @@
     <Content Include="Views\Typeahead\BuscaCorretor.cshtml" />
     <Content Include="Views\Propostas\Edit.cshtml" />
     <Content Include="Views\Propostas\Delete.cshtml" />
-    <Content Include="Views\Workflow\Create.cshtml" />
+    <Content Include="Views\Workflow\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />

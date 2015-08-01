@@ -16,5 +16,7 @@ namespace DWM.Models.Entidades
         public DbSet<Proposta> Propostas { get; set; }
         public DbSet<Esteira> Esteiras { get; set; }
         public DbSet<Etapa> Etapas { get; set;  }
+        public DbSet<EsteiraComentario> Comentarios { get; set; }
+        public DbSet<EsteiraContabilizacao> Arquivos { get; set; }
     }
 }

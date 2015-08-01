@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
+using System.Collections.Generic;
 
 namespace DWM.Models.Repositories
 {
@@ -23,6 +24,10 @@ namespace DWM.Models.Repositories
         public string nome_cliente { get; set; }
 
         public string cpf_cnpj { get; set; }
+
+        public string fone1 { get; set; }
+
+        public string fone2 { get; set; }
 
         [DisplayName("Data da Proposta")]
         [Required(ErrorMessage = "Por favor, informe a data da proposta")]
@@ -55,6 +60,8 @@ namespace DWM.Models.Repositories
         [DisplayName("Último Status")]
         public DateTime dt_ultimo_status { get; set; }
 
+        public Nullable<int> qte_dias_esteira { get; set; }
+
         [DisplayName("Operação ID")]
         public Nullable<int> operacaoId { get; set; }
 
@@ -63,10 +70,14 @@ namespace DWM.Models.Repositories
 
         public string nome_corretor1 { get; set; }
 
+        public string fone_corretor1 { get; set;}
+
         [DisplayName("Corretor 2")]
         public Nullable<int> corretor2Id { get; set; }
 
         public string nome_corretor2 { get; set; }
+
+        public string fone_corretor2 { get; set; }
         
         [DisplayName("Gerente")]
         [Required(ErrorMessage="Gerente deve ser informado")]
@@ -77,6 +88,12 @@ namespace DWM.Models.Repositories
 
         [DisplayName("Login")]
         public string login { get; set; }
+
+        public IEnumerable<EsteiraViewModel> Esteira { get; set; }
+
+        public IEnumerable<EsteiraComentarioViewModel> Comentarios { get; set; }
+
+        public IEnumerable<EsteiraContabilizacaoViewModel> Arquivos { get; set; }
 
         public double percent_atual { get; set; }
 
