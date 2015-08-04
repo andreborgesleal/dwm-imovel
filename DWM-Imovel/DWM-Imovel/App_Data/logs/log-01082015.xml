@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1982237310" Data="01/08/2015 18:16:11">
+    <Sessao>yfdmmnpdlb3wvh323m0xwr1b</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/edit</NameSpace>
+    <Context>descricao_etapa="Proposta",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="13",nome_cliente1="João Bacamarte",nome_cliente="João Bacamarte",torre="Oásis",unidade="1301",valor.1="453.000,00",valor="453000",vr_comissao.1="23.000,00",vr_comissao="23000",usuarioId="7199",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",dt_proposta="01/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 129
+   em App_Dominio.Controllers.DwmRootController`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 259
+   em App_Dominio.Controllers.DwmRootController`3.SetEdit(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 214</StackTrace>
+  </LOG>
+  <LOG ID="844543458" Data="01/08/2015 18:16:25">
+    <Sessao>yfdmmnpdlb3wvh323m0xwr1b</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/edit</NameSpace>
+    <Context>descricao_etapa="Proposta",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="13",nome_cliente1="João Bacamarte",nome_cliente="João Bacamarte",torre="Oásis",unidade="1301",valor.1="456.000,00",valor="456000,00",vr_comissao.1="23.000,00",vr_comissao="23000,00",usuarioId="7199",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",dt_proposta="01/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 129
+   em App_Dominio.Controllers.DwmRootController`3.Update(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 259
+   em App_Dominio.Controllers.DwmRootController`3.SetEdit(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 214</StackTrace>
+  </LOG>
+</LOG>

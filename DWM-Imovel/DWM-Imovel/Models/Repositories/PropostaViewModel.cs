@@ -17,6 +17,10 @@ namespace DWM.Models.Repositories
 
         public string descricao_empreendimento { get; set; }
 
+        public string nome_coordenador { get; set; }
+
+        public string login_coordenador { get; set; }
+
         [DisplayName("Cliente")]
         [Required(ErrorMessage = "Por favor, informe o cliente")]
         public int clienteId { get; set; }
