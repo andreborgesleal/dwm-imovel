@@ -34,6 +34,19 @@ namespace DWM.Controllers
         }
         #endregion
 
+        #region Incluir Comentário
+        //public JsonResult JSonCrud()
+        //{
+        //    R result = CreateModal(value);
+
+        //    return new JsonResult()
+        //    {
+        //        Data = result,
+        //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+        //    };
+        //}
+        #endregion
+
 
     }
 }

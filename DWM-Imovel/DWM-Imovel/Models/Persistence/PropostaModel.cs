@@ -103,6 +103,8 @@ namespace DWM.Models.Persistence
                 propostaId = entity.propostaId,
                 empreendimentoId = entity.empreendimentoId,
                 descricao_empreendimento = db.Empreendimentos.Find(entity.empreendimentoId).nomeEmpreend,
+                nome_coordenador = db.Empreendimentos.Find(entity.empreendimentoId).nome,
+                login_coordenador = db.Empreendimentos.Find(entity.empreendimentoId).login,
                 clienteId = entity.clienteId,
                 nome_cliente = db.Clientes.Find(entity.clienteId).nome,
                 cpf_cnpj = Funcoes.FormataCPFCNPJ(db.Clientes.Find(entity.clienteId).cpf_cnpj),
