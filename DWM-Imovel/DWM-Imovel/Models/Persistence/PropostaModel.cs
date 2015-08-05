@@ -98,7 +98,7 @@ namespace DWM.Models.Persistence
 
         public override PropostaViewModel MapToRepository(Proposta entity)
         {
-            return new PropostaViewModel()
+            PropostaViewModel propostaViewModel = new PropostaViewModel()
             {
                 propostaId = entity.propostaId,
                 empreendimentoId = entity.empreendimentoId,
@@ -171,6 +171,17 @@ namespace DWM.Models.Persistence
                             }).AsEnumerable(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
+
+            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).FirstOrDefault().dt_manifestacao == null)
+            {
+                propostaViewModel.qte_dias_esteira = (DateTime.Today - entity.dt_proposta).Days;
+            }
+            else
+            {
+                //propostaViewModel.qte_dias_esteira = (db.Esteiras.Where(info => info.propostaId == entity.propostaId).FirstOrDefault().dt_manifestacao - entity.dt_proposta)
+            }
+
+            return propostaViewModel;
         }
 
         public override Proposta Find(PropostaViewModel key)
