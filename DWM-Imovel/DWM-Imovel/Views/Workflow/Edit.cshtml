@@ -7,18 +7,133 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="">
+        
+        @* Dados do Cliente *@
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <p><h3 class="panel-title">@Model.nome_cliente</h3></p>
+                    <p>CPF: @Model.cpf_cnpj</p>
+                </div>
+                <div class="panel-body">
+                    <b>Telefone: </b>@Model.fone1 / @Model.fone2
+                </div>
+            </div>
+        </div>
+        
+        @* Dados do Empreendimento *@
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <p><h3 class="panel-title">@Model.descricao_empreendimento</h3></p>
+                    <p>@Model.torre</p>
+                </div>
+                <div class="panel-body">
+                    <b>Coordenador: </b>@Model.nome / @Model.login
+                </div>
+            </div>
+        </div>
+        
+        @* Etapas do Empreendimento *@
+        <div class="col-md-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <p><h3 class="panel-title">@Model.descricao_etapa</h3></p>
+                    desde <p>@Model.dt_proposta</p>
+                </div>
+                <div class="panel-body">
+                    <b>Etapas: </b>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="1" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only"> dias</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        @* Valor do Empreendimento *@
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <p><h3 class="panel-title">R$ @Model.valor</h3></p>
+                    <p>Valor geral da venda</p>
+                </div>
+                <div class="panel-body">
+                    <b>Comissão: </b>@Model.vr_comissao
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        @* Dados da Proposta *@
+        <div class="col-md-3">
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                       <h3 class="panel-title">Dados da Proposta</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div>
+                                    <p>
+                                        <h2>Data</h2>
+                                        <h2 class="pull-right">ID: @Model.propostaId</h2>
+                                    </p>
+                                    <p>@Model.dt_proposta</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h2><b>Gerente<</b>/h2></p>
+                                <p></p>
+                                <p></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h2><b>Corretor</b></h2></p>
+                                <p>@Model.nome_corretor1</p>
+                                <p>Email - @Model.fone_corretor1</p>
+                                <p></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h2><b>Arquivos</b></h2></p>
+                                <p>
+                                    <ul>
+                                        @foreach (DWM.Models.Repositories.EsteiraContabilizacaoViewModel arq in Model.Arquivos)
+                                        {
+                                            <li>@arq.arquivo</li>
+                                        }
+                                    </ul>
+                                </p>
+                                <p>
+                                    @Html.EditorFor(info => info.nome)
+                                    <button value="Upload" class="btn btn-primary" />
+                                </p>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h2><b>Comissionamento</b></h2></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Esteira de Aprovação *@
+        <div class="col-md-6">
 
         </div>
+
+
+        @* Comentários *@
         <div class="col-md-3">
 
         </div>
-        <div class="col-md-3">
 
-        </div>
-        <div class="col-md-3">
-
-        </div>
     </div>
 
 </div>
