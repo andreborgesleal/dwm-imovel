@@ -29,7 +29,7 @@
                     <p>@Model.torre</p>
                 </div>
                 <div class="panel-body">
-                    <b>Coordenador: </b>@Model.nome / @Model.login
+                    <b>Coordenador: </b>@Model.nome_coordenador / @Model.login_coordenador
                 </div>
             </div>
         </div>
@@ -44,9 +44,10 @@
                 <div class="panel-body">
                     <b>Etapas: </b>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="1" aria-valuemax="100" style="width: 40%">
+                        <div class="progress-bar progress-bar-success" style="width: @Model.percent_atual%">
                             <span class="sr-only"> dias</span>
                         </div>
+                        <div class="progress-bar progress-bar-danger" style="width: @Model.percent_restnte%"></div>
                     </div>
                 </div>
             </div>
@@ -83,15 +84,15 @@
                                 <div>
                                     <p>
                                         <h2>Data</h2>
-                                        <h2 class="pull-right">ID: @Model.propostaId</h2>
+                                        <h2 class="text-right"><span class="label label-info">ID: @Model.propostaId</span></h2>
                                     </p>
                                     <p>@Model.dt_proposta</p>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <p><h2><b>Gerente<</b>/h2></p>
-                                <p></p>
-                                <p></p>
+                                <p>@Model.nome</p>
+                                <p>@Model.login</p>
                             </li>
                             <li class="list-group-item">
                                 <p><h2><b>Corretor</b></h2></p>
@@ -102,7 +103,7 @@
                             <li class="list-group-item">
                                 <p><h2><b>Arquivos</b></h2></p>
                                 <p>
-                                    <ul>
+                                    <ul class=list-unstyled>
                                         @foreach (DWM.Models.Repositories.EsteiraContabilizacaoViewModel arq in Model.Arquivos)
                                         {
                                             <li>@arq.arquivo</li>
@@ -131,7 +132,30 @@
 
         @* Comentários *@
         <div class="col-md-3">
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-info">Comentários</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model.Comentarios)
+                        {
+                            <li class="list-group-item">
+                                <p>
+                                    @com.nome
+                                    <span class="text-right">@com.tempo_comentario</span>
+                                </p>
+                                <p class="text-primary">
+                                    <b>@com.</b>
+                                </p>
+                                <p>
+                                    @com.mensagem
+                                </p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
