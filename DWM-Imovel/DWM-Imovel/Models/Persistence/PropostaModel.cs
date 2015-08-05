@@ -147,11 +147,13 @@ namespace DWM.Models.Persistence
                            }).AsEnumerable(),
                 Comentarios = (from com in db.Comentarios
                                join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                               join eta in db.Etapas on est.etapaId equals eta.etapaId
                                where est.propostaId == entity.propostaId
                                orderby com.dt_comentario descending
                                select new EsteiraComentarioViewModel()
                                {
                                    esteiraId = est.esteiraId,
+                                   descricao_etapa = eta.descricao,
                                    dt_comentario = com.dt_comentario,
                                    observacao = com.observacao,
                                    usuarioId = com.usuarioId,
