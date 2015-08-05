@@ -14,6 +14,9 @@ namespace DWM.Models.Repositories
         [DisplayName("Data")]
         public DateTime dt_comentario { get; set; }
 
+        [DisplayName("Etapa")]
+        public string descricao_etapa { get; set; }
+
         [DisplayName("Observação")]
         [Required(ErrorMessage="Campo Observação deve ser preenchido")]
         [StringLength(4000, ErrorMessage="Campo Observação deve ter no máximo 4.000 caracteres")]
