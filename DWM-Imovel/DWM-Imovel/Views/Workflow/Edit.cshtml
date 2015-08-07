@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        
+         
         @* Etapas do Empreendimento *@
         <div class="col-md-3">
             <div class="panel panel-danger">
@@ -126,7 +126,40 @@
 
         @* Esteira de Aprovação *@
         <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Esteira de Aprovação</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Início</th>
+                            <th>Etapa</th>
+                        </tr>
+                    <</thead>
 
+                    <tbody>
+                        <tr>
+                            @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model.Esteira)
+                            {
+                                <td>
+                                    @est.tempo_etapa
+                                </td>
+                                <td>
+                                    <p class="text-success">@est.etapaId</p>
+                                    <span class="text-right">@est.tempo_etapa</span>
+                                    <p>@est.dt_evento</p>
+                                    <p>@est.nome</p>
+                                    <p>@est.observacao</p>
+                                </td>
+                            }
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 

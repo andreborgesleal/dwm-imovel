@@ -172,13 +172,14 @@ namespace DWM.Models.Persistence
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
 
-            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).FirstOrDefault().dt_manifestacao == null)
+            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).LastOrDefault().dt_manifestacao == null)
             {
-                propostaViewModel.qte_dias_esteira = (DateTime.Today - entity.dt_proposta).Days;
+                propostaViewModel.qte_dias_esteira = (DateTime.Today.Subtract(entity.dt_proposta)).Days;
             }
             else
             {
-                //propostaViewModel.qte_dias_esteira = (db.Esteiras.Where(info => info.propostaId == entity.propostaId).FirstOrDefault().dt_manifestacao - entity.dt_proposta)
+                System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).LastOrDefault().dt_evento.Subtract(entity.dt_proposta);
+                propostaViewModel.qte_dias_esteira = diff.Days;
             }
 
             return propostaViewModel;
