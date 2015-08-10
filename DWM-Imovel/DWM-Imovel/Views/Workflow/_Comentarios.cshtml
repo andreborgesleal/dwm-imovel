@@ -1,0 +1,25 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-info">Comentários</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model.Comentarios)
+            {
+                <li class="list-group-item">
+                    <p>
+                        @com.nome
+                        <span class="text-right">@com.tempo_comentario</span>
+                    </p>
+                    <p class="text-primary">
+                        <b>@com.descricao_etapa</b>
+                    </p>
+                    <p>
+                        @com.mensagem
+                    </p>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Dados da Proposta</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div>
+                    <p>
+                        <h2>Data</h2>
+                        <h2 class="text-right"><span class="label label-info">ID: @Model.propostaId</span></h2>
+                    </p>
+                    <p>@Model.dt_proposta</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <p><h2><b>Gerente<</b>/h2></p>
+                <p>@Model.nome</p>
+                <p>@Model.login</p>
+            </li>
+            <li class="list-group-item">
+                <p><h2><b>Corretor</b></h2></p>
+                <p>@Model.nome_corretor1</p>
+                <p>Email - @Model.fone_corretor1</p>
+                <p></p>
+            </li>
+            <li class="list-group-item">
+                <p><h2><b>Arquivos</b></h2></p>
+                <p>
+                    <ul class=list-unstyled>
+                        @foreach (DWM.Models.Repositories.EsteiraContabilizacaoViewModel arq in Model.Arquivos)
+                        {
+                            <li>@arq.arquivo</li>
+                        }
+                    </ul>
+                </p>
+                <p>
+                    @Html.EditorFor(info => info.nome)
+                    <button value="Upload" class="btn btn-primary" />
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><h2><b>Comissionamento</b></h2></p>
+            </li>
+        </ul>
+    </div>
+</div>
