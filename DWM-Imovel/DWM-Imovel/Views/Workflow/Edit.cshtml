@@ -42,11 +42,12 @@
                 </div>
                 <div class="panel-body">
                     <b>Etapas: </b>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" style="width: @Model.percent_atual%">
-                            <span class="sr-only">@Model.qte_dias_esteira dias</span>
+                    <div class="progress thin">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@Model.percent_atual.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(Model.percent_atual.ToString("##0"))%">
+                            <b>@Model.qte_dias_esteira dias</b>
                         </div>
-                        <div class="progress-bar progress-bar-danger" style="width: @Model.percent_restnte%"></div>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@Model.percent_restnte.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(Model.percent_restnte.ToString("##0"))%">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +61,7 @@
                     <p class="text-right"><b>Valor geral da venda</b></p>
                 </div>
                 <div class="panel-body text-right">
-                    <b>Comissão: </b>@Model.vr_comissao
+                    <b>Comissão: </b>@Model.vr_comissao.ToString("R$ ###,###,###,##0.00")
                 </div>
             </div>
         </div>
@@ -71,19 +72,25 @@
     <div class="row">
 
         @* Dados da Proposta *@
-        <div class="col-md-3" id="dados_proposta">
-            @Html.Partial("_DadosProposta", Model)
+        <div class="col-md-3">
+            <div id="dados_proposta">
+                @Html.Partial("_DadosProposta", Model)
+            </div>
         </div>
 
         @* Esteira de Aprovação *@
-        <div class="col-md-6" id="esteira">
-            @Html.Partial("_Esteira", Model)
+        <div class="col-md-6" >
+            <div id="esteira">
+                @Html.Partial("_Esteira", Model.Esteira)
+            </div>
         </div>
 
 
         @* Comentários *@
-        <div class="col-md-3" id="comentarios">
-            @Html.Partial("_Comentarios", Model)
+        <div class="col-md-3" >
+            <div id="comentarios">
+                @Html.Partial("_Comentarios", Model.Comentarios)
+            </div>
         </div>
 
     </div>

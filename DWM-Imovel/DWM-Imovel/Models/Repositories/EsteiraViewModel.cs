@@ -20,6 +20,9 @@ namespace DWM.Models.Repositories
         [DisplayName("EtapaID")]
         public int etapaId { get; set; }
 
+        [DisplayName("Etapa")]
+        public string descricao_etapa { get; set; }
+
         [DisplayName("Dt.Ocorrência")]
         public DateTime dt_ocorrencia { get; set; }
 

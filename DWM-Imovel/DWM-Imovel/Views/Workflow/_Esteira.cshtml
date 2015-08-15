@@ -1,4 +1,8 @@
 ﻿@model DWM.Models.Repositories.PropostaViewModel
+@{
+    Layout = null;
+}
+@Html.Partial("_alerts")
 <div class="panel panel-success">
     <div class="panel-heading">
         <h3 class="panel-title">Esteira de Aprovação</h3>
@@ -14,22 +18,26 @@
         </thead>
 
         <tbody>
-            <tr>
-                @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model.Esteira)
-                {
+            @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model.Esteira)
+            {
+                <tr>
                     <td>
-                        <p class="text">@est.tempo_etapa</p>
+                        <h4 class="text-center text-muted">
+                            @est.dt_evento.ToString("dd/MM/yyyy")
+                        </h4>
+                        <h4 class="text-center">
+                            @est.dt_evento.ToString("HH:mm")h
+                        </h4>
                     </td>
-                                <td>
-                                    <p class="text-success">@est.etapaId</p>
-                                    <span class="text-right">@est.tempo_etapa</span>
-                                    <p>@est.dt_evento</p>
-                                    <p>@est.nome</p>
-                                    <p>@est.observacao</p>
-                                </td>
-                }
-
-            </tr>
+                    <td>
+                        <p class="text-success">@est.descricao_etapa</p>
+                        <span class="text-right">@est.tempo_etapa</span>
+                        <p>@est.dt_ocorrencia.ToShortDateString()</p>
+                        <p>@est.nome</p>
+                        <p class="text-muted">@est.observacao</p>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
