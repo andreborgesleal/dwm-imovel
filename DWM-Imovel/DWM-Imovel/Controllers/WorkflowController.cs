@@ -6,6 +6,9 @@ using DWM.Models.Repositories;
 using System.Web.Mvc;
 using DWM.Models.Entidades;
 using System;
+using System.Collections.Generic;
+using App_Dominio.Pattern;
+using App_Dominio.Enumeracoes;
 
 
 namespace DWM.Controllers
@@ -35,16 +38,46 @@ namespace DWM.Controllers
         #endregion
 
         #region Incluir Comentário
-        //public JsonResult JSonCrud()
-        //{
-        //    R result = CreateModal(value);
+        public ActionResult CreateComentario(int esteiraId, string observacao)
+        {
+            IEnumerable<EsteiraComentario> result = InsertComentario(esteiraId, observacao);
+            return View(result);
 
-        //    return new JsonResult()
-        //    {
-        //        Data = result,
-        //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
-        //    };
-        //}
+            //return new JsonResult()
+            //{
+            //    Data = result,
+            //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            //};
+        }
+
+        private IEnumerable<EsteiraComentario> InsertComentario(int esteiraId, string observacao)
+        {
+            try
+            {
+                EsteiraComentarioViewModel value = new EsteiraComentarioViewModel();
+                value.esteiraId = esteiraId;
+                value.observacao = observacao;
+                Facade<EsteiraComentarioViewModel, EsteiraComentarioModel, ApplicationContext> facade = new Facade<EsteiraComentarioViewModel, EsteiraComentarioModel, ApplicationContext>();
+                value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
+                value = facade.Save(value, Crud.INCLUIR);
+                if (value.mensagem.Code > 0)
+                    throw new App_DominioException(value.mensagem);
+
+
+            }
+            catch (App_DominioException ex)
+            {
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+            }
+            catch (Exception ex)
+            {
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
+            }
+
+            return (R)value;
+
+        }
         #endregion
 
 

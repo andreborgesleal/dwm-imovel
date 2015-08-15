@@ -209,6 +209,7 @@
     <Compile Include="Models\Persistence\ClienteModel.cs" />
     <Compile Include="Models\Persistence\CorretorModel.cs" />
     <Compile Include="Models\Persistence\EmpreendimentoModel.cs" />
+    <Compile Include="Models\Persistence\EsteiraComentarioModel.cs" />
     <Compile Include="Models\Persistence\EsteiraModel.cs" />
     <Compile Include="Models\Persistence\PropostaModel.cs" />
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
