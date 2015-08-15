@@ -1,6 +1,8 @@
-﻿<div class="panel panel-default">
+﻿@model DWM.Models.Repositories.PropostaViewModel
+
+<div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-info">Comentários</h3>
+        <h3 class="panel-title">Comentários</h3>
     </div>
     <div class="panel-body">
         <ul class="list-group">
@@ -15,10 +17,17 @@
                         <b>@com.descricao_etapa</b>
                     </p>
                     <p>
-                        @com.mensagem
+                        @com.observacao
                     </p>
                 </li>
             }
+            <li class="list-group-item">
+                <p>Novo Comentário</p>
+                <form class="form-inline">
+                    <input type="text" class="form-control">
+                    <button type="button" class="btn btn-success">Salvar</button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>

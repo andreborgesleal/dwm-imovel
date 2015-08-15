@@ -144,7 +144,7 @@ namespace DWM.Models.Persistence
                                usuarioId = est.usuarioId,
                                nome = est.nome,
                                login = est.login,
-                           }).AsEnumerable(),
+                           }).ToList(),
                 Comentarios = (from com in db.Comentarios
                                join est in db.Esteiras on com.esteiraId equals est.esteiraId
                                join eta in db.Etapas on est.etapaId equals eta.etapaId
@@ -159,7 +159,7 @@ namespace DWM.Models.Persistence
                                    usuarioId = com.usuarioId,
                                    nome = com.nome,
                                    login = com.login
-                               }).AsEnumerable(),
+                               }).ToList(),
                 Arquivos = (from arq in db.Arquivos
                             join est in db.Esteiras on arq.esteiraId equals est.esteiraId
                             where est.propostaId == entity.propostaId
@@ -168,17 +168,17 @@ namespace DWM.Models.Persistence
                             {
                                 esteiraId = est.esteiraId,
                                 arquivo = arq.arquivo
-                            }).AsEnumerable(),
+                            }).ToList(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
 
-            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).LastOrDefault().dt_manifestacao == null)
+            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_manifestacao == null)
             {
                 propostaViewModel.qte_dias_esteira = (DateTime.Today.Subtract(entity.dt_proposta)).Days;
             }
             else
             {
-                System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).LastOrDefault().dt_evento.Subtract(entity.dt_proposta);
+                System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_evento.Subtract(entity.dt_proposta);
                 propostaViewModel.qte_dias_esteira = diff.Days;
             }
 

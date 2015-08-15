@@ -1,5 +1,4 @@
-﻿using DWM.Models.Repositories
-@using App_Dominio.Repositories
+﻿@using App_Dominio.Repositories
 @model DWM.Models.Repositories.PropostaViewModel
 @{
     ViewBag.Title = "DWM-Imovel";
@@ -12,10 +11,10 @@
         <div class="col-md-3">
             <div class="panel panel-warning">
                 <div class="panel-heading">
-                    <p><h3 class="panel-title">@Model.nome_cliente</h3></p>
-                    <p>CPF: @Model.cpf_cnpj</p>
+                    <p><h3 class="text-right"><b>@Model.nome_cliente</b></h3></p>
+                    <p class="text-right"><b>CPF: @Model.cpf_cnpj</b></p>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body text-right">
                     <b>Telefone: </b>@Model.fone1 / @Model.fone2
                 </div>
             </div>
@@ -25,10 +24,10 @@
         <div class="col-md-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <p><h3 class="panel-title">@Model.descricao_empreendimento</h3></p>
-                    <p>@Model.torre</p>
+                    <p><h3 class="text-right"><b>@Model.descricao_empreendimento</b></h3></p>
+                    <p class="text-right"><b>@Model.torre</b></p>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body text-right">
                     <b>Coordenador: </b>@Model.nome_coordenador / @Model.login_coordenador
                 </div>
             </div>
@@ -38,8 +37,8 @@
         <div class="col-md-3">
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <p><h3 class="panel-title">@Model.descricao_etapa</h3></p>
-                    desde <p>@Model.dt_proposta</p>
+                    <p><h3 class="text-right"><b>@Model.descricao_etapa</b></h3></p>
+                    <p><h5 class="text-right">desde @Model.dt_proposta.ToShortDateString()</h5></p>
                 </div>
                 <div class="panel-body">
                     <b>Etapas: </b>
@@ -57,10 +56,10 @@
         <div class="col-md-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <p><h3 class="panel-title">R$ @Model.valor</h3></p>
-                    <p>Valor geral da venda</p>
+                    <p><h3 class="text-right"><b>R$ @Model.valor</b></h3></p>
+                    <p class="text-right"><b>Valor geral da venda</b></p>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body text-right">
                     <b>Comissão: </b>@Model.vr_comissao
                 </div>
             </div>
@@ -73,18 +72,18 @@
 
         @* Dados da Proposta *@
         <div class="col-md-3" id="dados_proposta">
-            @Html.Partial("_DadosProposta")
+            @Html.Partial("_DadosProposta", Model)
         </div>
 
         @* Esteira de Aprovação *@
         <div class="col-md-6" id="esteira">
-            @Html.Partial("_Esteira")
+            @Html.Partial("_Esteira", Model)
         </div>
 
 
         @* Comentários *@
         <div class="col-md-3" id="comentarios">
-            @Html.Partial("_Comentarios")
+            @Html.Partial("_Comentarios", Model)
         </div>
 
     </div>

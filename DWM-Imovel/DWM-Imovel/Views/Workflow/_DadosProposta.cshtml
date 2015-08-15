@@ -1,4 +1,6 @@
-﻿<div class="panel panel-primary">
+﻿@model DWM.Models.Repositories.PropostaViewModel
+
+<div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Dados da Proposta</h3>
     </div>
@@ -6,37 +8,37 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <div>
-                    <p>
-                        <h2>Data</h2>
-                        <h2 class="text-right"><span class="label label-info">ID: @Model.propostaId</span></h2>
-                    </p>
-                    <p>@Model.dt_proposta</p>
+                    <h3 class="text-right"><span class="label label-info">ID: @Model.propostaId</span></h3>
+                    <h4>Data</h4>
+                    <p>@Model.dt_proposta.ToShortDateString()</p>
                 </div>
             </li>
             <li class="list-group-item">
-                <p><h2><b>Gerente<</b>/h2></p>
+                <p><h4>Gerente</h4></p>
                 <p>@Model.nome</p>
                 <p>@Model.login</p>
             </li>
             <li class="list-group-item">
-                <p><h2><b>Corretor</b></h2></p>
+                <p><h4>Corretor</h4></p>
                 <p>@Model.nome_corretor1</p>
                 <p>Email - @Model.fone_corretor1</p>
                 <p></p>
             </li>
             <li class="list-group-item">
-                <p><h2><b>Arquivos</b></h2></p>
+                <p><h4>Arquivos</h4></p>
                 <p>
                     <ul class=list-unstyled>
                         @foreach (DWM.Models.Repositories.EsteiraContabilizacaoViewModel arq in Model.Arquivos)
                         {
-                            <li>@arq.arquivo</li>
+                            <li>@Html.ActionLink(arq.arquivo, "#")</li>
                         }
                     </ul>
                 </p>
                 <p>
-                    @Html.EditorFor(info => info.nome)
-                    <button value="Upload" class="btn btn-primary" />
+                    <form class="form-inline">
+                        <input type="text" class="form-control">
+                        <button value="Upload" class="btn btn-primary">Upload</button>
+                    </form>
                 </p>
             </li>
             <li class="list-group-item">
