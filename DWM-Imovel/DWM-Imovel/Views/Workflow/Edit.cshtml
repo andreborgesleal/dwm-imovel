@@ -76,14 +76,20 @@
         </div>
 
         @* Esteira de Aprovação *@
-        <div class="col-md-6" id="esteira">
-            @Html.Partial("_Esteira", Model)
+        <div class="col-md-6">
+            <div id="esteira">
+                @Html.Partial("_Esteira", Model.Esteira)
+            </div>
         </div>
 
 
         @* Comentários *@
-        <div class="col-md-3" id="comentarios">
-            @Html.Partial("_Comentarios", Model)
+        <div class="col-md-3">
+            <div id="comentarios">
+                @Html.Partial("_Comentarios", Model.Comentarios)
+            </div>
+
+            
         </div>
 
     </div>

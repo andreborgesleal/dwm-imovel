@@ -192,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BI\InserirComentarioBI.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
     <Compile Include="Models\Entidades\Cliente.cs" />
     <Compile Include="Models\Entidades\Corretor.cs" />
@@ -1307,7 +1308,6 @@
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
     <Folder Include="Content\fonts\font-awesome\" />
-    <Folder Include="Models\BI\" />
     <Folder Include="Models\Report\" />
     <Folder Include="Temp\" />
     <Folder Include="Users_Data\" />

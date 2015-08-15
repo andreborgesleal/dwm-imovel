@@ -25,7 +25,12 @@ namespace DWM.Models.Persistence
 
         public override EsteiraComentarioViewModel BeforeInsert(EsteiraComentarioViewModel value)
         {
+            Usuario u = seguranca_db.Usuarios.Find(sessaoCorrente.usuarioId);
+
             value.dt_comentario = Funcoes.Brasilia();
+            value.usuarioId = sessaoCorrente.usuarioId;
+            value.nome = u.nome;
+            value.login = u.login;
 
             return value;
         }
@@ -33,17 +38,14 @@ namespace DWM.Models.Persistence
         #region Métodos da classe CrudModel
         public override EsteiraComentario MapToEntity(EsteiraComentarioViewModel value)
         {
-            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
-            Usuario u = security._getUsuarioById(value.usuarioId, seguranca_db);
-
             EsteiraComentario comentario = new EsteiraComentario()
             {
                 esteiraId = value.esteiraId,
                 dt_comentario = value.dt_comentario,
                 observacao = value.observacao,
                 usuarioId = value.usuarioId,
-                nome = u.nome,
-                login = u.login
+                nome = value.nome,
+                login = value.login
             };
 
             return comentario;
@@ -130,5 +132,54 @@ namespace DWM.Models.Persistence
         }
         #endregion
     }
+
+
+    public class ListViewComentario : ListViewModel<EsteiraComentarioViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewComentario() { }
+        public ListViewComentario(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<EsteiraComentarioViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            int _esteiraId = int.Parse(param[0].ToString());
+
+            return (from com in db.Comentarios
+                    join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                    join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    where est.propostaId == (from e in db.Esteiras where e.esteiraId == _esteiraId select e.propostaId).FirstOrDefault()
+                    orderby com.dt_comentario descending
+                    select new EsteiraComentarioViewModel()
+                    {
+                        esteiraId = est.esteiraId,
+                        descricao_etapa = eta.descricao,
+                        dt_comentario = com.dt_comentario,
+                        observacao = com.observacao,
+                        usuarioId = com.usuarioId,
+                        nome = com.nome,
+                        login = com.login,
+                        PageSize = pageSize,
+                        TotalCount = (from com1 in db.Comentarios
+                                      join est1 in db.Esteiras on com1.esteiraId equals est1.esteiraId
+                                      join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      where est1.propostaId == (from e1 in db.Esteiras where e1.esteiraId == _esteiraId select e1.propostaId).FirstOrDefault()
+                                      orderby com1.dt_comentario descending
+                                      select com1.esteiraId).Count()
+                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            return new PropostaModel().getObject((PropostaViewModel)id);
+        }
+        #endregion
+    }
+
+
 }
 

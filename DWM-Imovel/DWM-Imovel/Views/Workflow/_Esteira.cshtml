@@ -1,5 +1,6 @@
-﻿@model DWM.Models.Repositories.PropostaViewModel
+﻿@model IEnumerable<DWM.Models.Repositories.EsteiraViewModel>
 <div class="panel panel-success">
+    @Html.Hidden("esteiraId", Model.FirstOrDefault().esteiraId)
     <div class="panel-heading">
         <h3 class="panel-title">Esteira de Aprovação</h3>
     </div>
@@ -15,20 +16,19 @@
 
         <tbody>
             <tr>
-                @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model.Esteira)
+                @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model)
                 {
                     <td>
                         <p class="text">@est.tempo_etapa</p>
                     </td>
-                                <td>
-                                    <p class="text-success">@est.etapaId</p>
-                                    <span class="text-right">@est.tempo_etapa</span>
-                                    <p>@est.dt_evento</p>
-                                    <p>@est.nome</p>
-                                    <p>@est.observacao</p>
-                                </td>
+                    <td>
+                        <p class="text-success">@est.etapaId</p>
+                        <span class="text-right">@est.tempo_etapa</span>
+                        <p>@est.dt_evento</p>
+                        <p>@est.nome</p>
+                        <p>@est.observacao</p>
+                    </td>
                 }
-
             </tr>
         </tbody>
     </table>
