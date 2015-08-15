@@ -1300,6 +1300,9 @@
     <Content Include="Views\Propostas\Edit.cshtml" />
     <Content Include="Views\Propostas\Delete.cshtml" />
     <Content Include="Views\Workflow\Edit.cshtml" />
+    <Content Include="Views\Workflow\_DadosProposta.cshtml" />
+    <Content Include="Views\Workflow\_Comentarios.cshtml" />
+    <Content Include="Views\Workflow\_Esteira.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
