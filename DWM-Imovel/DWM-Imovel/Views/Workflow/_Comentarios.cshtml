@@ -9,14 +9,38 @@
     </div>
     <div class="panel-body">
         <ul class="list-group">
-            @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model)
+            <li class="list-group-item">
+                @using (Ajax.BeginForm("CreateComentario", "Workflow", new AjaxOptions { HttpMethod = "get", UpdateTargetId = "comentarios" }, new { @class = "form", id = "myNameId" }))
+                {
+                    @Html.Hidden("esteiraId", "16")
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="observacao">Novo comentário</label>
+                                @Html.TextArea("observacao", "", 3, 1, new { @class = "form-control input-sm", @maxlength = "4000" })
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                }
+            </li>
+            @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model.OrderByDescending(info => info.dt_comentario))
             {
+                var cor = "text-success";
+                if (com.ind_aprovacao == "R")
+                {
+                    cor = "text-danger";
+                }
+                else if (com.ind_aprovacao == null)
+                {
+                    cor = "text-primary";
+                }
                 <li class="list-group-item">
                     <p>
                         @com.nome
                         <span class="text-right">@com.tempo_comentario</span>
                     </p>
-                    <p class="text-primary">
+                    <p class="@cor">
                         <b>@com.descricao_etapa</b>
                     </p>
                     <p>
@@ -24,18 +48,32 @@
                     </p>
                 </li>
             }
-            <li class="list-group-item">
-                <p>Novo Comentário</p>
-                <form class="form-inline">
-                    <input type="text" id="observacao" name="observacao" class="form-control">
-                    <button type="button" class="btn btn-success" onclick="fnSalvarComentario();">Salvar</button>
-                </form>
-            </li>
         </ul>
     </div>
+
 </div>
 
+
+
 <script>
+
+    $(function () {
+        $('form').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        $('#comentarios').html(result);
+                        $('#observacao').val('');
+                    }
+                });
+            }
+            return false;
+        });
+    });
+
     function fnSalvarComentario() {
         var link = 'CreateComentario';
         link = encodeURI(link + '?esteiraId=' + $('#esteiraId').val() + '&observacao=' + $('#observacao').val());

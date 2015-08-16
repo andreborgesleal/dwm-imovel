@@ -8,9 +8,11 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <div>
-                    <h3 class="text-right"><span class="label label-info">ID: @Model.propostaId</span></h3>
-                    <h4>Data</h4>
-                    <p>@Model.dt_proposta.ToShortDateString()</p>
+                    <h4>
+                        Data
+                        <span class="label label-info col-md-offset-8">ID: @Model.propostaId</span>
+                    </h4>
+                    <p>@Model.dt_proposta.ToString("dd/MM/yyyy")</p>
                 </div>
             </li>
             <li class="list-group-item">

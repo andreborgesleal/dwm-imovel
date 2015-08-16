@@ -134,6 +134,7 @@ namespace DWM.Models.Persistence
                            select new EsteiraViewModel()
                            {
                                esteiraId = est.esteiraId,
+                               descricao_etapa = db.Etapas.Where(info => info.etapaId == est.etapaId).FirstOrDefault().descricao,
                                propostaId = est.propostaId,
                                etapaId = est.etapaId,
                                dt_evento = est.dt_evento,
@@ -154,6 +155,7 @@ namespace DWM.Models.Persistence
                                {
                                    esteiraId = est.esteiraId,
                                    descricao_etapa = eta.descricao,
+                                   ind_aprovacao = est.ind_aprovacao,
                                    dt_comentario = com.dt_comentario,
                                    observacao = com.observacao,
                                    usuarioId = com.usuarioId,
@@ -180,6 +182,17 @@ namespace DWM.Models.Persistence
             {
                 System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_evento.Subtract(entity.dt_proposta);
                 propostaViewModel.qte_dias_esteira = diff.Days;
+            }
+
+            if (db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count() == 0)
+            {
+                propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == null).Count()) * 100.0;
+                propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+            }
+            else
+            {
+                propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count()) * 100.0;
+                propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
             }
 
             return propostaViewModel;
