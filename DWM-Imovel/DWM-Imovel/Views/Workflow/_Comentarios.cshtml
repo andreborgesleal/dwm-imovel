@@ -1,19 +1,31 @@
-﻿@model DWM.Models.Repositories.PropostaViewModel
-
+﻿@model IEnumerable<DWM.Models.Repositories.EsteiraComentarioViewModel>
+@{
+    Layout = null;
+}
+@Html.Partial("_alerts")
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">Comentários</h3>
     </div>
     <div class="panel-body">
         <ul class="list-group">
-            @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model.Comentarios)
+            @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model)
             {
+                var cor = "text-success";
+                if (com.ind_aprovacao == "R")
+                {
+                    cor = "text-danger";
+                }
+                else if (com.ind_aprovacao == null)
+                {
+                    cor = "text-primary";
+                }
                 <li class="list-group-item">
                     <p>
                         @com.nome
                         <span class="text-right">@com.tempo_comentario</span>
                     </p>
-                    <p class="text-primary">
+                    <p class="@cor">
                         <b>@com.descricao_etapa</b>
                     </p>
                     <p>
@@ -24,11 +36,44 @@
             <li class="list-group-item">
                 <p>Novo Comentário</p>
                 <form class="form-inline">
-                    <input type="text" class="form-control">
-                    <button type="button" class="btn btn-success">Salvar</button>
+                    <input type="text" id="observacao" name="observacao" class="form-control">
+                    <button type="button" class="btn btn-success" onclick="fnSalvarComentario();">Salvar</button>
                 </form>
             </li>
         </ul>
     </div>
 </div>
 
+<script>
+    function fnSalvarComentario() {
+        var link = 'CreateComentario';
+        link = encodeURI(link + '?esteiraId=' + $('#esteiraId').val() + '&observacao=' + $('#observacao').val());
+
+        $('#carregando').css("visibility", "visible");
+        $('#carregando').css("width", "100%");
+        $('#carregando').css("height", "100%");
+        $('#carregando').css("position", "absolute");
+        $('#carregando').css("background-color", "black");
+        $('#carregando').css("filter", "alpha(opacity=60)");
+        $('#carregando').css("opacity", "0.6");
+        $('#carregando').css("left", "0%");
+        $('#carregando').css("top", "0%");
+
+        link = encodeURI(link + '&noCahce=' + new Date());
+        $('#comentarios').load(link);
+
+        $(document).ajaxSuccess(function (event, xhr, settings) {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        }).error(function () {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        })
+
+    }
+
+</script>

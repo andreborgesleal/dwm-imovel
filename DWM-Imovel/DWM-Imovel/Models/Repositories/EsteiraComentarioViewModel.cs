@@ -17,6 +17,9 @@ namespace DWM.Models.Repositories
         [DisplayName("Etapa")]
         public string descricao_etapa { get; set; }
 
+        [DisplayName("Indicação de Aprovação")]
+        public string ind_aprovacao { get; set; }
+
         [DisplayName("Observação")]
         [Required(ErrorMessage="Campo Observação deve ser preenchido")]
         [StringLength(4000, ErrorMessage="Campo Observação deve ter no máximo 4.000 caracteres")]

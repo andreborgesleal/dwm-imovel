@@ -155,6 +155,7 @@ namespace DWM.Models.Persistence
                                {
                                    esteiraId = est.esteiraId,
                                    descricao_etapa = eta.descricao,
+                                   ind_aprovacao = est.ind_aprovacao,
                                    dt_comentario = com.dt_comentario,
                                    observacao = com.observacao,
                                    usuarioId = com.usuarioId,

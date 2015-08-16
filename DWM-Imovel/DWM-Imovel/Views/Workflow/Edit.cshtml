@@ -38,7 +38,7 @@
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <p><h3 class="text-right"><b>@Model.descricao_etapa</b></h3></p>
-                    <p><h5 class="text-right">desde @Model.dt_proposta.ToShortDateString()</h5></p>
+                    <p><h5 class="text-right">desde @Model.dt_proposta.ToString("dd/MM/yyyy")</h5></p>
                 </div>
                 <div class="panel-body">
                     <b>Etapas: </b>
@@ -57,7 +57,7 @@
         <div class="col-md-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <p><h3 class="text-right"><b>R$ @Model.valor</b></h3></p>
+                    <p><h3 class="text-right"><b>R$ @Model.valor.ToString("R$ ###,###,###,##0.00")</b></h3></p>
                     <p class="text-right"><b>Valor geral da venda</b></p>
                 </div>
                 <div class="panel-body text-right">
@@ -70,7 +70,6 @@
     </div>
 
     <div class="row">
-
         @* Dados da Proposta *@
         <div class="col-md-3">
             <div id="dados_proposta">
@@ -79,7 +78,7 @@
         </div>
 
         @* Esteira de Aprovação *@
-        <div class="col-md-6" >
+        <div class="col-md-6">
             <div id="esteira">
                 @Html.Partial("_Esteira", Model.Esteira)
             </div>
@@ -87,12 +86,10 @@
 
 
         @* Comentários *@
-        <div class="col-md-3" >
+        <div class="col-md-3">
             <div id="comentarios">
                 @Html.Partial("_Comentarios", Model.Comentarios)
             </div>
         </div>
-
     </div>
-
 </div>

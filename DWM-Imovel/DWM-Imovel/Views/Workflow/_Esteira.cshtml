@@ -1,9 +1,10 @@
-﻿@model DWM.Models.Repositories.PropostaViewModel
+﻿@model IEnumerable<DWM.Models.Repositories.EsteiraViewModel>
 @{
     Layout = null;
 }
 @Html.Partial("_alerts")
 <div class="panel panel-success">
+    @Html.Hidden("esteiraId", Model.FirstOrDefault().esteiraId)
     <div class="panel-heading">
         <h3 class="panel-title">Esteira de Aprovação</h3>
     </div>
@@ -18,8 +19,18 @@
         </thead>
 
         <tbody>
-            @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model.Esteira)
+            @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model)
             {
+                var cor = "text-success";
+                if (est.ind_aprovacao == "R")
+                {
+                    cor = "text-danger";
+                }
+                else if (est.ind_aprovacao == null)
+                {
+                    cor = "text-primary";
+                }
+
                 <tr>
                     <td>
                         <h4 class="text-center text-muted">
@@ -29,13 +40,25 @@
                             @est.dt_evento.ToString("HH:mm")h
                         </h4>
                     </td>
-                    <td>
-                        <p class="text-success">@est.descricao_etapa</p>
-                        <span class="text-right">@est.tempo_etapa</span>
-                        <p>@est.dt_ocorrencia.ToShortDateString()</p>
-                        <p>@est.nome</p>
-                        <p class="text-muted">@est.observacao</p>
-                    </td>
+                     
+                    @if (@est.ind_aprovacao == null) 
+                    {
+                        <td>
+                            <strong><p class="@cor">@est.descricao_etapa</p></strong>
+                            <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
+                            <p>@est.nome</p>
+                            <p class="text-muted">@est.observacao</p>
+                        </td>
+                    }
+                    else 
+                    {
+                        <td>
+                            <strong><p class="@cor">@est.descricao_etapa</p></strong>
+                            <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
+                            <p>@est.nome</p>
+                            <p class="text-muted">@est.observacao</p>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
