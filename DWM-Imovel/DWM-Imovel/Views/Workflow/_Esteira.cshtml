@@ -46,8 +46,20 @@
                         <td>
                             <strong><p class="@cor">@est.descricao_etapa</p></strong>
                             <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
-                            <p>@est.nome</p>
-                            <p class="text-muted">@est.observacao</p>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" rows="1"></textarea>
+                                    </div>
+                                        @Html.EditorFor(info => est.dt_ocorrencia, "DATE", new { identificador = "dt_ocorrencia", value = DateTime.Today, readOnly = "false" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success">Aprovar</button>
+                                        <button type="submit" class="btn btn-danger">Reprovar</button>
+                                    </div>
+                                </div>
+                            </form>
                         </td>
                     }
                     else 
