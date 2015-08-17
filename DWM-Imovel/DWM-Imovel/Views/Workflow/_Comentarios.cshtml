@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DWM.Models.Repositories.EsteiraComentarioViewModel>
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.EsteiraComentarioViewModel>
 @{
     Layout = null;
 }
@@ -10,18 +10,19 @@
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item">
-                @using (Ajax.BeginForm("CreateComentario", "Workflow", new AjaxOptions { HttpMethod = "get", UpdateTargetId = "comentarios" }, new { @class = "form", id = "myNameId" }))
+                @using (Ajax.BeginForm("CreateComentario", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "comentarios" }, new { @class = "form", @id="form0" }))
                 {
-                    @Html.Hidden("esteiraId", "16")
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label" for="observacao">Novo comentário</label>
-                                @Html.TextArea("observacao", "", 3, 1, new { @class = "form-control input-sm", @maxlength = "4000" })
+                    @Html.Hidden("esteiraId", (string)ViewBag.esteiraId)
+                    <p>
+                        <div class="form-group" style="margin-bottom: 5px !important">
+                            <div class="input-group">
+                                @Html.TextBox("observacao", "", new { @class = "form-control", @placeholder = "Escreva um comentário", @maxlength = "4000" })
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-success">Salvar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    </p>
                 }
             </li>
             @foreach (DWM.Models.Repositories.EsteiraComentarioViewModel com in Model.OrderByDescending(info => info.dt_comentario))
@@ -37,17 +38,18 @@
                 }
                 <li class="list-group-item">
                     <p>
-                        @com.nome
-                        <span class="text-right">@com.tempo_comentario</span>
+                        <strong>@com.nome</strong>
+                        <span class="col-md-offset-5">@com.tempo_comentario</span>
                     </p>
                     <p class="@cor">
                         <b>@com.descricao_etapa</b>
                     </p>
                     <p>
-                        @com.observacao
+                        <span class="text-mama-africa">@com.observacao</span>
                     </p>
                 </li>
             }
+            @Html.Partial("Paginacao", Model)
         </ul>
     </div>
 
@@ -56,9 +58,8 @@
 
 
 <script>
-
     $(function () {
-        $('form').submit(function () {
+        $('#form0').submit(function () {
             if ($(this).valid()) {
                 $.ajax({
                     url: this.action,
@@ -73,36 +74,5 @@
             return false;
         });
     });
-
-    function fnSalvarComentario() {
-        var link = 'CreateComentario';
-        link = encodeURI(link + '?esteiraId=' + $('#esteiraId').val() + '&observacao=' + $('#observacao').val());
-
-        $('#carregando').css("visibility", "visible");
-        $('#carregando').css("width", "100%");
-        $('#carregando').css("height", "100%");
-        $('#carregando').css("position", "absolute");
-        $('#carregando').css("background-color", "black");
-        $('#carregando').css("filter", "alpha(opacity=60)");
-        $('#carregando').css("opacity", "0.6");
-        $('#carregando').css("left", "0%");
-        $('#carregando').css("top", "0%");
-
-        link = encodeURI(link + '&noCahce=' + new Date());
-        $('#comentarios').load(link);
-
-        $(document).ajaxSuccess(function (event, xhr, settings) {
-            $('#carregando').css("visibility", "hidden");
-            $('#carregando').css("height", "0px");
-            $('#carregando').css("margin-top", "0%");
-            $('#carregando').css("margin-left", "0%");
-        }).error(function () {
-            $('#carregando').css("visibility", "hidden");
-            $('#carregando').css("height", "0px");
-            $('#carregando').css("margin-top", "0%");
-            $('#carregando').css("margin-left", "0%");
-        })
-
-    }
 
 </script>

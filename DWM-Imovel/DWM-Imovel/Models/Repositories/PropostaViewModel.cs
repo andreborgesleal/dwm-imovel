@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace DWM.Models.Repositories
 {
@@ -95,7 +96,7 @@ namespace DWM.Models.Repositories
 
         public IEnumerable<EsteiraViewModel> Esteira { get; set; }
 
-        public IEnumerable<EsteiraComentarioViewModel> Comentarios { get; set; }
+        public IPagedList Comentarios { get; set; }
 
         public IEnumerable<EsteiraContabilizacaoViewModel> Arquivos { get; set; }
 

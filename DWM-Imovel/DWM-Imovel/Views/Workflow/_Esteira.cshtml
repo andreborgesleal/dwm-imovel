@@ -4,76 +4,117 @@
 }
 @Html.Partial("_alerts")
 <div class="panel panel-success">
-    @Html.Hidden("esteiraId", Model.FirstOrDefault().esteiraId)
     <div class="panel-heading">
         <h3 class="panel-title">Esteira de Aprovação</h3>
     </div>
     <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item no-padding">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Início</th>
+                            <th>Etapa</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model)
+                        {
+                            var cor = "text-success";
+                            if (est.ind_aprovacao == "R")
+                            {
+                                cor = "text-danger";
+                            }
+                            else if (est.ind_aprovacao == null)
+                            {
+                                cor = "text-primary";
+                            }
+
+                            <tr>
+                                <td>
+                                    <h4 class="text-center text-muted">
+                                        @est.dt_evento.ToString("dd/MM/yyyy")
+                                    </h4>
+                                    <h4 class="text-center">
+                                        @est.dt_evento.ToString("HH:mm")h
+                                    </h4>
+                                </td>
+
+                                @if (@est.ind_aprovacao == null)
+                                {
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4><strong><p class="@cor">@est.descricao_etapa</p></strong></h4>
+                                                <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 no-padding">
+                                                @using (Ajax.BeginForm("Aprovar", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "esteira" }, new { @class = "form", @name = "form1", @id = "form1" }))
+                                                {
+                                                    @Html.Hidden("propostaId", (string)ViewBag.propostaId)
+                                                    <div class="form-group">
+                                                        <div class="col-md-9">
+                                                            @Html.TextBox("observacao_etapa", "", new { @class = "form-control", @placeholder = "Observação", @maxlength = "4000" })
+                                                        </div>
+                                                        @Html.Editor("_dt_ocorrencia", "DATE", new { identificador = "dt_ocorrencia", value = DateTime.Today, readOnly = "false" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-success">Aprovar</button>
+                                                            <button type="submit" class="btn btn-danger">Reprovar</button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <h4><strong><p class="@cor">@est.descricao_etapa</p></strong></h4>
+                                        <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
+                                        <p><strong>@est.nome</strong></p>
+                                        <p class="text-muted">@est.observacao</p>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </li>
+        </ul>
     </div>
-    <table class="table table-hover table-responsive">
-        <thead>
-            <tr>
-                <th>Início</th>
-                <th>Etapa</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (DWM.Models.Repositories.EsteiraViewModel est in Model)
-            {
-                var cor = "text-success";
-                if (est.ind_aprovacao == "R")
-                {
-                    cor = "text-danger";
-                }
-                else if (est.ind_aprovacao == null)
-                {
-                    cor = "text-primary";
-                }
-
-                <tr>
-                    <td>
-                        <h4 class="text-center text-muted">
-                            @est.dt_evento.ToString("dd/MM/yyyy")
-                        </h4>
-                        <h4 class="text-center">
-                            @est.dt_evento.ToString("HH:mm")h
-                        </h4>
-                    </td>
-                     
-                    @if (@est.ind_aprovacao == null) 
-                    {
-                        <td>
-                            <strong><p class="@cor">@est.descricao_etapa</p></strong>
-                            <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" rows="1"></textarea>
-                                    </div>
-                                        @Html.EditorFor(info => est.dt_ocorrencia, "DATE", new { identificador = "dt_ocorrencia", value = DateTime.Today, readOnly = "false" })
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-success">Aprovar</button>
-                                        <button type="submit" class="btn btn-danger">Reprovar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </td>
-                    }
-                    else 
-                    {
-                        <td>
-                            <strong><p class="@cor">@est.descricao_etapa</p></strong>
-                            <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
-                            <p>@est.nome</p>
-                            <p class="text-muted">@est.observacao</p>
-                        </td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+    
 </div>
 
+<script>
+    var x1 = '<strong>' + '@Model.FirstOrDefault().descricao_etapa' + '</strong>';
+    var x2 = 'desde ' + '@Model.FirstOrDefault().dt_ocorrencia.ToString("dd/MM/yyyy")';
+    var x3 = '@Model.FirstOrDefault().esteiraId';
+    $('#descricao_etapa').html(x1);
+    $('#data_proposta').html(x2);
+    $('#esteiraId').val(x3);
+
+    $(function () {
+
+        $('#form1').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        $('#esteira').html(result);
+                        $('#observacao_etapa').val('');
+                    }
+                });
+            }
+            return false;
+        });
+    });
+
+</script>

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using App_Dominio.Pattern;
 using App_Dominio.Enumeracoes;
 using DWM.Models.BI;
+using App_Dominio.Models;
 
 
 namespace DWM.Controllers
@@ -34,6 +35,7 @@ namespace DWM.Controllers
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)
         {
+            ViewBag.propostaId = propostaId.ToString();
             return _Edit(new PropostaViewModel() { propostaId = propostaId });
         }
         #endregion
@@ -41,19 +43,15 @@ namespace DWM.Controllers
         #region Incluir Comentário
         public ActionResult CreateComentario(int esteiraId, string observacao)
         {
-            IEnumerable<EsteiraComentarioViewModel> result = InsertComentario(esteiraId, observacao);
-            return View("_Comentarios", result);
+            IPagedList result = InsertComentario(esteiraId, observacao);
+            ViewBag.esteiraId = esteiraId.ToString();
 
-            //return new JsonResult()
-            //{
-            //    Data = result,
-            //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            //};
+            return View("_Comentarios", result);
         }
 
-        private IEnumerable<EsteiraComentarioViewModel> InsertComentario(int esteiraId, string observacao)
+        private IPagedList InsertComentario(int esteiraId, string observacao)
         {
-            IEnumerable<EsteiraComentarioViewModel> result = new List<EsteiraComentarioViewModel>();
+            IPagedList result = null;
             try
             {
                 EsteiraComentarioViewModel value = new EsteiraComentarioViewModel();
@@ -61,9 +59,8 @@ namespace DWM.Controllers
                 value.observacao = observacao;
                 Factory<EsteiraComentarioViewModel, ApplicationContext> facade = new Factory<EsteiraComentarioViewModel, ApplicationContext>();
                 value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
-                result = facade.Execute(new InserirComentarioBI(), value, esteiraId);
-                if (value.mensagem.Code > 0)
-                    throw new App_DominioException(value.mensagem);
+                result = facade.Execute(new InserirComentarioBI(), 0, 4, value, esteiraId);
+                Success("Registro incluído com sucesso");
             }
             catch (App_DominioException ex)
             {
@@ -79,8 +76,67 @@ namespace DWM.Controllers
 
             return result;
         }
+
+        public ActionResult ListComentarios(int? index, int? pageSize = 50, int? esteiraId = null)
+        {
+            Factory<EsteiraComentarioViewModel, ApplicationContext> facade = new Factory<EsteiraComentarioViewModel, ApplicationContext>();
+            IPagedList result = facade.PagedList(new InserirComentarioBI(), index, 4, esteiraId);
+
+            ViewBag.esteiraId = esteiraId.ToString();
+            return View("_Comentarios", result);
+        }
         #endregion
 
+        #region Aprovar etapa
+        public ActionResult Aprovar(int propostaId, string dt_ocorrencia, string observacao_etapa, int? esteiraId)
+        {
+            IEnumerable<EsteiraViewModel> result = AprovarEtapa(propostaId, dt_ocorrencia, observacao_etapa);
+            ViewBag.propostaId = propostaId.ToString();
 
+            return View("_Esteira", result);
+        }
+
+        private IEnumerable<EsteiraViewModel> AprovarEtapa(int propostaId, string dt_ocorrencia, string observacao_etapa)
+        {
+            IEnumerable<EsteiraViewModel> result = new List<EsteiraViewModel>();
+            try
+            {
+                EsteiraViewModel value = new EsteiraViewModel();
+                value.propostaId = propostaId;
+                if (dt_ocorrencia != null)
+                    value.dt_ocorrencia = Funcoes.StringToDate(dt_ocorrencia).Value;
+                else
+                    throw new Exception("Data da ocorrência deve ser informada");
+                value.observacao = observacao_etapa;
+                Factory<EsteiraViewModel, ApplicationContext> facade = new Factory<EsteiraViewModel, ApplicationContext>();
+                value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
+                result = facade.Execute(new AprovarEtapaBI(), value, propostaId);
+                
+                Success("Registro incluído com sucesso");
+            }
+            catch (App_DominioException ex)
+            {
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error(ex.Result.MessageBase); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
+                Error(ex.Message); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return result;
+        }
+
+        public ActionResult ListEsteira(int? index, int? pageSize = 50, int? propostaId = null)
+        {
+            Factory<EsteiraViewModel, ApplicationContext> facade = new Factory<EsteiraViewModel, ApplicationContext>();
+            IEnumerable<EsteiraViewModel> result = facade.List(new AprovarEtapaBI(), propostaId);
+
+            ViewBag.propostaId = propostaId.ToString();
+            return View("_Esteira", result);
+        }
+        #endregion
     }
 }

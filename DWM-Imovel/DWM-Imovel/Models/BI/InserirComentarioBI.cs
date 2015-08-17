@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using App_Dominio.Contratos;
 using App_Dominio.Entidades;
 using App_Dominio.Component;
 using DWM.Models.Repositories;
 using DWM.Models.Entidades;
-using App_Dominio.Enumeracoes;
-using App_Dominio.Models;
-using System.IO;
-using System.Web;
 using DWM.Models.Persistence;
+using System.Web.Mvc;
 
 namespace DWM.Models.BI
 {
     public class InserirComentarioBI : DWMContext<ApplicationContext>, IProcess<EsteiraComentarioViewModel, ApplicationContext>
     {
-                #region Constructor
+        #region Constructor
         public InserirComentarioBI() { }
 
         public InserirComentarioBI(ApplicationContext _db, SecurityContext _seguranca_db)
@@ -46,5 +42,10 @@ namespace DWM.Models.BI
             return list.Bind(0, 100, param);
         }
 
+        public IPagedList PagedList(int? index, int pageSize = 50, params object[] param)
+        {
+            ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
+            return list.getPagedList(index, pageSize, param);
+        }
     }
 }

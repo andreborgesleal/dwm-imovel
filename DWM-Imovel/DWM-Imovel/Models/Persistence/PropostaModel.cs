@@ -24,14 +24,19 @@ namespace DWM.Models.Persistence
         #endregion
 
 
+        #region Métodos da classe CrudModel
         public override PropostaViewModel BeforeInsert(PropostaViewModel value)
         {
+            Usuario u = seguranca_db.Usuarios.Find(sessaoCorrente.usuarioId);
+
+            value.usuarioId = sessaoCorrente.usuarioId;
+            value.nome = u.nome;
+            value.login = u.login;
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
             return value;
         }
 
-        #region Métodos da classe CrudModel
         public override PropostaViewModel AfterInsert(PropostaViewModel value)
         {
 
@@ -51,9 +56,9 @@ namespace DWM.Models.Persistence
                 dt_ocorrencia = value.dt_proposta,
                 dt_manifestacao = null,
                 observacao = "Inclusão de proposta. Cliente: " + db.Clientes.Find(value.clienteId).nome,
-                usuarioId = value.usuarioId,
-                nome = value.nome,
-                login = value.login,
+                //usuarioId = value.usuarioId,
+                //nome = value.nome,
+                //login = value.login,
                 uri = "Propostas/Create"
             };
 
@@ -69,9 +74,6 @@ namespace DWM.Models.Persistence
 
         public override Proposta MapToEntity(PropostaViewModel value)
         {
-            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
-            Usuario u = security._getUsuarioById(value.usuarioId, seguranca_db);
-
             Proposta proposta = new Proposta()
             {
                 propostaId = value.propostaId,
@@ -88,8 +90,8 @@ namespace DWM.Models.Persistence
                 corretor1Id = value.corretor1Id,
                 corretor2Id = value.corretor2Id,
                 usuarioId = value.usuarioId,
-                nome = u.nome,
-                login = u.login,
+                nome = value.nome,
+                login = value.login,
                 situacao = value.situacao,
             };
 
@@ -146,22 +148,6 @@ namespace DWM.Models.Persistence
                                nome = est.nome,
                                login = est.login,
                            }).ToList(),
-                Comentarios = (from com in db.Comentarios
-                               join est in db.Esteiras on com.esteiraId equals est.esteiraId
-                               join eta in db.Etapas on est.etapaId equals eta.etapaId
-                               where est.propostaId == entity.propostaId
-                               orderby com.dt_comentario descending
-                               select new EsteiraComentarioViewModel()
-                               {
-                                   esteiraId = est.esteiraId,
-                                   descricao_etapa = eta.descricao,
-                                   ind_aprovacao = est.ind_aprovacao,
-                                   dt_comentario = com.dt_comentario,
-                                   observacao = com.observacao,
-                                   usuarioId = com.usuarioId,
-                                   nome = com.nome,
-                                   login = com.login
-                               }).ToList(),
                 Arquivos = (from arq in db.Arquivos
                             join est in db.Esteiras on arq.esteiraId equals est.esteiraId
                             where est.propostaId == entity.propostaId
@@ -173,6 +159,10 @@ namespace DWM.Models.Persistence
                             }).ToList(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
+
+            ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
+            propostaViewModel.Comentarios = list.getPagedList(0, 4, propostaViewModel.Esteira.FirstOrDefault().esteiraId );
+
 
             if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_manifestacao == null)
             {

@@ -133,7 +133,6 @@ namespace DWM.Models.Persistence
         #endregion
     }
 
-
     public class ListViewComentario : ListViewModel<EsteiraComentarioViewModel, ApplicationContext>
     {
         #region Constructor
@@ -175,8 +174,19 @@ namespace DWM.Models.Persistence
 
         public override Repository getRepository(Object id)
         {
-            return new PropostaModel().getObject((PropostaViewModel)id);
+            return new EsteiraComentarioModel().getObject((EsteiraComentarioViewModel)id);
         }
+
+        public override string action()
+        {
+            return "../Workflow/ListComentarios";
+        }
+
+        public override string DivId()
+        {
+            return "comentarios";
+        }
+
         #endregion
     }
 
