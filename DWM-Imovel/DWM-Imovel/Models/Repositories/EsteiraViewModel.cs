@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using App_Dominio.Component;
 using System;
 using System.Collections.Generic;
+using App_Dominio.Models;
 
 namespace DWM.Models.Repositories
 {
@@ -45,7 +46,24 @@ namespace DWM.Models.Repositories
         public string login { get; set; }
 
         [DisplayName("Tempo")]
-        public Nullable<int> tempo_etapa { get; set; }
+        public string tempo_etapa {
+            get
+            {
+                string value = "há ";
+                TimeSpan ts = Funcoes.Brasilia().Subtract(dt_ocorrencia);
+                if (ts.Days > 0)
+                    value += ts.Days.ToString() + " dias";
+                else if (ts.Hours > 0)
+                    value += ts.Hours.ToString() + " horas";
+                else if (ts.Minutes > 0)
+                    value += ts.Minutes.ToString() + " min";
+                else
+                    value += ts.Seconds.ToString() + " seg";
+
+                return value;
+            }
+        }
+
 
         public virtual PropostaViewModel proposta { get; set; }
 

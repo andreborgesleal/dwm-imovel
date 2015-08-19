@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="2069747836" Data="18/08/2015 22:01:28">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="QDF2ZkuACgv1lymLjFZwbAGTAVhH-tw4GaefI5Fop7HPpg9PFSrYu48JX4B96egnDAOxLyhRd6ner_EHJuNbalpWhrro4iHohhnpdMN85V01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="760576263" Data="18/08/2015 22:01:28">
+    <Sessao>nxmycd1s1spw2myiimqkvphx</Sessao>
+    <IP>::1</IP>
+    <HostName>DANIEL-15R\Daniel</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="QDF2ZkuACgv1lymLjFZwbAGTAVhH-tw4GaefI5Fop7HPpg9PFSrYu48JX4B96egnDAOxLyhRd6ner_EHJuNbalpWhrro4iHohhnpdMN85V01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+</LOG>

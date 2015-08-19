@@ -106,6 +106,15 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
+            if (value.dt_ocorrencia < db.Esteiras.Where(info => info.propostaId == value.propostaId).LastOrDefault().dt_ocorrencia)
+            {
+                value.mensagem.Code = 5;
+                value.mensagem.Message = MensagemPadrao.Message(5, "Data da Ocorrência").ToString();
+                value.mensagem.MessageBase = "A data de ocorrência da etapa corrente não pode ser anterior a data da última ocorrência.";
+                value.mensagem.MessageType = MsgType.WARNING;
+                return value.mensagem;
+            }
+
             return value.mensagem;
         }
         #endregion
