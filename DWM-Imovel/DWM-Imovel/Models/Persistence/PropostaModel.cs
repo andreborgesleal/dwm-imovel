@@ -383,6 +383,7 @@ namespace DWM.Models.Persistence
                     join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
                     join est in db.Esteiras on p.propostaId equals est.propostaId 
                     join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                     orderby p.dt_proposta, c.nome
                     select new PropostaViewModel
                     {
@@ -410,6 +411,7 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
