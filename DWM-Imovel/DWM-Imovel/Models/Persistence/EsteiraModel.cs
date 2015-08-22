@@ -8,6 +8,7 @@ using App_Dominio.Enumeracoes;
 using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
+using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
 {
@@ -106,6 +107,36 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
+            if (operation == Crud.ALTERAR)
+            {
+                if (value.observacao == null || value.observacao.Trim() == "")
+                {
+                    value.mensagem.Code = 5;
+                    value.mensagem.Message = MensagemPadrao.Message(5, "Observação").ToString();
+                    value.mensagem.MessageBase = "Observação deve ser informada";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+
+                if (value.observacao.Length < 10)
+                {
+                    value.mensagem.Code = 5;
+                    value.mensagem.Message = MensagemPadrao.Message(4, "Observação", "Este atributo deve possuir no mínimo 10 caracteres").ToString();
+                    value.mensagem.MessageBase = "Observação deve ser informada e deve possuir mais de 10 caracteres";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+            }
+
+            if (value.dt_ocorrencia > DateTime.Today || db.Esteiras.Where(info => info.propostaId == value.propostaId).Max(m => m.dt_ocorrencia) > value.dt_ocorrencia)
+            {
+                value.mensagem.Code = 55;
+                value.mensagem.Message = MensagemPadrao.Message(55).ToString();
+                value.mensagem.MessageBase = "Data da ocorrência inválida";
+                value.mensagem.MessageType = MsgType.WARNING;
+                return value.mensagem;
+            }
+
             return value.mensagem;
         }
         #endregion
@@ -126,29 +157,53 @@ namespace DWM.Models.Persistence
         {
             int _propostaId = int.Parse(param[0].ToString());
 
-            return (from est in db.Esteiras
-                    where est.propostaId == _propostaId
-                    orderby est.etapaId descending
-                    select new EsteiraViewModel()
-                    {
-                        esteiraId = est.esteiraId,
-                        descricao_etapa = db.Etapas.Where(info => info.etapaId == est.etapaId).FirstOrDefault().descricao,
-                        propostaId = est.propostaId,
-                        etapaId = est.etapaId,
-                        dt_evento = est.dt_evento,
-                        dt_ocorrencia = est.dt_ocorrencia,
-                        dt_manifestacao = est.dt_manifestacao,
-                        ind_aprovacao = est.ind_aprovacao,
-                        observacao = est.observacao,
-                        usuarioId = est.usuarioId,
-                        nome = est.nome,
-                        login = est.login,
-                        PageSize = pageSize,
-                        TotalCount = (from est1 in db.Esteiras
-                                      where est1.propostaId == _propostaId
-                                      orderby est1.etapaId descending
-                                      select est1.esteiraId).Count()
-                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+            //if (db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count() == 0)
+            //{
+            //    ViewBag.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == null).Count()) * 100.0;
+            //    propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+            //}
+            //else
+            //{
+            //    propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count()) * 100.0;
+            //    propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+            //}
+
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            IEnumerable<Grupo> grupos = security._getUsuarioGrupo(sessaoCorrente.usuarioId);
+
+            IEnumerable<EsteiraViewModel> result = (from est in db.Esteiras
+                                                    where est.propostaId == _propostaId
+                                                    orderby est.esteiraId descending
+                                                    select new EsteiraViewModel()
+                                                    {
+                                                        esteiraId = est.esteiraId,
+                                                        descricao_etapa = db.Etapas.Where(info => info.etapaId == est.etapaId).FirstOrDefault().descricao,
+                                                        propostaId = est.propostaId,
+                                                        etapaId = est.etapaId,
+                                                        dt_evento = est.dt_evento,
+                                                        dt_ocorrencia = est.dt_ocorrencia,
+                                                        dt_manifestacao = est.dt_manifestacao,
+                                                        ind_aprovacao = est.ind_aprovacao,
+                                                        observacao = est.observacao,
+                                                        usuarioId = est.usuarioId,
+                                                        nome = est.nome,
+                                                        login = est.login,
+                                                        PageSize = pageSize,
+                                                        TotalCount = (from est1 in db.Esteiras
+                                                                      where est1.propostaId == _propostaId
+                                                                      orderby est1.esteiraId descending
+                                                                      select est1.esteiraId).Count()
+                                                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+
+
+            result.ElementAt(0).canApprove = (from ep in db.EtapaPerfils.AsEnumerable()
+                                              join grp in grupos on ep.grupoId equals grp.grupoId
+                                              where ep.etapaId == result.ElementAt(0).etapaId
+                                              select ep.grupoId).Any();
+
+            return result;
+
         }
 
         public override Repository getRepository(Object id)

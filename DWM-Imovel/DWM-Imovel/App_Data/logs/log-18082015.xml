@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1612048271" Data="18/08/2015 20:52:03">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",observacao_etapa="O desmembramento da comissão está incorreto.",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="1757485655" Data="18/08/2015 20:53:26">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",observacao_etapa="teste",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="161620541" Data="18/08/2015 20:54:08">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",observacao_etapa="teste",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="149242512" Data="18/08/2015 21:03:56">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="teste",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="1879154061" Data="18/08/2015 21:17:32">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="Desmembramento da comissão incorreto",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="369864932" Data="18/08/2015 21:32:11">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="teste",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="1826838270" Data="18/08/2015 21:32:22">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="teste",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="1383484258" Data="18/08/2015 22:01:12">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="816813107" Data="18/08/2015 22:01:16">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="1072205233" Data="18/08/2015 22:01:19">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="598149377" Data="18/08/2015 22:04:33">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="736495828" Data="18/08/2015 22:05:57">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Ocorreu um erro na aprovação da etapa</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+  <LOG ID="35217447" Data="18/08/2015 22:19:19">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Valor do campo obrigatório: Observação</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="426968855" Data="18/08/2015 22:19:40">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Valor do campo obrigatório: Observação</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="825810945" Data="18/08/2015 22:36:37">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Valor do campo obrigatório: Observação</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="1670629851" Data="18/08/2015 22:37:37">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Valor do campo obrigatório: Observação</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
+  </LOG>
+  <LOG ID="1171494971" Data="18/08/2015 22:38:43">
+    <Sessao>nzudv001v4eesilmgcucuhqm</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Valor do campo obrigatório: Observação</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="",dt_ocorrencia="18/08/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 46
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+</LOG>

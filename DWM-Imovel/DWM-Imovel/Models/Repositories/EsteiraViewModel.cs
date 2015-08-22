@@ -47,6 +47,8 @@ namespace DWM.Models.Repositories
         [DisplayName("Tempo")]
         public Nullable<int> tempo_etapa { get; set; }
 
+        public bool canApprove { get; set; }
+
         public virtual PropostaViewModel proposta { get; set; }
 
     }

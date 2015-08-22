@@ -194,6 +194,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
     <Compile Include="Models\BI\InserirComentarioBI.cs" />
+    <Compile Include="Models\BI\RecusarEtapaBI.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
     <Compile Include="Models\Entidades\Cliente.cs" />
     <Compile Include="Models\Entidades\Corretor.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\Entidades\EsteiraComentario.cs" />
     <Compile Include="Models\Entidades\EsteiraContabilizacao.cs" />
     <Compile Include="Models\Entidades\Etapa.cs" />
+    <Compile Include="Models\Entidades\EtapaPerfil.cs" />
     <Compile Include="Models\Entidades\Parametro.cs" />
     <Compile Include="Models\Entidades\Proposta.cs" />
     <Compile Include="Models\Enumeracoes\BindDropDownList.cs" />

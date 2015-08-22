@@ -11,6 +11,7 @@ using App_Dominio.Pattern;
 using App_Dominio.Enumeracoes;
 using DWM.Models.BI;
 using App_Dominio.Models;
+using App_Dominio.Contratos;
 
 
 namespace DWM.Controllers
@@ -88,15 +89,14 @@ namespace DWM.Controllers
         #endregion
 
         #region Aprovar etapa
-        public ActionResult Aprovar(int propostaId, string dt_ocorrencia, string observacao_etapa, int? esteiraId)
+        public ActionResult Aprovar(int propostaId, string dt_ocorrencia, string observacao_etapa, int? esteiraId, string btnAprovarRecusar)
         {
-            IEnumerable<EsteiraViewModel> result = AprovarEtapa(propostaId, dt_ocorrencia, observacao_etapa);
+            IEnumerable<EsteiraViewModel> result = AprovarEtapa(propostaId, dt_ocorrencia, observacao_etapa, btnAprovarRecusar);
             ViewBag.propostaId = propostaId.ToString();
-
             return View("_Esteira", result);
         }
 
-        private IEnumerable<EsteiraViewModel> AprovarEtapa(int propostaId, string dt_ocorrencia, string observacao_etapa)
+        private IEnumerable<EsteiraViewModel> AprovarEtapa(int propostaId, string dt_ocorrencia, string observacao_etapa, string btnAprovarRecusar)
         {
             IEnumerable<EsteiraViewModel> result = new List<EsteiraViewModel>();
             try
@@ -110,17 +110,34 @@ namespace DWM.Controllers
                 value.observacao = observacao_etapa;
                 Factory<EsteiraViewModel, ApplicationContext> facade = new Factory<EsteiraViewModel, ApplicationContext>();
                 value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
-                result = facade.Execute(new AprovarEtapaBI(), value, propostaId);
+                result = facade.Execute(getProcess(btnAprovarRecusar), value, propostaId);
+
+                if (facade.Mensagem.Code > 0)
+                    throw new App_DominioException(facade.Mensagem);
                 
                 Success("Registro incluído com sucesso");
             }
             catch (App_DominioException ex)
             {
+                ViewBag.observacao = observacao_etapa;
+                if (dt_ocorrencia != null)
+                    ViewBag.dt_ocorrencia = Funcoes.StringToDate(dt_ocorrencia).Value;
+                else
+                    ViewBag.dt_ocorrencia = DateTime.Today;
+                ViewBag.propostaId = propostaId.ToString();
+                
                 ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
                 Error(ex.Result.MessageBase); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
             }
             catch (Exception ex)
             {
+                ViewBag.observacao = observacao_etapa;
+                if (dt_ocorrencia != null)
+                    ViewBag.dt_ocorrencia = Funcoes.StringToDate(dt_ocorrencia).Value;
+                else
+                    ViewBag.dt_ocorrencia = DateTime.Today;
+                ViewBag.propostaId = propostaId.ToString();
+
                 App_DominioException.saveError(ex, GetType().FullName);
                 ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
                 Error(ex.Message); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
@@ -128,6 +145,12 @@ namespace DWM.Controllers
 
             return result;
         }
+
+        private IProcess<EsteiraViewModel, ApplicationContext> getProcess(string btnAprovarRecusar)
+        {
+            return btnAprovarRecusar == "approve" ? new AprovarEtapaBI() : new RecusarEtapaBI();
+        }
+
 
         public ActionResult ListEsteira(int? index, int? pageSize = 50, int? propostaId = null)
         {

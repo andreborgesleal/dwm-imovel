@@ -10,6 +10,7 @@ using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
 using App_Dominio.Security;
+using App_Dominio.Repositories;
 
 namespace DWM.Models.Persistence
 {
@@ -100,6 +101,10 @@ namespace DWM.Models.Persistence
 
         public override PropostaViewModel MapToRepository(Proposta entity)
         {
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            IEnumerable<GrupoRepository> grupos = security._getGrupoUsuario(sessaoCorrente.usuarioId).AsEnumerable();
+
             PropostaViewModel propostaViewModel = new PropostaViewModel()
             {
                 propostaId = entity.propostaId,
@@ -132,7 +137,7 @@ namespace DWM.Models.Persistence
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 Esteira = (from est in db.Esteiras
                            where est.propostaId == entity.propostaId
-                           orderby est.etapaId descending
+                           orderby est.esteiraId descending
                            select new EsteiraViewModel()
                            {
                                esteiraId = est.esteiraId,
@@ -146,7 +151,7 @@ namespace DWM.Models.Persistence
                                observacao = est.observacao,
                                usuarioId = est.usuarioId,
                                nome = est.nome,
-                               login = est.login,
+                               login = est.login
                            }).ToList(),
                 Arquivos = (from arq in db.Arquivos
                             join est in db.Esteiras on arq.esteiraId equals est.esteiraId
@@ -159,6 +164,11 @@ namespace DWM.Models.Persistence
                             }).ToList(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
+
+            propostaViewModel.Esteira.ElementAt(0).canApprove = (from ep in db.EtapaPerfils.AsEnumerable()
+                                                                 join grp in grupos on ep.grupoId equals grp.grupoId
+                                                                 where ep.etapaId == propostaViewModel.etapaId
+                                                                 select ep.grupoId).Any();
 
             ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
             propostaViewModel.Comentarios = list.getPagedList(0, 4, propostaViewModel.Esteira.FirstOrDefault().esteiraId );

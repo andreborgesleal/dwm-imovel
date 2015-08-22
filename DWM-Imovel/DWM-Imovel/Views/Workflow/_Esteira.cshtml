@@ -50,26 +50,31 @@
                                                 <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12 no-padding">
-                                                @using (Ajax.BeginForm("Aprovar", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "esteira" }, new { @class = "form", @name = "form1", @id = "form1" }))
-                                                {
-                                                    @Html.Hidden("propostaId", (string)ViewBag.propostaId)
-                                                    <div class="form-group">
-                                                        <div class="col-md-9">
-                                                            @Html.TextBox("observacao_etapa", "", new { @class = "form-control", @placeholder = "Observação", @maxlength = "4000" })
+                                        @if (@est.canApprove)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-12 no-padding">
+                                                    @using (Ajax.BeginForm("Aprovar", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "esteira" }, new { @class = "form", @name = "form1", @id = "form1" }))
+                                                    {
+                                                        @Html.Hidden("propostaId", (string)ViewBag.propostaId)
+                                                        @Html.Hidden("btnAprovarRecusar", "")
+                                                        string obs = (string)ViewBag.observacao;
+                                                        <div class="form-group">
+                                                            <div class="col-md-9">
+                                                                @Html.TextBox("observacao_etapa", obs, new { @class = "form-control", @placeholder = "Observação", @maxlength = "4000" })
+                                                            </div>
+                                                            @Html.Editor("_dt_ocorrencia", "DATE", new { identificador = "dt_ocorrencia", value = ViewBag.dt_ocorrencia != null ? ViewBag.dt_ocorrencia : DateTime.Today, readOnly = "false" })
                                                         </div>
-                                                        @Html.Editor("_dt_ocorrencia", "DATE", new { identificador = "dt_ocorrencia", value = DateTime.Today, readOnly = "false" })
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-md-12">
-                                                            <button type="submit" class="btn btn-success">Aprovar</button>
-                                                            <button type="submit" class="btn btn-danger">Reprovar</button>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <button type="submit" class="btn btn-success" id="_btnAprovarRecusar" value="approve" onclick="$('#btnAprovarRecusar').val('approve');">Aprovar</button>
+                                                                <button type="submit" class="btn btn-danger" id="_btnAprovarRecusar" value="refuse" onclick="$('#btnAprovarRecusar').val('refuse');">Recusar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                }
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
                                     </td>
                                 }
                                 else
