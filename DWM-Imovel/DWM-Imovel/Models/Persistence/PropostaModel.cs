@@ -114,9 +114,9 @@ namespace DWM.Models.Persistence
                 login_coordenador = db.Empreendimentos.Find(entity.empreendimentoId).login,
                 clienteId = entity.clienteId,
                 nome_cliente = db.Clientes.Find(entity.clienteId).nome,
-                cpf_cnpj = Funcoes.FormataCPFCNPJ(db.Clientes.Find(entity.clienteId).cpf_cnpj),
-                fone1 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone1),
-                fone2 = Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone2),
+                cpf_cnpj = db.Clientes.Find(entity.clienteId).cpf_cnpj != null || db.Clientes.Find(entity.clienteId).cpf_cnpj == ""  ? Funcoes.FormataCPFCNPJ(db.Clientes.Find(entity.clienteId).cpf_cnpj) : "Não possui",
+                fone1 = db.Clientes.Find(entity.clienteId).fone1 != null || db.Clientes.Find(entity.clienteId).fone1 == "" ? Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone1) : "Não possui",
+                fone2 = db.Clientes.Find(entity.clienteId).fone2 != null || db.Clientes.Find(entity.clienteId).fone2 == "" ? Funcoes.FormataTelefone(db.Clientes.Find(entity.clienteId).fone2) : "Não possui",
                 dt_proposta = entity.dt_proposta,
                 unidade = entity.unidade,
                 torre = entity.torre,
@@ -128,7 +128,7 @@ namespace DWM.Models.Persistence
                 operacaoId = entity.operacaoId,
                 corretor1Id = entity.corretor1Id,
                 nome_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).nome : "",
-                fone_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).fone1 : "",
+                fone_corretor1 = entity.corretor1Id.HasValue ? db.Corretores.Find(entity.corretor1Id).fone1 : "Não possui",
                 usuarioId = entity.usuarioId,
                 nome = entity.nome,
                 login = entity.login,
@@ -393,6 +393,7 @@ namespace DWM.Models.Persistence
                     join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
                     join est in db.Esteiras on p.propostaId equals est.propostaId 
                     join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                     orderby p.dt_proposta, c.nome
                     select new PropostaViewModel
                     {
@@ -420,6 +421,7 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }

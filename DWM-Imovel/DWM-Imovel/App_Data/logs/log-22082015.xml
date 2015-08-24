@@ -952,4 +952,94 @@
    em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
    em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 111</StackTrace>
   </LOG>
+  <LOG ID="1610107120" Data="22/08/2015 16:09:09">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="74lCYCSsU_rmoQHaCcawEagAX-tzSOq4lXcDWlnnenINIc8UA3esGElRzpow332XqS8LIwt35cec7Q9PBXPknMo0NRre2QMYTHPLIZrAlN41",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="2029263157" Data="22/08/2015 16:09:09">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="74lCYCSsU_rmoQHaCcawEagAX-tzSOq4lXcDWlnnenINIc8UA3esGElRzpow332XqS8LIwt35cec7Q9PBXPknMo0NRre2QMYTHPLIZrAlN41",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1261929376" Data="22/08/2015 16:09:32">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="7UDggZ8OL3H_JKHzPsSV8i8dWlV3P5yaEzGIQInzef8Cuyg1rHq3_tQJWJurMQRt92TUv6qad663N5AfXDmLjleEeeeNyoeg9dCcbXQvKFs1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1681085413" Data="22/08/2015 16:09:32">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="7UDggZ8OL3H_JKHzPsSV8i8dWlV3P5yaEzGIQInzef8Cuyg1rHq3_tQJWJurMQRt92TUv6qad663N5AfXDmLjleEeeeNyoeg9dCcbXQvKFs1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="554834044" Data="22/08/2015 16:09:39">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="jPrP2dp_Z5xUJizUZ63Dx2mdnLjL2SyTg-dbpPu79M9NHbVYLM4CtmmE0T7Pd6n6mGoz_ar4U0Gt3x0XdOS4P41nKGuvxq87jIrK3d0Mwec1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1325361972" Data="22/08/2015 16:09:39">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="jPrP2dp_Z5xUJizUZ63Dx2mdnLjL2SyTg-dbpPu79M9NHbVYLM4CtmmE0T7Pd6n6mGoz_ar4U0Gt3x0XdOS4P41nKGuvxq87jIrK3d0Mwec1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1082035206" Data="22/08/2015 16:09:47">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="jPrP2dp_Z5xUJizUZ63Dx2mdnLjL2SyTg-dbpPu79M9NHbVYLM4CtmmE0T7Pd6n6mGoz_ar4U0Gt3x0XdOS4P41nKGuvxq87jIrK3d0Mwec1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="730663315" Data="22/08/2015 16:09:47">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="jPrP2dp_Z5xUJizUZ63Dx2mdnLjL2SyTg-dbpPu79M9NHbVYLM4CtmmE0T7Pd6n6mGoz_ar4U0Gt3x0XdOS4P41nKGuvxq87jIrK3d0Mwec1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="2119684394" Data="22/08/2015 16:09:56">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="1hNB_VoC5Vcb5ETJAOCQ70yNzYrnykww67vxETm4cLyuozjtssWtcEClRAmNgl39HsXIJzsoxYk_xKu2bhXlOqIxxkqCBX8nP8W3fCkeMY01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="742728675" Data="22/08/2015 16:09:56">
+    <Sessao>4wcdbauomfocqcyvxbnxvg10</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não há suporte para a palavra-chave: '.;initial catalog'.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="1hNB_VoC5Vcb5ETJAOCQ70yNzYrnykww67vxETm4cLyuozjtssWtcEClRAmNgl39HsXIJzsoxYk_xKu2bhXlOqIxxkqCBX8nP8W3fCkeMY01",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
 </LOG>

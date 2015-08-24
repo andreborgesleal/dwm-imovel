@@ -223,6 +223,7 @@
     <Compile Include="Models\Repositories\EsteiraContabilizacaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraViewModel.cs" />
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
+    <Compile Include="Models\Repositories\HomeViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -270,6 +271,7 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\animations.css" />
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\jquery.fileupload.css" />
     <Content Include="Content\css\jquery.typeahead.css" />
     <Content Include="Content\css\signin.css" />
     <Content Include="Content\css\simple-sidebar.css" />

@@ -71,14 +71,46 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <div class="row">
         @* Dados da Proposta *@
         <div class="col-md-3">
-            <div id="dados_proposta">
-                @Html.Partial("_DadosProposta", Model)
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dados da Proposta</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div>
+                                <h4>
+                                    Data
+                                    <span class="label label-info col-md-offset-8">ID: @Model.propostaId</span>
+                                </h4>
+                                <p>@Model.dt_proposta.ToString("dd/MM/yyyy")</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <p><h4>Gerente</h4></p>
+                            <p>@Model.nome</p>
+                            <p>@Model.login</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p><h4>Corretor</h4></p>
+                            <p>@Model.nome_corretor1</p>
+                            <p>Email - @Model.fone_corretor1</p>
+                            <p></p>
+                        </li>
+                        <li class="list-group-item">
+                            <div id="dados_proposta">
+                                @Html.Partial("_DadosProposta", Model.Arquivos)
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <p><h2><b>Comissionamento</b></h2></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
