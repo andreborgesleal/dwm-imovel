@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
+    <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
     <Compile Include="Models\BI\InserirComentarioBI.cs" />
     <Compile Include="Models\BI\RecusarEtapaBI.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\Persistence\CorretorModel.cs" />
     <Compile Include="Models\Persistence\EmpreendimentoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraComentarioModel.cs" />
+    <Compile Include="Models\Persistence\EsteiraContabilizacaoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraModel.cs" />
     <Compile Include="Models\Persistence\PropostaModel.cs" />
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
@@ -1209,9 +1211,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Home\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1223,7 +1222,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -1252,7 +1250,6 @@
     <Content Include="Views\Home\Default.cshtml" />
     <Content Include="Views\Shared\_LayoutPartial.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
-    <Content Include="Views\Shared\_LayoutDefault.cshtml" />
     <Content Include="Views\Shared\_Filter.cshtml" />
     <Content Include="Views\Shared\_defaultListButtons.cshtml" />
     <Content Include="Views\Shared\_AcessoNegado.cshtml" />

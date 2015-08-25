@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<DWM.Models.Repositories.EsteiraContabilizacaoViewModel>
-
+@{
+    Layout = null;
+}
+@Html.Partial("_alerts")
 <p><h4>Arquivos</h4></p>
 <p>
     <ul class=list-unstyled>
         @foreach (DWM.Models.Repositories.EsteiraContabilizacaoViewModel arq in Model)
         {
-            <li>@Html.ActionLink(arq.arquivo, "#")</li>
+            <li data-toggle="modal" data-target="#myModal1" style="cursor: pointer" class="text-primary" onclick="DisplayFile('@arq.arquivo', '@arq.nome_original', '@arq.extensao')">@arq.nome_original</li>
         }
     </ul>
 </p>
@@ -15,6 +18,8 @@
         <div class="form-group">
             <input id="fileupload" type="file" name="files[]" multiple>
             @Html.Hidden("fileProposta")
+            @Html.Hidden("nome_original")
+            @Html.Hidden("esteiraId", (string)ViewBag.esteiraId)
         </div>
         <div class="file_name" id="file_name1"></div>
         <div class="progress" id="progress1">
@@ -22,7 +27,7 @@
                 <span class="sr-only">0% complete</span>
             </div>
         </div>
-        <button class="btn btn-success" id="btnSalvarArq">Salvar</button>
+        <button class="btn btn-success" id="btnSalvarArq" onclick="$('#nome_original').val($('.modal-title').html())">Salvar</button>
     }
 </p>
 
@@ -54,3 +59,31 @@
 </script>
 
 
+<script>
+    $(function () {
+
+        $('#form2').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        $('#dados_proposta').html(result);
+                    }
+                });
+            }
+            return false;
+        });
+    });
+
+    function DisplayFile(arquivo, nome_original, extensao) {
+        if (extensao == 'jpeg' || extensao == 'jpg' || extensao == 'png' || extensao == 'bmp') {
+            $('#myModal1-body').html('<img src="../Users_Data/' + arquivo + '" class="img-responsive" alt="Responsive image" style="height: 600px">');
+        }
+        else if (extensao == 'pdf') {
+            $('#myModal1-body').html('<iframe style="height: 600px; width: 100%" src="../Users_Data/' + arquivo + '"></iframe>');
+        }
+        $('.modal-title').html(nome_original);
+    }
+</script>

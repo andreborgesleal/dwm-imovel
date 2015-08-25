@@ -15,5 +15,8 @@ namespace DWM.Models.Entidades
         [Key, Column(Order = 1)]
         [DisplayName("Arquivo")]
         public string arquivo { get; set; }
+
+        [DisplayName("Nome_Original")]
+        public string nome_original { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using App_Dominio.App_Start;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using App_Dominio.Contratos;
@@ -9,7 +8,6 @@ using App_Dominio.Enumeracoes;
 using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
-using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
 {

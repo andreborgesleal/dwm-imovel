@@ -160,7 +160,8 @@ namespace DWM.Models.Persistence
                             select new EsteiraContabilizacaoViewModel()
                             {
                                 esteiraId = est.esteiraId,
-                                arquivo = arq.arquivo
+                                arquivo = arq.arquivo,
+                                nome_original = arq.nome_original
                             }).ToList(),
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
