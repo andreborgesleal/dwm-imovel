@@ -205,6 +205,49 @@ namespace DWM.Controllers
             return result;
         }
 
+        // Exclui arquivo
+        public ActionResult Erase(int esteiraId, string fileProposta, string nome_original)
+        {
+            IEnumerable<EsteiraContabilizacaoViewModel> result = EraseEsteiraContabilizacao(esteiraId, fileProposta, nome_original);
+            ViewBag.esteiraId = esteiraId.ToString();
+            return View("_DadosProposta", result);
+        }
+
+        private IEnumerable<EsteiraContabilizacaoViewModel> EraseEsteiraContabilizacao(int esteiraId, string fileProposta, string nome_original)
+        {
+            IEnumerable<EsteiraContabilizacaoViewModel> result = new List<EsteiraContabilizacaoViewModel>();
+            try
+            {
+                EsteiraContabilizacaoViewModel value = new EsteiraContabilizacaoViewModel();
+                Factory<EsteiraContabilizacaoViewModel, ApplicationContext> facade = new Factory<EsteiraContabilizacaoViewModel, ApplicationContext>();
+                value.esteiraId = esteiraId;
+                value.arquivo = fileProposta;
+                value.nome_original = nome_original;
+                value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
+                result = facade.Execute(new EsteiraContabilizacaoDeleteBI(), value, esteiraId);
+
+                if (facade.Mensagem.Code > 0)
+                    throw new App_DominioException(facade.Mensagem);
+
+                Success("Arquivo excluído com sucesso");
+            }
+            catch (App_DominioException ex)
+            {
+                ViewBag.esteiraId = esteiraId.ToString();
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error(ex.Result.MessageBase); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                ViewBag.esteiraId = esteiraId.ToString();
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
+                Error(ex.Message); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return result;
+        }
+
         public ActionResult ListArquivos(int? index, int? pageSize = 50, int? esteiraId = null)
         {
             Factory<EsteiraContabilizacaoViewModel, ApplicationContext> facade = new Factory<EsteiraContabilizacaoViewModel, ApplicationContext>();
@@ -215,5 +258,59 @@ namespace DWM.Controllers
         }
 
         #endregion
+
+        #region Comissão
+        public ActionResult Comissao(int esteiraId, int grupoId, string nome_grupo, string valor)
+        {
+            IEnumerable<EsteiraComissaoViewModel> result = EsteiraComissao(esteiraId, grupoId, nome_grupo, valor);
+            ViewBag.esteiraId = esteiraId.ToString();
+            return View("_Comissao", result);
+        }
+
+        private IEnumerable<EsteiraComissaoViewModel> EsteiraComissao(int esteiraId, int grupoId, string nome_grupo, string valor)
+        {
+            IEnumerable<EsteiraComissaoViewModel> result = new List<EsteiraComissaoViewModel>();
+            try
+            {
+                EsteiraComissaoViewModel value = new EsteiraComissaoViewModel();
+                value.esteiraId = esteiraId;
+                value.grupoId = grupoId;
+                value.nome_grupo = nome_grupo;
+                value.valor = Convert.ToDecimal(valor);
+
+                Factory<EsteiraComissaoViewModel, ApplicationContext> facade = new Factory<EsteiraComissaoViewModel, ApplicationContext>();
+                value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
+                result = facade.Execute(new EsteiraComissaoBI(), value, esteiraId);
+
+                if (facade.Mensagem.Code > 0)
+                    throw new App_DominioException(facade.Mensagem);
+
+                Success("Registro alterado com sucesso");
+            }
+            catch (App_DominioException ex)
+            {
+                ViewBag.esteiraId = esteiraId.ToString();
+                ViewBag.grupoId = grupoId.ToString();
+                ViewBag.nome_grupo = nome_grupo;
+                ViewBag.valor = valor;
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error(ex.Result.MessageBase); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                ViewBag.esteiraId = esteiraId.ToString();
+                ViewBag.grupoId = grupoId.ToString();
+                ViewBag.nome_grupo = nome_grupo;
+                ViewBag.valor = valor;
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
+                Error(ex.Message); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return result;
+        }
+        #endregion
+
+
     }
 }

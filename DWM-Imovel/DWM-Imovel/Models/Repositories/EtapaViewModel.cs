@@ -26,5 +26,9 @@ namespace DWM.Models.Repositories
 
         [DisplayName("Descricao")]
         public string descricao { get; set; }
+
+        [DisplayName("Ind Comissão")]
+        public string ind_comissao { get; set; }
+
     }
 }

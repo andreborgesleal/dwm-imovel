@@ -1,0 +1,85 @@
+﻿@model IEnumerable<DWM.Models.Repositories.EsteiraComissaoViewModel>
+@{
+    Layout = null;
+}
+@Html.Partial("_alerts")
+<p><h4>Comissão</h4></p>
+<p>
+    <ul class=list-unstyled>
+        @foreach (DWM.Models.Repositories.EsteiraComissaoViewModel com in Model)
+        {
+            <li>
+                <div class="row">
+                    <div class="col-md-10 text-primary">@com.nome_grupo</div>
+                    <div class="col-lg-offset-11"><span class="glyphicon glyphicon-edit dedo-indicador" aria-hidden="true" onclick="habilitaComissao('@com.esteiraId','@com.grupoId', '@com.nome_grupo', '@com.valor')"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-danger">@com.valor.ToString("R$ ###,###,##0.00")</h4>
+                    </div>
+                </div>
+                @if (com.nome != "")
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <small>@com.nome</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <small>@com.login</small>
+                        </div>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+</p>
+
+<p>
+    @using (Ajax.BeginForm("Comissao", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "comissao" }, new { @class = "form", @name = "form3", @id = "form3" }))
+    {
+        <div class="form-group" id="form-comissao" hidden>
+            <div class="col-md-12">
+                <label class="control-label" id="nomeGrupo"></label>
+                @Html.Editor("_valor", "", "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'valor')" } })
+            </div>
+            @Html.Hidden("esteiraId")
+            @Html.Hidden("grupoId")
+            @Html.Hidden("nome_grupo")
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success" id="_btnComissao">Salvar</button>
+            </div>
+        </div>
+    }
+</p>
+
+<script>
+    $(function () {
+
+        $('#form3').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        $('#comissao').html(result);
+                    }
+                });
+            }
+            return false;
+        });
+    });
+
+    function habilitaComissao(esteiraId, grupoId, nome_grupo, valor) {
+        $('#form-comissao').attr("hidden", false)
+        $('#esteiraId').val(esteiraId)
+        $('#grupoId').val(grupoId)
+        $('#nome_grupo').val(nome_grupo)
+        $('#nomeGrupo').html(nome_grupo)
+        $('#valor').val(valor)
+    }
+</script>

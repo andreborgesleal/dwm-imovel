@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1977526778" Data="30/08/2015 11:20:32">
+    <Sessao>cp3p45lngtzxgx5orqmirlic</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Sessão expirada. Faça um novo login</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/erase</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Entidades.DWMContext`1.Create(D _db, SecurityContext _seguranca_db) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\DWMContext.cs:linha 38
+   em DWM.Models.Persistence.ListViewEsteiraContabilizacao..ctor(ApplicationContext _db, SecurityContext _seguranca_db) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraContabilizacaoModel.cs:linha 197
+   em DWM.Models.BI.EsteiraContabilizacaoBI.List(Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraContabilizacaoBI.cs:linha 41
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
+   em DWM.Controllers.WorkflowController.EraseEsteiraContabilizacao(Int32 esteiraId, String fileProposta, String nome_original) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 227</StackTrace>
+  </LOG>
+</LOG>

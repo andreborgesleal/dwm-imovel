@@ -45,12 +45,16 @@
                                 {
                                     <td>
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <strong><p class="@cor">@est.descricao_etapa</p></strong>
-                                                
-                                                <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
+                                            <div class="col-md-9">
+                                                <p>
+                                                    <h4 class="@cor"><strong>@est.descricao_etapa</strong></h4>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-offset-10">
+                                                <span>@est.tempo_etapa</span>
                                             </div>
                                         </div>
+                                        <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
                                         @if (@est.canApprove)
                                         {
                                             <div class="row">
@@ -81,10 +85,16 @@
                                 else
                                 {
                                     <td>
-                                        <p>
-                                            <strong class="@cor">@est.descricao_etapa</strong>
-                                            <span class="col-md-offset-8">@est.tempo_etapa</span>
-                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <p>
+                                                    <h4 class="@cor"><strong>@est.descricao_etapa</strong></h4>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-offset-10">
+                                                <span>@est.tempo_etapa</span>
+                                            </div>
+                                        </div>
                                         <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
                                         <p><strong>@est.nome</strong></p>
                                         <p class="text-muted">@est.observacao</p>

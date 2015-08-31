@@ -389,3 +389,6 @@ a.list-group-item:focus {
   text-decoration: none;
   background-color: #a1a1a1;
 }
+.dedo-indicador {
+    cursor: pointer !important;
+}

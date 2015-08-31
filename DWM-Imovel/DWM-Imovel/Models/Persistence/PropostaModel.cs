@@ -174,6 +174,23 @@ namespace DWM.Models.Persistence
             ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
             propostaViewModel.Comentarios = list.getPagedList(0, 4, propostaViewModel.Esteira.FirstOrDefault().esteiraId );
 
+            if ((from com in db.EsteiraComissaos
+                 join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                 join pro in db.Propostas on est.propostaId equals pro.propostaId
+                 where pro.propostaId == entity.propostaId
+                 select com).Count() > 0)
+            {
+                ListViewEsteiraComissao listComissao = new ListViewEsteiraComissao(this.db, this.seguranca_db);
+                int? esteiraComissaoId = (from com in db.EsteiraComissaos
+                                          join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                                          join pro in db.Propostas on est.propostaId equals pro.propostaId
+                                          where pro.propostaId == entity.propostaId
+                                          select com).FirstOrDefault().esteiraId;
+
+                propostaViewModel.Comissao = listComissao.Bind(0, 50, esteiraComissaoId);
+            }
+            else
+                propostaViewModel.Comissao = new List<EsteiraComissaoViewModel>();
 
             if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_manifestacao == null)
             {

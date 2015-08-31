@@ -69,5 +69,6 @@ namespace DWM.Models.Repositories
 
         public virtual PropostaViewModel proposta { get; set; }
 
+        public virtual IEnumerable<EsteiraComissaoViewModel> Comissaos { get; set; }
     }
 }

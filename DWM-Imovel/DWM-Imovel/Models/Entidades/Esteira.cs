@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,6 +44,7 @@ namespace DWM.Models.Entidades
         public string login { get; set; }
 
         public virtual Proposta proposta { get; set; }
-        
+
+        public virtual ICollection<EsteiraComissao> Comissaos { get; set; }
     }
 }

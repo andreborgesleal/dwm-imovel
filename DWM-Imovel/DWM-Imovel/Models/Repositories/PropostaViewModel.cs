@@ -100,6 +100,8 @@ namespace DWM.Models.Repositories
 
         public IEnumerable<EsteiraContabilizacaoViewModel> Arquivos { get; set; }
 
+        public IEnumerable<EsteiraComissaoViewModel> Comissao { get; set; }
+
         public double percent_atual { get; set; }
 
         public double percent_restnte { get; set; }

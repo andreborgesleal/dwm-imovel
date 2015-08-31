@@ -7,8 +7,6 @@ using DWM.Models.Repositories;
 using DWM.Models.Entidades;
 using DWM.Models.Persistence;
 using System.Web.Mvc;
-using App_Dominio.Models;
-using System.Linq;
 
 namespace DWM.Models.BI
 {

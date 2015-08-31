@@ -19,5 +19,8 @@ namespace DWM.Models.Entidades
         public DbSet<EsteiraComentario> Comentarios { get; set; }
         public DbSet<EsteiraContabilizacao> Arquivos { get; set; }
         public DbSet<EtapaPerfil> EtapaPerfils { get; set; }
+        public DbSet<EsteiraComissao> EsteiraComissaos { get; set; }
+        public DbSet<ComissaoDefault> ComissaoDefaults { get; set; }
+
     }
 }

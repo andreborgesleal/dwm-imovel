@@ -26,5 +26,8 @@ namespace DWM.Models.Entidades
 
         [DisplayName("Descricao")]
         public string descricao { get; set; }
+
+        [DisplayName("Ind_Comissao")]
+        public string ind_comissao { get; set; }
     }
 }

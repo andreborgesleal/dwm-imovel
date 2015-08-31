@@ -193,15 +193,19 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
+    <Compile Include="Models\BI\EsteiraComissaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
+    <Compile Include="Models\BI\EsteiraContabilizacaoDeleteBI.cs" />
     <Compile Include="Models\BI\InserirComentarioBI.cs" />
     <Compile Include="Models\BI\RecusarEtapaBI.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
     <Compile Include="Models\Entidades\Cliente.cs" />
+    <Compile Include="Models\Entidades\ComissaoDefault.cs" />
     <Compile Include="Models\Entidades\Corretor.cs" />
     <Compile Include="Models\Entidades\Empreendimento.cs" />
     <Compile Include="Models\Entidades\Esteira.cs" />
     <Compile Include="Models\Entidades\EsteiraComentario.cs" />
+    <Compile Include="Models\Entidades\EsteiraComissao.cs" />
     <Compile Include="Models\Entidades\EsteiraContabilizacao.cs" />
     <Compile Include="Models\Entidades\Etapa.cs" />
     <Compile Include="Models\Entidades\EtapaPerfil.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="Models\Persistence\CorretorModel.cs" />
     <Compile Include="Models\Persistence\EmpreendimentoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraComentarioModel.cs" />
+    <Compile Include="Models\Persistence\EsteiraComissaoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraContabilizacaoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraModel.cs" />
     <Compile Include="Models\Persistence\PropostaModel.cs" />
@@ -222,6 +227,7 @@
     <Compile Include="Models\Repositories\CorretorViewModel.cs" />
     <Compile Include="Models\Repositories\EmpreendimentoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraComentarioViewModel.cs" />
+    <Compile Include="Models\Repositories\EsteiraComissaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraContabilizacaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraViewModel.cs" />
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
@@ -1306,6 +1312,7 @@
     <Content Include="Views\Workflow\_DadosProposta.cshtml" />
     <Content Include="Views\Workflow\_Comentarios.cshtml" />
     <Content Include="Views\Workflow\_Esteira.cshtml" />
+    <Content Include="Views\Workflow\_Comissao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />

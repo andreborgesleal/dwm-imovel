@@ -5,7 +5,6 @@ using App_Dominio.Contratos;
 using App_Dominio.Entidades;
 using App_Dominio.Component;
 using App_Dominio.Enumeracoes;
-using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
 using System.IO;
@@ -72,16 +71,68 @@ namespace DWM.Models.Persistence
             return base.AfterInsert(value);
         }
 
+        public override EsteiraContabilizacaoViewModel AfterDelete(EsteiraContabilizacaoViewModel value)
+        {
+            #region Exclui o arquivo de documento
+            try
+            {
+                #region Check if has file to Delete from Users_Data Folder
+                if (value.arquivo != null && value.arquivo != "")
+                {
+                    #region Delete the file from Users_Data Folder
+                    System.IO.FileInfo f = new System.IO.FileInfo(Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Users_Data"), value.arquivo));
+                    f.Delete();
+                    #endregion
+                }
+                #endregion
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                value.mensagem.Code = 17;
+                value.mensagem.Message = MensagemPadrao.Message(17).ToString();
+                value.mensagem.MessageBase = new App_DominioException(ex.InnerException != null ? ex.InnerException.InnerException != null ? ex.InnerException.InnerException.Message : ex.InnerException.Message : ex.Message, GetType().FullName).Message + ". Path de armazenamento do arquivo de boleto/comprovante não encontrado";
+                value.mensagem.MessageType = MsgType.ERROR;
+            }
+            catch (FileNotFoundException ex)
+            {
+                value.mensagem.Code = 17;
+                value.mensagem.Message = MensagemPadrao.Message(17).ToString();
+                value.mensagem.MessageBase = new App_DominioException(ex.InnerException != null ? ex.InnerException.InnerException != null ? ex.InnerException.InnerException.Message : ex.InnerException.Message : ex.Message, GetType().FullName).Message + ". Arquivo de boleto/comprovante não encontrado";
+                value.mensagem.MessageType = MsgType.ERROR;
+            }
+            catch (IOException ex)
+            {
+                value.mensagem.Code = 17;
+                value.mensagem.Message = MensagemPadrao.Message(17).ToString();
+                value.mensagem.MessageBase = new App_DominioException(ex.InnerException != null ? ex.InnerException.InnerException != null ? ex.InnerException.InnerException.Message : ex.InnerException.Message : ex.Message, GetType().FullName).Message + ". Erro referente ao arquivo de boleto/comprovante";
+                value.mensagem.MessageType = MsgType.ERROR;
+            }
+            catch (Exception ex)
+            {
+                value.mensagem.Code = 17;
+                value.mensagem.Message = MensagemPadrao.Message(17).ToString();
+                value.mensagem.MessageBase = new App_DominioException(ex.InnerException.InnerException.Message ?? ex.Message, GetType().FullName).Message;
+                value.mensagem.MessageType = MsgType.ERROR;
+            }
+            #endregion
+
+            return base.AfterDelete(value);
+        }
+
         public override EsteiraContabilizacao MapToEntity(EsteiraContabilizacaoViewModel value)
         {
-            EsteiraContabilizacao arquivo = new EsteiraContabilizacao()
-            {
-                esteiraId = value.esteiraId,
-                arquivo = value.arquivo,
-                nome_original = value.nome_original
-            };
+            EsteiraContabilizacao ec = Find(value);
 
-            return arquivo;
+            if (ec == null)
+            {
+                ec = new EsteiraContabilizacao();
+                ec.esteiraId = value.esteiraId;
+                ec.arquivo = value.arquivo;
+            }
+
+            ec.nome_original = value.nome_original;
+
+            return ec;
         }
 
         public override EsteiraContabilizacaoViewModel MapToRepository(EsteiraContabilizacao entity)
@@ -97,7 +148,7 @@ namespace DWM.Models.Persistence
 
         public override EsteiraContabilizacao Find(EsteiraContabilizacaoViewModel key)
         {
-            return db.Arquivos.Find(new { key.esteiraId, key.arquivo });
+            return db.Arquivos.Find(key.esteiraId, key.arquivo);
         }
 
         public override Validate Validate(EsteiraContabilizacaoViewModel value, Crud operation)

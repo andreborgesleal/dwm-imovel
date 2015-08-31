@@ -57,8 +57,29 @@ namespace DWM.Models.BI
                         dt_ocorrencia = ((EsteiraViewModel)value).dt_ocorrencia,
                         uri = ((EsteiraViewModel)value).uri
                     };
+
+                    #region Incluir o comissionamento
+                    if (db.Etapas.Find(proximaEtapa.etapaId).ind_comissao == "S")
+                    {
+                        IList<EsteiraComissaoViewModel> listComissao = new List<EsteiraComissaoViewModel>();
+                        foreach (ComissaoDefault comdef in db.ComissaoDefaults)
+                        {
+                            EsteiraComissaoViewModel com = new EsteiraComissaoViewModel()
+                            {
+                                grupoId = comdef.grupoId,
+                                nome_grupo = comdef.nome_grupo,
+                                valor = comdef.vr_comissao * db.Propostas.Find(esteiraViewModel.propostaId).vr_comissao
+                            };
+                            listComissao.Add(com);
+                        }
+
+                        proximaEtapa.Comissaos = listComissao;
+                    }
+                    #endregion
+
                     proximaEtapa = model.Insert(proximaEtapa);
                     #endregion
+
 
                     r = proximaEtapa;
                 }

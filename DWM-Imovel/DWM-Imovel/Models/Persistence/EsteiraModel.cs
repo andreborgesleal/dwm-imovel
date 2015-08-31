@@ -59,6 +59,16 @@ namespace DWM.Models.Persistence
             est.nome = value.nome;
             est.login = value.login;
 
+            if (value.Comissaos != null)
+            {
+                EsteiraComissaoModel ecModel = new EsteiraComissaoModel(this.db, this.seguranca_db);
+                foreach (EsteiraComissaoViewModel esteiraComissaoViewModel in value.Comissaos)
+                {
+                    EsteiraComissao esteiraComissao = ecModel.MapToEntity(esteiraComissaoViewModel);
+                    est.Comissaos.Add(esteiraComissao);
+                }
+            }
+
             return est;
         }
 
