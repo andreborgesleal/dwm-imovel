@@ -14,7 +14,7 @@ namespace DWM.Models.Repositories
         [DisplayName("Grupo ID")]
         public int grupoId { get; set; }
 
-        [DisplayName("Dscrição")]
+        [DisplayName("Descrição")]
         public string nome_grupo { get; set; }
 
         [DisplayName("Valor")]

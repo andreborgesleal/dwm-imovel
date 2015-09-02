@@ -46,7 +46,12 @@ namespace DWM.Models.Persistence
             Esteira est = Find(value);
 
             if (est == null)
+            {
                 est = new Esteira();
+                est.Comissaos = new List<EsteiraComissao>();
+            }
+            else
+                est.Comissaos.Clear();                
 
             est.propostaId = value.propostaId;
             est.dt_evento = value.dt_evento;
@@ -74,7 +79,9 @@ namespace DWM.Models.Persistence
 
         public override EsteiraViewModel MapToRepository(Esteira entity)
         {
-            return new EsteiraViewModel()
+            ListViewEsteiraComissao list = new ListViewEsteiraComissao(this.db, this.seguranca_db);
+
+            EsteiraViewModel result = new EsteiraViewModel()
             {
                 esteiraId = entity.esteiraId,
                 propostaId = entity.propostaId,
@@ -88,6 +95,13 @@ namespace DWM.Models.Persistence
                 login = entity.login,
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
+
+            if (entity.esteiraId > 0)
+                result.Comissaos = list.Bind(0, 50, entity.esteiraId);
+            else
+                result.Comissaos = new List<EsteiraComissaoViewModel>();
+
+            return result;
         }
 
         public override Esteira Find(EsteiraViewModel key)

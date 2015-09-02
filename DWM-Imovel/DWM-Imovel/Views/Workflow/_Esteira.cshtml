@@ -128,6 +128,7 @@
                     data: $(this).serialize(),
                     success: function (result) {
                         $('#esteira').html(result);
+                        listComissao(x3);
                         $('#observacao_etapa').val('');
                     }
                 });
@@ -135,5 +136,35 @@
             return false;
         });
     });
+
+    function listComissao(_esteiraId) {
+        var link = encodeURI('../Workflow/ListComissao?esteiraId=' + _esteiraId);
+
+        $('#carregando').css("visibility", "visible");
+        $('#carregando').css("width", "100%");
+        $('#carregando').css("height", "100%");
+        $('#carregando').css("position", "absolute");
+        $('#carregando').css("background-color", "black");
+        $('#carregando').css("filter", "alpha(opacity=60)");
+        $('#carregando').css("opacity", "0.6");
+        $('#carregando').css("left", "0%");
+        $('#carregando').css("top", "0%");
+
+        link = encodeURI(link + '&noCahce=' + new Date());
+
+        $('#comissao').load(link);
+        $(document).ajaxSuccess(function (event, xhr, settings) {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        }).error(function () {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        })
+
+    }
 
 </script>
