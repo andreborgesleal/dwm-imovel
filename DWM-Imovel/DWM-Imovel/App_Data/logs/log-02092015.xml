@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="264536269" Data="02/09/2015 22:31:42">
+    <Sessao>culh33azwa5spkofysa0htkl</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Sessão expirada. Faça um novo login</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/aprovar</NameSpace>
+    <Context>propostaId="13",btnAprovarRecusar="refuse",observacao_etapa="  sgfs sdfgsd gfs gsg sdgf sh",dt_ocorrencia="02/09/2015"</Context>
+    <StackTrace>   em App_Dominio.Entidades.DWMContext`1.Create(D _db, SecurityContext _seguranca_db) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\DWMContext.cs:linha 38
+   em DWM.Models.Persistence.ListViewEsteira..ctor(ApplicationContext _db, SecurityContext _seguranca_db) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraModel.cs:linha 175
+   em DWM.Models.BI.AprovarEtapaBI.List(Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\AprovarEtapaBI.cs:linha 98
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
+   em DWM.Controllers.WorkflowController.AprovarEtapa(Int32 propostaId, String dt_ocorrencia, String observacao_etapa, String btnAprovarRecusar) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 113</StackTrace>
+  </LOG>
+</LOG>

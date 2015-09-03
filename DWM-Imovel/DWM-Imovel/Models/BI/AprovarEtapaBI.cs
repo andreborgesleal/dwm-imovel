@@ -61,9 +61,6 @@ namespace DWM.Models.BI
                     #region Incluir o comissionamento
                     if (db.Etapas.Find(proximaEtapa.etapaId).ind_comissao == "S")
                     {
-                        // Verifica o total de comissão cadastrado na proposta
-                        decimal _vr_comissao = db.Propostas.Find(esteiraViewModel.propostaId).vr_comissao;
-
                         IList<EsteiraComissaoViewModel> listComissao = new List<EsteiraComissaoViewModel>();
                         foreach (ComissaoDefault comdef in db.ComissaoDefaults)
                         {
@@ -76,14 +73,6 @@ namespace DWM.Models.BI
                             listComissao.Add(com);
                         }
 
-                        // verifica se existe diferença entre o total de comissão cadastrado na proposta e o total de comissão calculado pelo sistema
-                        // a diferença, para mais ou para menos deverá ser somada com o valor da imobiliária
-                        decimal _residuo = _vr_comissao - listComissao.Sum(info => info.valor);
-                        if (_residuo != 0)
-                        {
-                            decimal _valorAnanias = listComissao.Where(info => info.grupoId == db.ComissaoDefaults.Where(m => m.source == 3).FirstOrDefault().grupoId).ElementAt(0).valor;
-                            listComissao.Where(info => info.grupoId == db.ComissaoDefaults.Where(m => m.source == 3).FirstOrDefault().grupoId).ElementAt(0).valor = _valorAnanias + _residuo;
-                        }
                         proximaEtapa.Comissaos = listComissao;
                     }
                     #endregion

@@ -53,7 +53,7 @@ namespace DWM.Models.BI
 
         public IEnumerable<EsteiraComissaoViewModel> List(params object[] param)
         {
-            ListViewEsteiraComissao list = new ListViewEsteiraComissao(this.db, this.seguranca_db);
+            ListViewComissao list = new ListViewComissao(this.db, this.seguranca_db);
             return list.Bind(0, 100, param);
         }
 
