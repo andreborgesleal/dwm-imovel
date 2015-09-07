@@ -197,6 +197,7 @@
     <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoDeleteBI.cs" />
     <Compile Include="Models\BI\InserirComentarioBI.cs" />
+    <Compile Include="Models\BI\ProgressBarEsteiraBI.cs" />
     <Compile Include="Models\BI\RecusarEtapaBI.cs" />
     <Compile Include="Models\Entidades\ApplicationContext.cs" />
     <Compile Include="Models\Entidades\Cliente.cs" />
@@ -1313,6 +1314,7 @@
     <Content Include="Views\Workflow\_Comentarios.cshtml" />
     <Content Include="Views\Workflow\_Esteira.cshtml" />
     <Content Include="Views\Workflow\_Comissao.cshtml" />
+    <Content Include="Views\Workflow\_ProgressBarEsteira.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />

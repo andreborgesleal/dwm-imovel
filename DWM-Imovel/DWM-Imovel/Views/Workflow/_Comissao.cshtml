@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<DWM.Models.Repositories.EsteiraComissaoViewModel>
 @{
     Layout = null;
+    var vr_total = ViewBag.vr_total;
 }
 @Html.Partial("_alerts")
+
 <p><h4>Comissão</h4></p>
 @foreach (DWM.Models.Repositories.EsteiraComissaoViewModel com in Model)
 {
@@ -12,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-6 text-primary"><h5>@com.nome_grupo</h5></div>
                     <div class="col-md-4"><h5 class="text-danger">@com.valor.ToString("R$ ###,###,##0.00")</h5></div>
-                    <div class="col-lg-offset-11"><span class="glyphicon glyphicon-edit dedo-indicador margem-interna-10" aria-hidden="true" onclick="habilitaComissao('@com.esteiraId','@com.grupoId', '@com.nome_grupo', '@com.valor')"></span></div>
+                    <div class="col-lg-offset-11" data-toggle="modal" data-target="#myModalComissao"><span class="glyphicon glyphicon-edit dedo-indicador margem-interna-10" aria-hidden="true" onclick="habilitaComissao('@com.esteiraId','@com.grupoId', '@com.nome_grupo', '@com.nome', '@com.valor')"></span></div>
                 </div>
                 @if (com.nome != "")
                 {
@@ -31,29 +33,78 @@
         </ul>
     </p>
 }
-<p>
-    <div id="input-comissao" hidden>
-        @using (Ajax.BeginForm("Comissao", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "comissao" }, new { @class = "form", @name = "form3", @id = "form3" }))
-        {
-            <div class="form-group" id="form-comissao">
-                <div class="col-md-12">
-                    <label class="control-label" id="nomeGrupo"></label>
-                    @Html.Editor("_valor", "", "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'valor')" } })
+@using (Ajax.BeginForm("Comissao", "Workflow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "comissao" }, new { @class = "form", @name = "form3", @id = "form3" }))
+{
+    @Html.ValidationSummary(false)
+    <div class="modal fade" id="myModalComissao">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alterar comissão</h4>
                 </div>
-                @Html.Hidden("esteiraId")
-                @Html.Hidden("grupoId")
-                @Html.Hidden("nome_grupo")
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success" id="_btnComissao">Salvar</button>
+                <div class="modal-body" id="myModal1-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Grupo</label>
+                                <input type="text" class="form-control" id="nomeGrupo" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Valor</label>
+                                <input class="form-control text-right" id="valor_comissao" name="valor_comissao" type="text" onblur="return Converte(this, 'valor_comissao')">
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Hidden("esteiraComId")
+                    @Html.Hidden("grupoId")
+                    @Html.Hidden("nome_grupo")
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnFechar">Fechar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+<a id="linkModalList" href="#myModalComissao2" data-toggle="modal"></a>
+
+<div class="modal fade" id="myModalComissao2">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Alterar comissão</h4>
             </div>
-        }
-    </div>
-</p>
+            <div class="modal-body" id="myModal2-body">
+                Comissão alterada com sucesso
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script>
+    var total = '@vr_total';
+    $('#lbVr_comissao').html(total);
+
+    $('#form3').on('submit', function () {
+        $('#myModalComissao').modal('hide');
+        alert('Comissão alterada com sucesso');
+    });
+
     $(function () {
 
         $('#form3').submit(function () {
@@ -71,12 +122,12 @@
         });
     });
 
-    function habilitaComissao(esteiraId, grupoId, nome_grupo, valor) {
-        $('#form-comissao').attr("hidden", false)
-        $('#esteiraId').val(esteiraId)
+    function habilitaComissao(esteiraId, grupoId, nome_grupo, nome, valor) {
+        $('#esteiraComId').val(esteiraId)
         $('#grupoId').val(grupoId)
         $('#nome_grupo').val(nome_grupo)
-        $('#nomeGrupo').html(nome_grupo)
-        $('#valor').val(valor)
+        $('#nomeGrupo').val(nome_grupo)
+        $('#nome').val(nome)
+        $('#valor_comissao').val(valor)
     }
 </script>

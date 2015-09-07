@@ -107,7 +107,7 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
-            if (operation == Crud.ALTERAR || operation == Crud.EXCLUIR && value.esteiraId == 0)
+            if ((operation == Crud.ALTERAR || operation == Crud.EXCLUIR) && value.esteiraId == 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Esteira ID").ToString();
@@ -116,7 +116,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (operation == Crud.ALTERAR || operation == Crud.EXCLUIR && (value.grupoId == null || value.grupoId == 0))
+            if ((operation == Crud.ALTERAR || operation == Crud.EXCLUIR) && (value.grupoId == null || value.grupoId == 0))
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Arquivo").ToString();
@@ -134,7 +134,7 @@ namespace DWM.Models.Persistence
                 return value.mensagem;
             }
 
-            if (value.valor <= 0)
+            if (value.valor < 0)
             {
                 value.mensagem.Code = 5;
                 value.mensagem.Message = MensagemPadrao.Message(5, "Valor da comissão").ToString();
@@ -163,6 +163,24 @@ namespace DWM.Models.Persistence
         public override IEnumerable<EsteiraComissaoViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
             int _esteiraId = int.Parse(param[0].ToString());
+
+            #region verifica se a etapa atual é menor que a etapa de comissão. Se for, não deve retornar nenhuma lista
+            // recupera a proposta
+            int _propostaId = (from es in db.Esteiras where es.esteiraId == _esteiraId select es.propostaId).FirstOrDefault();
+            Proposta proposta = db.Propostas.Find(_propostaId);
+
+            #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
+            int _etapaId;
+            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").FirstOrDefault().etapaId;
+            else
+                _etapaId = db.Etapas.Where(info => info.descricao == "Comissão").FirstOrDefault().etapaId;
+            #endregion
+
+            if (proposta.etapaId < _etapaId)
+                return new List<EsteiraComissaoViewModel>();
+            #endregion
+
 
             #region Usuario comissao
             int?[] _usuarioId = new int?[5] { null, null, null, null, null};
@@ -269,6 +287,23 @@ namespace DWM.Models.Persistence
         {
             int _esteiraId = int.Parse(param[0].ToString());
 
+            #region verifica se a etapa atual é menor que a etapa de comissão. Se for, não deve retornar nenhuma lista
+            // recupera a proposta
+            int _propostaId = (from es in db.Esteiras where es.esteiraId == _esteiraId select es.propostaId).FirstOrDefault();
+            Proposta proposta = db.Propostas.Find(_propostaId);
+
+            #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
+            int _etapaId;
+            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").FirstOrDefault().etapaId;
+            else
+                _etapaId = db.Etapas.Where(info => info.descricao == "Comissão").FirstOrDefault().etapaId;
+            #endregion
+
+            if (proposta.etapaId < _etapaId)
+                return new List<EsteiraComissaoViewModel>();
+            #endregion
+
             #region Usuario comissao
             int?[] _usuarioId = new int?[5] { null, null, null, null, null };
             string[] _nome = new string[5] { "", "", "", "", "" };
@@ -311,8 +346,12 @@ namespace DWM.Models.Persistence
             IEnumerable<EsteiraComissaoViewModel> list = (from com in db.EsteiraComissaos
                                                           join est in db.Esteiras on com.esteiraId equals est.esteiraId
                                                           join comdef in db.ComissaoDefaults on com.grupoId equals comdef.grupoId
-                                                          where est.ind_aprovacao == "A"
+                                                          where est.ind_aprovacao != "R"
                                                                 && est.propostaId == (from es in db.Esteiras where es.esteiraId == _esteiraId select es.propostaId).FirstOrDefault()
+                                                                && com.esteiraId == (from comMax in db.EsteiraComissaos
+                                                                                     join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
+                                                                                     where estMax.propostaId == (from esMax in db.Esteiras where esMax.esteiraId == _esteiraId select esMax.propostaId).FirstOrDefault()
+                                                                                     select comMax.esteiraId).Max()
                                                           orderby com.valor
                                                           select new EsteiraComissaoViewModel()
                                                           {
@@ -324,8 +363,13 @@ namespace DWM.Models.Persistence
                                                               TotalCount = (from com1 in db.EsteiraComissaos
                                                                             join est1 in db.Esteiras on com1.esteiraId equals est1.esteiraId
                                                                             join comdef1 in db.ComissaoDefaults on com1.grupoId equals comdef1.grupoId
-                                                                            where est1.ind_aprovacao == "A"
+                                                                            where est1.ind_aprovacao != "R"
                                                                                   && est1.propostaId == (from es1 in db.Esteiras where es1.esteiraId == _esteiraId select es1.propostaId).FirstOrDefault()
+                                                                                  && com1.esteiraId ==  (from comMax1 in db.EsteiraComissaos
+                                                                                                         join estMax1 in db.Esteiras on comMax1.esteiraId equals estMax1.esteiraId
+                                                                                                         where estMax1.propostaId == (from esMax1 in db.Esteiras where esMax1.esteiraId == _esteiraId select esMax1.propostaId).FirstOrDefault()
+                                                                                                         select comMax1.esteiraId).Max()
+
                                                                             orderby com1.valor
                                                                             select est1.esteiraId).Count()
                                                           }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();

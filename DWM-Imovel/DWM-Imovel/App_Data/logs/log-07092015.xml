@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="2066392200" Data="07/09/2015 00:53:49">
+    <Sessao>13envxc1wbbchbsybiwt3ifk</Sessao>
+    <IP>127.0.0.1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>A cadeia de caracteres de entrada não estava em um formato incorreto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/comissao</NameSpace>
+    <Context>valor_comissao.1="1.300,00",valor_comissao="",esteiraId="3078",grupoId="22",nome_grupo="Coordenador"</Context>
+    <StackTrace>   em System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer&amp; number, NumberFormatInfo info, Boolean parseDecimal)
+   em System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   em System.Convert.ToDecimal(String value)
+   em DWM.Controllers.WorkflowController.EsteiraComissao(Int32 esteiraId, Int32 grupoId, String nome_grupo, String valor) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 304</StackTrace>
+  </LOG>
+  <LOG ID="1234351590" Data="07/09/2015 01:23:56">
+    <Sessao>13envxc1wbbchbsybiwt3ifk</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/comissao</NameSpace>
+    <Context>valor_comissao="1.300,00",esteiraId="3078",grupoId="22",nome_grupo="Coordenador"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 41
+   em DWM.Controllers.WorkflowController.EsteiraComissao(Int32 esteiraId, Int32 grupoId, String nome_grupo, String valor) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 308</StackTrace>
+  </LOG>
+  <LOG ID="724923047" Data="07/09/2015 13:15:07">
+    <Sessao>gog4f0kpg5ko0i3nso4byb5o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não é possível encontrar o arquivo especificado.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.EsteiraContabilizacaoModel =&gt; workflow/upload</NameSpace>
+    <Context>fileProposta="89411b42-5b32-48d8-b37f-6e15ee7901ba.JPG",nome_original="6 - DECLARAÇÕA DE CONHECIMENTO.pdf",esteiraId="2062"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="938273914" Data="07/09/2015 13:15:14">
+    <Sessao>gog4f0kpg5ko0i3nso4byb5o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Não é possível encontrar o arquivo especificado.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.EsteiraContabilizacaoModel =&gt; workflow/upload</NameSpace>
+    <Context>fileProposta="89411b42-5b32-48d8-b37f-6e15ee7901ba.JPG",nome_original="Modal title",esteiraId="2062"</Context>
+    <StackTrace />
+  </LOG>
+</LOG>

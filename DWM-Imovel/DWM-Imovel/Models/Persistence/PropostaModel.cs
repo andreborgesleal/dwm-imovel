@@ -178,6 +178,12 @@ namespace DWM.Models.Persistence
                  join est in db.Esteiras on com.esteiraId equals est.esteiraId
                  join pro in db.Propostas on est.propostaId equals pro.propostaId
                  where pro.propostaId == entity.propostaId
+                       && est.ind_aprovacao == "A" 
+                       && com.esteiraId == (from comMax in db.EsteiraComissaos
+                                            join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
+                                            where estMax.propostaId == entity.propostaId
+                                            select comMax.esteiraId).Max()
+
                  select com).Count() > 0)
             {
                 ListViewEsteiraComissao listComissao = new ListViewEsteiraComissao(this.db, this.seguranca_db);
@@ -185,6 +191,11 @@ namespace DWM.Models.Persistence
                                           join est in db.Esteiras on com.esteiraId equals est.esteiraId
                                           join pro in db.Propostas on est.propostaId equals pro.propostaId
                                           where pro.propostaId == entity.propostaId
+                                                && est.ind_aprovacao == "A"
+                                                && com.esteiraId == (from comMax in db.EsteiraComissaos
+                                                                     join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
+                                                                     where estMax.propostaId == entity.propostaId
+                                                                     select comMax.esteiraId).Max()
                                           select com).FirstOrDefault().esteiraId;
 
                 propostaViewModel.Comissao = listComissao.Bind(0, 50, esteiraComissaoId);

@@ -41,8 +41,7 @@ namespace DWM.Models.BI
                     throw new Exception(esteiraComissaoViewModel.mensagem.MessageBase);
                 }
                 else
-                    throw new Exception("Comissão não pôde ser editada");
-
+                    r.mensagem = new Validate() { Code = 0, Message = "Registro alterado com sucesso", MessageBase = "" };
             }
             catch (Exception ex)
             {

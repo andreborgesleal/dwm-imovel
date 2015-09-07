@@ -12,7 +12,8 @@ using App_Dominio.Enumeracoes;
 using DWM.Models.BI;
 using App_Dominio.Models;
 using App_Dominio.Contratos;
-
+using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DWM.Controllers
 {
@@ -89,11 +90,20 @@ namespace DWM.Controllers
         #endregion
 
         #region Aprovar etapa
+        [AuthorizeFilter(Order=1020)]
         public ActionResult Aprovar(int propostaId, string dt_ocorrencia, string observacao_etapa, int? esteiraId, string btnAprovarRecusar)
         {
-            IEnumerable<EsteiraViewModel> result = AprovarEtapa(propostaId, dt_ocorrencia, observacao_etapa, btnAprovarRecusar);
-            ViewBag.propostaId = propostaId.ToString();
-            return View("_Esteira", result);
+            if (ViewBag.ValidateRequest)
+            {
+                IEnumerable<EsteiraViewModel> result = AprovarEtapa(propostaId, dt_ocorrencia, observacao_etapa, btnAprovarRecusar);
+                ViewBag.propostaId = propostaId.ToString();
+                return View("_Esteira", result);
+            }
+            else
+            {
+                Error("Acesso para esta funcionalidade negado");
+                return ListEsteira(0, 50, propostaId);
+            }
         }
 
         private IEnumerable<EsteiraViewModel> AprovarEtapa(int propostaId, string dt_ocorrencia, string observacao_etapa, string btnAprovarRecusar)
@@ -151,7 +161,6 @@ namespace DWM.Controllers
             return btnAprovarRecusar == "approve" ? new AprovarEtapaBI() : new RecusarEtapaBI();
         }
 
-
         public ActionResult ListEsteira(int? index, int? pageSize = 50, int? propostaId = null)
         {
             Factory<EsteiraViewModel, ApplicationContext> facade = new Factory<EsteiraViewModel, ApplicationContext>();
@@ -160,14 +169,34 @@ namespace DWM.Controllers
             ViewBag.propostaId = propostaId.ToString();
             return View("_Esteira", result);
         }
+
+        public ActionResult ProgressBarEsteira(int propostaId)
+        {
+            #region Atualizar a progressbar da esteira
+            Factory<PropostaViewModel, ApplicationContext> progressFacade = new Factory<PropostaViewModel, ApplicationContext>();
+            PropostaViewModel propostaViewModel = new PropostaViewModel() { propostaId = propostaId };
+            propostaViewModel = progressFacade.Execute(new ProgressBarEsteiraBI(), propostaViewModel);
+            #endregion
+
+            return View("_ProgressBarEsteira", propostaViewModel);
+        }
         #endregion
 
         #region Etapa de contabilização (Upload de arquivos)
+        [AuthorizeFilter(Order=1040)]
         public ActionResult Upload(int esteiraId, string fileProposta, string nome_original)
         {
-            IEnumerable<EsteiraContabilizacaoViewModel> result = EsteiraContabilizacao(esteiraId, fileProposta, nome_original);
-            ViewBag.esteiraId = esteiraId.ToString();
-            return View("_DadosProposta", result);
+            if (ViewBag.ValidateRequest)
+            {
+                IEnumerable<EsteiraContabilizacaoViewModel> result = EsteiraContabilizacao(esteiraId, fileProposta, nome_original);
+                ViewBag.esteiraId = esteiraId.ToString();
+                return View("_DadosProposta", result);
+            }
+            else
+            {
+                Error("Acesso para esta funcionalidade negado");
+                return ListArquivos(0, 50, esteiraId);
+            }
         }
 
         private IEnumerable<EsteiraContabilizacaoViewModel> EsteiraContabilizacao(int esteiraId, string fileProposta, string nome_original)
@@ -206,11 +235,20 @@ namespace DWM.Controllers
         }
 
         // Exclui arquivo
+        [AuthorizeFilter(Order=1050)]
         public ActionResult Erase(int esteiraId, string fileProposta, string nome_original)
         {
-            IEnumerable<EsteiraContabilizacaoViewModel> result = EraseEsteiraContabilizacao(esteiraId, fileProposta, nome_original);
-            ViewBag.esteiraId = esteiraId.ToString();
-            return View("_DadosProposta", result);
+            if (ViewBag.ValidateRequest)
+            {
+                IEnumerable<EsteiraContabilizacaoViewModel> result = EraseEsteiraContabilizacao(esteiraId, fileProposta, nome_original);
+                ViewBag.esteiraId = esteiraId.ToString();
+                return View("_DadosProposta", result);
+            }
+            else
+            {
+                Error("Acesso para esta funcionalidade negado");
+                return ListArquivos(0, 50, esteiraId);
+            }
         }
 
         private IEnumerable<EsteiraContabilizacaoViewModel> EraseEsteiraContabilizacao(int esteiraId, string fileProposta, string nome_original)
@@ -260,11 +298,23 @@ namespace DWM.Controllers
         #endregion
 
         #region Comissão
-        public ActionResult Comissao(int esteiraId, int grupoId, string nome_grupo, string valor)
+        [AuthorizeFilter(Order = 1010)]
+        public ActionResult Comissao(int esteiraComId, int grupoId, string nome_grupo, string valor_comissao)
         {
-            IEnumerable<EsteiraComissaoViewModel> result = EsteiraComissao(esteiraId, grupoId, nome_grupo, valor);
-            ViewBag.esteiraId = esteiraId.ToString();
-            return View("_Comissao", result);
+            if (ViewBag.ValidateRequest)
+            {
+                IEnumerable<EsteiraComissaoViewModel> result = EsteiraComissao(esteiraComId, grupoId, nome_grupo, valor_comissao);
+                ViewBag.esteiraId = esteiraComId.ToString();
+                ViewBag.vr_total = result.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
+
+                return View("_Comissao", result);
+            }
+            else
+            {
+                Error("Acesso para esta funcionalidade negado");
+                return ListComissao(esteiraComId);
+            }
+                
         }
 
         public ActionResult ListComissao(int? esteiraId)
@@ -274,6 +324,7 @@ namespace DWM.Controllers
             {
                 Factory<EsteiraComissaoViewModel, ApplicationContext> facade = new Factory<EsteiraComissaoViewModel, ApplicationContext>();
                 result = facade.List(new EsteiraComissaoBI(), esteiraId);
+                ViewBag.vr_total = result.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
             }
             catch (App_DominioException ex)
             {
@@ -337,7 +388,5 @@ namespace DWM.Controllers
 
 
         #endregion
-
-
     }
 }
