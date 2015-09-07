@@ -167,24 +167,31 @@
                                             <form class="form-horizontal">
                                                 <div class="form-group">
                                                     <div class="col-xs-1 col-md-1">
-                                                        <input class="form-control" type="text" placeholder="ID">
+                                                        <label for="id">ID</label>
+                                                        <input class="form-control" type="text">
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <input class="form-control" type="text" placeholder="CPF/Cliente">
+                                                        <label for="cpf">CPF/Cliente</label>
+                                                        <input class="form-control" type="text">
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <input class="form-control" type="text" placeholder="Empreendimento">
+                                                        <label for="empreendimento">Empreendimento</label>
+                                                        @Html.DropDownList("empreendimentoId", new DWM.Models.Enumeracoes.BindDropDownList().Empreendimentos("Todos...", ""), new { @class = "form-control" })
                                                     </div>
                                                     <div class="col-xs-1 col-md-1">
-                                                        <input class="form-control" type="text" placeholder="Valor">
+                                                        <label for="id">Valor</label>
+                                                        <input class="form-control" type="text">
                                                     </div>
                                                     <div class="col-xs-1 col-md-1">
-                                                        <input class="form-control" type="text" placeholder="Torre/Unidade">
+                                                        <label for="id">Torre/Unidade</label>
+                                                        <input class="form-control" type="text">
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
+                                                        <label for="id">Etapas</label>
                                                         @Html.DropDownList("etapaId", new DWM.Models.Enumeracoes.BindDropDownList().Etapas("Todas...", ""), new { @class = "form-control" })
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
+                                                        <label for="id">Data da Proposta</label>
                                                         @Html.Editor("dt_prop", "DATE", new { identificador = "dt_prop", value = DateTime.Today, readOnly = "false" })
                                                     </div>
                                                 </div>
@@ -253,7 +260,7 @@
                                 <td><br />@pro.vr_comissao.ToString("R$ ###,###,###,##0.00")</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="../Workflow/Edit?propostaId=@pro.propostaId" title="Workflow"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-success" href="../Workflow/Edit?propostaId=@pro.propostaId" title="Workflow"><i class="fa fa-stack-overflow"></i></a>
                                         <a class="btn btn-primary" href="../Propostas/Edit?propostaId=@pro.propostaId" title="Editar Proposta"><i class="fa fa-edit"></i></a>
                                         <a class="btn btn-danger" href="../Propostas/Delete?propostaId=@pro.propostaId" title="Excluir Proposta"><i class="fa fa-minus"></i></a>
                                     </div>

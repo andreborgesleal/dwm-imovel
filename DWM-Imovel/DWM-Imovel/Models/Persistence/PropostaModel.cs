@@ -75,26 +75,28 @@ namespace DWM.Models.Persistence
 
         public override Proposta MapToEntity(PropostaViewModel value)
         {
-            Proposta proposta = new Proposta()
-            {
-                propostaId = value.propostaId,
-                empreendimentoId = value.empreendimentoId,
-                clienteId = value.clienteId,
-                dt_proposta = value.dt_proposta,
-                unidade = value.unidade,
-                torre = value.torre,
-                valor = value.valor,
-                vr_comissao = value.vr_comissao,
-                etapaId = value.etapaId,
-                dt_ultimo_status = value.dt_ultimo_status,
-                operacaoId = value.operacaoId,
-                corretor1Id = value.corretor1Id,
-                corretor2Id = value.corretor2Id,
-                usuarioId = value.usuarioId,
-                nome = value.nome,
-                login = value.login,
-                situacao = value.situacao,
-            };
+            Proposta proposta = Find(value);
+
+            if (proposta == null)
+                proposta = new Proposta();
+
+            proposta.propostaId = value.propostaId;
+            proposta.empreendimentoId = value.empreendimentoId;
+            proposta.clienteId = value.clienteId;
+            proposta.dt_proposta = value.dt_proposta;
+            proposta.unidade = value.unidade;
+            proposta.torre = value.torre;
+            proposta.valor = value.valor;
+            proposta.vr_comissao = value.vr_comissao;
+            proposta.etapaId = value.etapaId;
+            proposta.dt_ultimo_status = value.dt_ultimo_status;
+            proposta.operacaoId = value.operacaoId;
+            proposta.corretor1Id = value.corretor1Id;
+            proposta.corretor2Id = value.corretor2Id;
+            proposta.usuarioId = value.usuarioId;
+            proposta.nome = value.nome;
+            proposta.login = value.login;
+            proposta.situacao = value.situacao;
 
             return proposta;
         }
@@ -333,7 +335,7 @@ namespace DWM.Models.Persistence
 
                 #endregion
 
-                if (value.dt_proposta > db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
+                if (value.dt_proposta < db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
                 {
                     value.mensagem.Code = 5;
                     value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
