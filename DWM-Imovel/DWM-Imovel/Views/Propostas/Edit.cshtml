@@ -9,12 +9,13 @@
 @using (Html.BeginForm("Edit", "Propostas", FormMethod.Post, new { @class = "form" }))
 {
     @Html.HiddenFor(info => info.descricao_etapa)
+    @Html.HiddenFor(info => info.propostaId)
 
     <div id="div-lov"></div>
     <div class="panel panel-primary margem-topo-10">
         <div class="panel-heading">
             <h2 class="panel-title">
-                Inclusão de Propostas
+                Edição de Propostas
             </h2>
         </div>
         <div class="panel-body">
@@ -119,6 +120,15 @@
                         @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta", value = DateTime.Today, readOnly = "false" })
                     </div>
                 </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label" for="situacao">Situação</label>
+                        @Html.DropDownListFor(info => info.situacao, new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                        @*Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })*@
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="panel-footer">

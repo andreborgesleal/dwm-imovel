@@ -41,8 +41,6 @@ namespace DWM.Models.Enumeracoes
             [StringValue("Faturamento")]
             FATURAMENTO,
         }
-
-
     }
 
 }

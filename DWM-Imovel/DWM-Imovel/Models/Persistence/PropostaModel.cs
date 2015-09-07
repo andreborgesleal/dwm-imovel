@@ -322,7 +322,7 @@ namespace DWM.Models.Persistence
 
                 #endregion
 
-                if (value.dt_proposta > db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
+                if (value.dt_proposta < db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
                 {
                     value.mensagem.Code = 5;
                     value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
