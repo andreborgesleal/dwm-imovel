@@ -160,7 +160,7 @@ namespace DWM.Models.Persistence
                 }
             }
 
-            if (value.dt_ocorrencia > DateTime.Today || db.Esteiras.Where(info => info.propostaId == value.propostaId).Max(m => m.dt_ocorrencia) > value.dt_ocorrencia)
+            if (value.dt_ocorrencia > DateTime.Today || (db.Esteiras.Where(info => info.propostaId == value.propostaId).Count() > 0 && db.Esteiras.Where(info => info.propostaId == value.propostaId).Max(m => m.dt_ocorrencia) > value.dt_ocorrencia))
             {
                 value.mensagem.Code = 55;
                 value.mensagem.Message = MensagemPadrao.Message(55).ToString();

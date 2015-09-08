@@ -43,10 +43,11 @@ namespace DWM.Models.Persistence
 
             #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
             int _etapaId;
-            if (db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").Count() > 0)
-                _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == "Proposta").FirstOrDefault().etapaId;
+            string _descricao = DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.PROPOSTA.GetStringValue();
+            if (db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == _descricao).Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == _descricao).FirstOrDefault().etapaId;
             else
-                _etapaId = db.Etapas.Where(info => info.descricao == "Proposta").FirstOrDefault().etapaId;
+                _etapaId = db.Etapas.Where(info => info.descricao == _descricao).FirstOrDefault().etapaId;
             #endregion
 
             EsteiraViewModel esteiraViewModel = new EsteiraViewModel()
@@ -78,7 +79,10 @@ namespace DWM.Models.Persistence
             Proposta proposta = Find(value);
 
             if (proposta == null)
+            {
                 proposta = new Proposta();
+                value.situacao = "A";
+            }
 
             proposta.propostaId = value.propostaId;
             proposta.empreendimentoId = value.empreendimentoId;
@@ -168,62 +172,65 @@ namespace DWM.Models.Persistence
                 mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso", MessageBase = "Registro incluído com sucesso", MessageType = MsgType.SUCCESS }
             };
 
-            propostaViewModel.Esteira.ElementAt(0).canApprove = (from ep in db.EtapaPerfils.AsEnumerable()
-                                                                 join grp in grupos on ep.grupoId equals grp.grupoId
-                                                                 where ep.etapaId == propostaViewModel.etapaId
-                                                                 select ep.grupoId).Any();
-
-            ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
-            propostaViewModel.Comentarios = list.getPagedList(0, 4, propostaViewModel.Esteira.FirstOrDefault().esteiraId );
-
-            if ((from com in db.EsteiraComissaos
-                 join est in db.Esteiras on com.esteiraId equals est.esteiraId
-                 join pro in db.Propostas on est.propostaId equals pro.propostaId
-                 where pro.propostaId == entity.propostaId
-                       && est.ind_aprovacao == "A" 
-                       && com.esteiraId == (from comMax in db.EsteiraComissaos
-                                            join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
-                                            where estMax.propostaId == entity.propostaId
-                                            select comMax.esteiraId).Max()
-
-                 select com).Count() > 0)
+            if (propostaViewModel.Esteira.Count() > 0)
             {
-                ListViewEsteiraComissao listComissao = new ListViewEsteiraComissao(this.db, this.seguranca_db);
-                int? esteiraComissaoId = (from com in db.EsteiraComissaos
-                                          join est in db.Esteiras on com.esteiraId equals est.esteiraId
-                                          join pro in db.Propostas on est.propostaId equals pro.propostaId
-                                          where pro.propostaId == entity.propostaId
-                                                && est.ind_aprovacao == "A"
-                                                && com.esteiraId == (from comMax in db.EsteiraComissaos
-                                                                     join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
-                                                                     where estMax.propostaId == entity.propostaId
-                                                                     select comMax.esteiraId).Max()
-                                          select com).FirstOrDefault().esteiraId;
+                propostaViewModel.Esteira.ElementAt(0).canApprove = (from ep in db.EtapaPerfils.AsEnumerable()
+                                                                     join grp in grupos on ep.grupoId equals grp.grupoId
+                                                                     where ep.etapaId == propostaViewModel.etapaId
+                                                                     select ep.grupoId).Any();
 
-                propostaViewModel.Comissao = listComissao.Bind(0, 50, esteiraComissaoId);
-            }
-            else
-                propostaViewModel.Comissao = new List<EsteiraComissaoViewModel>();
+                ListViewComentario list = new ListViewComentario(this.db, this.seguranca_db);
+                propostaViewModel.Comentarios = list.getPagedList(0, 4, propostaViewModel.Esteira.FirstOrDefault().esteiraId);
 
-            if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_manifestacao == null)
-            {
-                propostaViewModel.qte_dias_esteira = (DateTime.Today.Subtract(entity.dt_proposta)).Days;
-            }
-            else
-            {
-                System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_evento.Subtract(entity.dt_proposta);
-                propostaViewModel.qte_dias_esteira = diff.Days;
-            }
+                if ((from com in db.EsteiraComissaos
+                     join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                     join pro in db.Propostas on est.propostaId equals pro.propostaId
+                     where pro.propostaId == entity.propostaId
+                           && est.ind_aprovacao == "A"
+                           && com.esteiraId == (from comMax in db.EsteiraComissaos
+                                                join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
+                                                where estMax.propostaId == entity.propostaId
+                                                select comMax.esteiraId).Max()
 
-            if (db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count() == 0)
-            {
-                propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == null).Count()) * 100.0;
-                propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
-            }
-            else
-            {
-                propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count()) * 100.0;
-                propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+                     select com).Count() > 0)
+                {
+                    ListViewEsteiraComissao listComissao = new ListViewEsteiraComissao(this.db, this.seguranca_db);
+                    int? esteiraComissaoId = (from com in db.EsteiraComissaos
+                                              join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                                              join pro in db.Propostas on est.propostaId equals pro.propostaId
+                                              where pro.propostaId == entity.propostaId
+                                                    && est.ind_aprovacao == "A"
+                                                    && com.esteiraId == (from comMax in db.EsteiraComissaos
+                                                                         join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
+                                                                         where estMax.propostaId == entity.propostaId
+                                                                         select comMax.esteiraId).Max()
+                                              select com).FirstOrDefault().esteiraId;
+
+                    propostaViewModel.Comissao = listComissao.Bind(0, 50, esteiraComissaoId);
+                }
+                else
+                    propostaViewModel.Comissao = new List<EsteiraComissaoViewModel>();
+
+                if (db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_manifestacao == null)
+                {
+                    propostaViewModel.qte_dias_esteira = (DateTime.Today.Subtract(entity.dt_proposta)).Days;
+                }
+                else
+                {
+                    System.TimeSpan diff = db.Esteiras.Where(info => info.propostaId == entity.propostaId).AsEnumerable().Last().dt_evento.Subtract(entity.dt_proposta);
+                    propostaViewModel.qte_dias_esteira = diff.Days;
+                }
+
+                if (db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count() == 0)
+                {
+                    propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == null).Count()) * 100.0;
+                    propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+                }
+                else
+                {
+                    propostaViewModel.percent_atual = ((db.Etapas.Find(entity.etapaId).idx + 1.0) / db.Etapas.Where(info => info.empreendimentoId == entity.empreendimentoId).Count()) * 100.0;
+                    propostaViewModel.percent_restnte = 100.0 - propostaViewModel.percent_atual;
+                }
             }
 
             return propostaViewModel;
@@ -335,11 +342,16 @@ namespace DWM.Models.Persistence
 
                 #endregion
 
-                if (value.dt_proposta < db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao)
+                DateTime dt_ref = Funcoes.Brasilia();
+
+                if (db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao.HasValue)
+                    dt_ref = db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().dt_manifestacao.Value;
+
+                if (value.dt_proposta > dt_ref)
                 {
-                    value.mensagem.Code = 5;
-                    value.mensagem.Message = MensagemPadrao.Message(5, "Comissão").ToString();
-                    value.mensagem.MessageBase = "A data da proposta não pode ser menor que a data da ocorrência";
+                    value.mensagem.Code = 4;
+                    value.mensagem.Message = MensagemPadrao.Message(4, "Dt.Proposta", "A data da proposta deve ser menor ou igual que " + dt_ref.ToString("dd/MM/yyyy")).ToString();
+                    value.mensagem.MessageBase = "A data da proposta deve ser menor ou igual a " + dt_ref.ToString("dd/MM/yyyy");
                     value.mensagem.MessageType = MsgType.WARNING;
                     return value.mensagem;
                 }

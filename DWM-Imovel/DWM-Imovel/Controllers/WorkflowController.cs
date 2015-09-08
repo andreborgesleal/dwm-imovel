@@ -37,6 +37,7 @@ namespace DWM.Controllers
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)
         {
+            BindBreadCrumb("Workflow", true);
             ViewBag.propostaId = propostaId.ToString();
             return _Edit(new PropostaViewModel() { propostaId = propostaId });
         }

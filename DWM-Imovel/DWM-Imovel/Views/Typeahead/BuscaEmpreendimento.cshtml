@@ -30,7 +30,7 @@
         success: function (jsonObj) {
             for (i in jsonObj) {
                 data.emp.push(jsonObj[i].nomeEmpreend);
-                emp.countries.push({ objId: jsonObj[i].empreendimentoId, descricao: jsonObj[i].nomeEmpreend })
+                emp.countries.push({ objId: jsonObj[i].empreendimentoId, nomeEmpreend: jsonObj[i].nomeEmpreend })
             };
         }
     });
@@ -69,7 +69,7 @@
                 $('#empreendimentoId').val("");
 
                 for (i in emp.countries) {
-                    if (emp.countries[i].descricao == obj.display)
+                    if (emp.countries[i].nomeEmpreend == obj.display)
                         $('#empreendimentoId').val(emp.countries[i].objId);
                 }
 

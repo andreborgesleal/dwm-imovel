@@ -33,8 +33,15 @@ namespace DWM.Controllers
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)
         {
+            BindBreadCrumb("Edição", true);
             return _Edit(new PropostaViewModel() { propostaId = propostaId });
         }
+
+        public override ActionResult HomePage()
+        {
+            return RedirectToAction("Default", "Home");
+        }
+
         #endregion
 
         #region Delete

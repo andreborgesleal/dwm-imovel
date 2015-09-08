@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label class="control-label" for="ind_tipo_pessoa">Tipo</label>
                             <div class="input-group col-md-12">
-                                @Html.DropDownListFor(m => m.ind_tipo_pessoa, App_Dominio.Enumeracoes.DropDownListEnum.TipoPessoa(), new { @class = "form-control input-sm", @onchange = "MudaPessoa()" })
+                                @Html.DropDownListFor(m => m.ind_tipo_pessoa, App_Dominio.Enumeracoes.DropDownListEnum.TipoPessoa(), new { @class = "form-control", @onchange = "MudaPessoa()" })
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                     <div class="col-md-2" id="div-sexo">
                         <div class="form-group">
                             <label class="control-label" for="sexo">Sexo</label>
-                            @Html.DropDownListFor(m => m.sexo, App_Dominio.Enumeracoes.DropDownListEnum.Sexo(), new { @class = "form-control input-sm" })
+                            @Html.DropDownListFor(m => m.sexo, App_Dominio.Enumeracoes.DropDownListEnum.Sexo(), new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="col-md-2" id="div-nascimento">

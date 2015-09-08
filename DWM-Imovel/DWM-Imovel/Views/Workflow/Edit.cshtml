@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "DWM-Imovel";
     ViewBag.esteiraId = Model.Esteira.FirstOrDefault().esteiraId.ToString();
-    ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
+    if (Model.Comissao.Count() > 0)
+    {
+        ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");    
+    }
+    else
+    {
+        ViewBag.vr_total = Model.vr_comissao.ToString("R$ ###,###,###,##0.00");
+    }
+    
 }
 
 <div class="container-fluid">

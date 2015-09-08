@@ -98,7 +98,8 @@
 
 <script>
     var total = '@vr_total';
-    $('#lbVr_comissao').html(total);
+    if (total != null && total != '' && total != 'R$ 0,00')
+        $('#lbVr_comissao').html(total);
 
     $('#form3').on('submit', function () {
         $('#myModalComissao').modal('hide');

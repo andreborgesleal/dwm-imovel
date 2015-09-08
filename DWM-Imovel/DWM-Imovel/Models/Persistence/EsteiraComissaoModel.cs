@@ -9,6 +9,7 @@ using DWM.Models.Entidades;
 using DWM.Models.Repositories;
 using System.IO;
 using App_Dominio.Security;
+using App_Dominio.App_Start;
 //using System.Data.Entity.SqlServer;
 
 namespace DWM.Models.Persistence
@@ -171,10 +172,11 @@ namespace DWM.Models.Persistence
 
             #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
             int _etapaId;
-            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").Count() > 0)
-                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").FirstOrDefault().etapaId;
+            string _descricao = DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.COMISSAO.GetStringValue();
+            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == _descricao).Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == _descricao).FirstOrDefault().etapaId;
             else
-                _etapaId = db.Etapas.Where(info => info.descricao == "Comissão").FirstOrDefault().etapaId;
+                _etapaId = db.Etapas.Where(info => info.descricao == _descricao).FirstOrDefault().etapaId;
             #endregion
 
             if (proposta.etapaId < _etapaId)
@@ -294,10 +296,11 @@ namespace DWM.Models.Persistence
 
             #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
             int _etapaId;
-            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").Count() > 0)
-                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == "Comissão").FirstOrDefault().etapaId;
+            string _descricao = DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.COMISSAO.GetStringValue();
+            if (db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == _descricao).Count() > 0)
+                _etapaId = db.Etapas.Where(info => info.empreendimentoId == proposta.empreendimentoId && info.descricao == _descricao).FirstOrDefault().etapaId;
             else
-                _etapaId = db.Etapas.Where(info => info.descricao == "Comissão").FirstOrDefault().etapaId;
+                _etapaId = db.Etapas.Where(info => info.descricao == _descricao).FirstOrDefault().etapaId;
             #endregion
 
             if (proposta.etapaId < _etapaId)
