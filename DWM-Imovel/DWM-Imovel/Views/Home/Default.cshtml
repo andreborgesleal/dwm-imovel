@@ -194,6 +194,10 @@
                                                         <label for="id">Data da Proposta</label>
                                                         @Html.Editor("dt_prop", "DATE", new { identificador = "dt_prop", value = DateTime.Today, readOnly = "false" })
                                                     </div>
+                                                    <div class="col-xs-1 col-md-1">
+                                                        <label for="id">Situação</label>
+                                                        @Html.DropDownList("situacao", new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
@@ -491,6 +495,7 @@
     </div>
 }
 
+@*
 <div class="row">
     <div class="col-lg-3">
         <div class="panel panel-primary">
@@ -628,6 +633,7 @@
         </table>
     </div>
 </div>
+*@
 
 <!-- /#wrapper -->
 <script type="text/javascript">

@@ -35,6 +35,7 @@ namespace DWM.Models.Persistence
             value.login = u.login;
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
+            value.situacao = "A";
             return value;
         }
 
