@@ -84,7 +84,6 @@ namespace DWM.Models.BI
                 }
                 else
                     throw new Exception("Esta etapa não pode ser aprovada");
-
             }
             catch (Exception ex)
             {
