@@ -164,39 +164,63 @@
                                             <h3 class="panel-title">Buscar Propostas</h3>
                                         </div>
                                         <div class="panel-body">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <div class="col-xs-1 col-md-1">
-                                                        <label for="id">ID</label>
-                                                        <input class="form-control" type="text">
+                                            <form class="form-horizontal margem-interna-10">
+                                                <div class="row clearfix">
+                                                    <div class="col-xs-1 col-md-3">
+                                                        <div class="form-group col-md-11">
+                                                            <label for=" empreendimento">
+                                                                Empreendimento
+                                                            </label>
+                                                            @Html.DropDownList("empreendimentoPesqId", new DWM.Models.Enumeracoes.BindDropDownList().Empreendimentos("Todos...", ""), new { @class = "form-control" })
+                                                        </div>
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <label for="cpf">CPF/Cliente</label>
-                                                        <input class="form-control" type="text">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="id">Torre/Unidade</label>
+                                                            <input class="form-control" id="torre_unidade" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-1 col-md-3">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="cpf">CPF/Cliente</label>
+                                                            <input class="form-control" id="cpf_nome" type="text">
+                                                        </div>
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <label for="empreendimento">Empreendimento</label>
-                                                        @Html.DropDownList("empreendimentoPesqId", new DWM.Models.Enumeracoes.BindDropDownList().Empreendimentos("Todos...", ""), new { @class = "form-control" })
+                                                        <div class="form-group col-md-11">
+                                                            <label for="id">Etapas</label>
+                                                            @Html.DropDownList("etapaId", new DWM.Models.Enumeracoes.BindDropDownList().Etapas("Todas...", ""), new { @class = "form-control" })
+                                                        </div>
                                                     </div>
                                                     <div class="col-xs-1 col-md-1">
-                                                        <label for="id">Valor</label>
-                                                        <input class="form-control" type="text">
+                                                        <div class="form-group">
+                                                            <label for="id">ID</label>
+                                                            <input class="form-control" type="text" id="propostaId">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-xs-1 col-md-1">
-                                                        <label for="id">Torre/Unidade</label>
-                                                        <input class="form-control" type="text">
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-xs-1 col-md-3">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="id">Data da Proposta</label>
+                                                            <div class="form-inline">
+                                                                @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = DateTime.Today, readOnly = "false" })
+                                                                <span class="h4">&nbsp;a&nbsp;</span>
+                                                                @Html.Editor("dt_prop2", "DATE", new { identificador = "dt_prop2", value = DateTime.Today, readOnly = "false" })
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <label for="id">Etapas</label>
-                                                        @Html.DropDownList("etapaId", new DWM.Models.Enumeracoes.BindDropDownList().Etapas("Todas...", ""), new { @class = "form-control" })
+                                                        <div class="form-group col-md-11">
+                                                            <label for="id">Situação</label>
+                                                            @Html.DropDownList("situacao", new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                                                        </div>
                                                     </div>
                                                     <div class="col-xs-1 col-md-2">
-                                                        <label for="id">Data da Proposta</label>
-                                                        @Html.Editor("dt_prop", "DATE", new { identificador = "dt_prop", value = DateTime.Today, readOnly = "false" })
-                                                    </div>
-                                                    <div class="col-xs-1 col-md-1">
-                                                        <label for="id">Situação</label>
-                                                        @Html.DropDownList("situacao", new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                                                        <div class="form-group col-md-12">
+                                                            <label for="id">Corretor</label>
+                                                            @Html.DropDownList("corretor1Id", new DWM.Models.Enumeracoes.BindDropDownList().Corretores("Todos...", ""), new { @class = "form-control" })
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>
@@ -495,7 +519,7 @@
     </div>
 }
 
-@*
+
 <div class="row">
     <div class="col-lg-3">
         <div class="panel panel-primary">
@@ -633,7 +657,7 @@
         </table>
     </div>
 </div>
-*@
+
 
 <!-- /#wrapper -->
 <script type="text/javascript">

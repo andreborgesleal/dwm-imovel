@@ -430,7 +430,15 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
-            string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
+            //int? _propostaId = (int?)param[0];
+            //string _cpf_nome = (string)param[1] ?? "";
+            //int? _empreendimentoId = (int?)param[2];
+            //decimal? _valor = (decimal?)param[3];
+            //string _torre_unidade = (string)param[4];
+            //int? _etapaId = (int?)param[5];
+            //string _situacao = (string)param[6];
+            //DateTime? _dt_proposta = (DateTime?)param[7];
+            
 
             return (from p in db.Propostas 
                     join c in db.Clientes on p.clienteId equals c.clienteId

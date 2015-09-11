@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1808222012" Data="10/09/2015 21:27:15">
+    <Sessao>rpgn04olrj50y5brd1nq0kh3</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewProposta =&gt; home/default</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewProposta.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\PropostaModel.cs:linha 0
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+</LOG>

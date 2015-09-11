@@ -238,7 +238,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\logs\log-20102014.xml" />
+    <Content Include="App_Data\logs\log-01092015.xml" />
     <Content Include="App_Data\MensagemPadrao.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -1218,6 +1218,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Temp\profile.png" />
+    <Content Include="Users_Data\profile.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1320,8 +1322,6 @@
     <Folder Include="App_Data\rdlc\" />
     <Folder Include="Content\fonts\font-awesome\" />
     <Folder Include="Models\Report\" />
-    <Folder Include="Temp\" />
-    <Folder Include="Users_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
