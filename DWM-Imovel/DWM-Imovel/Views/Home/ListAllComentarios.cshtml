@@ -1,0 +1,44 @@
+﻿@using DWM.Models.Repositories
+@using App_Dominio.Repositories
+@model System.Web.Mvc.PagedList<EsteiraComentarioViewModel>
+@{
+    Layout = null;
+}
+<ul class="list-group">
+    @foreach (EsteiraComentarioViewModel obj in Model)
+    {
+        var cor = "text-success";
+        if (obj.ind_aprovacao == "R")
+        {
+            cor = "text-danger";
+        }
+        else if (obj.ind_aprovacao == null)
+        {
+            cor = "text-primary";
+        }
+
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.GravatarImage(obj.login, size: 45)
+                </div>
+                <div class="col-md-7">
+                    <strong>@obj.nome</strong>
+                    <p>
+                        @obj.nome_empreendimento<br />
+                        @obj.nome_cliente<br />
+                    </p>
+                </div>
+                <div class="col-md-offset-3">
+                    <span>@obj.tempo_comentario</span>
+                </div>
+            </div>
+            <p class="@cor">
+                <b>@obj.descricao_etapa</b>
+            </p>
+            <p>
+                <span class="text-mama-africa">@obj.observacao</span>
+            </p>
+        </li>
+    }
+</ul>

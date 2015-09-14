@@ -24,7 +24,8 @@ namespace DWM.Controllers
         }
         #endregion
 
-        public override ActionResult AfterCreate(PropostaViewModel value, FormCollection collection)
+
+        public override ActionResult HomePage()
         {
             return RedirectToAction("Default", "Home");
         }
@@ -36,12 +37,6 @@ namespace DWM.Controllers
             BindBreadCrumb("Edição", true);
             return _Edit(new PropostaViewModel() { propostaId = propostaId });
         }
-
-        public override ActionResult HomePage()
-        {
-            return RedirectToAction("Default", "Home");
-        }
-
         #endregion
 
         #region Delete

@@ -2,13 +2,11 @@
 @using App_Dominio.Repositories
 @model DWM.Models.Repositories.PropostaViewModel
 @{
-    ViewBag.Title = "DWM-Imovel";
+    Layout = null;
 }
-
-
-@using (Html.BeginForm("Create", "Propostas", FormMethod.Post, new { @class = "form" }))
+@Html.Partial("_alerts")
+@using (Ajax.BeginForm("../Propostas/Create", "Propostas", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-proposta" }, new { @class = "form", @id = "form2" }))
 {
-    <div id="div-lov"></div>
     <div class="panel panel-primary margem-topo-10">
         <div class="panel-heading">
             <h2 class="panel-title">
@@ -122,17 +120,32 @@
         <div class="panel-footer">
             <div class="row">
                 <div class="col-md-9 col-xs-12">
-                    @Html.Partial("_defaultListButtons",
-                        new List<ButtonRepository>
-                        {
-                            new ButtonRepository() {    linkText = "Salvar",
-                                                        actionName = "",
-                                                        controllerName = "",
-                                                        buttonType = "submit"
-                                                    } ,
-                        })
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 }
+
+
+<script>
+    $(function () {
+        $('#form2').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        $('#div-proposta').html(result);
+                        listPanorama();
+                    }
+                });
+            }
+            return false;
+        });
+    });
+
+</script>

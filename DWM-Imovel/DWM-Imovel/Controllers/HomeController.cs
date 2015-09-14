@@ -5,6 +5,7 @@ using App_Dominio.Entidades;
 using App_Dominio.Models;
 using App_Dominio.Pattern;
 using App_Dominio.Security;
+using DWM.Models.BI;
 using DWM.Models.Entidades;
 using DWM.Models.Persistence;
 using DWM.Models.Repositories;
@@ -38,17 +39,79 @@ namespace DWM.Controllers
         }
 
         [AuthorizeFilter]
-        public ActionResult Default(int? index, int? pageSize = 15)
+        public ActionResult Default(int? index, int? pageSize = 15, int? empreendimentoId = null, string torre_unidade = "", string cpf_nome = "",
+                                            int? etapaId = null, int? propostaId = null, DateTime? dt_proposta1 = null, DateTime? dt_proposta2 = null,
+                                            string situacao = "", int? corretor1Id = null)
         {
             if (ViewBag.ValidateRequest)
             {
+                #region ListPanorama
+                if (!dt_proposta1.HasValue)
+                    dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01");
+                if (!dt_proposta2.HasValue)
+                    dt_proposta2 = DateTime.Today;
+                if (situacao == "")
+                    situacao = "A";
+
+                HomeViewModel home = new HomeViewModel()
+                {
+                    empreendimentoId = empreendimentoId,
+                    torre_unidade = torre_unidade,
+                    cpf_nome = cpf_nome,
+                    etapaId = etapaId,
+                    propostaId = propostaId,
+                    dt_proposta1 = dt_proposta1,
+                    dt_proposta2 = dt_proposta2,
+                    situacao = situacao,
+                    corretor1Id = corretor1Id
+                };
+                Factory<HomeViewModel, ApplicationContext> factory = new Factory<HomeViewModel, ApplicationContext>();
+                return View(factory.Execute(new HomeBI(), home));
+
+                //ListViewProposta model = new ListViewProposta();
+                ////Facade<PropostaViewModel, PropostaModel, ApplicationContext> facade = new Facade<PropostaViewModel, PropostaModel, ApplicationContext>();
+                //IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value,
+                //                                                empreendimentoId, torre_unidade, cpf_nome, etapaId, propostaId, dt_proposta1, dt_proposta2,
+                //                                                situacao, corretor1Id);
+                #endregion
+                //return ListPanorama(index, pageSize, empreendimentoId, torre_unidade, cpf_nome, etapaId, propostaId, dt_proposta1, dt_proposta2, situacao, corretor1Id);
+            }
+            else
+                return View();
+        }
+
+        [AuthorizeFilter]
+        public ActionResult ListPanorama(int? index, int? pageSize = 15, int? empreendimentoId = null, string torre_unidade = "", string cpf_nome = "", 
+                                            int? etapaId = null, int? propostaId = null, DateTime? dt_proposta1 = null, DateTime? dt_proposta2 = null, 
+                                            string situacao = "", int? corretor1Id = null)
+        {
+            if (ViewBag.ValidateRequest)
+            {
+                if (!dt_proposta1.HasValue)
+                    dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01");
+                if (!dt_proposta2.HasValue)
+                    dt_proposta2 = DateTime.Today;
+                if (situacao == "")
+                    situacao = "A";
+
                 ListViewProposta model = new ListViewProposta();
                 Facade<PropostaViewModel, PropostaModel, ApplicationContext> facade = new Facade<PropostaViewModel, PropostaModel, ApplicationContext>();
-                IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value);
+                IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value, 
+                                                                empreendimentoId, torre_unidade, cpf_nome, etapaId, propostaId, dt_proposta1, dt_proposta2,
+                                                                situacao, corretor1Id);
                 return View(pagedList);
             }
             else
                 return View();
+        }
+
+        public ActionResult ListAllComentarios(int? index, int? pageSize = 10, string descricao = null)
+        {
+            ListViewComentarioByUsuario model = new ListViewComentarioByUsuario();
+            Facade<EsteiraComentarioViewModel, EsteiraComentarioModel, ApplicationContext> facade = new Facade<EsteiraComentarioViewModel, EsteiraComentarioModel, ApplicationContext>();
+            IPagedList pagedList = facade.getPagedList((ListViewModel<EsteiraComentarioViewModel, ApplicationContext>)model, index, pageSize.Value, descricao);
+
+            return View(pagedList); ;
         }
 
         public ActionResult Chart()

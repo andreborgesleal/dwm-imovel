@@ -49,8 +49,11 @@ namespace DWM.Models.Repositories
         public string tempo_etapa {
             get
             {
-                string value = "há ";
-                TimeSpan ts = Funcoes.Brasilia().Subtract(dt_ocorrencia);
+                string value = "";
+                TimeSpan ts = Funcoes.Brasilia().Subtract(dt_evento);
+                if (dt_manifestacao.HasValue)
+                    ts = dt_manifestacao.Value.Subtract(dt_evento);
+
                 if (ts.Days > 0)
                     value += ts.Days.ToString() + " dias";
                 else if (ts.Hours > 0)

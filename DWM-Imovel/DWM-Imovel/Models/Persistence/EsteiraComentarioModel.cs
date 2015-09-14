@@ -188,6 +188,76 @@ namespace DWM.Models.Persistence
         #endregion
     }
 
+    public class ListViewComentarioByUsuario : ListViewModel<EsteiraComentarioViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewComentarioByUsuario() { }
+        public ListViewComentarioByUsuario(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<EsteiraComentarioViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            string _nome = null;
+            if (param != null)
+                if (param.Count() > 0)
+                    if (param[0] != null)
+                        _nome = param[0].ToString();
+
+            return (from com in db.Comentarios
+                    join est in db.Esteiras on com.esteiraId equals est.esteiraId
+                    join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    join pro in db.Propostas on est.propostaId equals pro.propostaId
+                    join cli in db.Clientes on pro.clienteId equals cli.clienteId
+                    join emp in db.Empreendimentos on pro.empreendimentoId equals emp.empreendimentoId
+                    where (_nome == null || _nome == "" || com.nome.Contains(_nome))
+                            && pro.situacao == "A"
+                    orderby com.dt_comentario descending
+                    select new EsteiraComentarioViewModel()
+                    {
+                        esteiraId = est.esteiraId,
+                        descricao_etapa = eta.descricao,
+                        dt_comentario = com.dt_comentario,
+                        observacao = com.observacao,
+                        usuarioId = com.usuarioId,
+                        nome = com.nome,
+                        login = com.login,
+                        nome_cliente = cli.nome,
+                        nome_empreendimento = emp.nomeEmpreend,
+                        PageSize = pageSize,
+                        TotalCount = (from com1 in db.Comentarios
+                                      join est1 in db.Esteiras on com1.esteiraId equals est1.esteiraId
+                                      join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      join pro1 in db.Propostas on est1.propostaId equals pro1.propostaId
+                                      join cli1 in db.Clientes on pro1.clienteId equals cli1.clienteId
+                                      join emp1 in db.Empreendimentos on pro1.empreendimentoId equals emp1.empreendimentoId
+                                      where (_nome == null || _nome == "" || com1.nome.Contains(_nome))
+                                            && pro1.situacao == "A"
+                                      orderby com1.dt_comentario descending
+                                      select com1.esteiraId).Count()
+                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            return new EsteiraComentarioModel().getObject((EsteiraComentarioViewModel)id);
+        }
+
+        public override string action()
+        {
+            return "../Home/ListAllComentarios";
+        }
+
+        public override string DivId()
+        {
+            return "div-comentarios";
+        }
+
+        #endregion
+    }
 
 }
 

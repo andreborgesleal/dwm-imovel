@@ -639,3 +639,10 @@ function Converte(obj, objFor) {
     }
     return flag;
 }
+
+function FormatDate(obj) {
+    var from = obj.split("/");
+    var f = from[2] + '-' + from[1] + '-' + from[0];
+    return f;
+}
+

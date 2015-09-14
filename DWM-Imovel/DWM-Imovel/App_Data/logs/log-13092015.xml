@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="116159329" Data="13/09/2015 12:01:05">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/delete</NameSpace>
+    <Context>propostaId="1014",descricao_etapa="Proposta",torre="Oásis",unidade="901",dt_proposta="05/09/2015 00:00:00",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="14",nome_cliente1="João e o pé de feijão",nome_cliente="João e o pé de feijão",valor="250000,00",vr_comissao="15000,00",corretor1Id="",nome_corretor1="",nome_corretor="",dt_proposta1="13/09/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 138
+   em App_Dominio.Controllers.DwmRootController`3.Del(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 357
+   em App_Dominio.Controllers.DwmRootController`3.SetDelete(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 313</StackTrace>
+  </LOG>
+  <LOG ID="1707136310" Data="13/09/2015 16:39:59">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/listallcomentarios</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 204
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1972593618" Data="13/09/2015 16:44:12">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/listallcomentarios</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 204
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="443680674" Data="13/09/2015 16:46:56">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/listallcomentarios</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 208
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1929213834" Data="13/09/2015 16:49:53">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/default</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 0
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1587374809" Data="13/09/2015 16:51:14">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/default</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 0
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1451509067" Data="13/09/2015 16:52:28">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/listallcomentarios</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 207
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="449174408" Data="13/09/2015 16:55:02">
+    <Sessao>omilzhhju25re4bsiplf1sp1</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewComentarioByUsuario =&gt; home/listallcomentarios</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComentarioByUsuario.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComentarioModel.cs:linha 207
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+</LOG>

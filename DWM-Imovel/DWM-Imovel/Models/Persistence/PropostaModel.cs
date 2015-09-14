@@ -24,7 +24,6 @@ namespace DWM.Models.Persistence
         }
         #endregion
 
-
         #region Métodos da classe CrudModel
         public override PropostaViewModel BeforeInsert(PropostaViewModel value)
         {
@@ -36,6 +35,16 @@ namespace DWM.Models.Persistence
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
             value.situacao = "A";
+            return value;
+        }
+
+        public override PropostaViewModel BeforeDelete(PropostaViewModel value)
+        {
+            int _esteiraId = db.Esteiras.Where(info => info.propostaId == value.propostaId).FirstOrDefault().esteiraId;
+            EsteiraModel esteiraModel = new EsteiraModel(this.db, this.seguranca_db);
+            EsteiraViewModel esteiraViewModel = esteiraModel.Delete(new EsteiraViewModel() { esteiraId = _esteiraId, uri = "Propostas/Delete" });
+            if (esteiraViewModel.mensagem.Code > 0)
+                throw new Exception(esteiraViewModel.mensagem.Message);
             return value;
         }
 
@@ -246,6 +255,39 @@ namespace DWM.Models.Persistence
         {
             value.mensagem = new Validate() { Code = 0, Message = MensagemPadrao.Message(0).ToString() };
 
+            if (operation == Crud.EXCLUIR || operation == Crud.ALTERAR)
+            {
+                if (value.propostaId <= 0)
+                {
+                    value.mensagem.Code = 5;
+                    value.mensagem.Message = MensagemPadrao.Message(5, "ID Proposta").ToString();
+                    value.mensagem.MessageBase = "Identificador da proposta deve ser informado";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+
+                if (operation == Crud.EXCLUIR)
+                {
+                    #region Verifica se tem Etapa específica para o empreendimento. Se não tiver, trás a etapa "Proposta" padrão para todos os empreendimentos
+                    int _etapaId;
+                    string _descricao = DWM.Models.Enumeracoes.Enumeradores.DescricaoEtapa.PROPOSTA.GetStringValue();
+                    if (db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == _descricao).Count() > 0)
+                        _etapaId = db.Etapas.Where(info => info.empreendimentoId == value.empreendimentoId && info.descricao == _descricao).FirstOrDefault().etapaId;
+                    else
+                        _etapaId = db.Etapas.Where(info => info.descricao == _descricao).FirstOrDefault().etapaId;
+                    #endregion
+
+                    if (value.etapaId != _etapaId)
+                    {
+                        value.mensagem.Code = 16;
+                        value.mensagem.Message = MensagemPadrao.Message(16).ToString();
+                        value.mensagem.MessageBase = "Para realizar a exclusão, a venda precisa estar na etapa de [Proposta]. Para este caso, altere a venda e mude a situação para [Cancelada].";
+                        value.mensagem.MessageType = MsgType.WARNING;
+                        return value.mensagem;
+                    }
+                }
+            }
+
             if (value.empreendimentoId < 0)
             {
                 value.mensagem.Code = 5;
@@ -430,23 +472,162 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
-            //int? _propostaId = (int?)param[0];
-            //string _cpf_nome = (string)param[1] ?? "";
-            //int? _empreendimentoId = (int?)param[2];
-            //decimal? _valor = (decimal?)param[3];
-            //string _torre_unidade = (string)param[4];
-            //int? _etapaId = (int?)param[5];
-            //string _situacao = (string)param[6];
-            //DateTime? _dt_proposta = (DateTime?)param[7];
-            
+            int? _empreendimentoId = (int?)param[0];
+            string _torre_unidade = (string)param[1] ?? "";
+            string _cpf_nome = (string)param[2] ?? "";
+            int? _etapaId = (int?)param[3];
+            int? _propostaId = (int?)param[4];
+            DateTime? _dt_proposta1 = (DateTime?)param[5];
+            DateTime? _dt_proposta2 = (DateTime?)param[6];
+            string _situacao = (string)param[7];
+            int? _corretor1Id = (int?)param[8];
 
-            return (from p in db.Propostas 
+            if (_propostaId.HasValue) // Usuário informou o ID da proposta
+                return (from p in db.Propostas
+                        join c in db.Clientes on p.clienteId equals c.clienteId
+                        join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
+                        join est in db.Esteiras on p.propostaId equals est.propostaId
+                        join eta in db.Etapas on est.etapaId equals eta.etapaId
+                        where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
+                                && p.propostaId == _propostaId
+                        orderby p.dt_proposta, c.nome
+                        select new PropostaViewModel
+                        {
+                            empresaId = sessaoCorrente.empresaId,
+                            clienteId = p.clienteId,
+                            cpf_cnpj = c.cpf_cnpj,
+                            nome_cliente = c.nome,
+                            propostaId = p.propostaId,
+                            empreendimentoId = p.empreendimentoId,
+                            descricao_empreendimento = emp.nomeEmpreend,
+                            dt_proposta = p.dt_proposta,
+                            unidade = p.unidade,
+                            torre = p.torre,
+                            valor = p.valor,
+                            vr_comissao = p.vr_comissao,
+                            etapaId = p.etapaId,
+                            descricao_etapa = eta.descricao,
+                            dt_ultimo_status = p.dt_ultimo_status,
+                            operacaoId = p.operacaoId,
+                            percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
+                            percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                            PageSize = pageSize,
+                            TotalCount = (from p1 in db.Propostas
+                                          join c1 in db.Clientes on p1.clienteId equals c1.clienteId
+                                          join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
+                                          join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
+                                          join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                          where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
+                                                && p1.propostaId == _propostaId
+                                          orderby p1.dt_proposta, c1.nome
+                                          select p1.propostaId).Count()
+                        }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+            else
+                return (from p in db.Propostas
+                        join c in db.Clientes on p.clienteId equals c.clienteId
+                        join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
+                        join est in db.Esteiras on p.propostaId equals est.propostaId
+                        join eta in db.Etapas on est.etapaId equals eta.etapaId
+                        where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
+                                && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
+                                && (_torre_unidade == "" || (p.torre+p.unidade).Contains(_torre_unidade))
+                                && (_cpf_nome == "" || c.cpf_cnpj == _cpf_nome || c.nome.Contains(_cpf_nome))
+                                && (!_corretor1Id.HasValue || p.corretor1Id == _corretor1Id)
+                                && (!_etapaId.HasValue || p.etapaId == _etapaId)
+                                && p.dt_proposta >= _dt_proposta1 && p.dt_proposta <= _dt_proposta2
+                                && p.situacao == _situacao
+                        orderby p.dt_proposta, c.nome
+                        select new PropostaViewModel
+                        {
+                            empresaId = sessaoCorrente.empresaId,
+                            clienteId = p.clienteId,
+                            cpf_cnpj = c.cpf_cnpj,
+                            nome_cliente = c.nome,
+                            propostaId = p.propostaId,
+                            empreendimentoId = p.empreendimentoId,
+                            descricao_empreendimento = emp.nomeEmpreend,
+                            dt_proposta = p.dt_proposta,
+                            unidade = p.unidade,
+                            torre = p.torre,
+                            valor = p.valor,
+                            vr_comissao = p.vr_comissao,
+                            etapaId = p.etapaId,
+                            descricao_etapa = eta.descricao,
+                            dt_ultimo_status = p.dt_ultimo_status,
+                            operacaoId = p.operacaoId,
+                            percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
+                            percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                            PageSize = pageSize,
+                            TotalCount = (from p1 in db.Propostas
+                                          join c1 in db.Clientes on p1.clienteId equals c1.clienteId
+                                          join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
+                                          join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
+                                          join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                          where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
+                                                && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
+                                                && (_torre_unidade == "" || (p1.torre + p1.unidade).Contains(_torre_unidade))
+                                                && (_cpf_nome == "" || c1.cpf_cnpj == _cpf_nome || c1.nome.Contains(_cpf_nome))
+                                                && (!_corretor1Id.HasValue || p1.corretor1Id == _corretor1Id)
+                                                && (!_etapaId.HasValue || p1.etapaId == _etapaId)
+                                                && p1.dt_proposta >= _dt_proposta1 && p1.dt_proposta <= _dt_proposta2
+                                                && p1.situacao == _situacao
+                                          select p1.propostaId).Count()
+                        }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override string action()
+        {
+            return "../Home/ListPanorama";
+        }
+
+        public override string DivId()
+        {
+            return "div-panorama";
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            return new PropostaModel().getObject((PropostaViewModel)id);
+        }
+        #endregion
+    }
+
+    public class ListViewComissaoMes : ListViewModel<PropostaViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewComissaoMes() { }
+        public ListViewComissaoMes(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            int? _empreendimentoId = (int?)param[0];
+            int? _etapaId = (int?)param[1];
+            DateTime? _dt_etapa1 = (DateTime?)param[2];
+            DateTime? _dt_etapa2 = (DateTime?)param[3];
+
+            return (from p in db.Propostas
                     join c in db.Clientes on p.clienteId equals c.clienteId
                     join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
-                    join est in db.Esteiras on p.propostaId equals est.propostaId 
+                    join est in db.Esteiras on p.propostaId equals est.propostaId
                     join eta in db.Etapas on est.etapaId equals eta.etapaId
                     where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
-                    orderby p.dt_proposta, c.nome
+                          && (from esteira2 in db.Esteiras 
+                              where esteira2.propostaId == p.propostaId 
+                                    && esteira2.etapaId == 4 
+                                    && esteira2.dt_ocorrencia >= _dt_etapa1 && esteira2.dt_ocorrencia <= _dt_etapa2
+                                    && esteira2.esteiraId ==  (from esteira1 in db.Esteiras
+                                                               where esteira1.propostaId == p.propostaId && esteira1.etapaId == 4 && esteira1.dt_ocorrencia >= _dt_etapa1 && esteira1.dt_ocorrencia <= _dt_etapa2
+                                                               select esteira1.esteiraId).Max()
+                              select esteira2.esteiraId).Count() > 0
+                          && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
+                          && p.etapaId >= _etapaId
+                          && p.situacao == "A"
+                    orderby p.dt_ultimo_status, c.nome
                     select new PropostaViewModel
                     {
                         empresaId = sessaoCorrente.empresaId,
@@ -473,16 +654,167 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
-                                      where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
+                                      where est1.esteiraId == (from esteira3 in db.Esteiras where esteira3.propostaId == p1.propostaId select esteira3.esteiraId).Max()
+                                              && (from esteira21 in db.Esteiras
+                                                  where esteira21.propostaId == p1.propostaId
+                                                        && esteira21.etapaId == 4
+                                                        && esteira21.dt_ocorrencia >= _dt_etapa1 && esteira21.dt_ocorrencia <= _dt_etapa2
+                                                        && esteira21.esteiraId == (from esteira11 in db.Esteiras
+                                                                                  where esteira11.propostaId == p1.propostaId && esteira11.etapaId == 4 && esteira11.dt_ocorrencia >= _dt_etapa1 && esteira11.dt_ocorrencia <= _dt_etapa2
+                                                                                  select esteira11.esteiraId).Max()
+                                                  select esteira21.esteiraId).Count() > 0
+                                              && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
+                                              && p1.etapaId >= _etapaId
+                                              && p1.situacao == "A"
+                                      orderby p1.dt_ultimo_status, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
 
         public override Repository getRepository(Object id)
         {
-            return new PropostaModel().getObject((PropostaViewModel)id);
+            throw new NotImplementedException();
         }
         #endregion
     }
 
+    public class ListViewVendasEmAberto : ListViewModel<PropostaViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewVendasEmAberto() { }
+        public ListViewVendasEmAberto(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            int? _empreendimentoId = (int?)param[0];
+            int? _etapaId = (int?)param[1];
+
+            return (from p in db.Propostas
+                    join c in db.Clientes on p.clienteId equals c.clienteId
+                    join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
+                    join est in db.Esteiras on p.propostaId equals est.propostaId
+                    join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
+                          && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
+                          && p.etapaId <= _etapaId
+                          && p.situacao == "A"
+                    orderby p.dt_ultimo_status descending, c.nome
+                    select new PropostaViewModel
+                    {
+                        empresaId = sessaoCorrente.empresaId,
+                        clienteId = p.clienteId,
+                        cpf_cnpj = c.cpf_cnpj,
+                        nome_cliente = c.nome,
+                        propostaId = p.propostaId,
+                        empreendimentoId = p.empreendimentoId,
+                        descricao_empreendimento = emp.nomeEmpreend,
+                        dt_proposta = p.dt_proposta,
+                        unidade = p.unidade,
+                        torre = p.torre,
+                        valor = p.valor,
+                        vr_comissao = p.vr_comissao,
+                        etapaId = p.etapaId,
+                        descricao_etapa = eta.descricao,
+                        dt_ultimo_status = p.dt_ultimo_status,
+                        operacaoId = p.operacaoId,
+                        percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
+                        percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                        PageSize = pageSize,
+                        TotalCount = (from p1 in db.Propostas
+                                      join c1 in db.Clientes on p1.clienteId equals c1.clienteId
+                                      join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
+                                      join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
+                                      join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
+                                              && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
+                                              && p1.etapaId <= _etapaId
+                                              && p1.situacao == "A"
+                                      orderby p1.dt_ultimo_status descending, c1.nome
+                                      select p1.propostaId).Count()
+                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+
+    public class ListViewVendasAtrasadas : ListViewModel<PropostaViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewVendasAtrasadas() { }
+        public ListViewVendasAtrasadas(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            int? _empreendimentoId = null;
+            var _data = DateTime.Today.AddDays(-10);
+
+            if (param != null)
+                if (param[0] != null)
+                    _empreendimentoId = (int?)param[0];
+
+            return (from p in db.Propostas
+                    join c in db.Clientes on p.clienteId equals c.clienteId
+                    join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
+                    join est in db.Esteiras on p.propostaId equals est.propostaId
+                    join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
+                          && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
+                          && p.situacao == "A"
+                          && p.dt_ultimo_status < _data
+                    orderby p.dt_ultimo_status descending, c.nome
+                    select new PropostaViewModel
+                    {
+                        empresaId = sessaoCorrente.empresaId,
+                        clienteId = p.clienteId,
+                        cpf_cnpj = c.cpf_cnpj,
+                        nome_cliente = c.nome,
+                        propostaId = p.propostaId,
+                        empreendimentoId = p.empreendimentoId,
+                        descricao_empreendimento = emp.nomeEmpreend,
+                        dt_proposta = p.dt_proposta,
+                        unidade = p.unidade,
+                        torre = p.torre,
+                        valor = p.valor,
+                        vr_comissao = p.vr_comissao,
+                        etapaId = p.etapaId,
+                        descricao_etapa = eta.descricao,
+                        dt_ultimo_status = p.dt_ultimo_status,
+                        operacaoId = p.operacaoId,
+                        percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
+                        percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
+                        PageSize = pageSize,
+                        TotalCount = (from p1 in db.Propostas
+                                      join c1 in db.Clientes on p1.clienteId equals c1.clienteId
+                                      join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
+                                      join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
+                                      join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
+                                              && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
+                                              && p1.situacao == "A"
+                                              && p1.dt_ultimo_status < _data
+                                      orderby p1.dt_ultimo_status descending, c1.nome
+                                      select p1.propostaId).Count()
+                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }

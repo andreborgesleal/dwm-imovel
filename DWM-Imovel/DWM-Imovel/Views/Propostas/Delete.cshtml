@@ -8,8 +8,12 @@
 
 @using (Html.BeginForm("Delete", "Propostas", FormMethod.Post, new { @class = "form" }))
 {
+    @Html.HiddenFor(info => info.propostaId)
     @Html.HiddenFor(info => info.descricao_etapa)
-
+    @Html.HiddenFor(info => info.torre)
+    @Html.HiddenFor(info => info.unidade)
+    @Html.HiddenFor(info => info.dt_proposta)
+    
     <div id="div-lov"></div>
     <div class="panel panel-primary margem-topo-10">
         <div class="panel-heading">
@@ -116,7 +120,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label" for="dt_proposta">Dt.Proposta</label>
-                        @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta", value = DateTime.Today, readOnly = "true" })
+                        @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta1", value = DateTime.Today, readOnly = "true" })
                     </div>
                 </div>
             </div>

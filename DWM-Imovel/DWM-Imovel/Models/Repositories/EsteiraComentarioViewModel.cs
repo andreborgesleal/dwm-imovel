@@ -35,6 +35,10 @@ namespace DWM.Models.Repositories
         [DisplayName("Login")]
         public string login { get; set; }
 
+        public string nome_cliente { get; set; }
+
+        public string nome_empreendimento { get; set; }
+
         [DisplayName("Tempo Comentário")]
         public string tempo_comentario { 
             get 

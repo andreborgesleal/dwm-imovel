@@ -392,3 +392,7 @@ a.list-group-item:focus {
 .dedo-indicador {
     cursor: pointer !important;
 }
+
+.barra-rolagem{
+    overflow: auto;
+}

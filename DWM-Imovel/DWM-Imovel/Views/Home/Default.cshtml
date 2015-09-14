@@ -1,14 +1,11 @@
 ﻿@using DWM.Models.Repositories
 @using App_Dominio.Repositories
-@model System.Web.Mvc.PagedList<PropostaViewModel>
+@model HomeViewModel
+
 <!--overview start-->
 <div class="row">
     <div class="col-lg-12" style="margin-top: -40px">
         <h3 class="page-header"><i class="fa fa-laptop"></i> NM Consultoria Imobiliária</h3>
-        @*<ol class="breadcrumb">
-                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                <li><i class="fa fa-laptop"></i>Dashboard</li>
-            </ol>*@
     </div>
 </div>
 
@@ -22,14 +19,14 @@
                         <i class="fa fa-money fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">R$ 279.545,22</div>
+                        <div class="huge">@Model.ComissaoMes.Sum(info => info.vr_comissao).ToString("R$ ###,###,###,##0.00")</div>
                         <div>Comissão do mês</div>
                     </div>
                 </div>
             </div>
             <a href="#">
                 <div class="panel-footer">
-                    <span class="pull-left">Ver mais...</span>
+                    <span class="pull-left" data-toggle="modal" data-target="#myModalResumo1">Ver mais...</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
@@ -44,14 +41,14 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">78</div>
+                        <div class="huge">@Model.VendasMes.Count()</div>
                         <div>Vendas no mês</div>
                     </div>
                 </div>
             </div>
             <a href="#">
                 <div class="panel-footer">
-                    <span class="pull-left">Ver mais...</span>
+                    <span class="pull-left" data-toggle="modal" data-target="#myModalResumo2">Ver mais...</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
@@ -66,14 +63,14 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
-                        <div>Análises de créditos aprovadas</div>
+                        <div class="huge">@Model.VendasEmAberto.Count()</div>
+                        <div>Vendas em aberto</div>
                     </div>
                 </div>
             </div>
             <a href="#">
                 <div class="panel-footer">
-                    <span class="pull-left">Ver mais...</span>
+                    <span class="pull-left" data-toggle="modal" data-target="#myModalResumo3">Ver mais...</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
@@ -88,14 +85,21 @@
                         <i class="fa fa-support fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
-                        <div>Propostas atrasadas</div>
+                        @{
+                            var quantidade_vendas_atraso = 0;
+                            if (Model.VendasEmAtraso != null)
+                            {
+                                quantidade_vendas_atraso = Model.VendasEmAtraso.Count();
+                            }
+                        }
+                        <div class="huge">@quantidade_vendas_atraso</div>
+                        <div>Propostas paralisadas há mais de 10 dias</div>
                     </div>
                 </div>
             </div>
             <a href="#">
                 <div class="panel-footer">
-                    <span class="pull-left">Ver mais...</span>
+                    <span class="pull-left" data-toggle="modal" data-target="#myModalResumo4">Ver mais...</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
@@ -104,42 +108,7 @@
     </div>
 </div>
 
-@*<div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box dark-bg">
-                <i class="fa fa-thumbs-o-up"></i>
-                <div class="count">R$ 279.545,22</div>
-                <div class="title">Comissão no mês</div>
-            </div><!--/.info-box-->
-        </div><!--/.col-->
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box brown-bg">
-                <i class="fa fa-shopping-cart"></i>
-                <div class="count">78</div>
-                <div class="title">Vendas no mês</div>
-            </div><!--/.info-box-->
-        </div><!--/.col-->
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box green-bg">
-                <i class="fa fa-cubes"></i>
-                <div class="count">17</div>
-                <div class="title">Análises de crédito aprovadas</div>
-            </div><!--/.info-box-->
-        </div><!--/.col-->
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box blue-bg">
-                <i class="fa fa-cloud-download"></i>
-                <div class="count">15</div>
-                <div class="title">Propostas atrasadas</div>
-            </div><!--/.info-box-->
-        </div><!--/.col-->
-
-
-    </div><!--/.row-->*@
-
+<!-- Panorama das vendas -->
 @if (Model != null)
 {
     <div class="row">
@@ -164,363 +133,99 @@
                                             <h3 class="panel-title">Buscar Propostas</h3>
                                         </div>
                                         <div class="panel-body">
-                                            <form class="form-horizontal margem-interna-10">
-                                                <div class="row clearfix">
-                                                    <div class="col-xs-1 col-md-3">
-                                                        <div class="form-group col-md-11">
-                                                            <label for=" empreendimento">
-                                                                Empreendimento
-                                                            </label>
-                                                            @Html.DropDownList("empreendimentoPesqId", new DWM.Models.Enumeracoes.BindDropDownList().Empreendimentos("Todos...", ""), new { @class = "form-control" })
+                                            @using (Html.BeginForm("Default", "Home", FormMethod.Post, new { @class = "form", @id = "form0" }))
+                                            {
+                                                <form class="form-horizontal margem-interna-10" id="form2">
+                                                    <div class="row clearfix">
+                                                        <div class="col-xs-1 col-md-3">
+                                                            <div class="form-group col-md-11">
+                                                                <label for=" empreendimento">
+                                                                    Empreendimento
+                                                                </label>
+                                                                @Html.DropDownList("empreendimentoPesqId", new DWM.Models.Enumeracoes.BindDropDownList().Empreendimentos("Todos...", ""), new { @class = "form-control" })
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xs-1 col-md-2">
-                                                        <div class="form-group col-md-11">
-                                                            <label for="id">Torre/Unidade</label>
-                                                            <input class="form-control" id="torre_unidade" type="text">
+                                                        <div class="col-xs-1 col-md-2">
+                                                            <div class="form-group col-md-11">
+                                                                <label for="id">Torre/Unidade</label>
+                                                                <input class="form-control" id="torre_unidade" name="torre_unidade" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xs-1 col-md-3">
-                                                        <div class="form-group col-md-11">
-                                                            <label for="cpf">CPF/Cliente</label>
-                                                            <input class="form-control" id="cpf_nome" type="text">
+                                                        <div class="col-xs-1 col-md-3">
+                                                            <div class="form-group col-md-11">
+                                                                <label for="cpf">CPF/Cliente</label>
+                                                                <input class="form-control" id="cpf_nome" name="cpf_nome" type="text" onkeydown="return numeros();">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xs-1 col-md-2">
-                                                        <div class="form-group col-md-11">
-                                                            <label for="id">Etapas</label>
-                                                            @Html.DropDownList("etapaId", new DWM.Models.Enumeracoes.BindDropDownList().Etapas("Todas...", ""), new { @class = "form-control" })
+                                                        <div class="col-xs-1 col-md-2">
+                                                            <div class="form-group col-md-11">
+                                                                <label for="id">Etapas</label>
+                                                                @Html.DropDownList("etapaId", new DWM.Models.Enumeracoes.BindDropDownList().Etapas("Todas...", ""), new { @class = "form-control" })
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xs-1 col-md-1">
-                                                        <div class="form-group">
-                                                            <label for="id">ID</label>
-                                                            <input class="form-control" type="text" id="propostaId">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row clearfix">
-                                                    <div class="col-xs-1 col-md-3">
-                                                        <div class="form-group col-md-11">
-                                                            <label for="id">Data da Proposta</label>
-                                                            <div class="form-inline">
-                                                                @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = DateTime.Today, readOnly = "false" })
-                                                                <span class="h4">&nbsp;a&nbsp;</span>
-                                                                @Html.Editor("dt_prop2", "DATE", new { identificador = "dt_prop2", value = DateTime.Today, readOnly = "false" })
+                                                        <div class="col-xs-1 col-md-1">
+                                                            <div class="form-group">
+                                                                <label for="id">ID</label>
+                                                                <input class="form-control" type="text" id="propostaId" name="propostaId" onkeydown="return numeros();">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-1 col-md-2">
-                                                        <div class="form-group col-md-11">
-                                                            <label for="id">Situação</label>
-                                                            @Html.DropDownList("situacao", new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                                                    <div class="row clearfix">
+                                                        <div class="col-xs-1 col-md-3">
+                                                            <div class="form-group col-md-11">
+                                                                <label for="id">Data da Proposta</label>
+                                                                <div class="form-inline">
+                                                                    @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-") + "01"), readOnly = "false" })
+                                                                    <span class="h4">&nbsp;a&nbsp;</span>
+                                                                    @Html.Editor("dt_prop2", "DATE", new { identificador = "dt_prop2", value = DateTime.Today, readOnly = "false" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-1 col-md-2">
+                                                            <div class="form-group col-md-11">
+                                                                <label for="id">Situação</label>
+                                                                @Html.DropDownList("situacao", new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-1 col-md-2">
+                                                            <div class="form-group col-md-12">
+                                                                <label for="id">Corretor</label>
+                                                                @Html.DropDownList("corretor1pesqId", new DWM.Models.Enumeracoes.BindDropDownList().Corretores("Todos...", ""), new { @class = "form-control" })
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-1 col-md-2">
-                                                        <div class="form-group col-md-12">
-                                                            <label for="id">Corretor</label>
-                                                            @Html.DropDownList("corretor1Id", new DWM.Models.Enumeracoes.BindDropDownList().Corretores("Todos...", ""), new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            }
                                         </div>
                                         <div class="panel-footer">
                                             <div class="row">
                                                 <div class="col-md-9 col-xs-12">
-                                                    <div class="btn-group" data-toggle="buttons">
-                                                        <label class="btn btn-primary">
-                                                            <input type="checkbox"> Buscar
-                                                        </label>
-                                                    </div>
+                                                    <input type="button" class="btn btn-primary" onclick="listPanorama();" value="Buscar">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="profile">
-                                    @Html.Partial("../Propostas/Create", new PropostaViewModel())
+                                    <div id="div-proposta">
+                                        @Html.Partial("../Propostas/Create", new PropostaViewModel())
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </header>
-                <table class="table table-striped table-advance table-hover margem-topo-10" style="cursor: pointer">
-                    <tbody>
-                        <tr>
-                            <th class="text-info"><i class="icon_key_alt"></i> ID</th>
-                            <th class="text-info"><i class="icon_calendar"></i> Data</th>
-                            <th class="text-info"><i class="icon_book_alt"></i> Empreendimento</th>
-                            <th class="text-info"><i class="icon_profile"></i> Cliente</th>
-                            <th class="text-info"><i class="icon_pin_alt"></i> Torre/Unidade</th>
-                            <th class="text-info"><i class="icon_clock_alt"></i> Etapa</th>
-                            <th class="text-info"><i class="icon_plus_alt2"></i> Valor</th>
-                            <th class="text-info"><i class="icon_like"></i> Comissão</th>
-                            <th class="text-info"><i class="icon_cogs"></i> Action</th>
-                        </tr>
-                        @foreach (PropostaViewModel pro in Model)
-                        {
-                            var cliente = pro.nome_cliente;
-                            <tr>
-                                <td class="text-left">@pro.propostaId</td>
-                                <td>@pro.dt_proposta.ToString("dd/MM/yyyy")</td>
-                                <td>@pro.descricao_empreendimento</td>
-                                @if (pro.cpf_cnpj != null && pro.cpf_cnpj != "")
-                                {
-                                    <td>@pro.nome_cliente <p><strong>CPF:</strong> @App_Dominio.Models.Funcoes.FormataCPFCNPJ(pro.cpf_cnpj)</p></td>
-                                }
-                                else
-                                {
-                                    <td>@pro.nome_cliente</td>
-                                }
-                                <td><strong>Torre: </strong>@pro.torre <p><strong>Unidade:</strong> @pro.unidade</p></td>
-                                <td>
-                                    <strong>@pro.descricao_etapa</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="@pro.percent_atual.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_atual.ToString("##0"))%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@pro.percent_restnte.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_restnte.ToString("##0"))%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">(@pro.percent_atual.ToString("##0"))%</span>
-                                </td>
-                                <td><br />@pro.valor.ToString("R$ ###,###,###,##0.00")</td>
-                                <td><br />@pro.vr_comissao.ToString("R$ ###,###,###,##0.00")</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-success" href="../Workflow/Edit?propostaId=@pro.propostaId" title="Workflow"><i class="fa fa-stack-overflow"></i></a>
-                                        <a class="btn btn-primary" href="../Propostas/Edit?propostaId=@pro.propostaId" title="Editar Proposta"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="../Propostas/Delete?propostaId=@pro.propostaId" title="Excluir Proposta"><i class="fa fa-minus"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        }
-                        @*<tr>
-                                <td class="text-center">15</td>
-                                <td>10/06/2015</td>
-                                <td>Torres Cenário</td>
-                                <td>Graziela Medeiros Faciola <p><strong>CPF:</strong> 373.238.664-09</p></td>
-                                <td><strong>Torre: </strong>Galileu <p><strong>Unidade:</strong> 1301</p></td>
-                                <td>
-                                    <strong>Contabilização</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">73%</span>
-                                </td>
-                                <td>R$ 780.000,00</td>
-                                <td>R$ 36.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">18</td>
-                                <td>10/06/2015</td>
-                                <td>Torres Cenário</td>
-                                <td>Jânio Reis Oliveira<p><strong>CPF:</strong> 553.238.264-09</p></td>
-                                <td><strong>Torre: </strong>Mefisto <p><strong>Unidade:</strong> 301</p></td>
-                                <td>
-                                    <strong>Análise documentação</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">27%</span>
-                                </td>
-                                <td>R$ 880.000,00</td>
-                                <td>R$ 44.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">19</td>
-                                <td>14/06/2015</td>
-                                <td>Torres Cenário</td>
-                                <td>Fernanda Lima Pereira <p><strong>CPF:</strong> 004.238.9014-09</p></td>
-                                <td><strong>Torre: </strong>Galileu <p><strong>Unidade:</strong> 1802</p></td>
-                                <td>
-                                    <strong>Proposta</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100" style="width: 13%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">13%</span>
-                                </td>
-                                <td>R$ 180.000,00</td>
-                                <td>R$ 9.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">22</td>
-                                <td>15/06/2015</td>
-                                <td>Torres Cenário</td>
-                                <td>Fernanda Vasconcelos<p><strong>CPF:</strong> 553.238.264-09</p></td>
-                                <td><strong>Torre: </strong>Margareth <p><strong>Unidade:</strong> 2301</p></td>
-                                <td>
-                                    <strong>Análise de Crédito</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">50%</span>
-                                </td>
-                                <td>R$ 880.000,00</td>
-                                <td>R$ 44.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">21</td>
-                                <td>15/06/2015</td>
-                                <td>Torres Liberto</td>
-                                <td>Haroldo Carvalho da Penha<p><strong>CPF:</strong> 553.238.264-09</p></td>
-                                <td><strong>Torre: </strong>Galileu <p><strong>Unidade:</strong> 1304</p></td>
-                                <td>
-                                    <strong>Reanálise da documentação</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" style="width: 37%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">37%</span>
-                                </td>
-                                <td>R$ 1.480.000,00</td>
-                                <td>R$ 70.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">24</td>
-                                <td>21/06/2015</td>
-                                <td>Torres Liberto</td>
-                                <td>Penélope Batista Maciel<p><strong>CPF:</strong> 188.224.214-00</p></td>
-                                <td><strong>Torre: </strong>Ébano <p><strong>Unidade:</strong> 1301</p></td>
-                                <td>
-                                    <strong>Análise documentação</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">27%</span>
-                                </td>
-                                <td>R$ 1.480.000,00</td>
-                                <td>R$ 70.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">23</td>
-                                <td>23/06/2015</td>
-                                <td>Torres Domani</td>
-                                <td>Frederico Paulo da Silva <p><strong>CPF:</strong> 180.234.609-09</p></td>
-                                <td><strong>Torre: </strong>Azaleia <p><strong>Unidade:</strong> 1301</p></td>
-                                <td>
-                                    <strong>Comissionamento</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">93%</span>
-                                </td>
-                                <td>R$ 780.000,00</td>
-                                <td>R$ 36.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">22</td>
-                                <td>28/06/2015</td>
-                                <td>Torres Cenário</td>
-                                <td>Janaína Mergulhão Mascarenhas<p><strong>CPF:</strong> 991.238.984-19</p></td>
-                                <td><strong>Torre: </strong>Galileu <p><strong>Unidade:</strong> 1701</p></td>
-                                <td>
-                                    <strong>Análise documentação</strong>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">27%</span>
-                                </td>
-                                <td>R$ 880.000,00</td>
-                                <td>R$ 44.000,00</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>*@
-                    </tbody>
-
-
-
-
-
-
-
-                </table>
-                @Html.Partial("Paginacao", Model)
+                <div id="div-panorama">
+                    @Html.Partial("ListPanorama", Model.Panorama)
+                </div>
             </section>
+
         </div>
     </div>
 }
 
-
 <div class="row">
+    <!-- Gráfico -->
     <div class="col-lg-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -531,67 +236,25 @@
             </div>
         </div>
     </div>
+    <!-- Últimos Comentários-->
     <div class="col-lg-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-comments fa-2x"></i> Últimos Comentários</h3>
             </div>
             <div class="panel-body">
-                <ul class="news-list">
-                    <li>
-                        <img alt="" src="~/Content/images/leodias.jpg" />
-                        <div class="news-item-info">
-                            <div class="name"><a href="#">Leonardo Dias</a> <span class="pull-right text-info">Há 3 horas</span></div>
-                            <div class="comment">
-                                Os valores da Intermediação e RPA da cliente Gisele Fraga estão incorretos. Favor corrigir
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/images/viviane.jpg" />
-                        <div class="news-item-info">
-                            <div class="name"><a href="#">Viviane Santos</a><span class="pull-right text-info">Há 5 horas</span></div>
-                            <div class="comment">
-                                Análise de crédito do cliente Mateus Virgolino, ID Proposta 101 foi aprovada pela construtora.
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/images/viviane.jpg" />
-                        <div class="news-item-info">
-                            <div class="name"><a href="#">Viviane Santos</a><span class="pull-right text-info">Há 5 horas</span></div>
-                            <div class="comment">
-                                Favor providenciar o Termo de Ciência cliente Gilberto Maia. Documento pendente.
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/images/carlos_magno.jpg" />
-                        <div class="news-item-info">
-                            <div class="name"><a href="#">Carlos Magno</a><span class="pull-right text-info">Há 1 dia</span></div>
-                            <div class="comment">
-                                Fase de contabilização da proposta 105 já pode dar início.
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/images/gelados_cia.jpg" />
-                        <div class="news-item-info">
-                            <div class="name"><a href="#">Roberto Menezes</a><span class="pull-right text-info">Há 2 dias</span></div>
-                            <div class="comment">
-                                Nova venda incluída. Cliente 76 Jorge Marajó. Analisar documentos
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <div id="div-comentarios">
+                    @Html.Partial("ListAllComentarios", Model.UltimosComentarios)
+                </div>
+            </div>
+            <div class="panel-footer">
                 <!-- Widget footer -->
                 <div class="widget-foot">
-
                     <form class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Digite sua mensagem aqui...">
+                            <input type="text" class="form-control col-md-9" placeholder="Digite nome do usuário..." id="nome_usuario" name="nome_usuario">
                         </div>
-                        <button type="submit" class="btn btn-info">Enviar</button>
+                        <button type="button" class="btn btn-info" onclick="listComantarios();">Buscar</button>
                     </form>
                 </div>
             </div>
@@ -658,9 +321,76 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModalResumo1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vendas do mês (análise de crédito aprovada)</h4>
+            </div>
+            <div class="modal-body" id="myModal2-body">
+                @Html.Partial("ListPanoramaResumo", Model.ComissaoMes)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
+<div class="modal fade" id="myModalResumo2">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vendas do mês (todas as etapas)</h4>
+            </div>
+            <div class="modal-body" id="myModal2-body">
+                @Html.Partial("ListPanoramaResumo", Model.VendasMes)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myModalResumo3">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vendas em aberto (proposta, análise inicial, reanálise ou análise de crédito)</h4>
+            </div>
+            <div class="modal-body" id="myModal2-body">
+                @Html.Partial("ListPanoramaResumo", Model.VendasEmAberto)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myModalResumo4">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Propostas paralisadas há mais de 10 dias</h4>
+            </div>
+            <div class="modal-body" id="myModal2-body">
+                @Html.Partial("ListPanoramaResumo", Model.VendasEmAtraso)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- /#wrapper -->
 <script type="text/javascript">
+
     jQuery(function ($) {
         var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
             visits = [123, 323, 443, 32],
@@ -732,4 +462,77 @@
             ]
         });
     });
+
+    function listPanorama() {
+        var link = 'ListPanorama';
+
+        var d1 = FormatDate($('#dt_prop1').val());
+        var d2 = FormatDate($('#dt_prop2').val());
+
+        link = encodeURI(link + '?index=0&pageSize=15');
+        link += '&empreendimentoId=' + $('#empreendimentoPesqId').val();
+        link += '&torre_unidade=' + $('#torre_unidade').val();
+        link += '&cpf_nome=' + $('#cpf_nome').val();
+        link += '&etapaId=' + $('#etapaId').val();
+        link += '&propostaId=' + $('#propostaId').val();
+        link += '&dt_proposta1=' + d1;
+        link += '&dt_proposta2=' + d2;
+        link += '&situacao=' + $('#situacao').val();
+        link += '&corretor1Id=' + $('#corretor1pesqId').val();
+        link = encodeURI(link + '&noCahce=' + new Date());
+
+        $('#carregando').css("visibility", "visible");
+        $('#carregando').css("width", "100%");
+        $('#carregando').css("height", "100%");
+        $('#carregando').css("position", "absolute");
+        $('#carregando').css("background-color", "black");
+        $('#carregando').css("filter", "alpha(opacity=60)");
+        $('#carregando').css("opacity", "0.6");
+        $('#carregando').css("left", "0%");
+        $('#carregando').css("top", "0%");
+
+        $('#div-panorama').load(link);
+        $(document).ajaxSuccess(function (event, xhr, settings) {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        }).error(function () {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        })
+    }
+
+    function listComantarios() {
+        var link = 'ListAllComentarios';
+
+        link = encodeURI(link + '?index=0&pageSize=10');
+        link += '&descricao=' + $('#nome_usuario').val();
+        link = encodeURI(link + '&noCahce=' + new Date());
+
+        $('#carregando').css("visibility", "visible");
+        $('#carregando').css("width", "100%");
+        $('#carregando').css("height", "100%");
+        $('#carregando').css("position", "absolute");
+        $('#carregando').css("background-color", "black");
+        $('#carregando').css("filter", "alpha(opacity=60)");
+        $('#carregando').css("opacity", "0.6");
+        $('#carregando').css("left", "0%");
+        $('#carregando').css("top", "0%");
+
+        $('#div-comentarios').load(link);
+        $(document).ajaxSuccess(function (event, xhr, settings) {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        }).error(function () {
+            $('#carregando').css("visibility", "hidden");
+            $('#carregando').css("height", "0px");
+            $('#carregando').css("margin-top", "0%");
+            $('#carregando').css("margin-left", "0%");
+        })
+    }
 </script>
