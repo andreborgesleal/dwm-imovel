@@ -235,6 +235,7 @@
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
     <Compile Include="Models\Repositories\HomeViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
+    <Compile Include="Models\Repositories\ResumoVendaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

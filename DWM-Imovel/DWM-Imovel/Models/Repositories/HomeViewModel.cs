@@ -26,6 +26,7 @@ namespace DWM.Models.Repositories
         public IEnumerable<PropostaViewModel> VendasMes { get; set; }
         public IEnumerable<PropostaViewModel> VendasEmAberto{ get; set; }
         public IEnumerable<PropostaViewModel> VendasEmAtraso { get; set; }
+        public IEnumerable<ResumoVendaViewModel> ResumoVenda { get; set; }
 
     }
 }

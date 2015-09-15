@@ -59,6 +59,11 @@ namespace DWM.Models.BI
                 ListViewVendasAtrasadas modelAtraso = new ListViewVendasAtrasadas(this.db, this.seguranca_db);
                 r.VendasEmAtraso = modelAtraso.Bind(0, 1000, null);
                 #endregion
+
+                #region Resumo da Venda
+                ListViewResumoVenda modelResumoVenda = new ListViewResumoVenda(this.db, this.seguranca_db);
+                r.ResumoVenda = modelResumoVenda.Bind(0, 1000, null, null, null);
+                #endregion
             }
             catch (Exception ex)
             {

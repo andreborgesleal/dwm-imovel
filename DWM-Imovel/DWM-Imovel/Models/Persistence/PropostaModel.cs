@@ -817,4 +817,64 @@ namespace DWM.Models.Persistence
         }
         #endregion
     }
+
+    public class ListViewResumoVenda : ListViewModel<ResumoVendaViewModel, ApplicationContext>
+    {
+        #region Constructor
+        public ListViewResumoVenda() { }
+        public ListViewResumoVenda(ApplicationContext _db, SecurityContext _seguranca_db)
+        {
+            base.Create(_db, _seguranca_db);
+        }
+        #endregion
+
+        #region Métodos da classe ListViewRepository
+        public override IEnumerable<ResumoVendaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
+        {
+            int? _empreendimentoId = null;
+            DateTime? _dt_proposta1 = new DateTime(1980, 1, 1);
+            DateTime? _dt_proposta2 = new DateTime(2030, 12, 31);
+
+            if (param != null)
+            {
+                if (param[0] != null)
+                    _empreendimentoId = (int?)param[0];
+                if (param [1] != null)
+                    _dt_proposta1 = (DateTime?)param[1];
+                if (param [2] != null)
+                    _dt_proposta2 = (DateTime?)param[2];
+            }
+
+            return (from pro in db.Propostas 
+                    join emp in db.Empreendimentos on pro.empreendimentoId equals emp.empreendimentoId
+                    where (!_empreendimentoId.HasValue || pro.empreendimentoId == _empreendimentoId )
+                            && pro.dt_proposta >= _dt_proposta1 && pro.dt_proposta <= _dt_proposta2
+                            && pro.situacao == "A" && pro.etapaId >= 4
+                    group pro by new {pro.empreendimentoId, emp.nomeEmpreend} into PRO
+                    select new ResumoVendaViewModel
+                    {
+                        empreendimentoId = PRO.Key.empreendimentoId, 
+                        nome_empreendimento = PRO.Key.nomeEmpreend, 
+                        vgv_areceber = PRO.Sum(pro => pro.valor), 
+                        vgv_recebido = 0,
+                        total_comissao = PRO.Sum(pro => pro.vr_comissao), 
+                        descricao_etapa = "",
+                        quantidade = PRO.Count(),
+                        PageSize = pageSize,
+                        TotalCount = (from pro1 in db.Propostas
+                                      join emp1 in db.Empreendimentos on pro1.empreendimentoId equals emp1.empreendimentoId
+                                      where (!_empreendimentoId.HasValue || pro1.empreendimentoId == _empreendimentoId)
+                                              && pro1.dt_proposta >= _dt_proposta1 && pro1.dt_proposta <= _dt_proposta2
+                                              && pro1.situacao == "A" && pro1.etapaId >= 4
+                                      group pro1 by new { pro1.empreendimentoId, emp1.nomeEmpreend } into PRO1
+                                      select PRO.Key).Count()
+                    }).OrderBy(info => info.nome_empreendimento).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+        }
+
+        public override Repository getRepository(Object id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }
