@@ -72,10 +72,12 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                    @Html.EditorFor(m => m.valor, "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'valor')" } })
+                    <label class="control-label" for="unidade">Valor</label>
+                    <input type="text" id="valor1" name="valor1" class="form-control text-right" onblur="return Converte(this, 'valor')" />
                 </div>
                 <div class="col-md-1">
-                    @Html.EditorFor(m => m.vr_comissao, "DECIMAL2", new { label = "Comissão", htmlAttributes = (object)new { @class = "form-control text-right", @onblur = "return Converte(this, 'vr_comissao')" } })
+                    <label class="control-label" for="unidade">Comissão</label>
+                    <input type="text" id="vr_comissao1" name="vr_comissao1" class="form-control text-right" onblur="return Converte(this, 'vr_comissao')" />
                 </div>
 
             </div>
@@ -140,7 +142,6 @@
                     data: $(this).serialize(),
                     success: function (result) {
                         $('#div-proposta').html(result);
-                        listPanorama();
                     }
                 });
             }

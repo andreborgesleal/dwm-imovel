@@ -383,6 +383,10 @@ fundoModal
     width: 90%;
 }
 
+.altura-maxima {
+    max-height: 750px;
+}
+
 a.list-group-item:hover,
 a.list-group-item:focus {
   color: #fff;

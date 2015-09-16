@@ -164,7 +164,7 @@ namespace DWM.Models.Persistence
             {
                 value.mensagem.Code = 55;
                 value.mensagem.Message = MensagemPadrao.Message(55).ToString();
-                value.mensagem.MessageBase = "Data da ocorrência inválida";
+                value.mensagem.MessageBase = "Data da ocorrência inválida: " + value.dt_ocorrencia.ToString();
                 value.mensagem.MessageType = MsgType.WARNING;
                 return value.mensagem;
             }

@@ -35,6 +35,7 @@ namespace DWM.Models.Persistence
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
             value.situacao = "A";
+            
             return value;
         }
 
@@ -563,7 +564,7 @@ namespace DWM.Models.Persistence
                                           join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                           join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                           join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
-                                          where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p.propostaId select esteira1.esteiraId).Max()
+                                          where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
                                                 && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                                 && (_torre_unidade == "" || (p1.torre + p1.unidade).Contains(_torre_unidade))
                                                 && (_cpf_nome == "" || c1.cpf_cnpj == _cpf_nome || c1.nome.Contains(_cpf_nome))
@@ -571,6 +572,7 @@ namespace DWM.Models.Persistence
                                                 && (!_etapaId.HasValue || p1.etapaId == _etapaId)
                                                 && p1.dt_proposta >= _dt_proposta1 && p1.dt_proposta <= _dt_proposta2
                                                 && p1.situacao == _situacao
+                                          orderby p1.dt_proposta, c1.nome
                                           select p1.propostaId).Count()
                         }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }

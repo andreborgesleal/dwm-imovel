@@ -18,6 +18,11 @@ namespace DWM.Controllers
             return "Listar Clientes";
         }
 
+        public override ActionResult HomePage()
+        {
+            return RedirectToAction("Default", "Home");
+        }
+
         #region List
         [AuthorizeFilter]
         public override ActionResult List(int? index, int? pageSize = 50, string descricao = null)

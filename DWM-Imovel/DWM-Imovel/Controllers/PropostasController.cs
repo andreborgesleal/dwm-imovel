@@ -30,12 +30,25 @@ namespace DWM.Controllers
             return RedirectToAction("Default", "Home");
         }
 
+        public override void BeforeCreate(ref PropostaViewModel value, FormCollection collection)
+        {
+            value.valor = decimal.Parse(collection["valor1"].Replace(".", ""));
+            value.vr_comissao = decimal.Parse(collection["vr_comissao1"].Replace(".", ""));
+        }
+
+
         #region Edit
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)
         {
             BindBreadCrumb("Edição", true);
             return _Edit(new PropostaViewModel() { propostaId = propostaId });
+        }
+
+        public override void BeforeEdit(ref PropostaViewModel value, FormCollection collection)
+        {
+            value.valor = decimal.Parse(collection["valor1"].Replace(".", ""));
+            value.vr_comissao = decimal.Parse(collection["vr_comissao1"].Replace(".", ""));
         }
         #endregion
 

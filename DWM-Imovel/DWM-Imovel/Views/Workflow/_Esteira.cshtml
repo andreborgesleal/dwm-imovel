@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <p>@est.dt_ocorrencia.ToString("dd/MM/yyyy")</p>
-                                        <p><strong>@est.nome</strong></p>
+                                        <p><strong>@Html.GravatarImage(est.login, size: 30) @est.nome</strong></p>
                                         <p class="text-muted">@est.observacao</p>
                                     </td>
                                 }

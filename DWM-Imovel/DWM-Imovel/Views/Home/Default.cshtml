@@ -5,7 +5,7 @@
 <!--overview start-->
 <div class="row">
     <div class="col-lg-12" style="margin-top: -40px">
-        <h3 class="page-header"><i class="fa fa-laptop"></i> NM Consultoria Imobiliária</h3>
+        <h3 class="page-header"><i class="fa fa-laptop"></i> NM Consultoria Imobiliária <i class="fa fa-refresh dedo-indicador" onclick="window.location = '../Home/Default';"></i></h3>
     </div>
 </div>
 
@@ -175,7 +175,7 @@
                                                             <div class="form-group col-md-11">
                                                                 <label for="id">Data da Proposta</label>
                                                                 <div class="form-inline">
-                                                                    @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = Convert.ToDateTime(DateTime.Today.AddMonths(-1).ToString("yyyy-MM-") + "01"), readOnly = "false" })
+                                                                    @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01"), readOnly = "false" })
                                                                     <span class="h4">&nbsp;a&nbsp;</span>
                                                                     @Html.Editor("dt_prop2", "DATE", new { identificador = "dt_prop2", value = DateTime.Today, readOnly = "false" })
                                                                 </div>
@@ -297,7 +297,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Vendas do mês (análise de crédito aprovada)</h4>
             </div>
-            <div class="modal-body" id="myModal2-body">
+            <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
                 @Html.Partial("ListPanoramaResumo", Model.ComissaoMes)
             </div>
             <div class="modal-footer">
@@ -314,7 +314,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Vendas do mês (todas as etapas)</h4>
             </div>
-            <div class="modal-body" id="myModal2-body">
+            <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
                 @Html.Partial("ListPanoramaResumo", Model.VendasMes)
             </div>
             <div class="modal-footer">
@@ -331,7 +331,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Vendas em aberto (proposta, análise inicial, reanálise ou análise de crédito)</h4>
             </div>
-            <div class="modal-body" id="myModal2-body">
+            <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
                 @Html.Partial("ListPanoramaResumo", Model.VendasEmAberto)
             </div>
             <div class="modal-footer">
@@ -348,7 +348,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Propostas paralisadas há mais de 10 dias</h4>
             </div>
-            <div class="modal-body" id="myModal2-body">
+            <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
                 @Html.Partial("ListPanoramaResumo", Model.VendasEmAtraso)
             </div>
             <div class="modal-footer">
@@ -435,10 +435,16 @@
     function listPanorama() {
         var link = 'ListPanorama';
 
-        var d1 = FormatDate($('#dt_prop1').val());
-        var d2 = FormatDate($('#dt_prop2').val());
+        var _d1 = $('#dt_prop1').val().split('/');
+        var d1 = _d1[2] + '-' + _d1[1] + '-' + _d1[0];
 
-        link = encodeURI(link + '?index=0&pageSize=15');
+        var _d2 = $('#dt_prop2').val().split('/');
+        var d2 = _d2[2] + '-' + _d2[1] + '-' + _d2[0];
+        
+        //var d1 = FormatDate($('#dt_prop1').val());
+        //var d2 = FormatDate($('#dt_prop2').val());
+
+        link = encodeURI(link + '?index=0&pageSize=10');
         link += '&empreendimentoId=' + $('#empreendimentoPesqId').val();
         link += '&torre_unidade=' + $('#torre_unidade').val();
         link += '&cpf_nome=' + $('#cpf_nome').val();
