@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label" for="usuario">Coordenador</label>
-                            @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control input-sm" })
+                            @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })
                         </div>
                     </div>
                 </div>

@@ -22,10 +22,11 @@
         {
             var cliente = pro.nome_cliente;
             var cad_cli_link = "../Clientes/Edit?clienteId=" + pro.clienteId;
+            var cad_empreend_link = "../Empreendimentos/Edit?empreendimentoId=" + pro.empreendimentoId;
             <tr>
                 <td class="text-left">@pro.propostaId</td>
                 <td>@pro.dt_proposta.ToString("dd/MM/yyyy")</td>
-                <td>@pro.descricao_empreendimento</td>
+                <td><a class="text-dark" href="@cad_empreend_link">@pro.descricao_empreendimento</a></td>
                 @if (pro.cpf_cnpj != null && pro.cpf_cnpj != "")
                 {
                     <td><a class="text-primary" href="@cad_cli_link">@pro.nome_cliente</a> <p><strong>CPF:</strong> @App_Dominio.Models.Funcoes.FormataCPFCNPJ(pro.cpf_cnpj)</p></td>

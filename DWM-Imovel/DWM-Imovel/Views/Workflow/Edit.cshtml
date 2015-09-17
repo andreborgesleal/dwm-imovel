@@ -5,13 +5,14 @@
     ViewBag.esteiraId = Model.Esteira.FirstOrDefault().esteiraId.ToString();
     if (Model.Comissao.Count() > 0)
     {
-        ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");    
+        ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
     }
     else
     {
         ViewBag.vr_total = Model.vr_comissao.ToString("R$ ###,###,###,##0.00");
     }
-    
+    var cad_cli_link = "../Clientes/Edit?clienteId=" + Model.clienteId;
+    var cad_empreend_link = "../Empreendimentos/Edit?empreendimentoId=" + Model.empreendimentoId;
 }
 
 <div class="container-fluid">
@@ -21,7 +22,9 @@
         <div class="col-md-3">
             <div class="panel panel-warning">
                 <div class="panel-heading">
-                    <p><h3 class="text-right"><b>@Model.nome_cliente</b></h3></p>
+                    <p>
+                        <a class="text-warning" href="@cad_cli_link"><h3 class="text-right"><b>@Model.nome_cliente</b></h3></a>
+                    </p>
                     <p class="text-right"><b>CPF: @Model.cpf_cnpj</b></p>
                 </div>
                 <div class="panel-body text-right">
@@ -33,11 +36,13 @@
         <div class="col-md-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <p><h3 class="text-right"><b>@Model.descricao_empreendimento</b></h3></p>
+                    <p>
+                        <a class="text-primary" href="@cad_empreend_link"><h3 class="text-right"><b>@Model.descricao_empreendimento</b></h3></a>
+                    </p>
                     <p class="text-right"><b>@Model.torre</b></p>
                 </div>
                 <div class="panel-body text-right">
-                    <b>Coordenador: </b>@Model.nome_coordenador / <span class="text-primary">@Model.login_coordenador</span> 
+                    <b>Coordenador: </b>@Model.nome_coordenador / <span class="text-primary">@Model.login_coordenador</span>
                 </div>
             </div>
         </div>
@@ -49,7 +54,7 @@
                     <p><h3 class="text-right" id="descricao_etapa"><b>@Model.descricao_etapa</b></h3></p>
                     <p><h5 class="text-right" id="data_proposta">desde @Model.dt_proposta.ToString("dd/MM/yyyy")</h5></p>
                 </div>
-                <div class="panel-body" >
+                <div class="panel-body">
                     <div class="row">
                         <div class="col-md-2 margem-negativa">
                             <h5>Etapas</h5>
@@ -64,8 +69,8 @@
             </div>
         </div>
         @*<p>
-            <a class="text-danger dedo-indicador" id="refresh-progress-bar" onclick="progressBar()">clique aqui para atualizar</a>
-        </p>*@
+                <a class="text-danger dedo-indicador" id="refresh-progress-bar" onclick="progressBar()">clique aqui para atualizar</a>
+            </p>*@
 
         @* Valor do Empreendimento *@
         <div class="col-md-3">
