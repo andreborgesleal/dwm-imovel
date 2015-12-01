@@ -219,6 +219,7 @@ namespace DWM.Models.Persistence
                     select new EsteiraComentarioViewModel()
                     {
                         esteiraId = est.esteiraId,
+                        propostaId = pro.propostaId,
                         descricao_etapa = eta.descricao,
                         dt_comentario = com.dt_comentario,
                         observacao = com.observacao,

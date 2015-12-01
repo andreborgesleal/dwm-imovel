@@ -34,7 +34,7 @@ namespace DWM.Models.BI
 
                 #region Últimos Comentários
                 ListViewComentarioByUsuario modelComentarios = new ListViewComentarioByUsuario(this.db, this.seguranca_db);
-                r.UltimosComentarios = modelComentarios.getPagedList(0, 10);
+                r.UltimosComentarios = modelComentarios.getPagedList(0, 5);
                 #endregion
 
                 DateTime _dt_prop1 = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-") + "01");

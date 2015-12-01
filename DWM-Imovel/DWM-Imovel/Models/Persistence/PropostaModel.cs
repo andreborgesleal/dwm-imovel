@@ -537,7 +537,7 @@ namespace DWM.Models.Persistence
                                 && (!_etapaId.HasValue || p.etapaId == _etapaId)
                                 && p.dt_proposta >= _dt_proposta1 && p.dt_proposta <= _dt_proposta2
                                 && p.situacao == _situacao
-                        orderby p.dt_proposta, c.nome
+                        orderby p.dt_proposta descending, c.nome
                         select new PropostaViewModel
                         {
                             empresaId = sessaoCorrente.empresaId,

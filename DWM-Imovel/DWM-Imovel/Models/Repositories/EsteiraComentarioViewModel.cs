@@ -12,6 +12,8 @@ namespace DWM.Models.Repositories
         [DisplayName("ID")]
         public int esteiraId { get; set; }
 
+        public int? propostaId { get; set; }
+
         [DisplayName("Data")]
         public DateTime dt_comentario { get; set; }
 

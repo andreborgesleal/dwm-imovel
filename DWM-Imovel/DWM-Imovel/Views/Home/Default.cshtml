@@ -175,7 +175,7 @@
                                                             <div class="form-group col-md-11">
                                                                 <label for="id">Data da Proposta</label>
                                                                 <div class="form-inline">
-                                                                    @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01"), readOnly = "false" })
+                                                                    @Html.Editor("dt_prop1", "DATE", new { identificador = "dt_prop1", value = Convert.ToDateTime(DateTime.Today.AddMonths(-1).ToString("yyyy-MM-") + "01"), readOnly = "false" })
                                                                     <span class="h4">&nbsp;a&nbsp;</span>
                                                                     @Html.Editor("dt_prop2", "DATE", new { identificador = "dt_prop2", value = DateTime.Today, readOnly = "false" })
                                                                 </div>
