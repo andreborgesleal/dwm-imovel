@@ -90,7 +90,7 @@ namespace DWM.Controllers
         {
             if (ViewBag.ValidateRequest)
             {
-                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-1).ToString("yyyy-MM-") + "01");
+                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01");
                 DateTime? _dt_proposta2 = DateTime.Today;
 
                 if (dt_proposta1 != null && dt_proposta1 != "")

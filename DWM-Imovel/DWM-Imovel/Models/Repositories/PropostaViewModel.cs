@@ -107,6 +107,8 @@ namespace DWM.Models.Repositories
         public double percent_restnte { get; set; }
 
         public string situacao { get; set; }
+
+        public string ind_fechamento { get; set; }
     }
 }
 

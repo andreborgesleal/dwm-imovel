@@ -25,7 +25,7 @@ namespace DWM.Models.Persistence
         #endregion
 
         #region Métodos da classe CrudModel
-        public override PropostaViewModel BeforeInsert(PropostaViewModel value)
+        public override PropostaViewModel BeforeInsert(PropostaViewModel value) 
         {
             Usuario u = seguranca_db.Usuarios.Find(sessaoCorrente.usuarioId);
 
@@ -35,6 +35,7 @@ namespace DWM.Models.Persistence
             value.dt_ultimo_status = value.dt_proposta;
             value.etapaId = 0;
             value.situacao = "A";
+            value.ind_fechamento = "N";
             
             return value;
         }
@@ -93,6 +94,7 @@ namespace DWM.Models.Persistence
             {
                 proposta = new Proposta();
                 value.situacao = "A";
+                value.ind_fechamento = "N";
             }
 
             proposta.propostaId = value.propostaId;
@@ -150,6 +152,7 @@ namespace DWM.Models.Persistence
                 nome = entity.nome,
                 login = entity.login,
                 situacao = entity.situacao,
+                ind_fechamento = entity.ind_fechamento,
                 corretor2Id = entity.corretor2Id,
                 nome_corretor2 = entity.corretor2Id.HasValue ? db.Corretores.Find(entity.corretor2Id).nome : "",
                 Esteira = (from est in db.Esteiras
@@ -263,6 +266,17 @@ namespace DWM.Models.Persistence
                     value.mensagem.Code = 5;
                     value.mensagem.Message = MensagemPadrao.Message(5, "ID Proposta").ToString();
                     value.mensagem.MessageBase = "Identificador da proposta deve ser informado";
+                    value.mensagem.MessageType = MsgType.WARNING;
+                    return value.mensagem;
+                }
+
+                string _ind_fechamento = db.Propostas.Where(info => info.propostaId == value.propostaId).FirstOrDefault().ind_fechamento;
+
+                if (_ind_fechamento != null && _ind_fechamento == "S")
+                {
+                    value.mensagem.Code = 56;
+                    value.mensagem.Message = MensagemPadrao.Message(56).ToString();
+                    value.mensagem.MessageBase = "Para realizar a operação é preciso cancelar a aprovação da etapa de faturamento.";
                     value.mensagem.MessageType = MsgType.WARNING;
                     return value.mensagem;
                 }
@@ -509,6 +523,7 @@ namespace DWM.Models.Persistence
                             etapaId = p.etapaId,
                             descricao_etapa = eta.descricao,
                             dt_ultimo_status = p.dt_ultimo_status,
+                            ind_fechamento = p.ind_fechamento,
                             operacaoId = p.operacaoId,
                             percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                             percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -534,7 +549,7 @@ namespace DWM.Models.Persistence
                                 && (_torre_unidade == "" || (p.torre+p.unidade).Contains(_torre_unidade))
                                 && (_cpf_nome == "" || c.cpf_cnpj == _cpf_nome || c.nome.Contains(_cpf_nome))
                                 && (!_corretor1Id.HasValue || p.corretor1Id == _corretor1Id)
-                                && (!_etapaId.HasValue || p.etapaId == _etapaId)
+                                && (!_etapaId.HasValue && p.ind_fechamento != "S" || p.etapaId == _etapaId)
                                 && p.dt_proposta >= _dt_proposta1 && p.dt_proposta <= _dt_proposta2
                                 && p.situacao == _situacao
                         orderby p.dt_proposta descending, c.nome
@@ -555,6 +570,7 @@ namespace DWM.Models.Persistence
                             etapaId = p.etapaId,
                             descricao_etapa = eta.descricao,
                             dt_ultimo_status = p.dt_ultimo_status,
+                            ind_fechamento = p.ind_fechamento,
                             operacaoId = p.operacaoId,
                             percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                             percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -569,7 +585,7 @@ namespace DWM.Models.Persistence
                                                 && (_torre_unidade == "" || (p1.torre + p1.unidade).Contains(_torre_unidade))
                                                 && (_cpf_nome == "" || c1.cpf_cnpj == _cpf_nome || c1.nome.Contains(_cpf_nome))
                                                 && (!_corretor1Id.HasValue || p1.corretor1Id == _corretor1Id)
-                                                && (!_etapaId.HasValue || p1.etapaId == _etapaId)
+                                                && (!_etapaId.HasValue && p1.ind_fechamento != "S" || p1.etapaId == _etapaId)
                                                 && p1.dt_proposta >= _dt_proposta1 && p1.dt_proposta <= _dt_proposta2
                                                 && p1.situacao == _situacao
                                           orderby p1.dt_proposta, c1.nome
@@ -629,6 +645,7 @@ namespace DWM.Models.Persistence
                           && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
                           && p.etapaId >= _etapaId
                           && p.situacao == "A"
+                          && p.ind_fechamento != "S" 
                     orderby p.dt_ultimo_status, c.nome
                     select new PropostaViewModel
                     {
@@ -647,6 +664,7 @@ namespace DWM.Models.Persistence
                         etapaId = p.etapaId,
                         descricao_etapa = eta.descricao,
                         dt_ultimo_status = p.dt_ultimo_status,
+                        ind_fechamento = p.ind_fechamento,
                         operacaoId = p.operacaoId,
                         percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                         percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -668,6 +686,7 @@ namespace DWM.Models.Persistence
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.etapaId >= _etapaId
                                               && p1.situacao == "A"
+                                              && p1.ind_fechamento != "S" 
                                       orderby p1.dt_ultimo_status, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -705,6 +724,7 @@ namespace DWM.Models.Persistence
                           && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
                           && p.etapaId <= _etapaId
                           && p.situacao == "A"
+                          && p.ind_fechamento != "S" 
                     orderby p.dt_ultimo_status descending, c.nome
                     select new PropostaViewModel
                     {
@@ -723,6 +743,7 @@ namespace DWM.Models.Persistence
                         etapaId = p.etapaId,
                         descricao_etapa = eta.descricao,
                         dt_ultimo_status = p.dt_ultimo_status,
+                        ind_fechamento = p.ind_fechamento,
                         operacaoId = p.operacaoId,
                         percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                         percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -736,6 +757,7 @@ namespace DWM.Models.Persistence
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.etapaId <= _etapaId
                                               && p1.situacao == "A"
+                                              && p1.ind_fechamento != "S" 
                                       orderby p1.dt_ultimo_status descending, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -777,6 +799,7 @@ namespace DWM.Models.Persistence
                           && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
                           && p.situacao == "A"
                           && p.dt_ultimo_status < _data
+                          && p.ind_fechamento != "S" 
                     orderby p.dt_ultimo_status descending, c.nome
                     select new PropostaViewModel
                     {
@@ -808,6 +831,7 @@ namespace DWM.Models.Persistence
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.situacao == "A"
                                               && p1.dt_ultimo_status < _data
+                                              && p1.ind_fechamento != "S" 
                                       orderby p1.dt_ultimo_status descending, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -852,6 +876,7 @@ namespace DWM.Models.Persistence
                     where (!_empreendimentoId.HasValue || pro.empreendimentoId == _empreendimentoId )
                             && pro.dt_proposta >= _dt_proposta1 && pro.dt_proposta <= _dt_proposta2
                             && pro.situacao == "A" && pro.etapaId >= 4
+                            && pro.ind_fechamento != "S"
                     group pro by new {pro.empreendimentoId, emp.nomeEmpreend} into PRO
                     select new ResumoVendaViewModel
                     {
@@ -868,6 +893,7 @@ namespace DWM.Models.Persistence
                                       where (!_empreendimentoId.HasValue || pro1.empreendimentoId == _empreendimentoId)
                                               && pro1.dt_proposta >= _dt_proposta1 && pro1.dt_proposta <= _dt_proposta2
                                               && pro1.situacao == "A" && pro1.etapaId >= 4
+                                              && pro1.ind_fechamento != "S"
                                       group pro1 by new { pro1.empreendimentoId, emp1.nomeEmpreend } into PRO1
                                       select PRO.Key).Count()
                     }).OrderBy(info => info.nome_empreendimento).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();

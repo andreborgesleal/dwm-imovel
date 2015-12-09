@@ -50,8 +50,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.Common\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.Common.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.Common\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,8 +59,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -185,6 +183,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CorretoresController.cs" />
     <Compile Include="Controllers\EmpreendimentosController.cs" />
+    <Compile Include="Controllers\FechamentoReportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropostasController.cs" />
     <Compile Include="Controllers\WorkflowController.cs" />
@@ -193,6 +192,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
+    <Compile Include="Models\BI\CancelarFaturamentoBI.cs" />
     <Compile Include="Models\BI\EsteiraComissaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoDeleteBI.cs" />
@@ -225,6 +225,7 @@
     <Compile Include="Models\Persistence\EsteiraContabilizacaoModel.cs" />
     <Compile Include="Models\Persistence\EsteiraModel.cs" />
     <Compile Include="Models\Persistence\PropostaModel.cs" />
+    <Compile Include="Models\Report\FechamentoReport.cs" />
     <Compile Include="Models\Repositories\ClienteViewModel.cs" />
     <Compile Include="Models\Repositories\CorretorViewModel.cs" />
     <Compile Include="Models\Repositories\EmpreendimentoViewModel.cs" />
@@ -233,8 +234,10 @@
     <Compile Include="Models\Repositories\EsteiraContabilizacaoViewModel.cs" />
     <Compile Include="Models\Repositories\EsteiraViewModel.cs" />
     <Compile Include="Models\Repositories\EtapaViewModel.cs" />
+    <Compile Include="Models\Repositories\FechamentoMesViewModel.cs" />
     <Compile Include="Models\Repositories\HomeViewModel.cs" />
     <Compile Include="Models\Repositories\PropostaViewModel.cs" />
+    <Compile Include="Models\Repositories\ReportViewModel.cs" />
     <Compile Include="Models\Repositories\ResumoVendaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1322,11 +1325,12 @@
     <Content Include="Views\Home\ListPanorama.cshtml" />
     <Content Include="Views\Home\ListAllComentarios.cshtml" />
     <Content Include="Views\Home\ListPanoramaResumo.cshtml" />
+    <Content Include="Views\FechamentoReport\Browse.cshtml" />
+    <Content Include="Views\FechamentoReport\ListParam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\rdlc\" />
     <Folder Include="Content\fonts\font-awesome\" />
-    <Folder Include="Models\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

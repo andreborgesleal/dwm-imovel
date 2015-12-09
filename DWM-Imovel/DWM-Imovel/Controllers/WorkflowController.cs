@@ -183,6 +183,65 @@ namespace DWM.Controllers
         }
         #endregion
 
+        #region Cancelar etapa de Faturamento (deixa a etapa de faturamento em aberto)
+        [AuthorizeFilter(Order = 1020)]
+        public ActionResult Cancelar(int propostaId, int esteiraId)
+        {
+            if (ViewBag.ValidateRequest)
+            {
+                IEnumerable<EsteiraViewModel> result = CancelarFaturamento(propostaId, esteiraId);
+                ViewBag.propostaId = propostaId.ToString();
+                return View("_Esteira", result);
+            }
+            else
+            {
+                Error("Acesso para esta funcionalidade negado");
+                return ListEsteira(0, 50, propostaId);
+            }
+        }
+
+        private IEnumerable<EsteiraViewModel> CancelarFaturamento(int propostaId, int esteiraId)
+        {
+            IEnumerable<EsteiraViewModel> result = new List<EsteiraViewModel>();
+            try
+            {
+                EsteiraViewModel value = new EsteiraViewModel();
+                value.esteiraId = esteiraId;
+                value.propostaId = propostaId;
+                Factory<EsteiraViewModel, ApplicationContext> facade = new Factory<EsteiraViewModel, ApplicationContext>();
+                value.uri = this.ControllerContext.Controller.GetType().Name.Replace("Controller", "") + "/" + this.ControllerContext.RouteData.Values["action"].ToString();
+                result = facade.Execute(new CancelarFaturamentoBI(), value, propostaId);
+
+                if (facade.Mensagem.Code > 0)
+                    throw new App_DominioException(facade.Mensagem);
+
+                Success("Aprovação da etapa de faturamento cancelada com sucesso");
+            }
+            catch (App_DominioException ex)
+            {
+                ViewBag.observacao = "";
+                ViewBag.dt_ocorrencia = DateTime.Today;
+                ViewBag.propostaId = propostaId.ToString();
+
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error(ex.Result.MessageBase); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                ViewBag.observacao = "";
+                ViewBag.dt_ocorrencia = DateTime.Today;
+                ViewBag.propostaId = propostaId.ToString();
+
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(17).ToString()); // mensagem amigável ao usuário
+                Error(ex.Message); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return result;
+        }
+
+        #endregion
+
         #region Etapa de contabilização (Upload de arquivos)
         [AuthorizeFilter(Order=1040)]
         public ActionResult Upload(int esteiraId, string fileProposta, string nome_original)

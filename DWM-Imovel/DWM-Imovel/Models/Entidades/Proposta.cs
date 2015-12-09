@@ -44,5 +44,7 @@ namespace DWM.Models.Entidades
 
         public string situacao { get; set; }
 
+        public string ind_fechamento { get; set; }
+
     }
 }

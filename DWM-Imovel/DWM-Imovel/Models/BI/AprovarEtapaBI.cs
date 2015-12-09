@@ -26,6 +26,7 @@ namespace DWM.Models.BI
         public virtual EsteiraViewModel Run(Repository value)
         {
             EsteiraViewModel r = (EsteiraViewModel)value;
+            r.mensagem = new Validate() { Code = 0, Message = "Registro incluído com sucesso!!" };
             try
             {
                 EsteiraModel model = new EsteiraModel(this.db, this.seguranca_db);
@@ -33,7 +34,7 @@ namespace DWM.Models.BI
                 ((EsteiraViewModel)value).esteiraId = esteiraId;
                 EsteiraViewModel esteiraViewModel = model.getObject((EsteiraViewModel)value);
 
-                if (db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId.HasValue)
+                if (esteiraViewModel.ind_aprovacao == null || esteiraViewModel.ind_aprovacao == "")
                 {
                     #region Aprovar Etapa
                     esteiraViewModel.observacao = ((EsteiraViewModel)value).observacao;
@@ -48,39 +49,42 @@ namespace DWM.Models.BI
                     }
                     #endregion
 
-                    #region Incluir a proposta na próxima etapa
-                    EsteiraViewModel proximaEtapa = new EsteiraViewModel()
+                    if (db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId.HasValue)
                     {
-                        propostaId = esteiraViewModel.propostaId,
-                        etapaId = db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId.Value,
-                        descricao_etapa = db.Etapas.Find(db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId).descricao,
-                        dt_ocorrencia = ((EsteiraViewModel)value).dt_ocorrencia,
-                        uri = ((EsteiraViewModel)value).uri
-                    };
-
-                    #region Incluir o comissionamento
-                    if (db.Etapas.Find(proximaEtapa.etapaId).ind_comissao == "S")
-                    {
-                        IList<EsteiraComissaoViewModel> listComissao = new List<EsteiraComissaoViewModel>();
-                        foreach (ComissaoDefault comdef in db.ComissaoDefaults)
+                        #region Incluir a proposta na próxima etapa
+                        EsteiraViewModel proximaEtapa = new EsteiraViewModel()
                         {
-                            EsteiraComissaoViewModel com = new EsteiraComissaoViewModel()
+                            propostaId = esteiraViewModel.propostaId,
+                            etapaId = db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId.Value,
+                            descricao_etapa = db.Etapas.Find(db.Etapas.Find(esteiraViewModel.etapaId).etapa_proxId).descricao,
+                            dt_ocorrencia = ((EsteiraViewModel)value).dt_ocorrencia,
+                            uri = ((EsteiraViewModel)value).uri
+                        };
+
+                        #region Incluir o comissionamento
+                        if (db.Etapas.Find(proximaEtapa.etapaId).ind_comissao == "S")
+                        {
+                            IList<EsteiraComissaoViewModel> listComissao = new List<EsteiraComissaoViewModel>();
+                            foreach (ComissaoDefault comdef in db.ComissaoDefaults)
                             {
-                                grupoId = comdef.grupoId,
-                                nome_grupo = comdef.nome_grupo,
-                                valor = comdef.vr_comissao * db.Propostas.Find(esteiraViewModel.propostaId).valor
-                            };
-                            listComissao.Add(com);
+                                EsteiraComissaoViewModel com = new EsteiraComissaoViewModel()
+                                {
+                                    grupoId = comdef.grupoId,
+                                    nome_grupo = comdef.nome_grupo,
+                                    valor = comdef.vr_comissao * db.Propostas.Find(esteiraViewModel.propostaId).valor
+                                };
+                                listComissao.Add(com);
+                            }
+
+                            proximaEtapa.Comissaos = listComissao;
                         }
+                        #endregion
 
-                        proximaEtapa.Comissaos = listComissao;
+                        proximaEtapa = model.Insert(proximaEtapa);
+                        #endregion
+
+                        r = proximaEtapa;
                     }
-                    #endregion
-
-                    proximaEtapa = model.Insert(proximaEtapa);
-                    #endregion
-
-                    r = proximaEtapa;
                 }
                 else
                     throw new Exception("Esta etapa não pode ser aprovada");

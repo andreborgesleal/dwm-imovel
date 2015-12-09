@@ -1,0 +1,98 @@
+﻿@model System.Web.Mvc.PagedList<DWM.Models.Repositories.FechamentoMesViewModel>
+@using DWM.Models.Repositories;
+@{
+    Layout = null;
+    int contador = 0;
+    string empreend = "";
+    string valor = "";
+    string vr_comissao = "";
+}
+@if (Model != null)
+{
+    <div class="row Scroll">
+        <div class="col-md-12 column hidden-xs table-responsive">
+            <table class="table table-hover table-striped table-condensed" style="cursor: pointer">
+                <caption></caption>
+                <thead class="corvo text-white">
+                    <tr>
+                        <th>Empreendimento</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Torre/Unidade</th>
+                        <th style="text-align: right">Valor</th>
+                        <th style="text-align: right">Comissão</th>
+                    </tr>
+                </thead>
+                @foreach (FechamentoMesViewModel fechamento in Model)
+                {
+                    empreend = fechamento.nome_cliente;
+                    valor = "";
+                    vr_comissao = "";
+                    if (fechamento.empreendimentoId != null)
+                    {
+                        
+                        if (fechamento.valor.HasValue)
+                        {
+                            valor = fechamento.valor.Value.ToString("###,###,###,##0.00");
+                        }
+                        else
+                        {
+                            valor = "";
+                        }
+                        if (fechamento.vr_comissao.HasValue)
+                        {
+                            vr_comissao = fechamento.vr_comissao.Value.ToString("###,###,###,##0.00");
+                        }
+                        else
+                        {
+                            vr_comissao = "";
+                        }
+                    }
+                    else
+                    {
+                        valor = "<strong>" + fechamento.valor.Value.ToString("###,###,###,##0.00") + "</strong>";
+                        vr_comissao = "<strong>" + fechamento.vr_comissao.Value.ToString("###,###,###,##0.00") + "</strong>";
+                    }
+                    <tr>
+                        <td class="col-md-3">
+                            <small>@fechamento.descricao_empreendimento</small>
+                        </td>
+                        <td class="col-md-1">
+                            @if (@fechamento.dt_ocorrencia.HasValue)
+                            {
+                                <small>@fechamento.dt_ocorrencia.Value.ToString("dd/MM/yyyy")</small>
+                            }
+                        </td>
+                        <td class="col-md-2">
+                            <small>@Html.DisplayTextFor(info => empreend)</small>
+                        </td>
+                        <td class="col-md-2">
+                            <small>@(fechamento.torre + (fechamento.torre != null ? "/" : "") + fechamento.unidade)</small>
+                        </td>
+                        <td class="col-md-2 text-right">
+                            <small>@Html.DisplayTextFor(info => valor)</small>
+                        </td>
+                        <td class="col-md-2 text-right">
+                            <small>@Html.DisplayTextFor(info => vr_comissao)</small>
+                        </td>
+                    </tr>
+                    contador++;
+                }
+            </table>
+        </div>
+    </div>
+    @Html.Partial("Paginacao", Model)
+}
+else
+{
+    @Html.Partial("_AcessoNegadoModal")
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1256629626" Data="08/12/2015 15:41:33">
+    <Sessao>zzn55rrtvjyzmho3rqr2aioo</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora do intervalo. Ele deve ser não-negativo e menor que o tamanho da coleção.
+Nome do parâmetro: index</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/cancelar</NameSpace>
+    <Context />
+    <StackTrace>   em System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   em System.Collections.Generic.List`1.get_Item(Int32 index)
+   em System.Linq.Enumerable.ElementAt[TSource](IEnumerable`1 source, Int32 index)
+   em DWM.Models.Persistence.ListViewEsteira.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraModel.cs:linha 232
+   em DWM.Models.BI.CancelarFaturamentoBI.List(Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\CancelarFaturamentoBI.cs:linha 66
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
+   em DWM.Controllers.WorkflowController.CancelarFaturamento(Int32 propostaId, Int32 esteiraId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 212</StackTrace>
+  </LOG>
+  <LOG ID="2026235017" Data="08/12/2015 15:46:08">
+    <Sessao>zzn55rrtvjyzmho3rqr2aioo</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora do intervalo. Ele deve ser não-negativo e menor que o tamanho da coleção.
+Nome do parâmetro: index</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/cancelar</NameSpace>
+    <Context />
+    <StackTrace>   em System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   em System.Collections.Generic.List`1.get_Item(Int32 index)
+   em System.Linq.Enumerable.ElementAt[TSource](IEnumerable`1 source, Int32 index)
+   em DWM.Models.Persistence.ListViewEsteira.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraModel.cs:linha 232
+   em DWM.Models.BI.CancelarFaturamentoBI.List(Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\CancelarFaturamentoBI.cs:linha 66
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
+   em DWM.Controllers.WorkflowController.CancelarFaturamento(Int32 propostaId, Int32 esteiraId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 212</StackTrace>
+  </LOG>
+  <LOG ID="974975055" Data="08/12/2015 15:50:05">
+    <Sessao>zzn55rrtvjyzmho3rqr2aioo</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>O índice estava fora do intervalo. Ele deve ser não-negativo e menor que o tamanho da coleção.
+Nome do parâmetro: index</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/cancelar</NameSpace>
+    <Context />
+    <StackTrace>   em System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   em System.Collections.Generic.List`1.get_Item(Int32 index)
+   em System.Linq.Enumerable.ElementAt[TSource](IEnumerable`1 source, Int32 index)
+   em DWM.Models.Persistence.ListViewEsteira.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraModel.cs:linha 232
+   em DWM.Models.BI.CancelarFaturamentoBI.List(Object[] param) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\CancelarFaturamentoBI.cs:linha 66
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 51
+   em DWM.Controllers.WorkflowController.CancelarFaturamento(Int32 propostaId, Int32 esteiraId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 212</StackTrace>
+  </LOG>
+</LOG>

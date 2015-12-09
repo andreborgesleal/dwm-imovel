@@ -1,0 +1,123 @@
+﻿@using DWM.Models.Repositories
+@using App_Dominio.Repositories
+@model System.Web.Mvc.PagedList<DWM.Models.Repositories.FechamentoMesViewModel>
+@{
+    ViewBag.Title = "DWM-Imóvel";
+    ViewBag.Header = "Descrição";
+}
+<div class="container">
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <div class="panel panel-primary" style="padding: -2px">
+                <div class="panel-heading altura-50">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="h3 margem-interna">Consultar Fechamento do mês</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-info omo" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Filtro de Busca
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    @using (Ajax.BeginForm(null, null, new AjaxOptions { HttpMethod = "get" }, new { @style = "margin-left: 20px", @role = "search" }))
+                                    {
+                                        <div class="form">
+                                            <div class="row clearfix">
+                                                <div class="col-md-6">
+                                                    @Html.Partial("../Typeahead/BuscaEmpreendimento", new App_Dominio.Repositories.TypeaheadRepository()
+                                                                                        {
+                                                                                            ListName = "Empreendimento",
+                                                                                            label = "Empreendimento",
+                                                                                            id = "empreendimentoId",
+                                                                                            text = "descricao_empreendimento",
+                                                                                            lovModal = "LovEmpreendimentoModal",
+                                                                                            controller = "Empreendimentos",
+                                                                                            descricao = "descricao_empreendimento",
+                                                                                            readOnly = false,
+                                                                                            values = new SelectItemsTypeahead()
+                                                                                                                    {
+                                                                                                                        Value = "",
+                                                                                                                        Text = "",
+                                                                                                                    },
+                                                                                            disableButtons = false,
+                                                                                            nextField = "data1",
+                                                                                            prevField = ""
+                                                                                        })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="data1">Período</label>
+                                                        <div class="input-group col-md-12">
+                                                            <div class="row clearfix">
+                                                                <div class="col-md-4">
+                                                                    @Html.Editor("data1", "DATE", new { identificador = "data1", readOnly = "false", value = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-") + "01") })
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    à
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    @Html.Editor("data2", "DATE", new { identificador = "data2", readOnly = "false", value = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-dd")) })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="totalizaDia">Totaliza por Dia</label>
+                                                        <div class="input-group col-md-12">
+                                                            @Html.DropDownList("totalizaDia", App_Dominio.Enumeracoes.DropDownListEnum.SimNao("N"), new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="totalizaDia">Totaliza empreendimento</label>
+                                                        <div class="input-group col-md-12">
+                                                            @Html.DropDownList("totalizaId", App_Dominio.Enumeracoes.DropDownListEnum.SimNao("N"), new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 margem-topo-20 margem-interna">
+                                                    <a href="#" class="btn btn-primary btn-sm link-default" onclick="Refresh(0, getPageSize(), '@Model.action', '@Model.DivId')"><span class="link-default col-md-6">Buscar</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-list-static">
+                        @Html.Partial("ListParam", Model)
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="col-lg-offset-10">
+                        @Html.Partial("_defaultListButtons", new List<ButtonRepository>
+                                    {
+                                        new ButtonRepository() {
+                                                                    actionName = "PDF",
+                                                                    controllerName = "FechamentoReport",
+                                                                    buttonType = "export"
+                                                               }
+                                   })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
