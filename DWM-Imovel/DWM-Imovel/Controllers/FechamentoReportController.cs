@@ -10,6 +10,7 @@ using DWM.Models.Enumeracoes;
 using DWM.Models.Report;
 using App_Dominio.Repositories;
 using App_Dominio.Security;
+using DWM.Models.Entidades;
 
 namespace DWM.Controllers
 {
@@ -53,10 +54,10 @@ namespace DWM.Controllers
             // o parâmetro p[0] fica reservado para ser preenchido automaticamente com o nome da empresa
             p[1] = new ReportParameter("empreendimento", "Empreendimento: " + (descricao_emrpeendimento == "" ? "Todos" : descricao_emrpeendimento), false);
             p[2] = new ReportParameter("periodo", "Período: " + data1 + " à " + data2, false);
-            p[3] = new ReportParameter("totalizaDia", totalizaDia, false);
+            p[3] = new ReportParameter("totalizaDia", "Relatório de faturamento", false);
             p[4] = new ReportParameter("totalizaId", totalizaId, false);
 
-            return _PDF(export, "FechamentoMes", new FechamentoReport(), p, null, null, data1, data2, empreendimentoId, "N", "N");
+            return _PDF(export, "Fechamento", new FechamentoReport(), p, null, null, data1, data2, empreendimentoId, "N", "N");
         }
     }
 }

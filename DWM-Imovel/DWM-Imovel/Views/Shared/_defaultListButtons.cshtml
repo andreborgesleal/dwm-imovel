@@ -67,4 +67,17 @@
             </ul>
         </div>
     }
+    else if (b.buttonType.Equals("word"))
+    {
+        <div class="btn-group dropup">
+            <button class="btn btn-default">Exportar</button>
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="selecionaPdf('word', '@b.controllerName', '@b.actionName', '@b.javaScriptFunction')"><i class="cus-sprite-page_word"></i> Word</a></li>
+                <li><a href="#" onclick="selecionaPdf('excel', '@b.controllerName', '@b.actionName', '@b.javaScriptFunction')"><i class="cus-sprite-page_excel"></i> Excel</a></li>
+            </ul>
+        </div>
+    }
 }

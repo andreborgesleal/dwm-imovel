@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1256600295" Data="12/12/2015 23:19:58">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="vsxLnx3bwvKT0jx4dOXcUG1vpcLXHp7IN3_4ii9nOk62-ADr2fhP-zsvz_iSqttqQj2ORH-dSyNeAmSF43jGp_qIDeVVNA0jP_QxHzOOE0A1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1324384441" Data="12/12/2015 23:19:58">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="vsxLnx3bwvKT0jx4dOXcUG1vpcLXHp7IN3_4ii9nOk62-ADr2fhP-zsvz_iSqttqQj2ORH-dSyNeAmSF43jGp_qIDeVVNA0jP_QxHzOOE0A1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="2064936470" Data="12/12/2015 23:20:13">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="xD6tt9V7lKCviJ7LfDhWK-fwHAARx4InQbkOjnxbduZ4R_HC4eSSnKJIYKQ78QZpZZytm0GVKT5IG-a6wuMBI9iy4Tfv6TG_IwS5bEHCnSg1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1107136788" Data="12/12/2015 23:20:13">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="xD6tt9V7lKCviJ7LfDhWK-fwHAARx4InQbkOjnxbduZ4R_HC4eSSnKJIYKQ78QZpZZytm0GVKT5IG-a6wuMBI9iy4Tfv6TG_IwS5bEHCnSg1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="585532930" Data="12/12/2015 23:20:33">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="noCQcnZXU5O11OvBM4AlSCWXQhKvomayuLzUJ9nZV22-oBWjCVyAuVnQe-5hCQj_bTsRB7xifg4lek3eqsPOqqAcHJQC21p3BzEeVU_bSJg1",UserName="leodias13@hotmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1775216895" Data="12/12/2015 23:20:33">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="noCQcnZXU5O11OvBM4AlSCWXQhKvomayuLzUJ9nZV22-oBWjCVyAuVnQe-5hCQj_bTsRB7xifg4lek3eqsPOqqAcHJQC21p3BzEeVU_bSJg1",UserName="leodias13@hotmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="359245951" Data="12/12/2015 23:21:00">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="GCUJvudv7nYLxk3O6ruZvlNugECJLdtX-PHFCPZw25ZvVvOPGepDOxH_eBk8VfShLOvGOMDSEplZv445qP82kP_MhR-re6Ku17W1nrYaVBk1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="427030097" Data="12/12/2015 23:21:00">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="GCUJvudv7nYLxk3O6ruZvlNugECJLdtX-PHFCPZw25ZvVvOPGepDOxH_eBk8VfShLOvGOMDSEplZv445qP82kP_MhR-re6Ku17W1nrYaVBk1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="1144567823" Data="12/12/2015 23:22:46">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="iBm4QR3tBWlgqpMhwYZwRIZ2iD94WPvgaSTiEUrGF42Mrg4ocqKjIr8SGftIKKc63x6PCF040uUuoWMZqFdeZYihqx_uPLuZjNHwtNQksrQ1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+  <LOG ID="957296069" Data="12/12/2015 23:22:46">
+    <Sessao>jnqtvstzyabarbjt1rjw3q1o</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>An error occurred accessing the database. This usually means that the connection to the database failed. Check that the connection string is correct and that the appropriate DbContext constructor is being used to specify it or find it in the application's config file. See http://go.microsoft.com/fwlink/?LinkId=386386 for information on DbContext and connections. See the inner exception for details of the failure.</Mensagem>
+    <NameSpace>App_Dominio.Security.EmpresaSecurity`1[[App_Dominio.Entidades.App_DominioContext, App_Dominio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] =&gt; </NameSpace>
+    <Context>__RequestVerificationToken="iBm4QR3tBWlgqpMhwYZwRIZ2iD94WPvgaSTiEUrGF42Mrg4ocqKjIr8SGftIKKc63x6PCF040uUuoWMZqFdeZYihqx_uPLuZjNHwtNQksrQ1",UserName="danielleal94@gmail.com",Password="everglades"</Context>
+    <StackTrace />
+  </LOG>
+</LOG>
