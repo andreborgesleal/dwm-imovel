@@ -516,7 +516,7 @@ namespace DWM.Models.Persistence
                                 && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                                     (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                                     (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
-                                    (!descricao_grupo.Contains("Corretor|Coordenador|Gerente de Equipe")))
+                                    (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                         orderby p.dt_proposta, c.nome
                         select new PropostaViewModel
                         {
@@ -552,7 +552,7 @@ namespace DWM.Models.Persistence
                                                 && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
-                                                    (!descricao_grupo.Contains("Corretor|Coordenador|Gerente de Equipe")))
+                                                    (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                           orderby p1.dt_proposta, c1.nome
                                           select p1.propostaId).Count()
                         }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -575,7 +575,7 @@ namespace DWM.Models.Persistence
                                 && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                                     (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                                     (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
-                                    (!descricao_grupo.Contains("Corretor|Coordenador|Gerente de Equipe")))
+                                    (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                         orderby p.dt_proposta descending, c.nome
                         select new PropostaViewModel
                         {
@@ -617,7 +617,7 @@ namespace DWM.Models.Persistence
                                                 && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
-                                                    (!descricao_grupo.Contains("Corretor|Coordenador|Gerente de Equipe")))
+                                                    (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                           orderby p1.dt_proposta, c1.nome
                                           select p1.propostaId).Count()
                         }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -687,7 +687,7 @@ namespace DWM.Models.Persistence
                           && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                               (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                               (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
-                              (!descricao_grupo.Contains("Corretor|Coordenador|Gerente de Equipe")))
+                              (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                     orderby p.dt_ultimo_status, c.nome
                     select new PropostaViewModel
                     {
@@ -716,6 +716,8 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      join cor1 in db.Corretores on p1.corretor1Id equals cor1.corretorId into COR1
+                                      from cor1 in COR1.DefaultIfEmpty()
                                       where est1.esteiraId == (from esteira3 in db.Esteiras where esteira3.propostaId == p1.propostaId select esteira3.esteiraId).Max()
                                               && (from esteira21 in db.Esteiras
                                                   where esteira21.propostaId == p1.propostaId
@@ -728,8 +730,11 @@ namespace DWM.Models.Persistence
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.etapaId >= _etapaId
                                               && p1.situacao == "A"
-                                              && p1.ind_fechamento != "S" 
-
+                                              && p1.ind_fechamento != "S"
+                                              && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
+                                                  (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                       orderby p1.dt_ultimo_status, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -755,6 +760,12 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
+            #region verifica o perfil do usuário logado
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            string descricao_grupo = security._getUsuarioGrupo(sessaoCorrente.usuarioId).FirstOrDefault().descricao;
+            #endregion
+
             int? _empreendimentoId = (int?)param[0];
             int? _etapaId = (int?)param[1];
 
@@ -763,11 +774,17 @@ namespace DWM.Models.Persistence
                     join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
                     join est in db.Esteiras on p.propostaId equals est.propostaId
                     join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    join cor in db.Corretores on p.corretor1Id equals cor.corretorId into COR
+                    from cor in COR.DefaultIfEmpty()
                     where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                           && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
                           && p.etapaId <= _etapaId
                           && p.situacao == "A"
-                          && p.ind_fechamento != "S" 
+                          && p.ind_fechamento != "S"
+                          && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
+                              (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
+                              (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
+                              (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                     orderby p.dt_ultimo_status descending, c.nome
                     select new PropostaViewModel
                     {
@@ -796,11 +813,17 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      join cor1 in db.Corretores on p1.corretor1Id equals cor1.corretorId into COR1
+                                      from cor1 in COR1.DefaultIfEmpty()
                                       where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.etapaId <= _etapaId
                                               && p1.situacao == "A"
-                                              && p1.ind_fechamento != "S" 
+                                              && p1.ind_fechamento != "S"
+                                              && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
+                                                  (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                       orderby p1.dt_ultimo_status descending, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -826,6 +849,12 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<PropostaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
+            #region verifica o perfil do usuário logado
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            string descricao_grupo = security._getUsuarioGrupo(sessaoCorrente.usuarioId).FirstOrDefault().descricao;
+            #endregion
+
             int? _empreendimentoId = null;
             var _data = DateTime.Today.AddDays(-10);
 
@@ -838,11 +867,17 @@ namespace DWM.Models.Persistence
                     join emp in db.Empreendimentos on p.empreendimentoId equals emp.empreendimentoId
                     join est in db.Esteiras on p.propostaId equals est.propostaId
                     join eta in db.Etapas on est.etapaId equals eta.etapaId
+                    join cor in db.Corretores on p.corretor1Id equals cor.corretorId into COR
+                    from cor in COR.DefaultIfEmpty()
                     where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                           && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
                           && p.situacao == "A"
                           && p.dt_ultimo_status < _data
-                          && p.ind_fechamento != "S" 
+                          && p.ind_fechamento != "S"
+                          && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
+                              (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
+                              (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
+                              (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                     orderby p.dt_ultimo_status descending, c.nome
                     select new PropostaViewModel
                     {
@@ -870,11 +905,17 @@ namespace DWM.Models.Persistence
                                       join emp1 in db.Empreendimentos on p1.empreendimentoId equals emp1.empreendimentoId
                                       join est1 in db.Esteiras on p1.propostaId equals est1.propostaId
                                       join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
+                                      join cor1 in db.Corretores on p1.corretor1Id equals cor1.corretorId into COR1
+                                      from cor1 in COR1.DefaultIfEmpty()
                                       where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
                                               && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
                                               && p1.situacao == "A"
                                               && p1.dt_ultimo_status < _data
-                                              && p1.ind_fechamento != "S" 
+                                              && p1.ind_fechamento != "S"
+                                              && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
+                                                  (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                       orderby p1.dt_ultimo_status descending, c1.nome
                                       select p1.propostaId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
@@ -900,6 +941,12 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<ResumoVendaViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
+            #region verifica o perfil do usuário logado
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            string descricao_grupo = security._getUsuarioGrupo(sessaoCorrente.usuarioId).FirstOrDefault().descricao;
+            #endregion
+
             int? _empreendimentoId = null;
             DateTime? _dt_proposta1 = new DateTime(1980, 1, 1);
             DateTime? _dt_proposta2 = new DateTime(2030, 12, 31);
@@ -916,10 +963,16 @@ namespace DWM.Models.Persistence
 
             return (from pro in db.Propostas 
                     join emp in db.Empreendimentos on pro.empreendimentoId equals emp.empreendimentoId
+                    join cor in db.Corretores on pro.corretor1Id equals cor.corretorId into COR
+                    from cor in COR.DefaultIfEmpty()
                     where (!_empreendimentoId.HasValue || pro.empreendimentoId == _empreendimentoId )
                             && pro.dt_proposta >= _dt_proposta1 && pro.dt_proposta <= _dt_proposta2
                             && pro.situacao == "A" && pro.etapaId >= 4
                             && pro.ind_fechamento != "S"
+                            && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
+                                (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
+                                (descricao_grupo == "Gerente de Equipe" && pro.login == sessaoCorrente.login) ||
+                                (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                     group pro by new {pro.empreendimentoId, emp.nomeEmpreend} into PRO
                     select new ResumoVendaViewModel
                     {
@@ -933,10 +986,16 @@ namespace DWM.Models.Persistence
                         PageSize = pageSize,
                         TotalCount = (from pro1 in db.Propostas
                                       join emp1 in db.Empreendimentos on pro1.empreendimentoId equals emp1.empreendimentoId
+                                      join cor1 in db.Corretores on pro1.corretor1Id equals cor1.corretorId into COR1
+                                      from cor1 in COR1.DefaultIfEmpty()
                                       where (!_empreendimentoId.HasValue || pro1.empreendimentoId == _empreendimentoId)
                                               && pro1.dt_proposta >= _dt_proposta1 && pro1.dt_proposta <= _dt_proposta2
                                               && pro1.situacao == "A" && pro1.etapaId >= 4
                                               && pro1.ind_fechamento != "S"
+                                              && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                  (descricao_grupo == "Gerente de Equipe" && pro1.login == sessaoCorrente.login) ||
+                                                  (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                       group pro1 by new { pro1.empreendimentoId, emp1.nomeEmpreend } into PRO1
                                       select PRO.Key).Count()
                     }).OrderBy(info => info.nome_empreendimento).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();

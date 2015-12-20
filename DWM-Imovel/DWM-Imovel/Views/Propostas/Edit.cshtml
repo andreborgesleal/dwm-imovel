@@ -97,7 +97,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label" for="usuario">Gerente</label>
-                        @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Gerentes("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-md-4">

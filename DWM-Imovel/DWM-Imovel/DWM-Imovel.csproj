@@ -192,6 +192,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
     <Compile Include="Models\BI\CancelarFaturamentoBI.cs" />
+    <Compile Include="Models\BI\CheckPropostaBI.cs" />
     <Compile Include="Models\BI\EsteiraComissaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoDeleteBI.cs" />
@@ -240,6 +241,11 @@
     <Compile Include="Models\Repositories\ResumoVendaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="_dwm_imovelDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_dwm_imovelDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\logs\log-01092015.xml" />
@@ -1328,6 +1334,17 @@
     <Content Include="Views\Home\ListPanoramaResumo.cshtml" />
     <Content Include="Views\FechamentoReport\Browse.cshtml" />
     <Content Include="Views\FechamentoReport\ListParam.cshtml" />
+    <Content Include="_dwm_imovelDataSet.xsc">
+      <DependentUpon>_dwm_imovelDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="_dwm_imovelDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_dwm_imovelDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="_dwm_imovelDataSet.xss">
+      <DependentUpon>_dwm_imovelDataSet.xsd</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\fonts\font-awesome\" />
@@ -1341,7 +1358,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_Data\rdlc\Fechamento.rdlc" />
-    <EmbeddedResource Include="Views\FechamentoReport\FechamentoResumo.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

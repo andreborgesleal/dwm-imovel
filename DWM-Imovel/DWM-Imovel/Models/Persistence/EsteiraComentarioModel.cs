@@ -8,6 +8,7 @@ using App_Dominio.Enumeracoes;
 using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
+using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
 {
@@ -201,6 +202,12 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<EsteiraComentarioViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
+            #region verifica o perfil do usuário logado
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            string descricao_grupo = security._getUsuarioGrupo(sessaoCorrente.usuarioId).FirstOrDefault().descricao;
+            #endregion
+
             string _nome = null;
             if (param != null)
                 if (param.Count() > 0)
@@ -213,8 +220,14 @@ namespace DWM.Models.Persistence
                     join pro in db.Propostas on est.propostaId equals pro.propostaId
                     join cli in db.Clientes on pro.clienteId equals cli.clienteId
                     join emp in db.Empreendimentos on pro.empreendimentoId equals emp.empreendimentoId
+                    join cor in db.Corretores on pro.corretor1Id equals cor.corretorId into COR
+                    from cor in COR.DefaultIfEmpty()
                     where (_nome == null || _nome == "" || com.nome.Contains(_nome))
                             && pro.situacao == "A"
+                            && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
+                                (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
+                                (descricao_grupo == "Gerente de Equipe" && pro.login == sessaoCorrente.login) ||
+                                (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                     orderby com.dt_comentario descending
                     select new EsteiraComentarioViewModel()
                     {
@@ -235,8 +248,14 @@ namespace DWM.Models.Persistence
                                       join pro1 in db.Propostas on est1.propostaId equals pro1.propostaId
                                       join cli1 in db.Clientes on pro1.clienteId equals cli1.clienteId
                                       join emp1 in db.Empreendimentos on pro1.empreendimentoId equals emp1.empreendimentoId
+                                      join cor1 in db.Corretores on pro1.corretor1Id equals cor1.corretorId into COR1
+                                      from cor1 in COR1.DefaultIfEmpty()
                                       where (_nome == null || _nome == "" || com1.nome.Contains(_nome))
                                             && pro1.situacao == "A"
+                                            && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                (descricao_grupo == "Gerente de Equipe" && pro1.login == sessaoCorrente.login) ||
+                                                (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
                                       orderby com1.dt_comentario descending
                                       select com1.esteiraId).Count()
                     }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();

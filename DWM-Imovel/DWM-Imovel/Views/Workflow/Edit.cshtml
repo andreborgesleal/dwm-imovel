@@ -2,146 +2,159 @@
 @model DWM.Models.Repositories.PropostaViewModel
 @{
     ViewBag.Title = "DWM-Imovel";
-    ViewBag.esteiraId = Model.Esteira.FirstOrDefault().esteiraId.ToString();
-    if (Model.Comissao.Count() > 0)
+    var cad_cli_link = "../Clientes/Edit?clienteId=";
+    var cad_empreend_link = "../Empreendimentos/Edit?empreendimentoId=";
+
+    if (Model != null)
     {
-        ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
+        ViewBag.esteiraId = Model.Esteira.FirstOrDefault().esteiraId.ToString();
+        if (Model.Comissao.Count() > 0)
+        {
+            ViewBag.vr_total = Model.Comissao.Select(info => info.valor).Sum().ToString("R$ ###,###,###,##0.00");
+        }
+        else
+        {
+            ViewBag.vr_total = Model.vr_comissao.ToString("R$ ###,###,###,##0.00");
+        }
+        cad_cli_link += Model.clienteId;
+        cad_empreend_link += Model.empreendimentoId;
     }
-    else
-    {
-        ViewBag.vr_total = Model.vr_comissao.ToString("R$ ###,###,###,##0.00");
-    }
-    var cad_cli_link = "../Clientes/Edit?clienteId=" + Model.clienteId;
-    var cad_empreend_link = "../Empreendimentos/Edit?empreendimentoId=" + Model.empreendimentoId;
 }
 
 <div class="container-fluid">
-    <div class="row">
+    @if (Model != null)
+    {
+        <div class="row">
 
-        @* Dados do Cliente *@
-        <div class="col-md-3">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <p>
-                        <a class="text-warning" href="@cad_cli_link"><h3 class="text-right"><b>@Model.nome_cliente</b></h3></a>
-                    </p>
-                    <p class="text-right"><b>CPF: @Model.cpf_cnpj</b></p>
-                </div>
-                <div class="panel-body text-right">
-                    <b>Telefone: </b>@Model.fone1 / @Model.fone2
+            @* Dados do Cliente *@
+            <div class="col-md-3">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <p>
+                            <a class="text-warning" href="@cad_cli_link"><h3 class="text-right"><b>@Model.nome_cliente</b></h3></a>
+                        </p>
+                        <p class="text-right"><b>CPF: @Model.cpf_cnpj</b></p>
+                    </div>
+                    <div class="panel-body text-right">
+                        <b>Telefone: </b>@Model.fone1 / @Model.fone2
+                    </div>
                 </div>
             </div>
-        </div>
-        @* Dados do Empreendimento *@
-        <div class="col-md-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <p>
-                        <a class="text-primary" href="@cad_empreend_link"><h3 class="text-right"><b>@Model.descricao_empreendimento</b></h3></a>
-                    </p>
-                    <p class="text-right"><b>@Model.torre</b></p>
-                </div>
-                <div class="panel-body text-right">
-                    <b>Coordenador: </b>@Model.nome_coordenador / <span class="text-primary">@Model.login_coordenador</span>
+            @* Dados do Empreendimento *@
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <p>
+                            <a class="text-primary" href="@cad_empreend_link"><h3 class="text-right"><b>@Model.descricao_empreendimento</b></h3></a>
+                        </p>
+                        <p class="text-right"><b>@Model.torre</b></p>
+                    </div>
+                    <div class="panel-body text-right">
+                        <b>Coordenador: </b>@Model.nome_coordenador / <span class="text-primary">@Model.login_coordenador</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        @* Etapas do Empreendimento *@
-        <div class="col-md-3">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <p><h3 class="text-right" id="descricao_etapa"><b>@Model.descricao_etapa</b></h3></p>
-                    <p><h5 class="text-right" id="data_proposta">desde @Model.dt_proposta.ToString("dd/MM/yyyy")</h5></p>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-2 margem-negativa">
-                            <h5>Etapas</h5>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="progress thin" style="margin-bottom: 6px !important" id="div-progressbar-esteira">
-                                @Html.Partial("_ProgressBarEsteira", Model)
+            @* Etapas do Empreendimento *@
+            <div class="col-md-3">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <p><h3 class="text-right" id="descricao_etapa"><b>@Model.descricao_etapa</b></h3></p>
+                        <p><h5 class="text-right" id="data_proposta">desde @Model.dt_proposta.ToString("dd/MM/yyyy")</h5></p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2 margem-negativa">
+                                <h5>Etapas</h5>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="progress thin" style="margin-bottom: 6px !important" id="div-progressbar-esteira">
+                                    @Html.Partial("_ProgressBarEsteira", Model)
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @*<p>
-                <a class="text-danger dedo-indicador" id="refresh-progress-bar" onclick="progressBar()">clique aqui para atualizar</a>
-            </p>*@
+            @*<p>
+                    <a class="text-danger dedo-indicador" id="refresh-progress-bar" onclick="progressBar()">clique aqui para atualizar</a>
+                </p>*@
 
-        @* Valor do Empreendimento *@
-        <div class="col-md-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <p><h3 class="text-right"><b>@Model.valor.ToString("R$ ###,###,###,##0.00")</b></h3></p>
-                    <p class="text-right"><b>Valor geral da venda</b></p>
-                </div>
-                <div class="panel-body text-right">
-                    <b>Comissão: </b><span id="lbVr_comissao">@Model.vr_comissao.ToString("R$ ###,###,###,##0.00")</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        @* Dados da Proposta *@
-        <div class="col-md-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Dados da Proposta</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div>
-                                <h4>
-                                    Data
-                                    <span class="label label-info dedo-indicador col-md-offset-8" onclick="window.location='../Propostas/Edit?propostaId=' + @Model.propostaId">ID: @Model.propostaId</span>
-                                </h4>
-                                <p>@Model.dt_proposta.ToString("dd/MM/yyyy")</p>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <p><h4>Gerente</h4></p>
-                            <p>@Model.nome</p>
-                            <p>@Model.login</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p><h4>Corretor</h4></p>
-                            <p>@Model.nome_corretor1</p>
-                            <p>Email - @Model.fone_corretor1</p>
-                            <p></p>
-                        </li>
-                        <li class="list-group-item">
-                            <div id="dados_proposta">
-                                @Html.Partial("_DadosProposta", Model.Arquivos)
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div id="comissao">
-                                @Html.Partial("_Comissao", Model.Comissao)
-                            </div>
-                        </li>
-                    </ul>
+            @* Valor do Empreendimento *@
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p><h3 class="text-right"><b>@Model.valor.ToString("R$ ###,###,###,##0.00")</b></h3></p>
+                        <p class="text-right"><b>Valor geral da venda</b></p>
+                    </div>
+                    <div class="panel-body text-right">
+                        <b>Comissão: </b><span id="lbVr_comissao">@Model.vr_comissao.ToString("R$ ###,###,###,##0.00")</span>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            @* Dados da Proposta *@
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dados da Proposta</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div>
+                                    <h4>
+                                        Data
+                                        <span class="label label-info dedo-indicador col-md-offset-8" onclick="window.location='../Propostas/Edit?propostaId=' + @Model.propostaId">ID: @Model.propostaId</span>
+                                    </h4>
+                                    <p>@Model.dt_proposta.ToString("dd/MM/yyyy")</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h4>Gerente</h4></p>
+                                <p>@Model.nome</p>
+                                <p>@Model.login</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p><h4>Corretor</h4></p>
+                                <p>@Model.nome_corretor1</p>
+                                <p>Email - @Model.fone_corretor1</p>
+                                <p></p>
+                            </li>
+                            <li class="list-group-item">
+                                <div id="dados_proposta">
+                                    @Html.Partial("_DadosProposta", Model.Arquivos)
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div id="comissao">
+                                    @Html.Partial("_Comissao", Model.Comissao)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-        @* Esteira de Aprovação *@
-        <div class="col-md-6">
-            <div id="esteira">
-                @Html.Partial("_Esteira", Model.Esteira)
+            @* Esteira de Aprovação *@
+            <div class="col-md-6">
+                <div id="esteira">
+                    @Html.Partial("_Esteira", Model.Esteira)
+                </div>
+            </div>
+
+
+            @* Comentários *@
+            <div class="col-md-3">
+                <div id="comentarios">
+                    @Html.Partial("_Comentarios", Model.Comentarios)
+                </div>
             </div>
         </div>
-
-
-        @* Comentários *@
-        <div class="col-md-3">
-            <div id="comentarios">
-                @Html.Partial("_Comentarios", Model.Comentarios)
-            </div>
-        </div>
-    </div>
+    }
+    else
+    {
+        <button class="btn btn-danger" onclick="javascript: history.go(-1);">Voltar</button>
+    }
 </div>

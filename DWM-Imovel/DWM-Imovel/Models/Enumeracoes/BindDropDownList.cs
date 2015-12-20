@@ -15,7 +15,7 @@ namespace DWM.Models.Enumeracoes
 {
     public class BindDropDownList
     {
-        public IEnumerable<SelectListItem> Usuarios(params object[] param)
+        public IEnumerable<SelectListItem> Gerentes(params object[] param)
         {
             // params[0] -> cabeçalho (Selecione..., Todos...)
             // params[1] -> SelectedValue
@@ -25,7 +25,36 @@ namespace DWM.Models.Enumeracoes
             EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
 
             Sessao s = security.getSessaoCorrente();
-            IEnumerable<App_Dominio.Repositories.UsuarioRepository> Usuarios = security.getUsuarios((int)Sistema.DWMIMOVEL, s.empresaId);
+            IEnumerable<App_Dominio.Repositories.UsuarioRepository> Usuarios = security.getUsuarios((int)Sistema.DWMIMOVEL, s.empresaId, "Gerente de Equipe");
+
+            IList<SelectListItem> q = new List<SelectListItem>();
+
+            if (cabecalho != "")
+                q.Add(new SelectListItem() { Value = "", Text = cabecalho });
+
+            q = q.Union(from e in Usuarios.AsEnumerable()
+                        orderby e.nome
+                        select new SelectListItem()
+                        {
+                            Value = e.usuarioId.ToString(),
+                            Text = e.nome,
+                            Selected = (selectedValue != "" ? e.nome.Equals(selectedValue) : false)
+                        }).ToList();
+
+            return q;
+        }
+
+        public IEnumerable<SelectListItem> Coordenadores(params object[] param)
+        {
+            // params[0] -> cabeçalho (Selecione..., Todos...)
+            // params[1] -> SelectedValue
+            string cabecalho = param[0].ToString();
+            string selectedValue = param[1].ToString();
+
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+
+            Sessao s = security.getSessaoCorrente();
+            IEnumerable<App_Dominio.Repositories.UsuarioRepository> Usuarios = security.getUsuarios((int)Sistema.DWMIMOVEL, s.empresaId, "Coordenador");
 
             IList<SelectListItem> q = new List<SelectListItem>();
 

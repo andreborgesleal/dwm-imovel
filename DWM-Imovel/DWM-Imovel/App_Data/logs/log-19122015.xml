@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="208177288" Data="19/12/2015 18:53:39">
+    <Sessao>zrl5wjm25ke5jsb1rvhuol2b</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Sessão expirada. Faça um novo login</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/edit</NameSpace>
+    <Context />
+    <StackTrace>   em App_Dominio.Entidades.DWMContext`1.Create(D _db, SecurityContext _seguranca_db) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Entidades\DWMContext.cs:linha 38
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Factory.cs:linha 24
+   em DWM.Controllers.WorkflowController.Edit(Int32 propostaId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 44</StackTrace>
+  </LOG>
+  <LOG ID="1199198550" Data="19/12/2015 19:06:33">
+    <Sessao>zrl5wjm25ke5jsb1rvhuol2b</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/edit</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Controllers.WorkflowController.Edit(Int32 propostaId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 44</StackTrace>
+  </LOG>
+  <LOG ID="1785312645" Data="19/12/2015 19:06:54">
+    <Sessao>zrl5wjm25ke5jsb1rvhuol2b</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/edit</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Controllers.WorkflowController.Edit(Int32 propostaId) na c:\Users\André\Source\Repos\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 44</StackTrace>
+  </LOG>
+</LOG>

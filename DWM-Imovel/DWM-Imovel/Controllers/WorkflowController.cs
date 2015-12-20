@@ -37,9 +37,32 @@ namespace DWM.Controllers
         [AuthorizeFilter]
         public ActionResult Edit(int propostaId)
         {
-            BindBreadCrumb("Workflow", true);
-            ViewBag.propostaId = propostaId.ToString();
-            return _Edit(new PropostaViewModel() { propostaId = propostaId });
+            try
+            {
+                #region Verificar se o usuário tem permissão de acesso a esta proposta
+                Factory<PropostaViewModel, ApplicationContext> facade = new Factory<PropostaViewModel, ApplicationContext>();
+                PropostaViewModel result = facade.Execute(new CheckPropostaBI(), new PropostaViewModel() { propostaId = propostaId });
+                if (result.mensagem.Code > 0)
+                    throw new App_DominioException(result.mensagem);
+                #endregion
+
+                BindBreadCrumb("Workflow", true);
+                ViewBag.propostaId = propostaId.ToString();
+                return _Edit(new PropostaViewModel() { propostaId = propostaId });
+            }
+            catch (App_DominioException ex)
+            {
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error("Acesso não autorizado"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(202).ToString()); // mensagem amigável ao usuário
+                Error("Acesso não autorizado II"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return View("Edit", null);
         }
         #endregion
 
