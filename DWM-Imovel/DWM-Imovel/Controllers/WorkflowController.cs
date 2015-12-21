@@ -59,7 +59,7 @@ namespace DWM.Controllers
             {
                 App_DominioException.saveError(ex, GetType().FullName);
                 ModelState.AddModelError("", MensagemPadrao.Message(202).ToString()); // mensagem amigável ao usuário
-                Error("Acesso não autorizado II"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+                Error("Acesso não autorizado"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
             }
 
             return View("Edit", null);

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="1719941096" Data="20/12/2015 17:59:02">
+    <Sessao>m3hftrryxirqf3ryut2xcnty</Sessao>
+    <IP>::1</IP>
+    <HostName>ANDRE-NOTE\André</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/create</NameSpace>
+    <Context>empreendimentoId="3",descricao_empreendimento1="Alegro Montenegro",descricao_empreendimento="Alegro Montenegro",clienteId="0",nome_cliente1="",nome_cliente="Felizardo Pereira da Silva",torre="Havengard",unidade="702",valor1="150.000,00",vr_comissao1="10.000,00",usuarioId="7215",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",dt_proposta="10/12/2015"</Context>
+    <StackTrace>   em App_Dominio.Pattern.Facade`3.Save(R value, Crud operation) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Pattern\Facade.cs:linha 138
+   em App_Dominio.Controllers.DwmRootController`3.Insert(R value) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 138
+   em App_Dominio.Controllers.DwmRootController`3.SetCreate(R value, FormCollection collection, String breadCrumbText) na c:\Users\André\Source\Repos\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 93</StackTrace>
+  </LOG>
+</LOG>

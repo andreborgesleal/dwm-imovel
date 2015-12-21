@@ -5,27 +5,28 @@
     ViewBag.Title = "NM Consultoria Imobiliária";
 }
 
-
-@using (Html.BeginForm("Delete", "Propostas", FormMethod.Post, new { @class = "form" }))
+@if (Model != null)
 {
-    @Html.HiddenFor(info => info.propostaId)
-    @Html.HiddenFor(info => info.descricao_etapa)
-    @Html.HiddenFor(info => info.torre)
-    @Html.HiddenFor(info => info.unidade)
-    @Html.HiddenFor(info => info.dt_proposta)
-    
-    <div id="div-lov"></div>
-    <div class="panel panel-primary margem-topo-10">
-        <div class="panel-heading">
-            <h2 class="panel-title">
-                Inclusão de Propostas
-            </h2>
-        </div>
-        <div class="panel-body">
-            @Html.ValidationSummary(false)
-            <div class="row clearfix">
-                <div class="col-md-4">
-                    @Html.Partial("../Typeahead/BuscaEmpreendimento", new App_Dominio.Repositories.TypeaheadRepository()
+    using (Html.BeginForm("Delete", "Propostas", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(info => info.propostaId)
+        @Html.HiddenFor(info => info.descricao_etapa)
+        @Html.HiddenFor(info => info.torre)
+        @Html.HiddenFor(info => info.unidade)
+        @Html.HiddenFor(info => info.dt_proposta)
+
+        <div id="div-lov"></div>
+        <div class="panel panel-primary margem-topo-10">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Inclusão de Propostas
+                </h2>
+            </div>
+            <div class="panel-body">
+                @Html.ValidationSummary(false)
+                <div class="row clearfix">
+                    <div class="col-md-4">
+                        @Html.Partial("../Typeahead/BuscaEmpreendimento", new App_Dominio.Repositories.TypeaheadRepository()
                {
                    ListName = "Empreendimento",
                    label = "Empreendimento",
@@ -44,9 +45,9 @@
                    nextField = "nome_cliente",
                    prevField = ""
                })
-                </div>
-                <div class="col-md-4">
-                    @Html.Partial("../Typeahead/BuscaCliente", new App_Dominio.Repositories.TypeaheadRepository()
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Partial("../Typeahead/BuscaCliente", new App_Dominio.Repositories.TypeaheadRepository()
                {
                    ListName = "Cliente",
                    label = "Cliente",
@@ -66,36 +67,36 @@
                    nextField = "torre",
                    prevField = "descricao_empreendimento"
                })
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label" for="torre">Torre</label>
-                        @Html.TextBoxFor(m => m.torre, new { @class = "form-control", @disabled = "disable" })
                     </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label" for="unidade">Unidade</label>
-                        @Html.TextBoxFor(m => m.unidade, new { @class = "form-control", @disabled = "disable" })
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label class="control-label" for="torre">Torre</label>
+                            @Html.TextBoxFor(m => m.torre, new { @class = "form-control", @disabled = "disable" })
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-1">
-                    @Html.EditorFor(m => m.valor, "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @disabled = "disable", @onblur = "return Converte(this, 'valor')" } })
-                </div>
-                <div class="col-md-1">
-                    @Html.EditorFor(m => m.vr_comissao, "DECIMAL2", new { label = "Comissão", htmlAttributes = (object)new { @class = "form-control text-right", @disabled = "disable", @onblur = "return Converte(this, 'vr_comissao')" } })
-                </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label class="control-label" for="unidade">Unidade</label>
+                            @Html.TextBoxFor(m => m.unidade, new { @class = "form-control", @disabled = "disable" })
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        @Html.EditorFor(m => m.valor, "DECIMAL2", new { label = "Valor", htmlAttributes = (object)new { @class = "form-control text-right", @disabled = "disable", @onblur = "return Converte(this, 'valor')" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.EditorFor(m => m.vr_comissao, "DECIMAL2", new { label = "Comissão", htmlAttributes = (object)new { @class = "form-control text-right", @disabled = "disable", @onblur = "return Converte(this, 'vr_comissao')" } })
+                    </div>
 
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label" for="usuario">Gerente</label>
-                        @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Gerentes("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control", @disabled = "disable" })
-                    </div>
                 </div>
-                <div class="col-md-4">
-                    @Html.Partial("../Typeahead/BuscaCorretor", new App_Dominio.Repositories.TypeaheadRepository()
+                <div class="row clearfix">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="usuario">Gerente</label>
+                            @Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Gerentes("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control", @disabled = "disable" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Partial("../Typeahead/BuscaCorretor", new App_Dominio.Repositories.TypeaheadRepository()
                {
                    ListName = "Corretor",
                    label = "Corretor",
@@ -116,19 +117,19 @@
                    prevField = "usuarioId"
                })
 
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label class="control-label" for="dt_proposta">Dt.Proposta</label>
-                        @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta1", value = DateTime.Today, readOnly = "true" })
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="dt_proposta">Dt.Proposta</label>
+                            @Html.EditorFor(info => info.dt_proposta, "DATE", new { identificador = "dt_proposta1", value = DateTime.Today, readOnly = "true" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-9 col-xs-12">
-                    @Html.Partial("_defaultListButtons",
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-9 col-xs-12">
+                        @Html.Partial("_defaultListButtons",
                         new List<ButtonRepository>
                         {
                             new ButtonRepository() {    linkText = "Excluir",
@@ -142,8 +143,13 @@
                                                         buttonType = "link"
                                                     }
                         })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+}
+else
+{
+    <button class="btn btn-danger" onclick="javascript: history.go(-1);">Voltar</button>
 }
