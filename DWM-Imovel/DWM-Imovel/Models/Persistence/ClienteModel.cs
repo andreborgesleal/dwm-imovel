@@ -8,6 +8,7 @@ using App_Dominio.Enumeracoes;
 using App_Dominio.Models;
 using DWM.Models.Entidades;
 using DWM.Models.Repositories;
+using App_Dominio.Security;
 
 namespace DWM.Models.Persistence
 {
@@ -165,24 +166,105 @@ namespace DWM.Models.Persistence
         #region Métodos da classe ListViewRepository
         public override IEnumerable<ClienteViewModel> Bind(int? index, int pageSize = 50, params object[] param)
         {
+            #region verifica o perfil do usuário logado
+            EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
+            security.seguranca_db = this.seguranca_db;
+            string descricao_grupo = security._getUsuarioGrupo(sessaoCorrente.usuarioId).FirstOrDefault().descricao;
+            #endregion
+
             string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
-            return (from clnt in db.Clientes
-                    where (_nome == null || String.IsNullOrEmpty(_nome) || clnt.nome.Contains(_nome.Trim()) || clnt.cpf_cnpj == _nome)
-                    orderby clnt.nome
+
+            return (from q in
+                       (from clnt in db.Clientes
+                        join pro in db.Propostas on clnt.clienteId equals pro.clienteId
+                        join emp in db.Empreendimentos on pro.empreendimentoId equals emp.empreendimentoId
+                        join cor in db.Corretores on pro.corretor1Id equals cor.corretorId into COR
+                        from cor in COR.DefaultIfEmpty()
+                        where (_nome == null || String.IsNullOrEmpty(_nome) || clnt.nome.Contains(_nome.Trim()) || clnt.cpf_cnpj == _nome)
+                              && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
+                                  (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
+                                  (descricao_grupo == "Gerente de Equipe" && pro.login == sessaoCorrente.login) ||
+                                  (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo)))
+                        select new ClienteViewModel
+                        {
+                            clienteId = clnt.clienteId,
+                            cpf_cnpj = clnt.cpf_cnpj,
+                            nome = clnt.nome,
+                            fone1 = clnt.fone1,
+                            fone2 = clnt.fone2,
+                            email = clnt.email,
+                            endereco = clnt.endereco,
+                            PageSize = pageSize,
+                            TotalCount = 0
+                        }).Union(from cli in db.Clientes 
+                                 join p in db.Propostas on cli.clienteId equals p.clienteId into P
+                                 from p in P.DefaultIfEmpty()
+                                 where (_nome == null || String.IsNullOrEmpty(_nome) || cli.nome.Contains(_nome.Trim()) || cli.cpf_cnpj == _nome) 
+                                       && p == null
+                                 select new ClienteViewModel
+                                 {
+                                     clienteId = cli.clienteId,
+                                     cpf_cnpj = cli.cpf_cnpj,
+                                     nome = cli.nome,
+                                     fone1 = cli.fone1,
+                                     fone2 = cli.fone2,
+                                     email = cli.email,
+                                     endereco = cli.endereco,
+                                     PageSize = pageSize,
+                                     TotalCount = 0
+                                 })
+                    orderby q.nome
                     select new ClienteViewModel
                     {
-                        clienteId = clnt.clienteId,
-                        cpf_cnpj = clnt.cpf_cnpj,
-                        nome = clnt.nome,
-                        fone1 = clnt.fone1,
-                        fone2 = clnt.fone2,
-                        email = clnt.email,
-                        endereco = clnt.endereco,
+                        clienteId = q.clienteId,
+                        cpf_cnpj = q.cpf_cnpj,
+                        nome = q.nome,
+                        fone1 = q.fone1,
+                        fone2 = q.fone2,
+                        email = q.email,
+                        endereco = q.endereco,
                         PageSize = pageSize,
-                        TotalCount = (from clnt1 in db.Clientes
-                                      where (_nome == null || String.IsNullOrEmpty(_nome) || clnt1.nome.Contains(_nome.Trim()) || clnt1.cpf_cnpj == _nome)
-                                      select clnt1.clienteId).Count()
-                    }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
+                        TotalCount = (from q1 in (from clnt1 in db.Clientes
+                                                  join pro1 in db.Propostas on clnt1.clienteId equals pro1.clienteId
+                                                  join emp1 in db.Empreendimentos on pro1.empreendimentoId equals emp1.empreendimentoId
+                                                  join cor1 in db.Corretores on pro1.corretor1Id equals cor1.corretorId into COR1
+                                                  from cor1 in COR1.DefaultIfEmpty()
+                                                  where (_nome == null || String.IsNullOrEmpty(_nome) || clnt1.nome.Contains(_nome.Trim()) || clnt1.cpf_cnpj == _nome)
+                                                        && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
+                                                            (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
+                                                            (descricao_grupo == "Gerente de Equipe" && pro1.login == sessaoCorrente.login) ||
+                                                            (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo)))
+                                                  select new ClienteViewModel
+                                                  {
+                                                      clienteId = clnt1.clienteId,
+                                                      cpf_cnpj = clnt1.cpf_cnpj,
+                                                      nome = clnt1.nome,
+                                                      fone1 = clnt1.fone1,
+                                                      fone2 = clnt1.fone2,
+                                                      email = clnt1.email,
+                                                      endereco = clnt1.endereco,
+                                                      PageSize = pageSize,
+                                                      TotalCount = 0
+                                                  }).Union(from cli1 in db.Clientes
+                                                           join p1 in db.Propostas on cli1.clienteId equals p1.clienteId into P1
+                                                           from p1 in P1.DefaultIfEmpty()
+                                                           where (_nome == null || String.IsNullOrEmpty(_nome) || cli1.nome.Contains(_nome.Trim()) || cli1.cpf_cnpj == _nome)
+                                                                 && p1 == null
+                                                           select new ClienteViewModel()
+                                                           {
+                                                               clienteId = cli1.clienteId,
+                                                               cpf_cnpj = cli1.cpf_cnpj,
+                                                               nome = cli1.nome,
+                                                               fone1 = cli1.fone1,
+                                                               fone2 = cli1.fone2,
+                                                               email = cli1.email,
+                                                               endereco = cli1.endereco,
+                                                               PageSize = pageSize,
+                                                               TotalCount = 0
+                                                           })
+                                      select q1).AsEnumerable().Count()
+                    }
+            ).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }
 
         public override Repository getRepository(Object id)

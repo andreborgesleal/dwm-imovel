@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using System;
 using DWM.Models.Entidades;
 using App_Dominio.Contratos;
+using App_Dominio.Pattern;
+using DWM.Models.BI;
+using App_Dominio.Enumeracoes;
 
 namespace DWM.Controllers
 {
@@ -70,7 +73,33 @@ namespace DWM.Controllers
         [AuthorizeFilter]
         public ActionResult Edit(int clienteId)
         {
-            return _Edit(new ClienteViewModel() { clienteId = clienteId });
+            try
+            {
+                #region Verificar se o usuário tem permissão de acesso a esta proposta
+                Factory<ClienteViewModel, ApplicationContext> facade = new Factory<ClienteViewModel, ApplicationContext>();
+                ClienteViewModel result = facade.Execute(new CheckPropostaBI(), new ClienteViewModel() { clienteId = clienteId });
+                if (result.mensagem.Code > 0)
+                    throw new App_DominioException(result.mensagem);
+                #endregion
+
+                BindBreadCrumb("Clientes", true);
+                ViewBag.clienteId = clienteId.ToString();
+                return _Edit(new ClienteViewModel() { clienteId = clienteId });
+            }
+            catch (App_DominioException ex)
+            {
+                ModelState.AddModelError(ex.Result.Field, ex.Result.Message); // mensagem amigável ao usuário
+                Error("Acesso não autorizado"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+            catch (Exception ex)
+            {
+                App_DominioException.saveError(ex, GetType().FullName);
+                ModelState.AddModelError("", MensagemPadrao.Message(202).ToString()); // mensagem amigável ao usuário
+                Error("Acesso não autorizado"); // Mensagem em inglês com a descrição detalhada do erro e fica no topo da tela
+            }
+
+            return View("Edit", null);
+            
         }
 
         public override void BeforeEdit(ref ClienteViewModel value, FormCollection collection)

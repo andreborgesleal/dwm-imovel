@@ -1,16 +1,11 @@
 ﻿using App_Dominio.Controllers;
 using DWM.Models.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.Reporting.WebForms;
 using DWM.Models.Enumeracoes;
 using DWM.Models.Report;
-using App_Dominio.Repositories;
 using App_Dominio.Security;
-using DWM.Models.Entidades;
 
 namespace DWM.Controllers
 {
