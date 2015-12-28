@@ -173,6 +173,11 @@ namespace DWM.Models.Persistence
             #endregion
 
             string _nome = param != null && param.Count() > 0 && param[0] != null ? param[0].ToString() : null;
+            int? _clienteId = null;
+
+            if (param != null)
+                if (param.Count() == 2)
+                    _clienteId = param[1] != null ? (int?)param[1] : null;
 
             return (from q in
                        (from clnt in db.Clientes
@@ -181,6 +186,7 @@ namespace DWM.Models.Persistence
                         join cor in db.Corretores on pro.corretor1Id equals cor.corretorId into COR
                         from cor in COR.DefaultIfEmpty()
                         where (_nome == null || String.IsNullOrEmpty(_nome) || clnt.nome.Contains(_nome.Trim()) || clnt.cpf_cnpj == _nome)
+                              && (!_clienteId.HasValue || clnt.clienteId == _clienteId)
                               && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                                   (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                                   (descricao_grupo == "Gerente de Equipe" && pro.login == sessaoCorrente.login) ||
@@ -199,7 +205,8 @@ namespace DWM.Models.Persistence
                         }).Union(from cli in db.Clientes 
                                  join p in db.Propostas on cli.clienteId equals p.clienteId into P
                                  from p in P.DefaultIfEmpty()
-                                 where (_nome == null || String.IsNullOrEmpty(_nome) || cli.nome.Contains(_nome.Trim()) || cli.cpf_cnpj == _nome) 
+                                 where (_nome == null || String.IsNullOrEmpty(_nome) || cli.nome.Contains(_nome.Trim()) || cli.cpf_cnpj == _nome)
+                                       && (!_clienteId.HasValue || cli.clienteId == _clienteId)
                                        && p == null
                                  select new ClienteViewModel
                                  {
@@ -230,6 +237,7 @@ namespace DWM.Models.Persistence
                                                   join cor1 in db.Corretores on pro1.corretor1Id equals cor1.corretorId into COR1
                                                   from cor1 in COR1.DefaultIfEmpty()
                                                   where (_nome == null || String.IsNullOrEmpty(_nome) || clnt1.nome.Contains(_nome.Trim()) || clnt1.cpf_cnpj == _nome)
+                                                        && (!_clienteId.HasValue || clnt1.clienteId == _clienteId)
                                                         && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
                                                             (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
                                                             (descricao_grupo == "Gerente de Equipe" && pro1.login == sessaoCorrente.login) ||
@@ -249,6 +257,7 @@ namespace DWM.Models.Persistence
                                                            join p1 in db.Propostas on cli1.clienteId equals p1.clienteId into P1
                                                            from p1 in P1.DefaultIfEmpty()
                                                            where (_nome == null || String.IsNullOrEmpty(_nome) || cli1.nome.Contains(_nome.Trim()) || cli1.cpf_cnpj == _nome)
+                                                                 && (!_clienteId.HasValue || cli1.clienteId == _clienteId)
                                                                  && p1 == null
                                                            select new ClienteViewModel()
                                                            {

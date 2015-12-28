@@ -27,9 +27,10 @@ namespace DWM.Models.Persistence
         #region Métodos da classe CrudModel
         public override PropostaViewModel BeforeInsert(PropostaViewModel value) 
         {
-            Usuario u = seguranca_db.Usuarios.Find(sessaoCorrente.usuarioId);
+            //Usuario u = seguranca_db.Usuarios.Find(sessaoCorrente.usuarioId);
+            Usuario u = seguranca_db.Usuarios.Find(value.usuarioId);
 
-            value.usuarioId = sessaoCorrente.usuarioId;
+            //value.usuarioId = sessaoCorrente.usuarioId;
             value.nome = u.nome;
             value.login = u.login;
             value.dt_ultimo_status = value.dt_proposta;
@@ -37,6 +38,16 @@ namespace DWM.Models.Persistence
             value.situacao = "A";
             value.ind_fechamento = "N";
             
+            return value;
+        }
+
+        public override PropostaViewModel BeforeUpdate(PropostaViewModel value)
+        {
+            Usuario u = seguranca_db.Usuarios.Find(value.usuarioId);
+
+            value.nome = u.nome;
+            value.login = u.login;
+
             return value;
         }
 

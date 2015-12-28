@@ -44,7 +44,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="App_Dominio">
+    <Reference Include="App_Dominio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\App_Dominio\App_Dominio\App_Dominio\bin\Release\App_Dominio.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +60,10 @@
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Reporting.WebForms\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\App_Dominio\App_Dominio\App_Dominio\bin\Release\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -192,6 +197,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BI\AprovarEtapaBI.cs" />
     <Compile Include="Models\BI\CancelarFaturamentoBI.cs" />
+    <Compile Include="Models\BI\CheckClienteBI.cs" />
     <Compile Include="Models\BI\CheckPropostaBI.cs" />
     <Compile Include="Models\BI\EsteiraComissaoBI.cs" />
     <Compile Include="Models\BI\EsteiraContabilizacaoBI.cs" />
@@ -1156,15 +1162,10 @@
     <Content Include="Content\Start-Bootstrap\less\mixins.less" />
     <Content Include="Content\Start-Bootstrap\less\sb-admin-2.less" />
     <Content Include="Content\Start-Bootstrap\less\variables.less" />
-    <None Include="Properties\PublishProfiles\dwm-financas - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\dwm-financas - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\dwm-financas - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\dwm-financas - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\dwm-imovel - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\dwm-imovel - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dwm-imovel.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\css\datepicker.css" />
     <Content Include="Scripts\fileUpload\bootstrap.min.js" />

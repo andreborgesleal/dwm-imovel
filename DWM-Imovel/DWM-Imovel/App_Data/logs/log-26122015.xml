@@ -754,4 +754,56 @@
    em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
    em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
   </LOG>
+  <LOG ID="733294084" Data="26/12/2015 09:51:10">
+    <Sessao>nwyqmywy1c0fupsd0o5rmuln</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-SLG6G19\andre</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewCliente =&gt; clientes/browse</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 176
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="1789970228" Data="26/12/2015 09:52:45">
+    <Sessao>nwyqmywy1c0fupsd0o5rmuln</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-SLG6G19\andre</HostName>
+    <Mensagem>O índice estava fora dos limites da matriz.</Mensagem>
+    <NameSpace>DWM.Models.Persistence.ListViewCliente =&gt; clientes/browse</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewCliente.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\ClienteModel.cs:linha 176
+   em App_Dominio.Component.ListViewModel`2.ListRepository(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 272
+   em App_Dominio.Component.ListViewModel`2.getPagedList(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Component\ListViewRepository.cs:linha 255</StackTrace>
+  </LOG>
+  <LOG ID="691567404" Data="26/12/2015 12:20:07">
+    <Sessao>nwyqmywy1c0fupsd0o5rmuln</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-SLG6G19\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/edit</NameSpace>
+    <Context>descricao_etapa="Faturamento",propostaId="3033",etapaId="6",dt_ultimo_status="21/12/2015 00:00:00",operacaoId="",valor="102000,00",vr_comissao="4080,00",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="1007",nome_cliente1="Graziela Gazela",nome_cliente="Graziela Gazela",torre="409",unidade="9",usuarioId="7217",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",situacao="A",dt_proposta="16/12/2015"</Context>
+    <StackTrace>   em DWM.Controllers.PropostasController.BeforeEdit(PropostaViewModel&amp; value, FormCollection collection) na C:\Sistemas\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\PropostasController.cs:linha 78
+   em App_Dominio.Controllers.DwmRootController`3.SetEdit(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="2009232727" Data="26/12/2015 12:38:48">
+    <Sessao>nwyqmywy1c0fupsd0o5rmuln</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-SLG6G19\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/edit</NameSpace>
+    <Context>descricao_etapa="Faturamento",propostaId="3033",etapaId="6",dt_ultimo_status="21/12/2015 00:00:00",operacaoId="",valor="102000,00",vr_comissao="4080,00",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="1007",nome_cliente1="Graziela Gazela",nome_cliente="Graziela Gazela",torre="409",unidade="9",usuarioId="7217",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",situacao="A",dt_proposta="16/12/2015"</Context>
+    <StackTrace>   em DWM.Controllers.PropostasController.BeforeEdit(PropostaViewModel&amp; value, FormCollection collection) na C:\Sistemas\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\PropostasController.cs:linha 78
+   em App_Dominio.Controllers.DwmRootController`3.SetEdit(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 220</StackTrace>
+  </LOG>
+  <LOG ID="342921636" Data="26/12/2015 12:41:57">
+    <Sessao>nwyqmywy1c0fupsd0o5rmuln</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-SLG6G19\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.PropostasController =&gt; propostas/edit</NameSpace>
+    <Context>descricao_etapa="Faturamento",propostaId="3033",etapaId="6",dt_ultimo_status="21/12/2015 00:00:00",operacaoId="",valor="102000,00",vr_comissao="4080,00",empreendimentoId="2",descricao_empreendimento1="Torre Liberto",descricao_empreendimento="Torre Liberto",clienteId="1007",nome_cliente1="Graziela Gazela",nome_cliente="Graziela Gazela",torre="409",unidade="9",usuarioId="7215",corretor1Id="2",nome_corretor1="Viviane Pasmanter",nome_corretor="Viviane Pasmanter",situacao="A",dt_proposta="16/12/2015"</Context>
+    <StackTrace>   em DWM.Controllers.PropostasController.BeforeEdit(PropostaViewModel&amp; value, FormCollection collection) na C:\Sistemas\DWM-Imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\PropostasController.cs:linha 78
+   em App_Dominio.Controllers.DwmRootController`3.SetEdit(R value, FormCollection collection, String breadCrumbText, IDictionary`2 text) na C:\Sistemas\App_Dominio\App_Dominio\App_Dominio\Controllers\DwmRootController.cs:linha 220</StackTrace>
+  </LOG>
 </LOG>

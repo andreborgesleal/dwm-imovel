@@ -77,7 +77,7 @@ namespace DWM.Controllers
             {
                 #region Verificar se o usuário tem permissão de acesso a esta proposta
                 Factory<ClienteViewModel, ApplicationContext> facade = new Factory<ClienteViewModel, ApplicationContext>();
-                ClienteViewModel result = facade.Execute(new CheckPropostaBI(), new ClienteViewModel() { clienteId = clienteId });
+                ClienteViewModel result = facade.Execute(new CheckClienteBI(), new ClienteViewModel() { clienteId = clienteId });
                 if (result.mensagem.Code > 0)
                     throw new App_DominioException(result.mensagem);
                 #endregion

@@ -14,9 +14,9 @@
         @Html.HiddenFor(info => info.etapaId)
         @Html.HiddenFor(info => info.dt_ultimo_status)
         @Html.HiddenFor(info => info.operacaoId)
-        @Html.HiddenFor(info => info.usuarioId)
-        @Html.HiddenFor(info => info.nome)
-        @Html.HiddenFor(info => info.login)
+        //@Html.HiddenFor(info => info.usuarioId)
+        //@Html.HiddenFor(info => info.nome)
+        //@Html.HiddenFor(info => info.login)
         @Html.HiddenFor(info => info.valor)
         @Html.HiddenFor(info => info.vr_comissao)
 
@@ -128,7 +128,6 @@
                         <div class="form-group">
                             <label class="control-label" for="situacao">Situação</label>
                             @Html.DropDownListFor(info => info.situacao, new DWM.Models.Enumeracoes.BindDropDownList().Situacao("", ""), new { @class = "form-control" })
-                            @*Html.DropDownListFor(m => m.usuarioId, new DWM.Models.Enumeracoes.BindDropDownList().Usuarios("Selecione...", Model.usuarioId.ToString()), new { @class = "form-control" })*@
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -169,11 +168,17 @@ else
 
 <script>
     var etapa = $("#descricao_etapa").val();
-    if (etapa != "Proposta" && etapa != "Análise Inicial" && etapa != "Reanálise") {
-        $('#valor_1').attr("disabled", true);
-        if (etapa != "Análise de Crédito" && etapa != "Contabilização" && etapa != "Comissão")
-            $('#vr_comissao_1').attr("disabled", true);
+    if (etapa == "Análise de Crédito" || etapa == "Contabilização" || etapa == "Comissão" || etapa == "Faturamento")
+    {
+        $('#valor1').attr("readonly", true);
+        $('#vr_comissao1').attr("readonly", true);
     }
+
+    //if (etapa != "Proposta" && etapa != "Análise Inicial" && etapa != "Reanálise") {
+    //    $('#valor1').attr("readonly", true);
+    //    if (etapa != "Análise de Crédito" && etapa != "Contabilização" && etapa != "Comissão")
+    //        $('#vr_comissao1').attr("readonly", true);
+    //}
 
 
 
