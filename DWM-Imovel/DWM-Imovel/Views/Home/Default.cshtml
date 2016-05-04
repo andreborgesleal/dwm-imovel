@@ -63,7 +63,7 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">@Model.VendasEmAberto.Count()</div>
+                        @*<div class="huge">@Model.VendasEmAberto.Count()</div>*@
                         <div>Vendas em aberto</div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                 quantidade_vendas_atraso = Model.VendasEmAtraso.Count();
                             }
                         }
-                        <div class="huge">@quantidade_vendas_atraso</div>
+                        @*<div class="huge">@quantidade_vendas_atraso</div>*@
                         <div>Propostas paralisadas há mais de 10 dias</div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                     <a class="h4" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Panorama das vendas
                     </a>
-                    <div class="collapse margem-topo-20" id="collapseExample">
+                    <div class="margem-topo-20" id="collapseExample">
                         <div>
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
@@ -216,7 +216,10 @@
                     </div>
                 </header>
                 <div id="div-panorama">
-                    @Html.Partial("ListPanorama", Model.Panorama)
+                    @if (Model.Panorama != null)
+                    {
+                        @Html.Partial("ListPanorama", Model.Panorama)
+                    }
                 </div>
             </section>
 
@@ -332,7 +335,7 @@
                 <h4 class="modal-title">Vendas em aberto (proposta, análise inicial, reanálise ou análise de crédito)</h4>
             </div>
             <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
-                @Html.Partial("ListPanoramaResumo", Model.VendasEmAberto)
+                @*@Html.Partial("ListPanoramaResumo", Model.VendasEmAberto)*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -349,7 +352,7 @@
                 <h4 class="modal-title">Propostas paralisadas há mais de 10 dias</h4>
             </div>
             <div class="modal-body altura-maxima barra-rolagem" id="myModal2-body">
-                @Html.Partial("ListPanoramaResumo", Model.VendasEmAtraso)
+                @*@Html.Partial("ListPanoramaResumo", Model.VendasEmAtraso)*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

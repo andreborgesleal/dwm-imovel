@@ -29,7 +29,7 @@ namespace DWM.Models.BI
             {
                 #region Panorama
                 ListViewProposta modelPanorama = new ListViewProposta(this.db, this.seguranca_db);
-                r.Panorama = modelPanorama.getPagedList(0, 15, r.empreendimentoId, r.torre_unidade, r.cpf_nome, r.etapaId, r.propostaId, r.dt_proposta1, r.dt_proposta2, r.situacao, r.corretor1Id);
+                r.Panorama = null; // modelPanorama.getPagedList(0, 5, r.empreendimentoId, r.torre_unidade, r.cpf_nome, r.etapaId, r.propostaId, r.dt_proposta1, r.dt_proposta2, r.situacao, r.corretor1Id);
                 #endregion
 
                 #region Últimos Comentários
@@ -52,12 +52,12 @@ namespace DWM.Models.BI
 
                 #region Vendas em aberto
                 ListViewVendasEmAberto modelAberto = new ListViewVendasEmAberto(this.db, this.seguranca_db);
-                r.VendasEmAberto = modelAberto.Bind(0, 1000, null, 3);
+                r.VendasEmAberto = null; // modelAberto.Bind(0, 1000, null, 3);
                 #endregion
 
                 #region Vendas atrasadas
                 ListViewVendasAtrasadas modelAtraso = new ListViewVendasAtrasadas(this.db, this.seguranca_db);
-                r.VendasEmAtraso = modelAtraso.Bind(0, 1000, null);
+                r.VendasEmAtraso = null; // modelAtraso.Bind(0, 1000, null);
                 #endregion
 
                 #region Resumo da Venda

@@ -100,6 +100,8 @@ namespace DWM.Controllers
                 if (situacao == "")
                     situacao = "A";
 
+                pageSize = 5;
+
                 ListViewProposta model = new ListViewProposta();
                 Facade<PropostaViewModel, PropostaModel, ApplicationContext> facade = new Facade<PropostaViewModel, PropostaModel, ApplicationContext>();
                 IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value, 
