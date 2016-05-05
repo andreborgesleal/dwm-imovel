@@ -522,13 +522,13 @@ namespace DWM.Models.Persistence
                         join eta in db.Etapas on est.etapaId equals eta.etapaId
                         join cor in db.Corretores on p.corretor1Id equals cor.corretorId into COR
                         from cor in COR.DefaultIfEmpty()
-                        where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
-                                && p.propostaId == _propostaId
+                        where   p.propostaId == _propostaId
+                                && est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                                 && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                                     (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                                     (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
                                     (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
-                        orderby p.dt_proposta, c.nome
+                        orderby p.dt_ultimo_status, c.nome
                         select new PropostaViewModel
                         {
                             empresaId = sessaoCorrente.empresaId,
@@ -564,7 +564,7 @@ namespace DWM.Models.Persistence
                                                     (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
                                                     (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
-                                          orderby p1.dt_proposta, c1.nome
+                                          orderby p1.dt_ultimo_status, c1.nome
                                           select p1.propostaId).Count()
                         }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
             else
@@ -575,19 +575,19 @@ namespace DWM.Models.Persistence
                         join eta in db.Etapas on est.etapaId equals eta.etapaId
                         join cor in db.Corretores on p.corretor1Id equals cor.corretorId into COR
                         from cor in COR.DefaultIfEmpty()
-                        where est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
+                        where   p.dt_ultimo_status >= _dt_proposta1 && p.dt_ultimo_status <= _dt_proposta2
                                 && (!_empreendimentoId.HasValue || p.empreendimentoId == _empreendimentoId)
+                                && (!_corretor1Id.HasValue || p.corretor1Id == _corretor1Id)
                                 && (_torre_unidade == "" || (p.torre+p.unidade).Contains(_torre_unidade))
                                 && (_cpf_nome == "" || c.cpf_cnpj == _cpf_nome || c.nome.Contains(_cpf_nome))
-                                && (!_corretor1Id.HasValue || p.corretor1Id == _corretor1Id)
                                 && (!_etapaId.HasValue && p.ind_fechamento != "S" || p.etapaId == _etapaId)
-                                && p.dt_proposta >= _dt_proposta1 && p.dt_proposta <= _dt_proposta2
+                                && est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                                 && p.situacao == _situacao
                                 && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
                                     (descricao_grupo == "Coordenador" && emp.login == sessaoCorrente.login) ||
                                     (descricao_grupo == "Gerente de Equipe" && p.login == sessaoCorrente.login) ||
                                     (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
-                        orderby p.dt_proposta descending, c.nome
+                        orderby p.dt_ultimo_status descending, c.nome
                         select new PropostaViewModel
                         {
                             empresaId = sessaoCorrente.empresaId,
@@ -617,19 +617,19 @@ namespace DWM.Models.Persistence
                                           join eta1 in db.Etapas on est1.etapaId equals eta1.etapaId
                                           join cor1 in db.Corretores on p1.corretor1Id equals cor1.corretorId into COR1
                                           from cor1 in COR1.DefaultIfEmpty()
-                                          where est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
+                                          where p1.dt_ultimo_status >= _dt_proposta1 && p1.dt_ultimo_status <= _dt_proposta2
                                                 && (!_empreendimentoId.HasValue || p1.empreendimentoId == _empreendimentoId)
+                                                && (!_corretor1Id.HasValue || p1.corretor1Id == _corretor1Id)
+                                                && est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
                                                 && (_torre_unidade == "" || (p1.torre + p1.unidade).Contains(_torre_unidade))
                                                 && (_cpf_nome == "" || c1.cpf_cnpj == _cpf_nome || c1.nome.Contains(_cpf_nome))
-                                                && (!_corretor1Id.HasValue || p1.corretor1Id == _corretor1Id)
                                                 && (!_etapaId.HasValue && p1.ind_fechamento != "S" || p1.etapaId == _etapaId)
-                                                && p1.dt_proposta >= _dt_proposta1 && p1.dt_proposta <= _dt_proposta2
                                                 && p1.situacao == _situacao
                                                 && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Gerente de Equipe" && p1.login == sessaoCorrente.login) ||
                                                     (!"Corretor|Coordenador|Gerente de Equipe".Contains(descricao_grupo))) 
-                                          orderby p1.dt_proposta, c1.nome
+                                          orderby p1.dt_ultimo_status, c1.nome
                                           select p1.propostaId).Count()
                         }).Skip((index ?? 0) * pageSize).Take(pageSize).ToList();
         }

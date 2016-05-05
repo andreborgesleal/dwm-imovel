@@ -25,7 +25,7 @@
             var cad_empreend_link = "../Empreendimentos/Edit?empreendimentoId=" + pro.empreendimentoId;
             <tr>
                 <td class="text-left">@pro.propostaId</td>
-                <td>@pro.dt_proposta.ToString("dd/MM/yyyy")</td>
+                <td>@pro.dt_ultimo_status.ToString("dd/MM/yyyy")</td>
                 <td><a class="text-dark" href="@cad_empreend_link">@pro.descricao_empreendimento</a></td>
                 @if (pro.cpf_cnpj != null && pro.cpf_cnpj != "")
                 {

@@ -29,7 +29,7 @@ namespace DWM.Models.BI
             {
                 #region Panorama
                 ListViewProposta modelPanorama = new ListViewProposta(this.db, this.seguranca_db);
-                r.Panorama = null; // modelPanorama.getPagedList(0, 5, r.empreendimentoId, r.torre_unidade, r.cpf_nome, r.etapaId, r.propostaId, r.dt_proposta1, r.dt_proposta2, r.situacao, r.corretor1Id);
+                r.Panorama = modelPanorama.getPagedList(0, 5, r.empreendimentoId, r.torre_unidade, r.cpf_nome, r.etapaId, r.propostaId, r.dt_proposta1, r.dt_proposta2, r.situacao, r.corretor1Id);
                 #endregion
 
                 #region Últimos Comentários

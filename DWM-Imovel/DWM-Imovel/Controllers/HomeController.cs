@@ -39,26 +39,26 @@ namespace DWM.Controllers
         }
 
         [AuthorizeFilter]
-        public ActionResult Default(int? index, int? pageSize = 15, int? empreendimentoId = null, string torre_unidade = "", string cpf_nome = "",
-                                            int? etapaId = null, int? propostaId = null, string dt_proposta1 = null, string dt_proposta2 = null,
-                                            string situacao = "", int? corretor1Id = null)
+        public ActionResult Default(int? index, int? pageSize = 5, int? empreendimentoPesqId = null, string torre_unidade = "", string cpf_nome = "",
+                                            int? etapaId = null, int? propostaId = null, string dt_prop1 = null, string dt_prop2 = null,
+                                            string situacao = "", int? corretor1pesqId = null)
         {
             if (ViewBag.ValidateRequest)
             {
                 #region ListPanorama
-                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01");
+                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-") + "01");
                 DateTime? _dt_proposta2 = DateTime.Today;
 
-                if (dt_proposta1 != null && dt_proposta1 != "")
-                    _dt_proposta1 = Convert.ToDateTime(dt_proposta1);
-                if (dt_proposta2 != null && dt_proposta2 != "")
-                    _dt_proposta2 = Convert.ToDateTime(dt_proposta2);
+                if (dt_prop1 != null && dt_prop1 != "")
+                    _dt_proposta1 = Convert.ToDateTime(dt_prop1);
+                if (dt_prop2 != null && dt_prop2 != "")
+                    _dt_proposta2 = Convert.ToDateTime(dt_prop2);
                 if (situacao == "")
                     situacao = "A";
 
                 HomeViewModel home = new HomeViewModel()
                 {
-                    empreendimentoId = empreendimentoId,
+                    empreendimentoId = empreendimentoPesqId,
                     torre_unidade = torre_unidade,
                     cpf_nome = cpf_nome,
                     etapaId = etapaId,
@@ -66,7 +66,7 @@ namespace DWM.Controllers
                     dt_proposta1 = _dt_proposta1,
                     dt_proposta2 = _dt_proposta2,
                     situacao = situacao,
-                    corretor1Id = corretor1Id
+                    corretor1Id = corretor1pesqId
                 };
                 Factory<HomeViewModel, ApplicationContext> factory = new Factory<HomeViewModel, ApplicationContext>();
                 return View(factory.Execute(new HomeBI(), home));
@@ -84,29 +84,27 @@ namespace DWM.Controllers
         }
 
         [AuthorizeFilter]
-        public ActionResult ListPanorama(int? index, int? pageSize = 15, int? empreendimentoId = null, string torre_unidade = "", string cpf_nome = "", 
-                                            int? etapaId = null, int? propostaId = null, string dt_proposta1 = null, string dt_proposta2 = null, 
-                                            string situacao = "", int? corretor1Id = null)
+        public ActionResult ListPanorama(int? index, int? pageSize = 5, int? empreendimentoPesqId = null, string torre_unidade = "", string cpf_nome = "", 
+                                            int? etapaId = null, int? propostaId = null, string dt_prop1 = null, string dt_prop2 = null, 
+                                            string situacao = "", int? corretor1pesqId = null)
         {
-            if (ViewBag.ValidateRequest)
+                if (ViewBag.ValidateRequest)
             {
-                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.AddMonths(-2).ToString("yyyy-MM-") + "01");
+                DateTime? _dt_proposta1 = Convert.ToDateTime(DateTime.Today.ToString("yyyy-MM-") + "01");
                 DateTime? _dt_proposta2 = DateTime.Today;
 
-                if (dt_proposta1 != null && dt_proposta1 != "")
-                    _dt_proposta1 = Convert.ToDateTime(dt_proposta1);
-                if (dt_proposta2 != null && dt_proposta2 != "")
-                    _dt_proposta2 = Convert.ToDateTime(dt_proposta2);
+                if (dt_prop1 != null && dt_prop1 != "")
+                    _dt_proposta1 = Convert.ToDateTime(dt_prop1);
+                if (dt_prop2 != null && dt_prop2 != "")
+                    _dt_proposta2 = Convert.ToDateTime(dt_prop2);
                 if (situacao == "")
                     situacao = "A";
 
-                pageSize = 5;
-
                 ListViewProposta model = new ListViewProposta();
                 Facade<PropostaViewModel, PropostaModel, ApplicationContext> facade = new Facade<PropostaViewModel, PropostaModel, ApplicationContext>();
-                IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value, 
-                                                                empreendimentoId, torre_unidade, cpf_nome, etapaId, propostaId, _dt_proposta1, _dt_proposta2,
-                                                                situacao, corretor1Id);
+                IPagedList pagedList = facade.getPagedList((ListViewModel<PropostaViewModel, ApplicationContext>)model, index, pageSize.Value,
+                                                                empreendimentoPesqId, torre_unidade, cpf_nome, etapaId, propostaId, _dt_proposta1, _dt_proposta2,
+                                                                situacao, corretor1pesqId);
                 return View(pagedList);
             }
             else
