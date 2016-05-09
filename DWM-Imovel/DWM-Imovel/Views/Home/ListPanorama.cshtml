@@ -39,8 +39,14 @@
                 <td>
                     <strong>@pro.descricao_etapa</strong>
                     <div class="progress thin">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="@pro.percent_atual.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_atual.ToString("##0"))%">
-                        </div>
+                        @if (pro.ind_aprovacao != null && pro.ind_aprovacao == "A")
+                        {
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@pro.percent_atual.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_atual.ToString("##0"))%"></div>
+                        }
+                        else
+                        {
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="@pro.percent_atual.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_atual.ToString("##0"))%"></div>
+                        }
                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@pro.percent_restnte.ToString("##0")" aria-valuemin="0" aria-valuemax="100" style="width: @(pro.percent_restnte.ToString("##0"))%">
                         </div>
                     </div>

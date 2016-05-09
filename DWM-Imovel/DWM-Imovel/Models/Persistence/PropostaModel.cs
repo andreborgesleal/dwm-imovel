@@ -507,6 +507,7 @@ namespace DWM.Models.Persistence
             DateTime? _dt_proposta2 = (DateTime?)param[6];
             string _situacao = (string)param[7];
             int? _corretor1Id = (int?)param[8];
+            string _faturamento = Enumeracoes.Enumeradores.DescricaoEtapa.FATURAMENTO.GetStringValue();
 
             #region verifica o perfil do usuário logado
             EmpresaSecurity<SecurityContext> security = new EmpresaSecurity<SecurityContext>();
@@ -547,6 +548,7 @@ namespace DWM.Models.Persistence
                             descricao_etapa = eta.descricao,
                             dt_ultimo_status = p.dt_ultimo_status,
                             ind_fechamento = p.ind_fechamento,
+                            ind_aprovacao = est.ind_aprovacao,
                             operacaoId = p.operacaoId,
                             percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                             percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -580,7 +582,10 @@ namespace DWM.Models.Persistence
                                 && (!_corretor1Id.HasValue || p.corretor1Id == _corretor1Id)
                                 && (_torre_unidade == "" || (p.torre+p.unidade).Contains(_torre_unidade))
                                 && (_cpf_nome == "" || c.cpf_cnpj == _cpf_nome || c.nome.Contains(_cpf_nome))
-                                && (!_etapaId.HasValue && p.ind_fechamento != "S" || p.etapaId == _etapaId)
+                                && (!_etapaId.HasValue && p.ind_fechamento != "S" || 
+                                    (_etapaId == 10 && eta.descricao == _faturamento && est.ind_aprovacao == "A") || 
+                                    (_etapaId == 11 && eta.descricao == _faturamento && est.ind_aprovacao != "A") || 
+                                    p.etapaId == _etapaId)
                                 && est.esteiraId == (from esteira in db.Esteiras where esteira.propostaId == p.propostaId select esteira.esteiraId).Max()
                                 && p.situacao == _situacao
                                 && ((descricao_grupo == "Corretor" && cor.email == sessaoCorrente.login) ||
@@ -606,6 +611,7 @@ namespace DWM.Models.Persistence
                             descricao_etapa = eta.descricao,
                             dt_ultimo_status = p.dt_ultimo_status,
                             ind_fechamento = p.ind_fechamento,
+                            ind_aprovacao = est.ind_aprovacao,
                             operacaoId = p.operacaoId,
                             percent_atual = (eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count() * 100,
                             percent_restnte = 100 - ((eta.idx + 1.0) / (from et in db.Etapas select et.etapaId).Count()) * 100,
@@ -623,7 +629,10 @@ namespace DWM.Models.Persistence
                                                 && est1.esteiraId == (from esteira1 in db.Esteiras where esteira1.propostaId == p1.propostaId select esteira1.esteiraId).Max()
                                                 && (_torre_unidade == "" || (p1.torre + p1.unidade).Contains(_torre_unidade))
                                                 && (_cpf_nome == "" || c1.cpf_cnpj == _cpf_nome || c1.nome.Contains(_cpf_nome))
-                                                && (!_etapaId.HasValue && p1.ind_fechamento != "S" || p1.etapaId == _etapaId)
+                                                && (!_etapaId.HasValue && p1.ind_fechamento != "S" ||
+                                                    (_etapaId == 10 && eta1.descricao == _faturamento && est1.ind_aprovacao == "A") ||
+                                                    (_etapaId == 11 && eta1.descricao == _faturamento && est1.ind_aprovacao != "A") ||
+                                                    p1.etapaId == _etapaId)
                                                 && p1.situacao == _situacao
                                                 && ((descricao_grupo == "Corretor" && cor1.email == sessaoCorrente.login) ||
                                                     (descricao_grupo == "Coordenador" && emp1.login == sessaoCorrente.login) ||

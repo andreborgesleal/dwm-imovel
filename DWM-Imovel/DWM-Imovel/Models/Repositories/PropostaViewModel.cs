@@ -109,6 +109,8 @@ namespace DWM.Models.Repositories
         public string situacao { get; set; }
 
         public string ind_fechamento { get; set; }
+
+        public string ind_aprovacao { get; set; }
     }
 }
 

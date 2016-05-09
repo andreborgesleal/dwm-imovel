@@ -97,6 +97,9 @@ namespace DWM.Models.Enumeracoes
                                 Selected = (selectedValue != "" ? e.descricao.Equals(selectedValue) : false)
                             }).ToList();
 
+                q.Add(new SelectListItem() { Value = "10", Text = "Faturamento Aprovado" });
+                q.Add(new SelectListItem() { Value = "11", Text = "Faturamento Em aprovação" });
+
                 return q;
             }
         }
