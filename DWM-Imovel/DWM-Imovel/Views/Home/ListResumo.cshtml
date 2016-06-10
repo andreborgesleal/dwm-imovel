@@ -1,0 +1,33 @@
+﻿@using DWM.Models.Repositories
+@model HomeViewModel
+@{
+    Layout = null;
+}
+<!-- Resumo das vendas por emprendimento -->
+<div class="col-lg-6 col-md-12 margem-topo-30">
+    <table class="table table-striped table-advance table-hover">
+        <tbody>
+            <tr>
+                <th class="text-info">Empreendimento</th>
+                <th class="text-info">Valor Geral da Venda</th>
+                <th class="text-info">Comissão</th>
+                <th class="text-info">Quantidade</th>
+            </tr>
+            @foreach (ResumoVendaViewModel obj in Model.ResumoVenda)
+            {
+                <tr>
+                    <td>@obj.nome_empreendimento</td>
+                    <td>@obj.vgv_areceber.Value.ToString("R$ ###,###,###,##0.00")</td>
+                    <td>@obj.total_comissao.Value.ToString("R$ ###,###,###,##0.00")</td>
+                    <td class="text-center">@obj.quantidade.Value.ToString("###,###,###,##0")</td>
+                </tr>
+            }
+            <tr>
+                <td><strong class="text-primary">Total</strong></td>
+                <td><strong class="text-primary">@Model.ResumoVenda.Select(info => info.vgv_areceber.Value).Sum().ToString("R$ ###,###,###,##0.00")</strong></td>
+                <td><strong class="text-primary">@Model.ResumoVenda.Select(info => info.total_comissao.Value).Sum().ToString("R$ ###,###,###,##0.00")</strong></td>
+                <td class="text-center"><strong class="text-primary">@Model.ResumoVenda.Select(info => info.quantidade.Value).Sum().ToString("###,###,###,##0")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
