@@ -23,6 +23,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1019,12 +1020,9 @@
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-plugins\integration\jqueryui\dataTables.jqueryui.scss" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-plugins\make.sh" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-plugins\README.md" />
-    <Content Include="Content\Start-Bootstrap\bower_components\datatables-plugins\sorting\.DS_Store" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\.bower.json" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\bower.json" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\css\dataTables.responsive.scss" />
-    <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\examples\.DS_Store" />
-    <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\examples\initialisation\.DS_Store" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\make.sh" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables-responsive\Readme.md" />
     <Content Include="Content\Start-Bootstrap\bower_components\datatables\.bower.json" />
@@ -1166,6 +1164,9 @@
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\dwm-imovel.pubxml" />
+    <None Include="Properties\PublishProfiles\tophouse-imovel - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\tophouse-imovel - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\tophouse-imovel - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\css\datepicker.css" />
     <Content Include="Scripts\fileUpload\bootstrap.min.js" />

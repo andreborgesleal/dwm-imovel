@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="107497687" Data="27/04/2020 12:50:31">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="818484130" Data="27/04/2020 14:20:16">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="868564626" Data="27/04/2020 14:22:00">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="1915876017" Data="27/04/2020 14:22:15">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="632419103" Data="27/04/2020 14:36:10">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="1250951030" Data="27/04/2020 14:37:37">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="1297498943" Data="27/04/2020 14:42:32">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="594817243" Data="27/04/2020 15:10:26">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="1762995202" Data="27/04/2020 18:01:48">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="1258418122" Data="27/04/2020 18:07:35">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 340
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="861314824" Data="27/04/2020 18:25:58">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/edit</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.PropostaModel.MapToRepository(Proposta entity) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\PropostaModel.cs:linha 223
+   em App_Dominio.Entidades.CrudModel`3.getObject(R key)
+   em App_Dominio.Pattern.Facade`3.getObject(R key)
+   em App_Dominio.Controllers.DwmRootController`3.GetEdit(R key, String breadCrumbText, IDictionary`2 text)
+   em App_Dominio.Controllers.DwmRootController`3._Edit(R value, String breadCrumbText, IDictionary`2 text)
+   em DWM.Controllers.WorkflowController.Edit(Int32 propostaId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 51</StackTrace>
+  </LOG>
+  <LOG ID="1771228068" Data="27/04/2020 18:26:38">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/edit</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.PropostaModel.MapToRepository(Proposta entity) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\PropostaModel.cs:linha 223
+   em App_Dominio.Entidades.CrudModel`3.getObject(R key)
+   em App_Dominio.Pattern.Facade`3.getObject(R key)
+   em App_Dominio.Controllers.DwmRootController`3.GetEdit(R key, String breadCrumbText, IDictionary`2 text)
+   em App_Dominio.Controllers.DwmRootController`3._Edit(R value, String breadCrumbText, IDictionary`2 text)
+   em DWM.Controllers.WorkflowController.Edit(Int32 propostaId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 51</StackTrace>
+  </LOG>
+  <LOG ID="1475507959" Data="27/04/2020 18:39:02">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 349
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="702160886" Data="27/04/2020 18:39:58">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 349
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="873041497" Data="27/04/2020 18:46:19">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 349
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+  <LOG ID="267549001" Data="27/04/2020 18:53:14">
+    <Sessao>u2h1zxj5yw5hj2witg4txsvi</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>Referência de objeto não definida para uma instância de um objeto.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/listcomissao</NameSpace>
+    <Context />
+    <StackTrace>   em DWM.Models.Persistence.ListViewComissao.Bind(Nullable`1 index, Int32 pageSize, Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\Persistence\EsteiraComissaoModel.cs:linha 349
+   em DWM.Models.BI.EsteiraComissaoBI.List(Object[] param) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Models\BI\EsteiraComissaoBI.cs:linha 56
+   em App_Dominio.Pattern.Factory`2.List(IProcess`2 proc, Object[] param)
+   em DWM.Controllers.WorkflowController.ListComissao(Nullable`1 esteiraId) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 409</StackTrace>
+  </LOG>
+</LOG>

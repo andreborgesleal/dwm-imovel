@@ -66,7 +66,7 @@ namespace DWM.Controllers
                     dt_proposta1 = _dt_proposta1,
                     dt_proposta2 = _dt_proposta2,
                     situacao = situacao,
-                    corretor1Id = corretor1pesqId
+                    corretor1Id = corretor1pesqId,
                 };
                 Factory<HomeViewModel, ApplicationContext> factory = new Factory<HomeViewModel, ApplicationContext>();
                 return View(factory.Execute(new HomeBI(), home));

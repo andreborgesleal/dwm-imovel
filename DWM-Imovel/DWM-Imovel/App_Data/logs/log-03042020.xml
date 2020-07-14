@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LOG>
+  <LOG ID="956246731" Data="03/04/2020 14:00:01">
+    <Sessao>z4in5ojatleqt5algjfgozsz</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>An error occurred while updating the entries. See the inner exception for details. *** An error occurred while updating the entries. See the inner exception for details.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/upload</NameSpace>
+    <Context>fileProposta="",nome_original="Modal title",esteiraId="20427"</Context>
+    <StackTrace>   em System.Data.Entity.Internal.InternalContext.SaveChanges()
+   em System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   em System.Data.Entity.DbContext.SaveChanges()
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param)
+   em DWM.Controllers.WorkflowController.EsteiraContabilizacao(Int32 esteiraId, String fileProposta, String nome_original) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 296</StackTrace>
+  </LOG>
+  <LOG ID="1998609462" Data="03/04/2020 14:06:29">
+    <Sessao>z4in5ojatleqt5algjfgozsz</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>An error occurred while updating the entries. See the inner exception for details. *** An error occurred while updating the entries. See the inner exception for details.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/upload</NameSpace>
+    <Context>fileProposta="",nome_original="Modal title",esteiraId="20427"</Context>
+    <StackTrace>   em System.Data.Entity.Internal.InternalContext.SaveChanges()
+   em System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   em System.Data.Entity.DbContext.SaveChanges()
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param)
+   em DWM.Controllers.WorkflowController.EsteiraContabilizacao(Int32 esteiraId, String fileProposta, String nome_original) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 296</StackTrace>
+  </LOG>
+  <LOG ID="960376173" Data="03/04/2020 14:07:19">
+    <Sessao>z4in5ojatleqt5algjfgozsz</Sessao>
+    <IP>::1</IP>
+    <HostName>DESKTOP-P14PJEA\andre</HostName>
+    <Mensagem>An error occurred while updating the entries. See the inner exception for details. *** An error occurred while updating the entries. See the inner exception for details.</Mensagem>
+    <NameSpace>DWM.Controllers.WorkflowController =&gt; workflow/upload</NameSpace>
+    <Context>fileProposta="",nome_original="Modal title",esteiraId="20428"</Context>
+    <StackTrace>   em System.Data.Entity.Internal.InternalContext.SaveChanges()
+   em System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   em System.Data.Entity.DbContext.SaveChanges()
+   em App_Dominio.Pattern.Factory`2.Execute(IProcess`2 proc, Repository value, Object[] param)
+   em DWM.Controllers.WorkflowController.EsteiraContabilizacao(Int32 esteiraId, String fileProposta, String nome_original) na C:\Sistemas\dwm-imovel\dwm-imovel\DWM-Imovel\DWM-Imovel\Controllers\WorkflowController.cs:linha 296</StackTrace>
+  </LOG>
+</LOG>

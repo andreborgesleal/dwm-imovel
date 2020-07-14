@@ -211,7 +211,7 @@ namespace DWM.Models.Persistence
                      join est in db.Esteiras on com.esteiraId equals est.esteiraId
                      join pro in db.Propostas on est.propostaId equals pro.propostaId
                      where pro.propostaId == entity.propostaId
-                           && est.ind_aprovacao == "A"
+                           //&& est.ind_aprovacao == "A"
                            && com.esteiraId == (from comMax in db.EsteiraComissaos
                                                 join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
                                                 where estMax.propostaId == entity.propostaId
@@ -224,7 +224,7 @@ namespace DWM.Models.Persistence
                                               join est in db.Esteiras on com.esteiraId equals est.esteiraId
                                               join pro in db.Propostas on est.propostaId equals pro.propostaId
                                               where pro.propostaId == entity.propostaId
-                                                    && est.ind_aprovacao == "A"
+                                                    //&& est.ind_aprovacao == "A"
                                                     && com.esteiraId == (from comMax in db.EsteiraComissaos
                                                                          join estMax in db.Esteiras on comMax.esteiraId equals estMax.esteiraId
                                                                          where estMax.propostaId == entity.propostaId

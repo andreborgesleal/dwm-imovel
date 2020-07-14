@@ -214,8 +214,17 @@ namespace DWM.Models.Persistence
                              join cor in db.Corretores on pro.corretor1Id equals cor.corretorId
                              where est.esteiraId == _esteiraId
                              select cor).FirstOrDefault();
-            _nome[2] = corr.nome;
-            _login[2] = corr.email ?? "";
+            
+            if (corr != null)
+            {
+                _nome[2] = corr.nome;
+                _login[2] = corr.email ?? "";
+            }
+            else
+            {
+                _nome[2] = prop.nome;
+                _login[2] = prop.login ?? "";
+            }
 
             // 3-Imobiliária
             Empresa e = seguranca_db.Empresas.Find(sessaoCorrente.empresaId);

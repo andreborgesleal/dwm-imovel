@@ -40,6 +40,12 @@ namespace DWM.Models.Enumeracoes
             [StringDescription("Faturamento")]
             [StringValue("Faturamento")]
             FATURAMENTO,
+            [StringDescription("Aprovada pela IF")]
+            [StringValue("Aprovada pela IF")]
+            APROVADA_IF,
+            [StringDescription("Contrato Gerado")]
+            [StringValue("Contrato Gerado")]
+            CONTRATO_GERADO
         }
     }
 
